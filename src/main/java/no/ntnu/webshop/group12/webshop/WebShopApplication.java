@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.WebShop;
+package no.ntnu.webshop.group12.webshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
