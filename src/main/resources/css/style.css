@@ -21,10 +21,16 @@
 @import url(slick.css);
 @import url(jquery-ui.css);
 @import url(nice-select.css);
-@font-face {
-   font-family: 'Cyberpunk';
-     src: url(font/cyberpunk/Cyberpunk.ttf) format('truetype');
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 
+@font-face {
+     font-family: 'cyberpunk';
+     src: url('cyberpunk/cyberpunk.ttf') format('truetype'),
+     url('cyberpunk/cyberpunk.otf') format('opentype');
+}
+@font-face {
+     font-family: 'blenderProbook';
+     src: url('blenderproBook/Blender-Pro-Book.otf') format('opentype')
 }
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
@@ -40,10 +46,10 @@ html {
 body {
      color: #ffffff;
      font-size: 14px;
-     font-family: 'Poppins', sans-serif;
+     font-family: 'Kdam Thmor Pro', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
-     background: #1f1f1f;
+     background: #091833;
 }
 
 a {
@@ -73,18 +79,18 @@ h6 {
 }
 
 h1 {
-     font-size: 24px;
-     font-family: 'Cyberpunk', cursive;
+     font-size: 50px;
+     font-family: Cyberpunk, sans-serif;
 }
 
 h2 {
      font-size: 22px;
-     font-family: 'Baloo Chettan', cursive;
+     font-family: Cyberpunk, cursive;
 }
 
 h3 {
      font-size: 18px;
-     font-family: 'Baloo Chettan', cursive;
+     font-family: Cyberpunk, cursive;
 }
 
 h4 {
@@ -277,7 +283,7 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 25px;
-     color: #fff;
+     color: #fcee0a;
      font-size: 16px;
      line-height: 20px;
      text-transform: uppercase;
@@ -351,7 +357,7 @@ button {
 }
 
 .text-bg h1 {
-     color: #ffffff;
+     color: #fbed0a;
      font-size: 67px;
      line-height: 90px;
      padding-bottom: 70px;
@@ -361,12 +367,12 @@ button {
 .text-bg strong {
      font-size: 27px;
      line-height: 35px;
-     color: #ffffff;
+     color: #FE00FE;
 }
 
 .text-bg span {
-     font-family: 'Baloo Chettan', cursive;
-     color: #2bcc91;
+     font-family: blenderProbook, cursive;
+     color: #05d9e8;
      font-size: 40px;
      line-height: 77px;
      font-weight: bold;
@@ -396,7 +402,7 @@ button {
 
 .text-img {
      height: 750px;
-     background: linear-gradient(to bottom, #00b06b 0%, #008f56 100%);
+     background: linear-gradient(to bottom, #b700b7 0%, #fe00fe 100%);
      border-radius: 322px 0px 0px 380px;
      padding: 132px 20px 0px 50px;
 }
@@ -458,7 +464,7 @@ button {
 
 .about {
      margin-top: 90px;
-     background: #6767b0;
+     background: #7700a6;
      padding: 60px 0;
 }
 
@@ -501,7 +507,7 @@ button {
 /** best section **/
 
 .best {
-     background: #6767b0;
+     background: #7700a6;
      margin-top: 0px;
      padding-bottom: 120px;
 }
@@ -519,7 +525,7 @@ button {
 
 .best_box {
      text-align: center;
-     background-color: #2bcc91;
+     background-color: #b332e6;
      border-radius: 20px;
      padding: 30px 20px;
      margin-bottom: 30px;
@@ -546,7 +552,7 @@ button {
      display: block;
      border-radius: 15px;
      margin-top: 30px;
-     background-color: #833333;
+     background-color: #b332e6;
      color: #fff;
 }
 
@@ -788,7 +794,7 @@ button {
 
 .footer {
      border-top: #000 solid 1px;
-     font-family: Poppins;
+     font-family: blenderProbook;
      background: #1f1f1f;
      padding-top: 50px;
 }
