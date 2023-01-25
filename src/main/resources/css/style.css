@@ -21,6 +21,11 @@
 @import url(slick.css);
 @import url(jquery-ui.css);
 @import url(nice-select.css);
+@font-face {
+     font-family: 'Cyberpunk';
+     src: url(Font/Cyberpunk/Cyberpunk.ttf);
+             format("truetype");
+}
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
@@ -62,7 +67,6 @@ h6 {
      font-weight: normal;
      position: relative;
      padding: 0 0 10px 0;
-     font-weight: normal;
      line-height: normal;
      color: #111111;
      margin: 0
@@ -70,7 +74,7 @@ h6 {
 
 h1 {
      font-size: 24px;
-     font-family: 'Baloo Chettan', cursive;
+     font-family: 'Cyberpunk', cursive;
 }
 
 h2 {
@@ -708,7 +712,7 @@ button {
      margin-top: 0px;
      padding-top: 120px;
      padding-bottom: 120px;
-     background: #017c4c;
+     background: rgba(1, 124, 76, 0);
 }
 
 .testimonial .titlepage h2 {
