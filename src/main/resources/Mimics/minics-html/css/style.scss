@@ -1,9 +1,10 @@
-$white: #ffffff;
-$black: #000000;
-$primary1: #f3c93e;
+$dark-blue: #091833;
+$pink: #FE00FE;
+$primary1: #F7EC50;
 // $primary1: #f3473e;
-$primary2: #3a4468;
-$textCol: #999;
+$primary2: #7700A6;
+$textCol: #C700FF;
+$cyan: #05D9E8;
 
 @mixin main-font {
   font-family: 'Poppins', sans-serif;
@@ -34,8 +35,8 @@ $textCol: #999;
 
 body {
   @include main-font;
-  color: #0c0c0c;
-  background-color: #ffffff;
+  color: $pink;
+  background-color: $dark-blue;
   overflow-x: hidden;
 }
 
@@ -151,7 +152,7 @@ a:focus {
   display: flex;
 
   a {
-    color: $white;
+    color: $dark-blue;
     margin-right: 10px;
 
     i {
@@ -182,8 +183,8 @@ a:focus {
     padding: 0;
     border: none;
     outline: none;
-    color: $white;
-    background-color: $primary1;
+    color: $cyan;
+    background-color: $cyan;
     border-radius: 0 5px 5px 0;
   }
 }
@@ -193,7 +194,7 @@ a:focus {
   align-items: center;
 
   a {
-    color: $white;
+    color: $cyan;
     margin-left: 25px;
     text-transform: uppercase;
 
@@ -214,13 +215,13 @@ a:focus {
 .navbar-brand {
   padding: 0;
   margin: 0;
-  color: $black;
+  color: $pink;
   font-weight: bold;
   font-size: 28px;
   font-weight: bold;
 
   span {
-    color: $white;
+    color: $cyan;
   }
 }
 
@@ -233,7 +234,7 @@ a:focus {
     .nav-item {
       .nav-link {
         padding: 10px 25px;
-        color: $white;
+        color: $cyan
         text-align: center;
       }
 
@@ -263,7 +264,7 @@ a:focus {
     display: block;
     width: 35px;
     height: 4px;
-    background-color: $white;
+    background-color: $dark-blue;
     margin: 7px 0;
     transition: all 0.3s;
     position: relative;
@@ -277,7 +278,7 @@ a:focus {
       left: 0;
       height: 100%;
       width: 100%;
-      background-color: $white;
+      background-color: $dark-blue;
       top: -10px;
       border-radius: 5px;
       transition: all .3s;
@@ -316,7 +317,7 @@ a:focus {
   display: flex;
   align-items: center;
   padding: 45px 0;
-  background-color: #f7f7f7;
+  background-color: $dark-blue
 
   .row {
     align-items: center;
@@ -342,11 +343,11 @@ a:focus {
     }
 
     p {
-      color: #6d6d6d;
+      color: $primary2;
     }
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 5px);
+      @include hero_btn($primary1, $dark-blue, 10px, 45px, 5px);
       margin-top: 15px;
     }
   }
@@ -412,7 +413,7 @@ a:focus {
     overflow: hidden;
 
     .img-box {
-      background-color: #f8f8f8;
+      background-color: $dark-blue;
       width: 100%;
       height: 275px;
       display: flex;
@@ -433,7 +434,7 @@ a:focus {
         height: 45px;
         line-height: 45px;
         background-color: $primary2;
-        color: $white;
+        color: $cyan;
         position: absolute;
         bottom: 50%;
         left: 50%;
@@ -444,7 +445,7 @@ a:focus {
 
         &:hover {
           background-color: $primary1;
-          color: $white;
+          color: $dark-blue;
         }
       }
 
@@ -455,7 +456,7 @@ a:focus {
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: $white;
+        background-color: $dark-blue;
         z-index: 1;
         opacity: 0;
         transition: all .2s;
@@ -502,7 +503,7 @@ a:focus {
     margin-top: 45px;
 
     .view_more-link {
-      @include hero_btn($primary1, $white, 10px, 45px, 5px);
+      @include hero_btn($primary1, $dark-blue, 10px, 45px, 5px);
     }
   }
 }
@@ -513,7 +514,7 @@ a:focus {
 // about section
 .about_section {
   background-color: $primary2;
-  color: $white;
+  color: $dark-blue;
 
   .row {
     align-items: center;
@@ -529,12 +530,12 @@ a:focus {
     margin: 45px 0;
 
     p {
-      color: #fefefe;
+      color: $dark-blue ;
       margin-top: 15px;
     }
 
     a {
-      @include hero_btn($primary1, $white, 10px, 45px, 5px);
+      @include hero_btn($primary1, $dark-blue, 10px, 45px, 5px);
       margin-top: 15px;
     }
   }
@@ -685,7 +686,7 @@ a:focus {
 // info section
 .info_section {
   background-color: $primary2;
-  color: $white;
+  color: $dark-blue;
   padding: 90px 0 45px 0;
 
   h5 {
@@ -703,7 +704,7 @@ a:focus {
 
         a {
           display: inline-block;
-          color: $white;
+          color: $dark-blue;
           margin-bottom: 5px;
         }
       }
@@ -722,7 +723,7 @@ a:focus {
         padding: 8px 35px;
         outline: none;
         border: none;
-        color: $white;
+        color: $dark-blue;
         background: $primary1;
         margin-top: 15px;
         text-transform: uppercase;
@@ -736,7 +737,7 @@ a:focus {
 
       a {
         margin-right: 25px;
-        color: $white;
+        color: $dark-blue;
         font-size: 24px;
       }
     }
@@ -755,8 +756,8 @@ a:focus {
   text-align: center;
 
   p {
-    border-top: 1px solid $white;
-    color: $white;
+    border-top: 1px solid $dark-blue;
+    color: $dark-blue;
     padding: 20px 0;
     margin: 0;
 

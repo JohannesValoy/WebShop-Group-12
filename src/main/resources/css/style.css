@@ -39,21 +39,36 @@
      box-sizing: border-box !important;
 }
 
+:root {
+     ---dark-blue: #091833;
+     ---blue: #133E7C;
+     ---cyan: #05D9E8;
+     ---yellow: #F7EC50;
+     ---purple: #7700A6;
+     ---purplepink: #C700FF;
+     ---pink: #FE00FE;
+}
+::placeholder {
+     color: var(---dark-blue);
+}
+
+
+
 html {
      scroll-behavior: smooth;
 }
 
 body {
-     color: #ffffff;
+     color: var(---cyan);
      font-size: 14px;
      font-family: 'Kdam Thmor Pro', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
-     background: #091833;
+     background: var(---dark-blue);
 }
 
 a {
-     color: #ffff00;
+     color: var(---yellow);
      text-decoration: none !important;
      outline: none !important;
      -webkit-transition: all .3s ease-in-out;
@@ -62,6 +77,9 @@ a {
      -o-transition: all .3s ease-in-out;
      transition: all .3s ease-in-out;
 }
+
+
+
 
 h1,
 h2,
@@ -74,7 +92,7 @@ h6 {
      position: relative;
      padding: 0 0 10px 0;
      line-height: normal;
-     color: #111111;
+     color: var(---yellow);
      margin: 0
 }
 
@@ -119,7 +137,7 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-     color: #212121;
+     color: var(---dark-blue);
      text-decoration: none!important;
      opacity: 1
 }
@@ -144,7 +162,7 @@ p {
 }
 
 a {
-     color: #222222;
+     color: var(---dark-blue);
      text-decoration: none;
      outline: none !important;
 }
@@ -172,7 +190,7 @@ img {
 .btn-custom {
      margin-top: 20px;
      background-color: transparent !important;
-     border: 2px solid #ddd;
+     border: 2px solid var(---yellow);
      padding: 12px 40px;
      font-size: 16px;
 }
@@ -180,7 +198,7 @@ img {
 .lead {
      font-size: 18px;
      line-height: 30px;
-     color: #767676;
+     color: var(---purple);
      margin: 0;
      padding: 0;
 }
@@ -283,7 +301,7 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link {
      padding: 0 25px;
-     color: #fcee0a;
+     color: var(---yellow);
      font-size: 16px;
      line-height: 20px;
      text-transform: uppercase;
@@ -291,14 +309,14 @@ button {
 
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
 .navigation.navbar-dark .navbar-nav .nav-link:hover {
-     color: #000;
+     color: var(---dark-blue);
 }
 
 .navigation.navbar-dark .navbar-nav .active>.nav-link,
 .navigation.navbar-dark .navbar-nav .nav-link.active,
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #fdd430;
+     color: var(---yellow);
 }
 
 .navbar-expand-md .navbar-nav {
@@ -306,16 +324,16 @@ button {
 }
 
 .sign_btn a {
-     background-color: #2d2c2c;
+     background-color: var(---blue);
      display: inline-block;
      padding: 7px 35px;
      border-radius: 30px;
-     color: #fff;
+     color: var(---yellow);
      font-size: 17px;
 }
 
 .sign_btn a:hover {
-     color: #0aec98;
+     color: var(---cyan);
 }
 
 
@@ -343,7 +361,7 @@ button {
      font-size: 40px;
      font-weight: bold;
      text-transform: uppercase;
-     color: #fff;
+     color: var(---yellow);
      line-height: 40px;
 }
 
@@ -357,7 +375,7 @@ button {
 }
 
 .text-bg h1 {
-     color: #fbed0a;
+     color: var(---yellow);
      font-size: 67px;
      line-height: 90px;
      padding-bottom: 70px;
@@ -367,12 +385,12 @@ button {
 .text-bg strong {
      font-size: 27px;
      line-height: 35px;
-     color: #FE00FE;
+     color: var(---pink);
 }
 
 .text-bg span {
      font-family: blenderProbook, cursive;
-     color: #05d9e8;
+     color: var(---cyan);
      font-size: 40px;
      line-height: 77px;
      font-weight: bold;
@@ -382,8 +400,8 @@ button {
 
 .text-bg a {
      font-size: 17px;
-     background-color: #2d2c2c;
-     color: #fff;
+     background-color: var(---blue);
+     color: var(---yellow);
      padding: 13px 0px;
      width: 100%;
      max-width: 190px;
@@ -394,15 +412,15 @@ button {
 }
 
 .text-bg a:hover {
-     background-color: #2bcc91;
-     color: #fff;
+     background-color: var(---cyan);
+     color: var(---yellow);
      transition: ease-in all 0.5s;
      border-radius: 26px;
 }
 
 .text-img {
      height: 750px;
-     background: linear-gradient(to bottom, #b700b7 0%, #fe00fe 100%);
+     background: linear-gradient(to bottom, var(---pink) 0%, var(---purplepink) 100%);
      border-radius: 322px 0px 0px 380px;
      padding: 132px 20px 0px 50px;
 }
@@ -421,15 +439,15 @@ button {
      position: absolute;
      align-items: center;
      left: -14px;
-     background: #000;
+     background: var(---dark-blue);
      width: 60px;
      height: -1px;
 
      border-radius: 72px;
-     color: #fff;
+     color: var(---yellow);
      padding: 7px 12px;
      font-size: 21px;
-     border: #2bcc91 solid 7px;}
+     border: var(---cyan) solid 7px;}
 
 
 
@@ -448,7 +466,7 @@ button {
 
 .titlepage h2 {
      font-size: 50px;
-     color: #00b06b;
+     color: var(---cyan);
      line-height: 50px;
      font-weight: bold;
      padding: 0;
@@ -464,17 +482,17 @@ button {
 
 .about {
      margin-top: 90px;
-     background: #7700a6;
+     background: var(---purple);
      padding: 60px 0;
 }
 
 .about .titlepage h2 {
      margin-bottom: 20px;
-     color: #fff;
+     color: var(---yellow);
 }
 
 .about .titlepage span {
-     color: #fff;
+     color: var(---yellow);
      font-size: 17px;
 }
 
@@ -487,17 +505,17 @@ button {
 }
 
 .about .about_box figure img {
-     width: 100%;
+     width: 130%;
 }
 
 .about .about_box .read_more {
-     background: #000;
-     color: #fff;
+     background: var(---dark-blue);
+     color: var(---yellow);
      border-radius: 15px;
 }
 
 .about .about_box .read_more:hover {
-     background: #f55171;
+     background: var(---cyan);
 }
 
 
@@ -507,32 +525,32 @@ button {
 /** best section **/
 
 .best {
-     background: #7700a6;
+     background: var(---purple);
      margin-top: 0px;
      padding-bottom: 120px;
 }
 
 .best .titlepage h2 {
-     color: #00b06b;
+     color: var(---cyan);
      margin-bottom: 20px;
 }
 
 .best .titlepage span {
-     color: #ffffff;
+     color: var(---cyan);
      font-size: 17px;
      line-height: 28px;
 }
 
 .best_box {
      text-align: center;
-     background-color: #b332e6;
+     background-color: var(---purplepink);
      border-radius: 20px;
      padding: 30px 20px;
      margin-bottom: 30px;
 }
 
 .best_box h4 {
-     color: #fff;
+     color: var(---yellow);
      text-transform: uppercase;
      font-size: 30px;
      line-height: 40px;
@@ -541,7 +559,7 @@ button {
 }
 
 .best_box p {
-     color: #fff;
+     color: var(---yellow);
      font-size: 17px;
      line-height: 28px;
      padding-top: 25px;
@@ -552,12 +570,12 @@ button {
      display: block;
      border-radius: 15px;
      margin-top: 30px;
-     background-color: #b332e6;
-     color: #fff;
+     background-color: var(---purplepink);
+     color: var(---cyan);
 }
 
 .best .read_more:hover {
-     background-color: #2bcc91;
+     background-color: var(---cyan);
 }
 
 
@@ -590,7 +608,7 @@ button {
 }
 
 .black_bg {
-     background-color: rgba(44, 54, 61, 0);
+     /*background-color: var(---yellow);*/
 }
 
 .request .main_form .contactus {
@@ -599,8 +617,9 @@ button {
      margin-bottom: 20px;
      width: 100%;
      height: 60px;
-     background: rgba(255, 255, 255, 0.2);
-     color: #005936;
+     background: var(---yellow);
+     color: var(---pink);
+     placeholder: var(---pink);
      font-size: 17px;
      border-radius: 15px;
 }
@@ -611,8 +630,8 @@ button {
      margin-bottom: 20px;
      width: 100%;
      height: 140px;
-     background: rgba(255, 255, 255, 0.2);
-     color: #067c50;
+     background: var(---yellow);
+     color: var(---pink);
      font-size: 17px;
      border-radius: 15px;
      padding-top: 51px;
@@ -621,8 +640,8 @@ button {
 .request .main_form .send_btn {
      font-size: 17px;
      transition: ease-in all 0.5s;
-     background-color: #000;
-     color: #fff;
+     background-color: var(---blue);
+     color: var(---yellow);
      padding: 13px 0px;
      margin: 0 auto;
      max-width: 200px;
@@ -633,14 +652,14 @@ button {
 }
 
 .request .main_form .send_btn:hover {
-     background-color: #2bcc91;
+     background-color: var(---cyan);
      transition: ease-in all 0.5s;
-     color: #fff;
+     color: var(---yellow);
      border-radius: 26px;
 }
 
 #request *::placeholder {
-     color: #ffffff;
+     color: var(---yellow);
      opacity: 1;
 }
 
@@ -657,8 +676,8 @@ button {
 
 .read_more {
      font-size: 17px;
-     background-color: #fff;
-     color: #000;
+     background-color: var(---yellow);
+     color: var(---dark-blue);
      padding: 13px 0px;
      width: 100%;
      max-width: 190px;
@@ -668,8 +687,8 @@ button {
 }
 
 .read_more:hover {
-     background: #000093;
-     color: #fff;
+     background: var(---dark-blue);
+     color: var(---yellow);
      border-radius: 26px;
      transition: ease-in all 0.5s;
 }
@@ -678,7 +697,7 @@ button {
 /** two_box section section **/
 
 .two_box {
-     background: #2bcc91;
+     background: var(---yellow);
      margin-top: 90px;
      padding: 0 40px;
 }
@@ -692,7 +711,7 @@ button {
 }
 
 .two_box h2 {
-     color: #fff;
+     color: var(---purplepink);
      font-size: 60px;
      line-height: 65px;
      padding-bottom: 25px;
@@ -701,7 +720,7 @@ button {
 .two_box p {
      font-size: 17px;
      line-height: 28px;
-     color: #fff;
+     color: var(---pink);
 }
 
 .offer {
@@ -722,7 +741,7 @@ button {
 }
 
 .testimonial .titlepage h2 {
-     color: #ffffff;
+     color: var(---yellow);
 }
 
 .testimonial_Carousel .carousel-caption {
@@ -748,7 +767,7 @@ button {
 
 .testimonial_Carousel .test_box h3 {
      font-size: 30px;
-     color: #2bcc91;
+     color: var(---cyan);
      line-height: 32px;
      display: inline-block;
      padding-bottom: 40px;
@@ -757,7 +776,7 @@ button {
 .testimonial_Carousel .test_box p {
      font-size: 17px;
      line-height: 28px;
-     color: #ffffff;
+     color: var(---yellow);
      font-style: Italic;
 }
 
@@ -768,11 +787,11 @@ button {
 .testimonial_Carousel .carousel-indicators li {
      width: 15px;
      height: 13px;
-     background: #003822;
+     background: var(---blue);
 }
 
 .testimonial_Carousel .carousel-indicators li.active {
-     background: #0c0c0e;
+     background: var(---yellow);
 }
 
 .carousel-control-next-icon,
@@ -787,15 +806,15 @@ button {
 /** footer **/
 
 .multi {
-     color: #2bcc91;
+     color: var(---cyan);
      font-weight: bold;
      font-size: 40px;
 }
 
 .footer {
-     border-top: #000 solid 1px;
+     border-top: var(---dark-blue) solid 1px;
      font-family: blenderProbook;
-     background: #1f1f1f;
+     background: var(---dark-blue);
      padding-top: 50px;
 }
 
@@ -804,14 +823,16 @@ button {
 }
 
 .cont h3 {
-     color: rgba(43, 203, 144, 0.73);
+     /*color: var(---cyan);*/
+     color: var(---purplepink);
      font-size: 37px;
      line-height: 55px;
      font-weight: bold;
 }
 
 .cont_call h3 {
-     color: rgba(43, 203, 144, 0.73);
+     /*color: var(---cyan);*/
+     color: var(---purplepink);
      font-size: 50px;
      line-height: 60px;
      font-weight: bold;
@@ -820,22 +841,22 @@ button {
 .copyright {
      margin-top: 43px;
      padding: 20px 0px;
-     background-color: #003822;
+     background-color: var(---dark-blue);
 }
 
 .copyright p {
-     color: #fff;
+     color: var(---yellow);
      font-size: 18px;
      line-height: 22px;
      text-align: center;
 }
 
 .copyright a {
-     color: #fff;
+     color: var(---yellow);
 }
 
 .copyright a:hover {
-     color: #2bcc91;
+     color: var(---cyan);
 }
 
 
