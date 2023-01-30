@@ -152,7 +152,7 @@ a:focus {
   display: flex;
 
   a {
-    color: $dark-blue;
+    color: $cyan;
     margin-right: 10px;
 
     i {
@@ -316,8 +316,8 @@ a:focus {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 45px 0;
-  background-color: $dark-blue
+  padding: 100px 0;
+  background-color: $dark-blue;
 
   .row {
     align-items: center;
