@@ -1,0 +1,22 @@
+.footer {
+    width:100%;
+    background-color:#263238;
+    min-height:250px;
+    padding:10px 0 25px 0;
+    text-align: center;
+}
+
+.footer p {
+    font-size:13px;
+    color:#CCC;
+    padding-bottom:0;
+    margin-bottom:8px;
+}
+
+.footer h3 {
+    color: rgba(0, 255, 34, 0.85);
+}
+
+.description {
+    padding-bottom:15px ;
+}
