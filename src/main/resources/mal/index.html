@@ -9,57 +9,50 @@
 
 </head>
 <body>
-  <div class="header">
-    <img href="#default" class="logo" src="images/daftpunk.png" alt="Logo">
-    <div class="header-right">
-      <a class="active" href="index.html">Home</a>
-      <a href="category.html">Category</a>
-      <a href="about.html">About us</a>
-      <a href="login.html">Account</a>
-      <a href="cart.html">Cart</a>
-      <div class="search">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-    </div>
-  </div>
+  <header class="header">
+    <h1>Welcome to Cyberpunk Gaming Gear</h1>
+    <nav>
+      <img href="#default" class="logo" src="images/daftpunk.png" alt="Logo">
+      <ul class="header-right">
+        <a class="active" href="index.html">Home</a>
+        <a href="#">Category</a>
+        <a href="#">About us</a>
+        <a href="#">Account</a>
+        <a href="#">Cart</a>
+      </ul>
+      <form>
+        <label for="searchInput"></label>
+        <input type="text" placeholder="Search.." id="searchInput">
+      </form>
+    </nav>
+  </header>
 
-  <h1>Welcome to the Cyberpunk store</h1>
 
-  <div class="products-container">
-    <div class="product">
-      <img src="images/top_img2.png" alt="Product 1">
-      <h2>Burger 1 name</h2>
-      <p>This is the best burger in town, it tastes so good. It looks like 2 laptops</p>
-      <p>$19.99</p>
-    </div>
+  <main>
+    <h2>Featured Products</h2>
+    <section class="products">
+      <article>
+        <img src="product1.jpg" alt="Product 1">
+        <h3>Product 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button>Add to Cart</button>
+      </article>
+      <article>
+        <img src="product2.jpg" alt="Product 2">
+        <h3>Product 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button>Add to Cart</button>
+      </article>
+      <article>
+        <img src="product3.jpg" alt="Product 3">
+        <h3>Product 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button>Add to Cart</button>
+      </article>
+    </section>
+  </main>
 
-    <div class="product">
-      <img src="product2.jpg" alt="Product 2">
-      <h2>Burger 2</h2>
-      <p>Burger 2 description</p>
-      <p>$29.99</p>
-    </div>
-
-    <div class="product">
-      <img src="product2.jpg" alt="Product 2">
-      <h2>Burger 2</h2>
-      <p>Burger 2 description</p>
-      <p>$29.99</p>
-    </div>
-
-    <div class="product">
-      <img src="product2.jpg" alt="Product 2">
-      <h2>Burger 2</h2>
-      <p>Burger 2 description</p>
-      <p>$29.99</p>
-    </div>
-  </div>
-
-  <div class="footer">
-    <footer>
+  <footer>
       <div class="container">
         <div class="row">
           <div class="col-sm-4 col-md col-sm-4  col-12 col">
@@ -71,7 +64,6 @@
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+  </footer>
 </body>
 </html>

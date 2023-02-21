@@ -1,7 +1,17 @@
-/* Style the header with a grey background and some padding */
+
+:root {
+    ---dark-blue: #091833;
+    ---blue: #133E7C;
+    ---cyan: #05D9E8;
+    ---yellow: #F7EC50;
+    ---purple: #7700A6;
+    ---purplepink: #C700FF;
+    ---pink: #FE00FE;
+}
+
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: var(---purplepink);
     padding: 20px 10px;
 }
 
@@ -28,22 +38,18 @@
 
 /* Change the background color on mouse-over */
 .header a:hover {
-    background-color: #ddd;
+    background-color: #ec1717;
     color: black;
 }
 
 /* Style the active/current link*/
 .header a.active {
-    background-color: dodgerblue;
-    color: white;
+    background-color: #1efff8;
+    color: #0c0909;
 }
 
 /* Float the link section to the right */
 .header .header-right {
-    float: right;
-}
-
-.header .search {
     float: right;
 }
 
@@ -54,13 +60,10 @@
     border: none;
 }
 
-header .search button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
+#searchInput {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 0;
+    box-sizing: border-box;
 }
+
