@@ -1,39 +1,36 @@
-body {
-    /* Set the margin of the body to 0 */
-    margin: 0;
+
+#footerObject {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    max-height: 100%;
+    line-height: 0;
+    margin: 25px auto;
+
 }
 
-.footer {
-    /* Set the position of the footer at the bottom of the page */
-    position: fixed;
-    bottom: 0;
-    /* Set the width of the footer to 100% */
+footer {
     width:100%;
-    /* Set the background color of the footer to #263238 */
     background-color:#263238;
-    /* Set the padding of the footer to 10px 0 25px 0 */
-    padding:10px 0 25px 0;
-    /* Set the text alignment of the footer to center */
+    border: none;
+    margin: 0;
+    padding: 0;
     text-align: center;
+    overflow: hidden;
+
 }
 
-.footer p {
-    /* Set the font size of the footer paragraph to 13px */
+footer p {
     font-size:13px;
-    /* Set the color of the footer paragraph to #CCC */
     color:#CCC;
-    /* Set the padding bottom of the footer paragraph to 0 */
     padding-bottom:0;
-    /* Set the margin bottom of the footer paragraph to 8px */
     margin-bottom:8px;
 }
 
-.footer h3 {
-    /* Set the color of the footer h3 to rgba(0, 255, 34, 0.85) */
+footer h3 {
     color: rgba(0, 255, 34, 0.85);
 }
 
-.description {
-    /* Set the padding bottom of the description to 15px */
-    padding-bottom:15px ;
+footer p.description {
+    padding-bottom:15px;
 }

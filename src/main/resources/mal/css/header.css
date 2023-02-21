@@ -9,16 +9,12 @@
     ---pink: #FE00FE;
 }
 
-.header {
-    position: fixed;
-    top: 0;
+header {
+    overflow: hidden;
     background-color: var(---purplepink);
 }
 
-/* Style the header links */
-.header a {
-    /* adds space between the buttons */
-    margin-left: 10px;
+header a {
     float: left;
     color: black;
     text-align: center;
@@ -29,8 +25,7 @@
     border-radius: 4px;
 }
 
-/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-.header img.logo {
+header img.logo {
     width: auto;
     height: auto;
     max-width: 100px;
@@ -39,25 +34,21 @@
     border-radius: 6px;
 }
 
-/* Change the background color on mouse-over */
-.header a:hover {
+header a:hover {
     background-color: #ec1717;
     color: black;
 }
 
-/* Style the active/current link*/
-.header a.active {
+header a.active {
     background-color: #1efff8;
     color: #0c0909;
 }
 
-/* Float the link section to the right */
-.header .header-right {
+header .header-right {
     float: right;
 }
 
-.header input[type=text] {
-    float: left;
+header input[type=text] {
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
@@ -74,8 +65,15 @@ header .search button {
     cursor: pointer;
 }
 
-button {
-    border: none;
+nav {
+    float: right;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 #productList li {
