@@ -1,22 +1,39 @@
+body {
+    /* Set the margin of the body to 0 */
+    margin: 0;
+}
+
 .footer {
+    /* Set the position of the footer at the bottom of the page */
+    position: fixed;
+    bottom: 0;
+    /* Set the width of the footer to 100% */
     width:100%;
+    /* Set the background color of the footer to #263238 */
     background-color:#263238;
-    min-height:250px;
+    /* Set the padding of the footer to 10px 0 25px 0 */
     padding:10px 0 25px 0;
+    /* Set the text alignment of the footer to center */
     text-align: center;
 }
 
 .footer p {
+    /* Set the font size of the footer paragraph to 13px */
     font-size:13px;
+    /* Set the color of the footer paragraph to #CCC */
     color:#CCC;
+    /* Set the padding bottom of the footer paragraph to 0 */
     padding-bottom:0;
+    /* Set the margin bottom of the footer paragraph to 8px */
     margin-bottom:8px;
 }
 
 .footer h3 {
+    /* Set the color of the footer h3 to rgba(0, 255, 34, 0.85) */
     color: rgba(0, 255, 34, 0.85);
 }
 
 .description {
+    /* Set the padding bottom of the description to 15px */
     padding-bottom:15px ;
 }

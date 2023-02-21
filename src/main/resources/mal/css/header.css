@@ -10,13 +10,15 @@
 }
 
 .header {
-    overflow: hidden;
+    position: fixed;
+    top: 0;
     background-color: var(---purplepink);
-    padding: 20px 10px;
 }
 
 /* Style the header links */
 .header a {
+    /* adds space between the buttons */
+    margin-left: 10px;
     float: left;
     color: black;
     text-align: center;
@@ -34,6 +36,7 @@
     max-width: 100px;
     max-height: 100px;
     float: left;
+    border-radius: 6px;
 }
 
 /* Change the background color on mouse-over */
@@ -54,10 +57,12 @@
 }
 
 .header input[type=text] {
+    float: left;
     padding: 6px;
     margin-top: 8px;
     font-size: 17px;
     border: none;
+    border-radius: 4px;
 }
 
 header .search button {

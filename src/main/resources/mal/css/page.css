@@ -1,5 +1,7 @@
 body {
     margin: 0;
+    /* TODO: bad code! this is here to make sure the header doesnt come in front of the main page */
+    padding-top: 200px;
 }
 
 main {
