@@ -53,6 +53,10 @@
     float: right;
 }
 
+.header .search {
+    float: right;
+}
+
 .header input[type=text] {
     padding: 6px;
     margin-top: 8px;
@@ -60,10 +64,23 @@
     border: none;
 }
 
-#searchInput {
-    width: 90%;
-    padding: 12px 20px;
-    margin: 0;
-    box-sizing: border-box;
+header .search button {
+    padding: 6px;
+    margin-top: 8px;
+    border: none;
+    float: right;
+    margin-right: 16px;
+    cursor: pointer;
 }
 
+button {
+    border: none;
+}
+
+button :hover {
+    color: purple;
+}
+
+i {
+    font-size: 50px;
+}

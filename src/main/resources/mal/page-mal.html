@@ -3,26 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Cyberpunk Gaming Gear</title>
-  <style>
-    .products {
-      display: inline-block;
-      width: 30%;
-      margin: 1%;
-      border: 1px solid black;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .products img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .products h3 {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="css/page.css">
+  <link rel="stylesheet" type="text/css" href="css/footer.css">
+  <script>
+    $(function(){
+      $('footer').load('footer.html');
+    });
+  </script>
 </head>
 <body>
 
@@ -50,5 +37,17 @@
   </section>
 </main>
 
+  <div class="product">
+    <img src="product2.jpg" alt="Product 2">
+    <h2>Burger 2</h2>
+    <p>Burger 2 description</p>
+    <p>$29.99</p>
+  </div>
+
+</div>
+
+<footer class="footer_section">
+  <!-- footer content will be inserted here -->
+</footer>
 </body>
 </html>
