@@ -67,3 +67,7 @@
     box-sizing: border-box;
 }
 
+#productList li {
+    display: none;
+}
+
