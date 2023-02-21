@@ -53,10 +53,6 @@
     float: right;
 }
 
-.header .search {
-    float: right;
-}
-
 .header input[type=text] {
     padding: 6px;
     margin-top: 8px;
@@ -77,10 +73,7 @@ button {
     border: none;
 }
 
-button :hover {
-    color: purple;
+#productList li {
+    display: none;
 }
 
-i {
-    font-size: 50px;
-}
