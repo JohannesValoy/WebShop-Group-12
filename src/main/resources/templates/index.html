@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Cyberpunk Gaming Gear</title>
-  <link rel="stylesheet" type="text/css" href="../static/header.css">
-  <link rel="stylesheet" type="text/css" href="../static/footer.css">
+  <!-- Import Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../static/page.css">
+  <!-- Our own styles -->
+  <link rel="stylesheet" th:href="@{page.css}"/>
+  <link rel="stylesheet" th:href="@{header.css}"/>
+  <link rel="stylesheet" th:href="@{footer.css}"/>
+  <link rel="stylesheet" th:href="@{style.css}"/>
 
 </head>
 <body>
-<header>
-  <object type="text/html" data="header-template.html" class = "header" width="100%" height="200px"></object>
-</header>
+  <header class="header">
+    <h1>Welcome to Cyberpunk Gaming Gear</h1>
+    <nav th:insert="components/navigation">
+
+    </nav>
+  </header>
 
 
   <main>
@@ -39,8 +45,6 @@
     </section>
   </main>
 
-  <footer>
-    <object type="text/html" data="footer-template.html" width="100%" height="200px" class = footer></object>
-  </footer>
+  <footer th:insert="components/footer"></footer>
 </body>
 </html>
