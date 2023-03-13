@@ -39,11 +39,6 @@ header a:hover {
     color: black;
 }
 
-header a.active {
-    background-color: #1efff8;
-    color: #0c0909;
-}
-
 header .header-right {
     float: right;
 }
