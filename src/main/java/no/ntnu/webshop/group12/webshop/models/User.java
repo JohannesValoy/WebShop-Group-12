@@ -1,7 +1,9 @@
 package no.ntnu.webshop.group12.webshop.models;
 
-public class User {
+import jakarta.persistence.Entity;
 
+@Entity
+public class User {
     private String username;
     private String password;
 
