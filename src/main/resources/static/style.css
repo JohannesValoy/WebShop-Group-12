@@ -1,0 +1,28 @@
+:root {
+    ---button-accent-color: #F7EC50;
+    ---banner-background-color: #F7EC50;
+    ---button-hover-color: #36EBF2;
+    ---banner-text-color: #000000;
+    ---Background-Color: #000000;
+    ---button-text_color: #000000;
+    ---General-Text-Color: #F7EC50;
+    ---hover-button-color: #36EBF2;
+    ---focus-button-color: red;
+    ---focus-button-text-color: white;
+    ---focus-button-hover-color: darkred;
+    ---nav-background-color: #000000;
+    ---nav-text-color: #F7EC50;
+    ---nav-text-hover-color: #36EBF2;
+    ---nav-text-active-color: #36EBF2;
+    ---button-bright-text_color: #F7EC50;
+    ---button-dark-accent-color: #000000;
+    ---button-hover-text_color: #36EBF2;
+    ---button-border-color: #F7EC50;
+
+    ---button-border-radius: 5px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}

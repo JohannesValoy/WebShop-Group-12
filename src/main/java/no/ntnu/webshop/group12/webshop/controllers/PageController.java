@@ -18,4 +18,25 @@ public class PageController {
     public String getHome() {
         return "index";
     }
+
+    @GetMapping("/category")
+    public String getCategory() {
+        return "category";
+    }
+
+    @GetMapping("/cart")
+    public String getCart() {
+        return "cart";
+    }
+
+    @GetMapping("/account")
+    public String getAccount() {
+        return "account";
+    }
+
+    @GetMapping("/about")
+    public String getAbout() {
+        return "about";
+    }
+
 }
