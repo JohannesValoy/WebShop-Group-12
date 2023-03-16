@@ -9,9 +9,7 @@
     color: var(---General-Text-Color);
 }
 
-.company-name #logo {
-    height: 10rem;
-}
+
 
 header {
     padding: 0rem 5rem 0rem 5rem;
