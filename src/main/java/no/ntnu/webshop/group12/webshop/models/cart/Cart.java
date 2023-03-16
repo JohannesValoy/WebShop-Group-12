@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -14,14 +15,10 @@ public class Cart {
     private int id;
 
     @OneToMany
+    @JoinColumn(name = "cart_id")
     private List<Quantity> products;
 
     public Cart() {
-    }
-
-    public Cart(int id, List<Quantity> products) {
-        this.id = id;
-        this.products = products;
     }
 
     public int getId() {
@@ -30,6 +27,10 @@ public class Cart {
 
     public List<Quantity> getProducts() {
         return products;
+    }
+
+    public void addProduct(Quantity quantity) {
+        products.add(quantity);
     }
 
 }

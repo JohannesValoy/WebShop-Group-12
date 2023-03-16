@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 public class Product {
@@ -15,16 +18,30 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @NotBlank
     private String name;
+
     private String description;
+
+    @Positive
     private double price;
+
+    @PositiveOrZero
     private int stock;
 
     public Product() {
     }
 
-    public Product(int id, Category category, String name, String description, double price, int stock) {
-        this.id = id;
+    public Product(String name, String description, double price, int stock) {
+        this.category = null;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Product(Category category, String name, String description, double price, int stock) {
         this.category = category;
         this.name = name;
         this.description = description;

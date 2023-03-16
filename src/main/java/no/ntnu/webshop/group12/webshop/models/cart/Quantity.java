@@ -3,6 +3,7 @@ package no.ntnu.webshop.group12.webshop.models.cart;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Positive;
@@ -16,9 +17,11 @@ public class Quantity {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @OneToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @Positive
@@ -27,8 +30,7 @@ public class Quantity {
     public Quantity() {
     }
 
-    public Quantity(int id, Cart cart, Product product, int amount) {
-        this.id = id;
+    public Quantity(Cart cart, Product product, int amount) {
         this.cart = cart;
         this.product = product;
         this.amount = amount;
