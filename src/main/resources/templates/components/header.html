@@ -1,15 +1,11 @@
 
 <header class="header">
-
-    <link rel="stylesheet" th:href="@{page.css}"/>
     <link rel="stylesheet" th:href="@{header.css}"/>
-    <link rel="stylesheet" th:href="@{footer.css}"/>
     <link rel="stylesheet" th:href="@{style.css}"/>
     <nav>
-    <ul class="sub-pages">
-        <li><img href="/" class="logo" th:src="@{images/logo.png}" alt="Logo"></li>
-        <li><h1>Welcome to Cyberpunk Gaming Gear</h1></li>
-        <li><input type="text" placeholder="Search.."></li>
+    <img href="/" class="logo" th:src="@{images/logo.png}" alt="Logo">
+    <input type="text" placeholder="Search..">
+    <ul class="header-right">
         <li><a href="/">Home</a></li>
         <li><a th:href="@{/category}">Category</a></li>
         <li><a th:href="@{/about}">About us</a></li>

@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{page.css}"/>
-    <link rel="stylesheet" th:href="@{header.css}"/>
-    <link rel="stylesheet" th:href="@{footer.css}"/>
-    <link rel="stylesheet" th:href="@{style.css}"/>
-</head>
+    <head th:replace="components/head :: common_head(~{::title})">
+        <title>Cyberpunk Store - Products</title>
+    </head>
 <body>
 <header th:replace="components/header" class="header"></header>
-<footer th:insert="components/footer"></footer>
 
+
+<footer th:replace="components/footer"></footer>
 </body>
 </html>
