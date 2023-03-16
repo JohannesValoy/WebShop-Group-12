@@ -11,7 +11,23 @@ body {
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
     height: 100vh;
+    background-color: var(---Background-Color);
+    color: var(---General-Text-Color);
 }
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.list-of-products {
+    margin: 2% 10%;
+    padding: 1rem
+}
+
 
 :root {
     ---button-accent-color: #F7EC50;
@@ -34,5 +50,6 @@ body {
     ---button-hover-text_color: #36EBF2;
     ---button-border-color: #F7EC50;
     ---General-hover-Text-Color: #F7EC50;
+    ---hover-button-text-color: #F7EC50;
     ---button-border-radius: 5px;
 }
