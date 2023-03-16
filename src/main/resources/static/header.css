@@ -1,16 +1,33 @@
-body {
+.company-name {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-around;
 }
-h1 {
+
+.company-name h1 {
     color: var(---General-Text-Color);
 }
+
+.company-name #logo {
+    height: 10rem;
+}
+
 header {
-    overflow: hidden;
+    padding: 0rem 5rem 0rem 5rem;
     background-color: var(---Background-Color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-self: center;
+    justify-content: space-around;
 }
 
 .sub-pages {
@@ -19,9 +36,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     list-style-type: none;
-
 }
 
 header a {
@@ -55,21 +70,3 @@ header input[type=text] {
     color: var(---General-Text-Color);
     border: 2px solid var(---button-accent-color);
 }
-
-::placeholder{
-    color: var(---General-Text-Color);
-}
-
-header .search button {
-    padding: 6px;
-    margin-top: 8px;
-    border: none;
-    margin-right: 16px;
-    cursor: pointer;
-}
-
-
-#productList li {
-    display: none;
-}
-

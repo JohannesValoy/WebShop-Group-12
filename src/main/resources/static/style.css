@@ -1,3 +1,18 @@
+* {
+    font-size: 10px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    height: 100vh;
+}
+
 :root {
     ---button-accent-color: #F7EC50;
     ---banner-background-color: #F7EC50;
@@ -19,11 +34,5 @@
     ---button-hover-text_color: #36EBF2;
     ---button-border-color: #F7EC50;
     ---General-hover-Text-Color: #F7EC50;
-
     ---button-border-radius: 5px;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
 }

@@ -1,10 +1,12 @@
 
 <header>
+    <div class="company-name">
+        <img href="/" class="logo" th:src="@{images/logo.png}" alt="Logo">
+        <h1>Cyberpunk Gaming Gear</h1>
+    </div>
+    <input type="text" placeholder="Search..">
     <nav>
     <ul class="sub-pages">
-        <li><img href="/" class="logo" th:src="@{images/logo.png}" alt="Logo"></li>
-        <li><h1>Welcome to Cyberpunk Gaming Gear</h1></li>
-        <li><input type="text" placeholder="Search.."></li>
         <li><a href="/">Home</a></li>
         <li><a th:href="@{/category}">Category</a></li>
         <li><a th:href="@{/about}">About us</a></li>
