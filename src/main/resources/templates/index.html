@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Cyberpunk Gaming Gear</title>
-  <!-- Import Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Our own styles -->
-  <link rel="stylesheet" th:href="@{page.css}"/>
-  <link rel="stylesheet" th:href="@{header.css}"/>
-  <link rel="stylesheet" th:href="@{footer.css}"/>
-  <link rel="stylesheet" th:href="@{style.css}"/>
-
+  <head th:replace="components/head :: common_head(~{::title})">
+    <title>Cyberpunk Store</title>
 </head>
 <body>
   <header th:replace="components/header" class="header">
