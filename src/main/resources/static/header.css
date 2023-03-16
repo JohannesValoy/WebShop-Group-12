@@ -17,17 +17,17 @@ header ul {
     margin: 0;
     padding: 0 1em;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: space-around;
     list-style-type: none;
 }
 
 header a {
     text-align: center;
-    padding: 12px;
     text-decoration: none;
     line-height: 25px;
     border-radius: 4px;
+    margin: 0.5rem;
 }
 
 header img.logo {

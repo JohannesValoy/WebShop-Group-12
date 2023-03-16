@@ -10,12 +10,13 @@ body, header, footer {
 }
 
 header, footer {
-    padding: 1rem 4rem 1rem 4rem;
+    padding: 1rem 2rem 1rem 2rem;
 }
 
 
 h1 {
     font-size: 2rem;
+    text-align: center;
 }
 
 h2 {
@@ -74,7 +75,7 @@ body {
     ---button-dark-accent-color: #000000;
     ---button-hover-text_color: #36EBF2;
     ---button-border-color: #F7EC50;
-    ---General-hover-Text-Color: #F7EC50;
+    ---General-hover-Text-Color: #000;
     ---hover-button-text-color: #F7EC50;
     ---button-border-radius: 5px;
 }
