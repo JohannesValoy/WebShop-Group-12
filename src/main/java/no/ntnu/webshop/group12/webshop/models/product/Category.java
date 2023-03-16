@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.models;
+package no.ntnu.webshop.group12.webshop.models.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

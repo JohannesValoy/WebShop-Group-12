@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.models;
+package no.ntnu.webshop.group12.webshop.models.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ public class Product {
     @Id
     @GeneratedValue
     private int id;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
