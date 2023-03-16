@@ -5,17 +5,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Customer {
     @Id
     @GeneratedValue
     private int id;
     private String username;
     private String password;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String username, String password) {
+    public Customer(String username, String password) {
         this.username = username;
         this.password = password;
     }
