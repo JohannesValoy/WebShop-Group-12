@@ -29,13 +29,6 @@ body {
     color: var(---General-Text-Color);
 }
 
-h1 {
-    font-size: 3rem;
-}
-
-h2 {
-    font-size: 2rem;
-}
 
 .product-page {
     display: flex;

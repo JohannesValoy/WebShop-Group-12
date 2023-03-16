@@ -1,21 +1,7 @@
-
-#footerObject {
-    width: 100%;
-    position: relative;
-    max-height: 100%;
-    line-height: 0;
-    margin: 25px auto;
-
-}
-
 footer {
-    width:100%;
-    border: none;
-    margin: 0;
-    padding: 0;
+    width:100vw;
+    padding: 10rem;
     text-align: center;
-    overflow: hidden;
-
 }
 
 footer p {
