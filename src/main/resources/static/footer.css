@@ -1,19 +1,13 @@
 footer {
-    padding: 10rem;
     text-align: center;
 }
 
 footer p {
-    font-size:13px;
     color:#CCC;
-    padding-bottom:0;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 footer h3 {
     color: rgba(0, 255, 34, 0.85);
-}
-
-footer p.description {
-    padding-bottom:15px;
+    margin-bottom:10px;
 }
