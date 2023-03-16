@@ -6,6 +6,7 @@
     background-color: var(---Background-Color);
     color: var(---General-Text-Color);
     align-items: center;
+    padding: 3rem;
 }
 
 .product-card h2{
