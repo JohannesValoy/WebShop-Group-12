@@ -35,7 +35,7 @@ header img.logo {
     max-height: 100px;
 }
 
-header a:hover {
+header li a:hover {
     background-color: var(---blue);
     color: var(---black);
 }
