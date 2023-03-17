@@ -1,8 +1,6 @@
-        <li class = "product-card" th:each="product : ${products}">
-                <picture>
-                        <img th:src="@{images/products/{image} (image=${product.image})}" class="product-card-logo" th:alt="@{Picture of a {name} (name=${product.name})}">
-                </picture>
-                        <h2 th:text="${product.name}"></h2>
-                <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button class="add-to-card-button">Add to Cart</button>
-        </li>
+<div class = "product-card" onclick="window.location.href='/product-page'">
+        <img href="/" class="product-card-logo" th:src="@{images/logo.png}" alt="Logo">
+        <h2>Product 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="add-to-card-button" >Add to Cart</button>
+</div>

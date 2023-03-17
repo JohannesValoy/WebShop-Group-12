@@ -9,6 +9,8 @@ header {
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
+    background-color: var(---extra-dark-grey);
+    margin: 0;
 }
 
 header nav ul {
@@ -23,8 +25,9 @@ header a {
     text-align: center;
     text-decoration: none;
     line-height: 25px;
-    border-radius: 4px;
+    border-radius: var(---border-radius);
     margin: 0.5rem;
+    padding: 0.5em;
 }
 
 header img.logo {
@@ -44,4 +47,5 @@ header a:hover {
 header input[type=text] {
     padding: 6px;
     border: 2px solid var(---yellow);
+    border-radius: var(---border-radius);
 }

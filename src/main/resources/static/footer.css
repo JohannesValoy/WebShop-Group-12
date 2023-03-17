@@ -1,13 +1,15 @@
 footer {
     text-align: center;
+    background-color: var(---extra-dark-grey);
+    padding: 1em;
 }
 
 footer p {
     color: #CCC;
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
+    padding: 0.5em;
 }
 
 footer h3 {
-    color: var(---green);
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
 }

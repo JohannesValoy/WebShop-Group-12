@@ -47,4 +47,9 @@ public class PageController {
         return "about";
     }
 
+    @GetMapping("/product-page")
+    public String getProduct() {
+        return "product-page";
+    }
+
 }

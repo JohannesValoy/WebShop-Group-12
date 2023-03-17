@@ -1,14 +1,21 @@
 * {
     font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     border: 0;
     padding: 0;
     color: var(---yellow);
-    background-color: var(---black);
+}
+h1,h2, h3, p, a, li, ul, input, button, label, select, option, textarea {
+    background-color: rgb(0, 0, 0, 0);
+}
+
+img {
+    background-color: rgb(0, 0, 0, 0);
 }
 
 header, main, footer {
-    margin: 1rem;
+    margin: 0;
 }
 
 h1 {
@@ -28,17 +35,40 @@ h1, h2, h3, p {
     text-align: center;
 }
 
-.product-page {
+.landing-page {
+    padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.product-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.product-page-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 1rem;
+}
+
+.product-page-logo {
+    width: 20rem;
+}
+
 .list-of-products {
     display: flex;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     flex-wrap: wrap;
+}
+
+body{
+    background-color: var(---black);
 }
 
 :root {
@@ -49,4 +79,8 @@ h1, h2, h3, p {
     ---focus-button-text-color: white;
     ---focus-button-hover-color: darkred;
     ---green: #00FF22D8;
+
+    ---dark-grey: #333333;
+    ---border-radius: 5px;
+    ---extra-dark-grey: #1A1A1A;
 }
