@@ -1,9 +1,12 @@
-        <li class = "product-card" th:each="product : ${products}">
-                <picture>
-                        <img th:src="@{images/products/{image} (image=${product.image})}" class="product-card-logo" th:alt="@{Picture of a {name} (name=${product.name})}">
-                </picture>
+
+<li class = "product-card" th:each="product : ${products}">
+    <div class="product-card" onclick="window.location.href='/product-page'">
+        <picture>
+                <img th:src="@{images/products/{image} (image=${product.image})}" class="product-card-logo" th:alt="@{Picture of a {name} (name=${product.name})}">
+        </picture>
                 <h2 th:text="${product.name}"></h2>
-                <p th:text="@{{price} NOK (price=${product.price})}"></p>
-                <p th:text="${product.description}"></p>
-                <button class="add-to-card-button">Add to Cart</button>
-        </li>
+                <p th:text= "@{{price} NOK (price=${product.price})}"></p>
+        <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="add-to-card-button">Add to Cart</button>
+    </div>
+</li>
