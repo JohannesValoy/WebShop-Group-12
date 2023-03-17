@@ -1,12 +1,13 @@
-
 <li class = "product-card" th:each="product : ${products}">
-    <div class="product-card" onclick="window.location.href='/product-page'">
+        <a th:href="@{/products/{id} (id=${product.id})}">
+    <div class="product-card">
         <picture>
                 <img th:src="@{images/products/{image} (image=${product.image})}" class="product-card-logo" th:alt="@{Picture of a {name} (name=${product.name})}">
         </picture>
                 <h2 th:text="${product.name}"></h2>
-                <p th:text= "@{{price} NOK (price=${product.price})}"></p>
+                <p th:text="@{{price} NOK (price=${product.price})}" > </p>
         <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <button class="add-to-card-button">Add to Cart</button>
     </div>
+    </a>
 </li>

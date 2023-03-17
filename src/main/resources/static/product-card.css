@@ -6,7 +6,6 @@
     justify-content: space-between;
     border-radius: var(---border-radius);
     width: 15rem;
-    height: 60rem;
     padding: 1rem 0;
     overflow: hidden;
 }
