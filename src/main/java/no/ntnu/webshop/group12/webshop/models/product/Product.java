@@ -27,6 +27,8 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private String image;
+
     @Positive
     private double price;
 
@@ -44,11 +46,20 @@ public class Product {
         this.stock = stock;
     }
 
+    public Product(String name, String description, double price, int stock, String image) {
+        this.category = new ArrayList<>();
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.image = image;
+    }
+
     public int getId() {
         return id;
     }
 
-    public List<Category> getCategoryId() {
+    public List<Category> getCategory() {
         return category;
     }
 
@@ -94,6 +105,14 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

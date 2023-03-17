@@ -1,7 +1,11 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import no.ntnu.webshop.group12.webshop.service.ProductService;
 
 /**
  * Controller for all HTML pages.
@@ -9,13 +13,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
+    @Autowired
+    ProductService productService;
+
     /**
      * The `Home` page.
      *
      * @return Name of the ThymeLeaf template to render
      */
     @GetMapping("/")
-    public String getHome() {
+    public String getHome(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
         return "index";
     }
 
