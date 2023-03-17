@@ -23,13 +23,13 @@ The colors used on the website will consist of:
 
 Main colors
 
-- Black
-- Yellow
+- Black #000000
+- Yellow #FCEE09
 
 Accent colors:
 
-- Cyan
-- Red
+- Cyan #36EBf2
+- Red #FF003C
 
 ## Hierarchy and layout
 
