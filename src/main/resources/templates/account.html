@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head th:replace="components/head :: common_head(~{::title})">
+    <head th:replace="~{components/head :: common_head(~{::title})}">
         <title>Cyberpunk Store - Account</title>
     </head>
 <body>
-<header th:replace="components/header" class="header"></header>
+<header th:replace="~{components/header}"></header>
 
-
-
-<footer th:replace="components/footer"></footer>
+<footer th:replace="~{components/footer}"></footer>
 </body>
 </html>

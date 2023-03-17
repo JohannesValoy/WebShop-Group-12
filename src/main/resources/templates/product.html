@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="components/head :: common_head(~{::title})">
+<head th:replace="~{components/head :: common_head(~{::title})}">
     <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
 </head>
 <body>
-    <header th:replace="components/header"></header>
+    <header th:replace="~{components/header}"></header>
     <main>
         <ul class="product-page">
             <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}"/>
@@ -33,6 +33,6 @@
     </li>
     </ul>
 </main>
-<footer th:replace="components/footer"></footer>
+<footer th:replace="~{components/footer}"></footer>
 </body>
 </html>
