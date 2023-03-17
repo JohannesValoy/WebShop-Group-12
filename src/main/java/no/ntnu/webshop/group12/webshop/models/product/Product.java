@@ -1,10 +1,13 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -15,13 +18,13 @@ public class Product {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    private List<Category> category;
 
     @NotBlank
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Positive
@@ -34,15 +37,7 @@ public class Product {
     }
 
     public Product(String name, String description, double price, int stock) {
-        this.category = null;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-    }
-
-    public Product(Category category, String name, String description, double price, int stock) {
-        this.category = category;
+        this.category = new ArrayList<>();
         this.name = name;
         this.description = description;
         this.price = price;
@@ -53,12 +48,20 @@ public class Product {
         return id;
     }
 
-    public Category getCategoryId() {
+    public List<Category> getCategoryId() {
         return category;
     }
 
-    public void setCategoryId(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
+    }
+
+    public void addCategory(Category category) {
+        this.category.add(category);
+    }
+
+    public void removeCategory(Category category) {
+        this.category.remove(category);
     }
 
     public String getName() {
