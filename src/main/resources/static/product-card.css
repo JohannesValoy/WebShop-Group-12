@@ -10,7 +10,7 @@
     overflow: hidden;
 }
 
-.product-card:hover{
+.product-card:hover :not(button){
     background-color: var(---extra-dark-grey);
 }
 
