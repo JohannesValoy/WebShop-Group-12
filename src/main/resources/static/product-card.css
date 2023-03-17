@@ -1,36 +1,29 @@
 .product-card {
     display: flex;
-    margin: 0;
-    width: 15rem;
     flex-direction: column;
-    background-color: var(---Background-Color);
     align-items: center;
-    padding: 3rem;
+    margin: 2rem;
 }
 
-.product-card h2{
-    text-align: center;
-    margin: 0;
+.product-card h2 {
+    margin: 0.5rem;
 }
 
-.product-card p{
-    text-align: center;
-    margin: 0;
-
+.product-card p {
+    margin-bottom: 0.5em;
 }
 
 .product-card-logo {
-    width: inherit;
+    width: 15rem;
 }
 
-.add-to-card-button{
-    background-color: var(---focus-button-color);
-    color: var(---focus-button-text-color);
-    width: 50%;
-    padding: 1rem;
+.add-to-card-button {
+    background-color: red;
+    color: white;
+    padding: 1em;
 }
 
-.add-to-card-button:hover{
-    background-color: var(---hover-button-color);
-    color: var(---hover-button-text-color);
+.add-to-card-button:hover {
+    background-color: var(---blue);
+    color: var(---black);
 }

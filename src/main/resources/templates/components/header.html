@@ -4,14 +4,18 @@
         <img href="/" class="logo" th:src="@{images/logo.png}" alt="Logo">
         <h1>Cyberpunk Gaming Gear</h1>
     </div>
-    <input type="text" placeholder="Search..">
+    <div class="search-bar">
+        <label>
+            <input type="text" placeholder="Search..">
+        </label>
+    </div>
     <nav>
-    <ul class="sub-pages">
-        <li><a href="/">Home</a></li>
-        <li><a th:href="@{/category}">Category</a></li>
-        <li><a th:href="@{/about}">About us</a></li>
-        <li><a th:href="@{/account}">Account</a></li>
-        <li><a th:href="@{/cart}">Cart</a></li>
-    </ul>
-</nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a th:href="@{/category}">Category</a></li>
+            <li><a th:href="@{/about}">About us</a></li>
+            <li><a th:href="@{/account}">Account</a></li>
+            <li><a th:href="@{/cart}">Cart</a></li>
+        </ul>
+    </nav>
 </header>
