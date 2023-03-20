@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="~{components/head :: common_head(~{::title})}">
+    <title>Cyberpunk Store</title>
+</head>
+<body>
+  <header th:replace="~{components/header}"></header>
+
+
+  <main class="landing-page">
+    <h2>Featured Products</h2>
+      <ul class="list-of-products" th:insert="~{components/product-card}">
+      </ul>
+  </main>
+
+  <footer th:replace="~{components/footer}"></footer>
+</body>
+</html>

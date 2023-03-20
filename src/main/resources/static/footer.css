@@ -1,0 +1,11 @@
+footer {
+    text-align: center;
+    background-color: var(---extra-dark-grey);
+    padding: 1em;
+}
+
+footer p {
+    color: #CCC;
+    padding: 0.5em;
+}
+
