@@ -64,12 +64,9 @@ h1, h2, h3, p {
     ---yellow: #F7EC50;
     ---blue: #36EBF2;
     ---black: #000000;
-    ---focus-button-color: red;
-    ---focus-button-text-color: white;
-    ---focus-button-hover-color: darkred;
     ---green: #00FF22D8;
-
     ---dark-grey: #333333;
-    ---border-radius: 5px;
     ---extra-dark-grey: #1A1A1A;
+    
+    ---border-radius: 5px;
 }
