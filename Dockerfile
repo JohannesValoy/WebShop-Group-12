@@ -14,6 +14,6 @@ FROM openjdk:18
 
 WORKDIR /app
 
-COPY --from=builder /app/target/*with-dependencies.jar Group12-WebShop.jar
+COPY --from=builder /app/target/*.jar Group12-WebShop.jar
 
 ENTRYPOINT ["java", "-jar", "Group12-WebShop.jar" ]
