@@ -6,6 +6,7 @@
     padding: 0;
     color: var(---yellow);
     background-color: black;
+    text-decoration: none;
 }
 header *, footer *{
     background-color: var(---extra-dark-grey);
