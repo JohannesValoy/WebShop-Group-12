@@ -10,7 +10,6 @@ header {
     justify-content: space-around;
     align-items: center;
     background-color: var(---extra-dark-grey);
-    margin: 0;
 }
 
 header nav ul {
