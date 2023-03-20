@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  Website:
+    build: . # Build the image from the dockerfile
+    image: webshop:latest # Name the image
+    ports:
+      -"80:8080"
