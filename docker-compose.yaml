@@ -3,5 +3,30 @@ services:
   Website:
     build: . # Build the image from the dockerfile
     image: webshop:latest # Name the image
+    depends_on:
+      - db # Wait for the db to be ready
     ports:
       - "80:8080" # Map port 80 to port 8080
+    networks:
+      - webshop
+    secrets:
+      - db-password
+
+  db:
+    image: postgres:15 # Use the latest mysql image
+    environment:
+      POSTGRES_DB: webshop # Create a database called webshop
+      POSTGRES_USER: postgres  # Create a user called webshop
+      POSTGRES_PASSWORD_FILE: /run/secrets/db-password # Set the password for the user webshop
+    secrets:
+      - db-password
+    networks:
+      - webshop
+
+secrets:
+  db-password:
+    external: true
+    name: db-password
+
+networks:
+  webshop:
