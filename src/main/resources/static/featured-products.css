@@ -9,11 +9,12 @@
 
 .featuredProducts h2 span {
     margin-bottom: 1rem;
+    font-size: 1.7rem;
 }
 
 .product-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     gap: 2.5rem;
 }
@@ -28,6 +29,7 @@
 
 .product-box img {
     width: 100%;
+    height: auto;
     transition: .5s ease;
 }
 
@@ -49,6 +51,7 @@
     text-align: center;
     transform: translateY(100%);
     transition: .5s ease;
+    gap: 2rem;
 }
 
 .product-box:hover .product-layer {
@@ -56,15 +59,26 @@
 }
 
 .product-layer h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .product-layer p {
-    font-size: 1rem;
     margin: .3rem 0 1rem;
 }
 
 .product-layer a i {
     font-size: 2rem;
     color: white;
+}
+
+@media (max-width: 1024px) {
+    .product-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
