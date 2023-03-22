@@ -88,7 +88,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
         productRepository.save(gamingHeadset);
 
-        Product xbox = new Product("Xbox gaming console + controller",
+        Product xbox = new Product("Xbox console + controller",
                 "Experience the ultimate gaming experience with the Xbox Console! This sleek white Xbox console comes with the must-have Xbox wireless controller, so you can dive into the action right away. Enjoy stunning 4K visuals, immersive sound, and endless entertainment with the Xbox console. With access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. Plus, you can stream movies, shows, and music, and connect with friends online. Get ready for the ultimate gaming experience with the Xbox Console",
                 6800, 10);
 
