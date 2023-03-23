@@ -1,12 +1,15 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -18,10 +21,12 @@ public class Product {
     @GeneratedValue
     private int id;
 
-    @ManyToMany
-    private List<Category> category;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Set<Category> category = new LinkedHashSet<>();
 
     @NotBlank
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String name;
 
     @Column(columnDefinition = "TEXT")
@@ -39,7 +44,6 @@ public class Product {
     }
 
     public Product(String name, String description, double price, int stock) {
-        this.category = new ArrayList<>();
         this.name = name;
         this.description = description;
         this.price = price;
@@ -47,7 +51,6 @@ public class Product {
     }
 
     public Product(String name, String description, double price, int stock, String image) {
-        this.category = new ArrayList<>();
         this.name = name;
         this.description = description;
         this.price = price;
@@ -59,11 +62,11 @@ public class Product {
         return id;
     }
 
-    public List<Category> getCategory() {
+    public Set<Category> getCategory() {
         return category;
     }
 
-    public void setCategory(List<Category> category) {
+    public void setCategory(Set<Category> category) {
         this.category = category;
     }
 
