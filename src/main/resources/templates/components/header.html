@@ -5,7 +5,7 @@
     </a>
     <div class="search-bar">
         <label>
-            <input type="text" placeholder="Search..">
+            <input class="search" type="text" placeholder="Search..">
         </label>
     </div>
     <nav class="navbar">
@@ -15,4 +15,6 @@
         <a th:href="@{/cart}">Cart</a>
         <button class="btnLogin-popup">Login</button>
     </nav>
+
+    <div th:replace="~{components/login}"></div>
 </header>

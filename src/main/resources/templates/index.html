@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
+<head th:replace="~{components/head}">
     <title>CyberPunk Store</title>
-    <!-- Icons from boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- personal styles -->
-    <link rel="stylesheet" th:href="@{~/style.css}"/>
-    <link rel="stylesheet" th:href="@{~/product-card.css}"/>
-    <link rel="stylesheet" th:href="@{~/featured-products.css}"/>
-    <link rel="stylesheet" th:href="@{~/login.css}"/>
-    <!-- scripts -->
-    <script th:src="@{~/scripts.js}" defer></script>
 </head>
 <body>
   <header th:replace="~{components/header}"></header>
 
   <section th:replace="~{components/new-product-section}"></section>
-
-  <section th:replace="~{components/login}"></section>
 
   <footer th:replace="~{components/footer}"></footer>
 

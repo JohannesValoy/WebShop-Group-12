@@ -41,7 +41,7 @@
     color: #333;
 }
 
-.wrapper .logreg-box {
+.wrapper .logReg-box {
     width: 100%;
 }
 
@@ -61,16 +61,16 @@
     display: block;
 }
 
-.logreg-box .logreg-title {
+.logReg-box .logReg-title {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.logreg-title h2 {
+.logReg-title h2 {
     font-size: 32px;
 }
 
-.logreg-box .input-box {
+.logReg-box .input-box {
     position: relative;
     width: 100%;
     height: 50px;
@@ -90,7 +90,7 @@
     padding-right: 25px;
 }
 
-.input-box label {
+.input-box a {
     position: absolute;
     top: 50%;
     left: 0;
@@ -102,8 +102,8 @@
     transition: .5s;
 }
 
-.input-box label:focus~label,
-.input-box label:valid~label {
+.input-box input:focus~a,
+.input-box input:valid~a {
     top: -5px;
 }
 
@@ -116,7 +116,7 @@
     font-size: 19px;
 }
 
-.logreg-box .remember-forgot {
+.logReg-box .remember-forgot {
     font-size: 14.5px;
     color: white;
     font-weight: 500;
@@ -125,9 +125,8 @@
     justify-content: space-between;
 }
 
-.remember-forgot label input {
-    accent-color: white;
-    margin-right: 3px;
+.remember-forgot label a {
+    pointer-events: none;
 }
 
 .remember-forgot a {
@@ -139,7 +138,25 @@
     text-decoration: underline;
 }
 
-.logreg-box .btn {
+.logReg-box .terms-conditions {
+    font-size: 14.5px;
+    color: white;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.terms-conditions a {
+    color: white;
+    text-decoration: none;
+}
+
+.terms-conditions a:hover {
+    text-decoration: underline;
+}
+
+.logReg-box .btn {
     width: 100%;
     height: 45px;
     background: white;
@@ -153,7 +170,7 @@
     font-weight: 600;
 }
 
-.logreg-box .logreg-link {
+.logReg-box .logReg-link {
     font-size: 14.5px;
     color: white;
     text-align: center;
@@ -161,45 +178,11 @@
     margin: 25px 0 15px;
 }
 
-.logreg-link p a {
+.logReg-link p a {
     color: white;
     font-weight: 600;
 }
 
-.logreg-link p a:hover {
+.logReg-link p a:hover {
     text-decoration: underline;
-}
-
-.media-options {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.media-options a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    border: 2px solid white;
-    margin: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-    border-radius: 40px;
-    color: white;
-    transition: .5s;
-}
-
-.media-options a:hover {
-    background: rgba(255, 255, 255, .1);
-}
-
-.media-options a i {
-    font-size: 22px;
-    margin: 0 8px 1.5px 0;
-}
-
-.media-options a span {
-    font-size: 16px;
-    font-weight: 500;
 }
