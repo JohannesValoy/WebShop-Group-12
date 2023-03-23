@@ -13,8 +13,7 @@
         <a th:href="@{/category}">Category</a>
         <a th:href="@{/about}">About us</a>
         <a th:href="@{/cart}">Cart</a>
-        <button class="btnLogin-popup">Login</button>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</button>
+        <a sec:authorize="isAuthenticated()" th:href="@{/account}">Account</a>
     </nav>
-
-    <div th:replace="~{components/login}"></div>
 </header>
