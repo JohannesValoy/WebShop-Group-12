@@ -1,10 +1,13 @@
 .featuredProducts {
     background-color: black;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .featuredProducts h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .featuredProducts h2 span {

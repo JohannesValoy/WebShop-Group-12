@@ -13,7 +13,9 @@
         <a th:href="@{/category}">Category</a>
         <a th:href="@{/about}">About us</a>
         <a th:href="@{/cart}">Cart</a>
-        <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</button>
+        <!--suppress XmlUnboundNsPrefix -->
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+        <!--suppress XmlUnboundNsPrefix -->
         <a sec:authorize="isAuthenticated()" th:href="@{/account}">Account</a>
     </nav>
 </header>
