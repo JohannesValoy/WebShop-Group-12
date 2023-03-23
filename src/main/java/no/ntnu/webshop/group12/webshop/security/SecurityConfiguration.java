@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -21,7 +22,7 @@ public class SecurityConfiguration {
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService);
+        auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Bean
@@ -31,6 +32,10 @@ public class SecurityConfiguration {
         http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
+                .requestMatchers("/**.css").permitAll()
+                .requestMatchers("/**.js").permitAll()
+                .requestMatchers("/images/**.png").permitAll()
+                .requestMatchers("/images/products/**.png").permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/products/**").permitAll()
