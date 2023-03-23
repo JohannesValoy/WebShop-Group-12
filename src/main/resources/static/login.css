@@ -14,13 +14,6 @@
     justify-content: center;
     flex-direction: column;
     padding: 0 40px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.wrapper.active-popup {
-    opacity: 1;
-    pointer-events: auto;
 }
 
 .icon-close {

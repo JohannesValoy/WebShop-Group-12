@@ -4,7 +4,7 @@
     align-items: center;
     margin: 1rem;
     justify-content: space-between;
-    border-radius: var(---border-radius);
+    border-radius: 5px;
     width: 15rem;
     overflow: hidden;
 }
@@ -36,7 +36,7 @@
 }
 
 .red-button {
-    border-radius: var(---border-radius);
+    border-radius: 5px;
     background-color: red;
     color: white;
     padding: 1em;

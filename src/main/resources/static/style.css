@@ -6,7 +6,6 @@
     ---dark-grey: #333333;
     ---extra-dark-grey: #1A1A1A;
 
-    ---border-radius: 5px;
 }
 
 * {
@@ -71,12 +70,6 @@ header .navbar {
     gap: 1rem;
 }
 
-.navbar .btnLogin-popup {
-    background: transparent;
-    outline: none;
-    cursor: pointer;
-}
-
 header img.logo {
     max-width: 100px;
     max-height: 100px;
@@ -89,7 +82,7 @@ header img.logo {
 .search-bar .search {
     padding: 6px;
     border: 2px solid var(---yellow);
-    border-radius: var(---border-radius);
+    border-radius: 5px;
     background-color: var(---extra-dark-grey);
 }
 
