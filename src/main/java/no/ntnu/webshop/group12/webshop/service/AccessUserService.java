@@ -1,25 +1,34 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import no.ntnu.webshop.group12.webshop.models.User;
+import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
+import no.ntnu.webshop.group12.webshop.security.AccessUserDetails;
 
 @Service
-public class AccessUserService {
+public class AccessUserService implements UserDetailsService {
 
     static final Pattern usernamePattern = Pattern.compile("^([A-Za-z0-9]){2,}$");
     static final Pattern passwordPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     /**
      * Tries to create a new user, returns an error message if it fails
@@ -41,17 +50,10 @@ public class AccessUserService {
         }
         if (error == null) {
             User user = new User(username, createHash(password));
+            user.addRole(roleRepository.findByName("USER"));
             userRepository.save(user);
         }
         return error;
-    }
-
-    public User tryLogin(String username, String password) {
-        User user = userRepository.findByUsername(username).get();
-        if (user != null && checkPassword(password, user.getPassword())) {
-            return user;
-        }
-        return null;
     }
 
     public User getSessionUser() {
@@ -65,11 +67,17 @@ public class AccessUserService {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    private boolean checkPassword(String password, String hash) {
-        return BCrypt.checkpw(password, hash);
-    }
-
     private boolean userExist(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            return new AccessUserDetails(user.get());
+        } else {
+            throw new UsernameNotFoundException("User " + username + "not found");
+        }
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
@@ -59,17 +60,6 @@ public class PageController {
     }
 
     /**
-     * The `Login` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("user", userService.getSessionUser());
-        return "login";
-    }
-
-    /**
      * The `Register` page.
      * 
      * @return Name of the ThymeLeaf template to render
@@ -84,9 +74,9 @@ public class PageController {
     public String postRegister(@ModelAttribute LoginDTO signupDTO, Model model) {
         model.addAttribute("signupDTO", signupDTO);
         model.addAttribute("user", userService.getSessionUser());
-        String page = "login";
+        String page = "index";
         String error = userService.tryCreateNewUser(signupDTO.getUsername(), signupDTO.getPassword());
-        if (!error.isEmpty()) {
+        if (error != null) {
             model.addAttribute("error", error);
             page = "register";
         }
@@ -115,9 +105,15 @@ public class PageController {
         return "product";
     }
 
-    @GetMapping("/user/{id}")
-    public String getUser(@PathVariable("id") int id, Model model) {
+    @GetMapping("/account")
+    public String getUser(Model model) {
         model.addAttribute("user", userService.getSessionUser());
-        return "user";
+        User authenticatedUser = userService.getSessionUser();
+        if (authenticatedUser != null) {
+            model.addAttribute("user", authenticatedUser);
+            return "account";
+        } else {
+            return "no-access";
+        }
     }
 }

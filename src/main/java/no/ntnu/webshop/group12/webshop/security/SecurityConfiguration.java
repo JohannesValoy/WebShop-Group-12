@@ -36,14 +36,14 @@ public class SecurityConfiguration {
                 .requestMatchers("/**.js").permitAll()
                 .requestMatchers("/images/**.png").permitAll()
                 .requestMatchers("/images/products/**.png").permitAll()
-                .requestMatchers("/login").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/products/**").permitAll()
                 .requestMatchers("/category/**").permitAll()
+                .requestMatchers("/about").permitAll()
                 .requestMatchers("/cart").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
-                .and().formLogin().loginPage("/login")
+                .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
+                .and().formLogin()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
     }
