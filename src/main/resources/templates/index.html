@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{~/featured-products.css}"/>
     <link rel="stylesheet" th:href="@{~/login.css}"/>
     <!-- scripts -->
-    <script src="../static/scripts.js"></script>
+    <script th:src="@{~/scripts.js}" defer></script>
 </head>
 <body>
   <header th:replace="~{components/header}"></header>
