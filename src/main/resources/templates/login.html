@@ -41,7 +41,7 @@
                     <a href="#">Forgot password?</a>
                 </div>
 
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn" disabled>Login</button>
 
                 <div class="logReg-link">
                     <p>Don't have an account?
@@ -73,7 +73,7 @@
                     <i class='bx bx-lock-alt'></i>
                 </span>
                     <label>
-                        <input type="password" required>
+                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required>
                         <a>Password</a>
                     </label>
                 </div>
@@ -83,7 +83,7 @@
                     <i class='bx bx-lock-alt'></i>
                 </span>
                     <label>
-                        <input type="password" required>
+                        <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
                         <a>Confirm password</a>
                     </label>
                 </div>
@@ -94,7 +94,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn" disabled>Register</button>
 
                 <div class="logReg-link">
                     <p>Already have an account?

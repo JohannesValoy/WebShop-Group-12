@@ -84,7 +84,7 @@ public class PageController {
         String error = userService.tryCreateNewUser(signupDTO.getUsername(), signupDTO.getPassword());
         if (error != null) {
             model.addAttribute("error", error);
-            page = "register";
+            page = "login";
         }
         return page;
     }
