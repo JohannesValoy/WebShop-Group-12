@@ -31,19 +31,10 @@ public class SecurityConfiguration {
         // to least restrictive on bottom
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/**.css").permitAll()
-                .requestMatchers("/**.js").permitAll()
-                .requestMatchers("/images/**.png").permitAll()
-                .requestMatchers("/images/products/**.png").permitAll()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("/products/**").permitAll()
-                .requestMatchers("/category/**").permitAll()
-                .requestMatchers("/about").permitAll()
-                .requestMatchers("/cart").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
-                .and().formLogin()
+                .requestMatchers("/**").permitAll()
+                .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
     }
