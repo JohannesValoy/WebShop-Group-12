@@ -1,16 +1,13 @@
-const wrapper = document.querySelector(".wrapper");
+const login = document.querySelector(".login");
 const registerLink = document.querySelector(".register-link");
 const loginLink = document.querySelector(".login-link");
 
 
 registerLink.onclick = () => {
-    wrapper.classList.add("active");
+    login.classList.add("register");
 };
 
 loginLink.onclick = () => {
-    wrapper.classList.remove("active");
+    login.classList.remove("register");
 };
 
-btnPopup.onclick = () => {
-    wrapper.classList.add("active-popup");
-};

@@ -1,66 +1,43 @@
-.wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 450px;
-    height: 100%;
-    background: transparent;
-    backdrop-filter: blur(15px);
-    box-shadow: -1px 0 10px rgba(0, 0, 0, .2);
-    border-left: 2px solid rgba(255, 255, 255, .1);
-    z-index: 100;
+.login {
+    background-color: var(---black);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+}
+
+.login .logReg-box {
+    width: 50%;
+    height: auto;
+}
+
+.login .form-box.login {
+    display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    align-items: stretch;
 }
 
-.icon-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
+.login.register .form-box.login {
+    display: none;
+}
+
+.login .form-box.register{
+    display: none;
+}
+
+.login.register .form-box.register {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 10px;
-}
-
-.icon-close i {
-    font-size: 32px;
-    color: #333;
-}
-
-.wrapper .logReg-box {
-    width: 100%;
-}
-
-.wrapper .form-box.login {
-    display: block;
-}
-
-.wrapper.active .form-box.login {
-    display: none;
-}
-
-.wrapper .form-box.register{
-    display: none;
-}
-
-.wrapper.active .form-box.register {
-    display: block;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .logReg-box .logReg-title {
     text-align: center;
-    margin-bottom: 40px;
+    margin: 1rem;
 }
 
 .logReg-title h2 {
-    font-size: 32px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .logReg-box .input-box {
