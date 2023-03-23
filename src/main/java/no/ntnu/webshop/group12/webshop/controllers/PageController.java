@@ -70,6 +70,12 @@ public class PageController {
         return "register";
     }
 
+    @GetMapping("/login")
+    public String getLogin(Model model) {
+        model.addAttribute("user", userService.getSessionUser());
+        return "login";
+    }
+
     @PostMapping("/register")
     public String postRegister(@ModelAttribute LoginDTO signupDTO, Model model) {
         model.addAttribute("signupDTO", signupDTO);
