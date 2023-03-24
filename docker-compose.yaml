@@ -6,7 +6,8 @@ services:
     depends_on:
       - db # Wait for the db to be ready
     ports:
-      - "80:8080" # Map port 80 to port 8080
+      - target: 8080
+        published: 443
     networks:
       - webshop
     secrets:
