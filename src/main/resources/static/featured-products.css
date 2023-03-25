@@ -31,8 +31,9 @@
 }
 
 .product-box img {
-    width: 100%;
-    height: auto;
+    object-fit: cover;
+    width: 720px;
+    height: 720px;
     transition: .5s ease;
 }
 
