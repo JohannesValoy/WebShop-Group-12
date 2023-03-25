@@ -12,6 +12,8 @@ services:
       - webshop
     secrets:
       - db-password
+      - webCert
+      - webCertPassword
 
   db:
     image: postgres:15 # Use the latest mysql image
@@ -28,6 +30,12 @@ secrets:
   db-password:
     external: true
     name: db-password
+  webCert:
+    external: true
+    name: web-cert
+  webKey:
+    external: true
+    name: web-cert-password
 
 networks:
   webshop:
