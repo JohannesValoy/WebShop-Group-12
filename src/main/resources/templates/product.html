@@ -5,8 +5,8 @@
 </head>
 <body>
     <header th:replace="~{components/header}"></header>
-    <main>
-        <ul class="product-page">
+    <main class="product-page">
+        <ul class="product-intro">
             <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}"/>
             <li class="product-page-description">
                 <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
