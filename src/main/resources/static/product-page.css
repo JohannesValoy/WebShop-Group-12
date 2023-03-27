@@ -16,3 +16,15 @@
 .product-page-logo {
     width: 20rem;
 }
+
+.red-button {
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    padding: 1em;
+}
+
+.red-button:hover {
+    background-color: var(---blue);
+    color: var(---dark-grey);
+}
