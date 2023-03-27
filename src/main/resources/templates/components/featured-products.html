@@ -2,12 +2,12 @@
   <h2 class="heading">Featured <span>Products</span></h2>
 
   <div class="product-container" >
-    <div class="product-box" th:each="product : ${products}" >
+    <a class="product-box" th:each="product : ${products}" th:href="@{/products/{id} (id=${product.id})}">
       <img th:src="@{images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
       <div class="product-layer">
         <h3 th:text="${product.name}"></h3>
-        <a th:href="@{/products/{id} (id=${product.id})}"><i class='bx bx-info-circle'></i></a>
+        <i class='bx bx-info-circle'></i>
       </div>
-    </div>
+    </a>
   </div>
 </section>

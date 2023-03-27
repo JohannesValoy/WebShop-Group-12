@@ -51,17 +51,8 @@ header {
     justify-content: space-around;
     align-items: center;
     background-color: var(---extra-dark-grey);
-}
-
-.company-name {
-    display: flex;
-    align-items: center;
-    margin: 0.5em;
+    padding: 1rem;
     gap: 1rem;
-}
-
-.company-name h1 {
-    font-size: 1.5rem;
 }
 
 header .navbar {
@@ -73,10 +64,6 @@ header .navbar {
 header img.logo {
     max-width: 100px;
     max-height: 100px;
-}
-
-.search-bar {
-    margin: 0.5em;
 }
 
 .search-bar .search {
