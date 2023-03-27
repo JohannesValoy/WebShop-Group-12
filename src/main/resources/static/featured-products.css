@@ -22,12 +22,14 @@
     gap: 2.5rem;
 }
 
+/*The box around the product*/
 .product-container .product-box {
     position: relative;
     border-radius: 2rem;
     overflow: hidden;
     box-shadow: 0 0 1rem var(---black);
     display: flex;
+    justify-content: center;
 }
 
 .product-box img {

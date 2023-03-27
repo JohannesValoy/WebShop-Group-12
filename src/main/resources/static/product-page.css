@@ -1,8 +1,16 @@
 .product-page {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     background-color: black;
+}
+
+.product-page .product-image{
+    object-fit: cover;
+    width: 40rem;
+    height: 40rem;
+    transition: .5s ease;
+    border-radius: 0.5rem;
 }
 
 .product-page-description {
@@ -13,9 +21,6 @@
     padding: 1rem;
 }
 
-.product-page-logo {
-    width: 20rem;
-}
 
 .red-button {
     border-radius: 5px;
@@ -27,4 +32,28 @@
 .red-button:hover {
     background-color: var(---blue);
     color: var(---dark-grey);
+}
+
+.product-page-description h1 {
+    font-size: 2rem;
+    color: cyan;
+}
+
+.product-intro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+.specs-rating-about-buttons {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-around;
+    list-style-type: none;
 }
