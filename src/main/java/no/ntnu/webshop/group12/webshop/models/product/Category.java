@@ -14,11 +14,18 @@ public class Category {
     @NotBlank
     private String name;
 
+    private String image;
+
     public Category() {
     }
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(String name, String image) {
+        this.name = name;
+        this.image = image;
     }
 
     public int getId() {
@@ -31,5 +38,13 @@ public class Category {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

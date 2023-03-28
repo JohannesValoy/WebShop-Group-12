@@ -2,10 +2,10 @@
     <h2 class="heading">Selection of <span>Category</span></h2>
 
     <div class="category-container" >
-        <a class="category-box" th:each="product : ${products}" th:href="@{/products/{id} (id=${product.id})}">
-            <img th:src="@{images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
+        <a class="category-box" th:each="category : ${categories}" th:href="@{/categories/{id} (id=${category.id})}">
+            <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="@{Picture of {name} (name=${category.name})}">
             <div class="category-layer">
-                <h3 th:text="${product.name}"></h3>
+                <h3 th:text="${category.name}"></h3>
             </div>
         </a>
     </div>

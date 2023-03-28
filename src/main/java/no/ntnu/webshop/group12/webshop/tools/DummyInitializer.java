@@ -40,6 +40,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 Category category2 = new Category("Office");
                 Category category3 = new Category("Headset");
                 Category category4 = new Category("Mouse");
+                category4.setImage("category 4.png");
                 Category category5 = new Category("Console");
                 Category category6 = new Category("Xbox");
                 Category category7 = new Category("Playstation");

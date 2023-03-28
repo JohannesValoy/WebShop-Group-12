@@ -13,6 +13,7 @@ import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 
+
 /**
  * Controller for all HTML pages.
  */
