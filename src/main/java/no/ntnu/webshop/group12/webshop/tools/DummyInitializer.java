@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import no.ntnu.webshop.group12.webshop.models.Role;
@@ -16,6 +17,7 @@ import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
+@Profile("!prod")
 public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
         @Autowired
@@ -127,6 +129,5 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 Role role2 = new Role("ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
-
-        }
+  }
 }
