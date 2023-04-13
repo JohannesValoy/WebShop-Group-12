@@ -76,6 +76,7 @@
 .specs-button:hover, .rating-button:hover, .about-button:hover {
     background-color: var(---dark-grey);
     color: var(---blue);
+    cursor: pointer;
 }
 
 .product-about-page {
