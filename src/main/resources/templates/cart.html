@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head th:replace="~{components/head :: common_head(~{::title})}">
-        <title>Cyberpunk Store - Cart</title>
-    </head>
+<head th:replace="~{components/head}">
+    <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
+</head>
 <body>
 <header th:replace="~{components/header}"></header>
+<main class="product-page">
 
-
-
+</main>
 <footer th:replace="~{components/footer}"></footer>
+<script th:src="@{~/product-page.js}" defer></script>
+<script th:src="@{~/carousel-script.js}" defer></script>
 </body>
 </html>
