@@ -14,7 +14,6 @@ import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
-
 /**
  * Controller for all HTML pages.
  */
@@ -29,7 +28,6 @@ public class PageController {
 
     @Autowired
     CategoryService categoryService;
-
 
     /**
      * The `Home` page.

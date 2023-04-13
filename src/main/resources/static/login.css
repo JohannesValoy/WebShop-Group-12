@@ -48,6 +48,8 @@
     border-bottom: 2px solid white;
 }
 
+
+
 .input-box input {
     width: 100%;
     height: 100%;
@@ -72,6 +74,10 @@
     transition: .5s;
 }
 
+.input-box .password-mismatch {
+    color: red;
+}
+
 .input-box input:focus~a,
 .input-box input:valid~a {
     top: -5px;
@@ -87,7 +93,7 @@
 }
 
 .logReg-box .remember-forgot {
-    font-size: 14.5px;
+    font-size: 14px;
     color: white;
     font-weight: 500;
     margin: -15px 0 15px;
@@ -109,7 +115,7 @@
 }
 
 .logReg-box .terms-conditions {
-    font-size: 14.5px;
+    font-size: 14px;
     color: white;
     font-weight: 500;
     margin: -15px 0 15px;
@@ -141,7 +147,7 @@
 }
 
 .logReg-box .logReg-link {
-    font-size: 14.5px;
+    font-size: 14px;
     color: white;
     text-align: center;
     font-weight: 500;
