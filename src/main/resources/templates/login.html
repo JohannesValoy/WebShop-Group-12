@@ -74,7 +74,7 @@
                 </span>
                     <label>
                         <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required>
-                        <a>Password</a>
+                        <a>New password</a>
                     </label>
                 </div>
 
@@ -84,17 +84,17 @@
                 </span>
                     <label>
                         <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
-                        <a>Confirm password</a>
+                        <a id="confirmation">New password confirmed</a>
                     </label>
                 </div>
 
                 <div class="terms-conditions">
-                    <label><input type="checkbox">
+                    <label><input type="checkbox" id="termsCheckbox">
                         <a> I agree to the terms & conditions </a>
                     </label>
                 </div>
 
-                <button type="submit" class="btn" disabled>Register</button>
+                <button id="submitButton" type="submit" class="btn" >Register</button>
 
                 <div class="logReg-link">
                     <p>Already have an account?
