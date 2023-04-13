@@ -105,3 +105,15 @@
         justify-content: space-around;
     }
 }
+
+.specs.active, .rating.active, .about.active {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.specs, .rating, .about {
+    display: none;
+}
