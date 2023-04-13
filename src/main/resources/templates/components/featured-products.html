@@ -3,7 +3,7 @@
 
   <div class="product-container" >
     <div class="product-box" th:each="product : ${products}" >
-      <img th:src="@{images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
+      <img th:src="@{/images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
       <div class="product-layer">
         <h3 th:text="${product.name}"></h3>
         <a th:href="@{/products/{id} (id=${product.id})}"><i class='bx bx-info-circle'></i></a>
