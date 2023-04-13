@@ -43,27 +43,7 @@
         <featured-products>
             <section th:replace="~{components/featured-products}"></section>
         </featured-products>
-        <section class="carousel">
-            <div class="carousel">
-                <div class="carousel-container">
-                    <div class="carousel-item">
-                        <a>headset</a>
-                        <img class="product-image" th:src="product.image" th:alt="@{Picture of {name} (name=${product.name})}"/>
-                    </div>
-                    <div class="carousel-item">
-                        <a>mouse</a>
-                        <img class="product-image" th:src="product.image" th:alt="@{Picture of {name} (name=${product.name})}"/>
-                    </div>
-                    <div class="carousel-item">
-                        <a>keyboard</a>
-                        <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}"/>
-                    </div>
-                </div>
-                <button class="carousel-prev">&#8249;</button>
-                <button class="carousel-next">&#8250;</button>
-            </div>
 
-        </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
     <script th:src="@{~/product-page.js}" defer></script>
