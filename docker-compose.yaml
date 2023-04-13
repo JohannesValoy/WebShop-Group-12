@@ -7,7 +7,7 @@ services:
       - db # Wait for the db to be ready
     ports:
       - target: 8080
-        published: 443
+        published: 80
     networks:
       - webshop
     secrets:
