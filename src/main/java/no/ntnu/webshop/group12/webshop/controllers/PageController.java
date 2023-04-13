@@ -108,6 +108,7 @@ public class PageController {
     public String getProduct(@PathVariable("id") int id, Model model) {
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("featuredProducts", productService.getRandomProductsByCategory(3, id));
         return "product";
     }
 
