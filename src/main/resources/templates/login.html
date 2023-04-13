@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{components/head}">
+    <title>CyberPunk Store</title>
+</head>
+<body>
+<header th:replace="~{components/header}"></header>
+
+<section class="login">
+    <div class="logReg-box">
+        <!-- Login form -->
+        <div class="form-box login">
+            <div class="logReg-title">
+                <h2>Login</h2>
+            </div>
+            <form th:action="@{/login}" method="post">
+                <div class="input-box">
+                <span class="icon">
+                    <i class='bx bxs-user'></i>
+                </span>
+                    <label for="username">
+                        <input type="text" id="username" name="username" required autocomplete="off">
+                        <a>Username</a>
+                    </label>
+                </div>
+
+                <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock-alt'></i>
+                </span>
+                    <label for="password">
+                        <input type="password" id="password" name="password" required>
+                        <a>Password</a>
+                    </label>
+                </div>
+
+                <div class="remember-forgot">
+                    <label><i class='bx bx-check-square'></i>
+                        <a>Remember me</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <div class="logReg-link">
+                    <p>Don't have an account?
+                        <a href="#" class="register-link">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <!-- Register form -->
+        <div class="form-box register">
+            <div class="logReg-title">
+                <h2>Registration</h2>
+                <p>Please provide the following to verify your identity</p>
+            </div>
+
+            <form th:action="@{/register}" method="post">
+                <div class="input-box">
+                <span class="icon">
+                    <i class='bx bxs-user'></i>
+                </span>
+                    <label>
+                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" required >
+                        <a id="signUpUsernameText">Username</a>
+                    </label>
+                </div>
+
+                <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock-alt'></i>
+                </span>
+                    <label>
+                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required >
+                        <a>New password</a>
+                    </label>
+                </div>
+
+                <div class="input-box">
+                <span class="icon">
+                    <i class='bx bx-lock-alt'></i>
+                </span>
+                    <label>
+                        <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
+                        <a id="confirmation">Confirm password</a>
+                    </label>
+                </div>
+
+                <div class="terms-conditions">
+                    <label><input type="checkbox" id="termsCheckbox">
+                        <a> I agree to the terms & conditions </a>
+                    </label>
+                </div>
+
+                <button id="submitButton" type="submit" class="btn" >Register</button>
+
+                <div class="logReg-link">
+                    <p>Already have an account?
+                        <a href="#" class="login-link">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{components/footer}"></footer>
+
+<script th:src="@{~/loginScripts.js}" defer></script>
+</body>
+</html>
+

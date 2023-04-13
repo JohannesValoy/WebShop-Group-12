@@ -8,24 +8,29 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
-import no.ntnu.webshop.group12.webshop.repository.CustomerRepository;
+import no.ntnu.webshop.group12.webshop.repository.UserRepository;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
+import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
 @Profile("!prod")
 public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
         @Autowired
-        private CustomerRepository customerRepository;
+        private UserRepository userRepository;
 
         @Autowired
         private ProductRepository productRepository;
 
         @Autowired
         private CategoryRepository categoryRepository;
+
+        @Autowired
+        private RoleRepository roleRepository;
 
         private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -120,5 +125,9 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(batteries);
 
-        }
+                Role role = new Role("USER");
+                Role role2 = new Role("ADMIN");
+                roleRepository.save(role);
+                roleRepository.save(role2);
+  }
 }
