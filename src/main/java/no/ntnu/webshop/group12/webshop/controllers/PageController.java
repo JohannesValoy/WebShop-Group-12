@@ -12,6 +12,7 @@ import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
+import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
 /**
@@ -28,6 +29,9 @@ public class PageController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    CartService cartService;
 
     /**
      * The `Home` page.
@@ -61,6 +65,7 @@ public class PageController {
     @GetMapping("/cart")
     public String getCart(Model model) {
         model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("cart", cartService.getCart());
         return "cart";
     }
 
