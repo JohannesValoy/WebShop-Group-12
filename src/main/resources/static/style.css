@@ -20,6 +20,7 @@
 }
 
 body {
+    user-select: none;
     display: grid;
     grid-template-rows: 1fr 10fr 1fr;
     height: 100vh;
@@ -27,6 +28,7 @@ body {
 main {
     padding: 3%;
 }
+
 
 h1 {
     font-size: 2rem;
@@ -104,6 +106,10 @@ footer p {
     color: white;
     margin: 0.5em;
     font-size: 1rem;
+}
+
+.location .email .phone {
+    user-select: all;
 }
 
 /*about-page*/
@@ -217,6 +223,7 @@ footer p {
 .progress-bubble1:hover, .progress-bubble2:hover{
     background-color: var(---blue);
     color: black;
+    cursor: pointer;
 }
 
 .buttons {

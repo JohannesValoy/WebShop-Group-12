@@ -41,6 +41,7 @@
 .red-button:hover {
     background-color: var(---blue);
     color: var(---dark-grey);
+    cursor: pointer;
 }
 
 .product-page-description h1 {
