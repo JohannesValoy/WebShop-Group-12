@@ -22,25 +22,39 @@
                 <button class="red-button">Add to Cart</button>
             </li>
         </ul>
+        <section class="specs-rating-about-buttons">
 
-    <ul class="product-about-page">
-        <ul class="specs-rating-about-buttons">
-            <li class="specs-button">
-                <a class="specs-button">Specs</a>
-            </li>
-            <li class="rating-button">
-                <a class="rating-button">Rating</a>
-            </li>
-            <li class="about-button">
-                <a class="about-button">About</a>
-            </li>
-        </ul>
-    <li class="product-about-page-description">
-        <h1 class="title">Specs</h1>
-        <p class="product-about-page-description">Specs about this product</p>
-    </li>
-    </ul>
+            <button class="specs-button" href="#">Specs</button>
+
+            <button class="rating-button" href="#">Rating</button>
+
+            <button class="about-button" href="#">About</button>
+
+        </section>
+        <section class="specs">
+            <h1 class="title">Specs</h1>
+            <p class="product-about-page-description">Specs about this product</p>
+            <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+        <section class="about active">
+            <h1 class="title">About</h1>
+            <p class="product-about-page-description">Information about this product</p>
+            <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </section>
+        <section class="rating">
+            <h1 class="title">Rating</h1>
+            <p class="product-about-page-description">Rating about this product</p>
+            <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+
+        <featured-products>
+            <section th:replace="~{components/featured-products}"></section>
+        </featured-products>
+
 </main>
 <footer th:replace="~{components/footer}"></footer>
+    <script th:src="@{~/product-page.js}" defer></script>
+    <script th:src="@{~/carousel-script.js}" defer></script>
 </body>
 </html>

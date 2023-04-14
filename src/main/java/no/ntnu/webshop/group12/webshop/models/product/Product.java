@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 

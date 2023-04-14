@@ -2,8 +2,9 @@
   <h2 class="heading">Featured <span>Products</span></h2>
 
   <div class="product-container" >
+
     <a class="product-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
-      <img th:src="@{images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
+      <img th:src="@{/images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
       <div class="product-layer">
         <h3 th:text="${product.name}"></h3>
         <i class='bx bx-info-circle'></i>

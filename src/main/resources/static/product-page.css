@@ -55,8 +55,15 @@
     gap: 1rem;
 }
 
+.specs-button, .rating-button, .about-button {
+    border-radius: 5px;
+    background-color: var(---dark-grey);
+    color: white;
+    padding: 1em;
+    margin: 1em;
+}
 
-.specs-rating-about-buttons {
+.specs-rating-about-buttons{
     margin: 2rem 0;
     display: flex;
     flex-direction: row;
@@ -66,9 +73,10 @@
     list-style-type: none;
 }
 
-.specs-rating-about-buttons:hover {
+.specs-button:hover, .rating-button:hover, .about-button:hover {
     background-color: var(---dark-grey);
     color: var(---blue);
+    cursor: pointer;
 }
 
 .product-about-page {
@@ -97,4 +105,48 @@
     .specs-rating-about-buttons {
         justify-content: space-around;
     }
+}
+
+.specs.active, .rating.active, .about.active {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.specs, .rating, .about {
+    display: none;
+}
+
+.carousel {
+    position: relative;
+}
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+}
+.carousel-item {
+    flex: 0 0 100%;
+    transition: transform 0.5s ease;
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.carousel-prev {
+    left: 0;
+}
+.carousel-next {
+    right: 0;
 }

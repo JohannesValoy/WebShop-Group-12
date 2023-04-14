@@ -6,14 +6,16 @@ services:
     depends_on:
       - db # Wait for the db to be ready
     ports:
-      - target: 8080
+      - target: 8443
         published: 443
     networks:
       - webshop
+    volumes:
+      - type: bind
+        source: /etc/letsencrypt
+        target: /certs
     secrets:
       - db-password
-      - web-cert
-      - web-cert-password
 
   db:
     image: postgres:15 # Use the latest mysql image
@@ -30,12 +32,6 @@ secrets:
   db-password:
     external: true
     name: db-password
-  web-cert:
-    external: true
-    name: web-cert
-  web-cert-password:
-    external: true
-    name: web-cert-password
 
 networks:
   webshop:
