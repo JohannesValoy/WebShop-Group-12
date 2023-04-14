@@ -1,25 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head th:replace="~{components/head}">
     <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
 </head>
-<body>
-<header th:replace="~{components/header}"></header>
-<main class="product-page">
-    <section class="progressbar">
-            <button class="red-button active">Product</button>
-            <button class="red-button inactive">Shipping</button>
-            <button class="red-button inactive">Payment</button>
-    </section>
-    <section class="buttons">
-        <button class="red-button">Continue shopping</button>
-        <button class="red-button">Checkout</button>
-    </section>
 
-    <section th:replace="~{components/featured-products}"></section>
+<body>
+
+<header th:replace="~{components/header}"></header>
+
+<main class="page">
+
+        <section class="progressbar">
+                <a class="progress-bubble1 active">Products</a>
+                <a class="progress-bubble2">Shipping</a>
+                <a class="progress-bubble3">Payment</a>
+        </section>
+
+        <section class="cart-section active">
+            <h1 class="title">Shopping Cart</h1>
+            <a class="checkout-button red-button" href="#">Checkout</a>
+            <section th:replace="~{components/featured-products}"></section>
+        </section>
+
+        <section class="shipping-section">
+
+            <h1 class="title">Shipping</h1>
+            <a class="complete-order red-button" href="#">Complete order</a>
+            <p class="product-about-page-description">Shipping information</p>
+
+            <form class="shipping-details">
+                <label>
+                    <input class="input-field" placeholder="First Name">
+                </label>
+                <label>
+                    <input class="input-field" placeholder="Last Name">
+                </label>
+                <label>
+                    <input class="input-field" placeholder="Address">
+                </label>
+                <label>
+                    <input class="input-field" placeholder="Card Number">
+                </label>
+                <label>
+                    <input class="input-field" placeholder="Phone Number">
+                </label>
+                <label>
+                    <input class="input-field" placeholder="Coupon Code">
+                </label>
+            </form>
+
+        </section>
+
+        <section class="payment-section">
+            <h1 class="title">Order Complete!</h1>
+            <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
+            <section th:replace="~{components/featured-products}"></section>
+        </section>
+
 </main>
+
 <footer th:replace="~{components/footer}"></footer>
-<script th:src="@{~/product-page.js}" defer></script>
-<script th:src="@{~/carousel-script.js}" defer></script>
+<script th:src="@{~/cart-and-checkout.js}" defer></script>
+
 </body>
 </html>
