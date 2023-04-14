@@ -6,10 +6,14 @@ services:
     depends_on:
       - db # Wait for the db to be ready
     ports:
-      - target: 8080
-        published: 80
+      - target: 8443
+        published: 443
     networks:
       - webshop
+    volumes:
+      - type: bind
+        source: /etc/letsencrypt/live/group12.web-tek.ninja-0001
+        target: /certs
     secrets:
       - db-password
 
