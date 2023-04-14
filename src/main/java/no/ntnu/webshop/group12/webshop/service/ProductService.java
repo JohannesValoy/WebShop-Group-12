@@ -20,4 +20,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public Object getProductsByCategory(int id) {
+        return productRepository.findByCategory(String.valueOf(id));
+    }
 }
