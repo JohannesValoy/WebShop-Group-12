@@ -118,6 +118,7 @@ public class PageController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("category", categoryService.getCategory(id).get());
         return "category";
     }
 

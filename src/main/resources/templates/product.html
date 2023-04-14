@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:replace="~{components/head}">
+    <meta charset="UTF-8"/>
     <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" th:href="@{images/logo.png}">
+    <!-- Icons from boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- personal styles -->
+    <link rel="stylesheet" th:href="@{~/style.css}"/>
+    <link rel="stylesheet" th:href="@{~/product-page.css}"/>
 </head>
 <body>
     <header th:replace="~{components/header}"></header>
