@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/cart").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");

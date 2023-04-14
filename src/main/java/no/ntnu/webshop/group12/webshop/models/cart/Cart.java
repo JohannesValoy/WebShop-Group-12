@@ -7,12 +7,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import no.ntnu.webshop.group12.webshop.models.User;
+import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @Entity
 public class Cart {
     @Id
     @GeneratedValue
     private int id;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "cart_id")
@@ -31,6 +38,32 @@ public class Cart {
 
     public void addProduct(Quantity quantity) {
         products.add(quantity);
+    }
+
+    public void removeProduct(Quantity quantity) {
+        products.remove(quantity);
+    }
+
+    public void setProducts(List<Quantity> products) {
+        this.products = products;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Quantity getQuantity(Product product) {
+        Quantity quantity = null;
+        for (int i = 0; quantity == null && i < products.size(); i++) {
+            if (products.get(i).getProduct().getId() == product.getId()) {
+                quantity = products.get(i);
+            }
+        }
+        return quantity;
     }
 
 }
