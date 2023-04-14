@@ -6,7 +6,17 @@
 <body>
 <header th:replace="~{components/header}"></header>
 <main class="product-page">
+    <section class="progressbar">
+            <button class="red-button active">Product</button>
+            <button class="red-button inactive">Shipping</button>
+            <button class="red-button inactive">Payment</button>
+    </section>
+    <section class="buttons">
+        <button class="red-button">Continue shopping</button>
+        <button class="red-button">Checkout</button>
+    </section>
 
+    <section th:replace="~{components/featured-products}"></section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
 <script th:src="@{~/product-page.js}" defer></script>
