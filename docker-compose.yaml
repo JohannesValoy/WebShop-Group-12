@@ -12,7 +12,7 @@ services:
       - webshop
     volumes:
       - type: bind
-        source: /etc/letsencrypt/live/group12.web-tek.ninja-0001
+        source: /etc/letsencrypt
         target: /certs
     secrets:
       - db-password
