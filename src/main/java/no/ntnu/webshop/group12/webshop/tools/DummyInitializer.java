@@ -12,7 +12,6 @@ import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
-import no.ntnu.webshop.group12.webshop.repository.UserRepository;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
@@ -20,9 +19,6 @@ import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 @Component
 @Profile("!prod")
 public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
-
-        @Autowired
-        private UserRepository userRepository;
 
         @Autowired
         private ProductRepository productRepository;
@@ -129,10 +125,11 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(batteries);
 
-                Role role = new Role("USER");
-                Role role2 = new Role("ADMIN");
+                Role role = new Role("ROLE_USER");
+                Role role2 = new Role("ROLE_ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
+
                 accessUserService.tryCreateNewUser("Test", "Test1234");
         }
 }

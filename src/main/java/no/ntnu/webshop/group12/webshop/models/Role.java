@@ -1,6 +1,7 @@
 package no.ntnu.webshop.group12.webshop.models;
 
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,6 +14,7 @@ public class Role {
     @GeneratedValue
     private Long id;
 
+    @NotBlank
     private String name;
 
     @ManyToMany(mappedBy = "roles")
