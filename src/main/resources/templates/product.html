@@ -21,7 +21,7 @@
             <li class="product-page-description">
                 <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
                 <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button class="red-button" onclick="" th:href="@{/cart/{id} (id=${product.id})}">Add to Cart</button>
+                <form class="red-button" th:action="@{/cart/{id} (id=${product.id})}" method="post" action="/cart">Add to Cart</form>
             </li>
         </ul>
         <section class="specs-rating-about-buttons">
