@@ -26,6 +26,7 @@ body {
 }
 main {
     padding: 3%;
+    background-color: var(---mainBackground);
     user-select: none;
 }
 
@@ -194,11 +195,3 @@ footer p {
         height: fit-content;
     }
 
-    .image{
-        width: 90%;
-
-    }
-    .testimony .image {
-        width: 90%;
-    }
-}

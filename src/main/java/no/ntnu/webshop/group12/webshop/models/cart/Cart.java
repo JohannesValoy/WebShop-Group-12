@@ -1,12 +1,14 @@
 package no.ntnu.webshop.group12.webshop.models.cart;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import no.ntnu.webshop.group12.webshop.models.User;
@@ -23,11 +25,11 @@ public class Cart {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "cart_id")
-    private List<Quantity> products;
+    @JoinTable(name = "cart_quantity", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "quantity_id"))
+    private Set<Quantity> products;
 
     public Cart() {
-        products = new ArrayList<>();
+        products = new LinkedHashSet<>();
     }
 
     public Cart(User user) {
@@ -39,7 +41,7 @@ public class Cart {
         return id;
     }
 
-    public List<Quantity> getProducts() {
+    public Set<Quantity> getProducts() {
         return products;
     }
 
@@ -51,7 +53,7 @@ public class Cart {
         products.remove(quantity);
     }
 
-    public void setProducts(List<Quantity> products) {
+    public void setProducts(Set<Quantity> products) {
         this.products = products;
     }
 
@@ -64,13 +66,12 @@ public class Cart {
     }
 
     public Quantity getQuantity(Product product) {
-        Quantity quantity = null;
-        for (int i = 0; quantity == null && i < products.size(); i++) {
-            if (products.get(i).getProduct().getId() == product.getId()) {
-                quantity = products.get(i);
-            }
+        Optional<Quantity> quantity = products.stream().filter((q) -> (q.getProduct().getId() == product.getId()))
+                .findFirst();
+        if (quantity.isPresent()) {
+            return quantity.get();
         }
-        return quantity;
+        return null;
     }
 
 }
