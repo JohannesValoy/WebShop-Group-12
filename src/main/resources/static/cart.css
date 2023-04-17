@@ -8,7 +8,7 @@
     justify-content: space-between;
     margin: 3rem;
     border-radius: 1rem;
-    background-color: var(---dark-grey);
+    background-color: var(---secondBackground);
     width: 50%;
 }
 
@@ -24,12 +24,12 @@
 }
 
 .progress-bubble1.active, .progress-bubble2.active, .progress-bubble3.active{
-    background-color: var(---yellow);
+    background-color: var(---mainText);
     color: black;
 }
 
 .progress-bubble1:hover, .progress-bubble2:hover{
-    background-color: var(---blue);
+    background-color: var(---secondText);
     color: black;
     cursor: pointer;
 }

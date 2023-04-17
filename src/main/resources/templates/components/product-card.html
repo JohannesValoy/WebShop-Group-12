@@ -1,14 +1,13 @@
-<li class = "product-card-body" th:each="product : ${products}">
-    <a th:href="@{/products/{id} (id=${product.id})}">
-    <div class="product-card">
-        <picture>
-                <img th:src="@{images/products/{image} (image=${product.image})}" class="product-card-logo" th:alt="@{Picture of a {name} (name=${product.name})}">
-        </picture>
-        <h2 th:text="${product.name}"></h2>
-        <p th:text="@{{price} NOK (price=${product.price})}" > </p>
-        <p th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <button class="red-button">More info :)</button>
-    </div>
+<section class="product-category-card">
+  <h2 class="card-heading">Featured <span>Products</span></h2>
+
+  <div class="card-container" >
+    <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
+      <img th:src="@{/images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
+      <div class="card-layer">
+        <h3 th:text="${product.name}"></h3>
+        <p th:text="${product.description.length() > 200 ? product.description.substring(0, 200) + '...' : product.description}"></p>
+      </div>
     </a>
-    <button class="red-button">Add to Cart</button>
-</li>
+  </div>
+</section>

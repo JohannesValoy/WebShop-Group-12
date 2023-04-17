@@ -30,7 +30,7 @@
         <section class="cart-section active page">
             <h1 class="title">Shopping Cart</h1>
             <a class="checkout-button red-button" href="#">Checkout</a>
-            <section th:replace="~{components/featured-products}"></section>
+            <section th:replace="~{components/product-card}"></section>
         </section>
 
         <section class="shipping-section page">
@@ -65,10 +65,10 @@
         <section class="payment-section page">
             <h1 class="title">Order Complete!</h1>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
-            <div class="product-container" >
-                <a class="product-box" th:each="quantity : ${quantities}" th:href="@{/products/{id} (id=${quantity.product.id})}">
+            <div class="card-container" >
+                <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/products/{id} (id=${quantity.product.id})}">
                     <img th:src="@{/images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
-                    <div class="product-layer">
+                    <div class="card-layer">
                         <h3 th:text="${product.name}"></h3>
                         <i class='bx bx-info-circle'></i>
                     </div>

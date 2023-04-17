@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: black;
+    background-color: var(---mainBackground);
 }
 
 .product-page .product-image{
@@ -39,14 +39,14 @@
 }
 
 .red-button:hover {
-    background-color: var(---blue);
-    color: var(---dark-grey);
+    background-color: var(---secondText);
+    color: var(---secondBackground);
     cursor: pointer;
 }
 
 .product-page-description h1 {
     font-size: 2rem;
-    color: cyan;
+    color: var(---secondText);
 }
 
 .product-intro {
@@ -59,7 +59,7 @@
 
 .specs-button, .rating-button, .about-button {
     border-radius: 5px;
-    background-color: var(---dark-grey);
+    background-color: var(---secondBackground);
     color: white;
     padding: 1em;
     margin: 1em;
@@ -76,8 +76,8 @@
 }
 
 .specs-button:hover, .rating-button:hover, .about-button:hover {
-    background-color: var(---dark-grey);
-    color: var(---blue);
+    background-color: var(---secondBackground);
+    color: var(---secondText);
     cursor: pointer;
 }
 
