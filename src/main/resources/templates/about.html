@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{components/head}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
+    <link rel="icon" th:href="@{images/logo.png}">
+    <!-- Icons from boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- personal styles -->
+    <link rel="stylesheet" th:href="@{~/style.css}"/>
+
+    <link rel="stylesheet" th:href="@{~/product-page.css}"/>
+    <link rel="stylesheet" th:href="@{~/featured-products.css}"/>
+    <link rel="stylesheet" th:href="@{~/cart.css}"/>
+    <link rel="stylesheet" th:href="@{~/about.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
 
-<main class="product-page">
+<main class="page">
 
     <section class="about-us-card reverse">
         <img class="image" src="/images/logo.png">
