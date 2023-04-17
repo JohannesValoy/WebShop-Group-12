@@ -55,6 +55,9 @@
                         <a href="#" class="register-link">Register</a>
                     </p>
                 </div>
+                <div th:if="${param.error}" class="error-message">
+                    <p>Login failed. Please try again.</p>
+                </div>
             </form>
         </div>
         <!-- Register form -->
@@ -64,13 +67,13 @@
                 <p>Please provide the following to verify your identity</p>
             </div>
 
-            <form th:action="@{/login}" method="post" >
+            <form th:action="@{/register}" method="post" >
                 <div class="input-box">
                 <span class="icon">
                     <i class='bx bxs-user'></i>
                 </span>
-                    <label>
-                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" required >
+                    <label for="signUpUsername">
+                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" name="username" required >
                         <a id="signUpUsernameText">Username</a>
                     </label>
                 </div>
@@ -79,8 +82,8 @@
                 <span class="icon">
                     <i class='bx bx-lock-alt'></i>
                 </span>
-                    <label>
-                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required >
+                    <label for="signUpPassword">
+                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" name="password" required >
                         <a>New password</a>
                     </label>
                 </div>
@@ -89,7 +92,7 @@
                 <span class="icon">
                     <i class='bx bx-lock-alt'></i>
                 </span>
-                    <label>
+                    <label for="confirmSignUpPassword">
                         <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
                         <a id="confirmation">Confirm password</a>
                     </label>

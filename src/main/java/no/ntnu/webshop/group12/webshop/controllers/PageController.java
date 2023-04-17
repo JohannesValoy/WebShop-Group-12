@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
-import no.ntnu.webshop.group12.webshop.models.dto.SignUpDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
@@ -100,27 +99,13 @@ public class PageController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute SignUpDTO signupDTO, Model model) {
-        model.addAttribute("signupDTO", signupDTO);
+    public String postRegister(@ModelAttribute LoginDTO register, Model model) {
         model.addAttribute("user", userService.getSessionUser());
-        String page = "index";
-        if (!signupDTO.getSignUpPassword().equals(signupDTO.getConfirmSignUpPassword())) {
-            model.addAttribute("error", "Passwords do not match");
-            page = "register";
-        }
-        String error = userService.tryCreateNewUser(signupDTO.getSignUpUsername(), signupDTO.getSignUpPassword());
-        if (error != null) {
-            model.addAttribute("error", error);
-            page = "login";
-        }
-        return page;
+        String error = userService.tryCreateNewUser(register.getUsername(), register.getPassword());
+        model.addAttribute("error", error);
+        return "login";
     }
 
-    /**
-     * The `About` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
     @GetMapping("/about")
     public String getAbout() {
         return "about";

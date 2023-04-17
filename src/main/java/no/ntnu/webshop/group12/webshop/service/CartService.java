@@ -26,6 +26,10 @@ public class CartService {
 
     public void addProductToCart(int productId) {
         Cart cart = getCart();
+        // TODO: Find a better way to do this.
+        if (cart == null) {
+            return;
+        }
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null == q) {
@@ -64,6 +68,10 @@ public class CartService {
      * @return The cart for the current user.
      */
     public Cart getCart() {
+        // TODO: Find a better way to do this.
+        if (accessUserService.getSessionUser() == null) {
+            return null;
+        }
         Cart cart = cartRepository.findByUser(accessUserService.getSessionUser());
         if (cart == null) {
             cart = new Cart(accessUserService.getSessionUser());
