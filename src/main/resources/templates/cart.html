@@ -19,7 +19,7 @@
 
 <header th:replace="~{components/header}"></header>
 
-<main class="page">
+<main class="page, main">
 
         <section class="progressbar">
                 <a class="progress-bubble1 active">Products</a>
@@ -27,13 +27,13 @@
                 <a class="progress-bubble3">Payment</a>
         </section>
 
-        <section class="cart-section active">
+        <section class="cart-section active page">
             <h1 class="title">Shopping Cart</h1>
             <a class="checkout-button red-button" href="#">Checkout</a>
             <section th:replace="~{components/featured-products}"></section>
         </section>
 
-        <section class="shipping-section">
+        <section class="shipping-section page">
 
             <h2 class="title">Shipping</h2>
             <a class="complete-order red-button" href="#">Complete order</a>
@@ -62,7 +62,7 @@
 
         </section>
 
-        <section class="payment-section">
+        <section class="payment-section page">
             <h1 class="title">Order Complete!</h1>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
             <div class="product-container" >

@@ -115,6 +115,7 @@ footer p {
 }
 /*footer end*/
 
+
 .details-filling-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -150,22 +151,6 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .testimonials {
-        display: flex;
-        flex-direction: column;
-    }
-    .text-section {
-        width: 100%;
-    }
-
-    .progressbar {
-        width: 80%;
-    }
-
-    .progress-bubble1, .progress-bubble2, .progress-bubble3{
-        padding: 1rem 1.5rem;
-        width: 2rem;
-    }
 
     .input-field {
         padding: 0.5rem;
