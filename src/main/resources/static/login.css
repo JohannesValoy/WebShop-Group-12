@@ -157,6 +157,7 @@
 .logReg-link p a {
     color: white;
     font-weight: 600;
+    pointer-events: visible;
 }
 
 .logReg-link p a:hover {
