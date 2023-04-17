@@ -29,7 +29,6 @@
 <section class="products">
   <h2 class="heading">Products list for <span th:text="${category.name}"></span></h2>
 
-
   <div class="product-container" >
     <a class="product-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
       <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
