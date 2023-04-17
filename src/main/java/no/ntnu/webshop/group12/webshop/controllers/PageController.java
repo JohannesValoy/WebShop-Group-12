@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
+import no.ntnu.webshop.group12.webshop.models.dto.SignUpDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
@@ -99,11 +100,15 @@ public class PageController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute LoginDTO signupDTO, Model model) {
+    public String postRegister(@ModelAttribute SignUpDTO signupDTO, Model model) {
         model.addAttribute("signupDTO", signupDTO);
         model.addAttribute("user", userService.getSessionUser());
         String page = "index";
-        String error = userService.tryCreateNewUser(signupDTO.getUsername(), signupDTO.getPassword());
+        if (!signupDTO.getSignUpPassword().equals(signupDTO.getConfirmSignUpPassword())) {
+            model.addAttribute("error", "Passwords do not match");
+            page = "register";
+        }
+        String error = userService.tryCreateNewUser(signupDTO.getSignUpUsername(), signupDTO.getSignUpPassword());
         if (error != null) {
             model.addAttribute("error", error);
             page = "login";
