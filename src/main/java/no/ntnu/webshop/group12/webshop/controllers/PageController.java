@@ -70,6 +70,9 @@ public class PageController {
     @GetMapping("/cart")
     public String getCart(Model model) {
         model.addAttribute("user", userService.getSessionUser());
+        if (userService.getSessionUser() == null) {
+            return "redirect:/login";
+        }
         model.addAttribute("quantities", cartService.getCart().getProducts());
         return "cart";
     }
