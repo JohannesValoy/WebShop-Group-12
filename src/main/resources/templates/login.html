@@ -55,6 +55,9 @@
                         <a href="#" class="register-link">Register</a>
                     </p>
                 </div>
+                <div th:if="${param.error}" class="error-message">
+                    <p>Login failed. Please try again.</p>
+                </div>
             </form>
         </div>
         <!-- Register form -->
@@ -70,7 +73,7 @@
                     <i class='bx bxs-user'></i>
                 </span>
                     <label for="signUpUsername">
-                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" required >
+                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" name="signUpUsername" required >
                         <a id="signUpUsernameText">Username</a>
                     </label>
                 </div>
@@ -80,7 +83,7 @@
                     <i class='bx bx-lock-alt'></i>
                 </span>
                     <label for="signUpPassword">
-                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required >
+                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" name="signUpPassword" required >
                         <a>New password</a>
                     </label>
                 </div>
@@ -90,7 +93,7 @@
                     <i class='bx bx-lock-alt'></i>
                 </span>
                     <label for="confirmSignUpPassword">
-                        <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
+                        <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" name="confirmSignUpPassword" required>
                         <a id="confirmation">Confirm password</a>
                     </label>
                 </div>
