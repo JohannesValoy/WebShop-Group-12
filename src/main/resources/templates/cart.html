@@ -55,7 +55,15 @@
         <section class="payment-section">
             <h1 class="title">Order Complete!</h1>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
-            <section th:replace="~{components/featured-products}"></section>
+            <div class="product-container" >
+                <a class="product-box" th:each="quantity : ${quantities}" th:href="@{/products/{id} (id=${quantity.product.id})}">
+                    <img th:src="@{/images/products/{image} (image=${product.image})}" th:alt="@{Picture of a {name} (name=${product.name})}">
+                    <div class="product-layer">
+                        <h3 th:text="${product.name}"></h3>
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </a>
+            </div>
         </section>
 
 </main>
