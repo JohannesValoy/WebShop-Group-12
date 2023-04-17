@@ -1,5 +1,5 @@
 .login {
-    background-color: var(---black);
+    background-color: var(---mainBackground);
     display: flex;
     justify-content: center;
     align-items: center;

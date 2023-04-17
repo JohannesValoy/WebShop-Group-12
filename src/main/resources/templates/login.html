@@ -64,7 +64,7 @@
                 <p>Please provide the following to verify your identity</p>
             </div>
 
-            <form th:action="@{/register}" method="post" action="/account">
+            <form th:action="@{/login}" method="post" >
                 <div class="input-box">
                 <span class="icon">
                     <i class='bx bxs-user'></i>
@@ -107,6 +107,9 @@
                     <p>Already have an account?
                         <a href="#" class="login-link">Login</a>
                     </p>
+                </div>
+                <div th:if="${param.error}" class="error-message">
+                    <p>Registration failed. Please try again.</p>
                 </div>
             </form>
         </div>
