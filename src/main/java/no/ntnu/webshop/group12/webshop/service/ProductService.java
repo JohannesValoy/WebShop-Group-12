@@ -1,9 +1,6 @@
 package no.ntnu.webshop.group12.webshop.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +27,14 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(int id) {
-        return productRepository.findByCategory(categoryService.getCategory(id).get());
+        Optional<Category> category = categoryService.getCategory(id);
+        if(category.isPresent()) {
+            return productRepository.findByCategory(category.get());
+        } else {
+            return Collections.emptyList();
+        }
     }
+
 
     public Set<Product> getRandomProducts(long i) {
         Set<Product> products = new HashSet<>();

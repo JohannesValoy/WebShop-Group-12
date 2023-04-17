@@ -27,7 +27,7 @@
 </section>
 
 <section class="products">
-  <h2 class="heading">Products list for <span th:text="${category.name}"></span></h2>
+  <h2 class="heading">Products list for <span th:text="*{category != null}? *{category.name} : 'All' "></span></h2>
 
   <div class="product-container" >
     <a class="product-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
