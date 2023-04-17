@@ -59,8 +59,7 @@ public class CartService {
     public Cart getCart() {
         Cart cart = cartRepository.findByUser(accessUserService.getSessionUser());
         if (cart == null) {
-            cart = new Cart();
-            cart.setUser(accessUserService.getSessionUser());
+            cart = new Cart(accessUserService.getSessionUser());
             cartRepository.save(cart);
         }
         return cart;

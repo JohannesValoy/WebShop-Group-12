@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.models.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -26,6 +27,12 @@ public class Cart {
     private List<Quantity> products;
 
     public Cart() {
+        products = new ArrayList<>();
+    }
+
+    public Cart(User user) {
+        this();
+        this.user = user;
     }
 
     public int getId() {
