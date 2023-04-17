@@ -7,6 +7,7 @@ import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CartRepository;
+import no.ntnu.webshop.group12.webshop.repository.QuantityRepository;
 
 @Service
 public class CartService {
@@ -20,16 +21,22 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
+    @Autowired
+    private QuantityRepository quantityRepository;
+
     public void addProductToCart(int productId) {
         Cart cart = getCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null == q) {
-            cart.addProduct(new Quantity(product, 1));
+            q = new Quantity(product, 1);
+            cart.addProduct(q);
+            quantityRepository.save(q);
+            cartRepository.save(cart);
         } else {
             q.addAmount(1);
+            quantityRepository.save(q);
         }
-        cartRepository.save(cart);
     }
 
     public void removeProductFromCart(int productId) {
