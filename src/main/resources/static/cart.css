@@ -58,13 +58,25 @@
         width: 100%;
     }
 
+
     .progressbar {
         width: 80%;
     }
 
+
     .progress-bubble1, .progress-bubble2, .progress-bubble3 {
         padding: 1rem 1.5rem;
         width: 2rem;
+    }
+
+    .input-field {
+        padding: 0.5rem;
+        width: 7rem;
+    }
+
+    .details-filling-form {
+        gap: 1rem;
+
     }
 }
 

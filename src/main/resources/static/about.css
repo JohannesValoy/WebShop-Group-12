@@ -62,7 +62,7 @@
     }
 }
 
-@media (max-width: 110rem) {
+@media (max-width: 1024px) {
     .testimonials {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
