@@ -119,27 +119,6 @@ footer p {
     font-size: 1rem;
 }
 
-.location .email .phone {
-    user-select: all;
-}
-/*footer end*/
-
-
-.details-filling-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
-.input-field {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: var(---secondBackground);
-}
-
-.input-field::placeholder {
-    color: lightgray;
-}
 
 .red-button {
     border-radius: 5px;

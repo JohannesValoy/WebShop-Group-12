@@ -48,6 +48,23 @@
     gap: 2rem;
 }
 
+.input-field {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(---secondBackground);
+}
+
+.input-field::placeholder {
+    color: lightgray;
+}
+
+@media (max-width: 130rem) {
+
+    .progressbar {
+        width: 30%;
+    }
+}
+
 @media (max-width: 768px) {
     .testimonials {
         display: flex;
@@ -62,7 +79,6 @@
     .progressbar {
         width: 80%;
     }
-
 
     .progress-bubble1, .progress-bubble2, .progress-bubble3 {
         padding: 1rem 1.5rem;
