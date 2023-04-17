@@ -21,6 +21,9 @@
             <div class="logReg-title">
                 <h2>Login</h2>
             </div>
+            <div th:if="${param.error}" class="error-message">
+                <p>Login failed. Please try again.</p>
+            </div>
             <form th:action="@{/login}" method="post">
                 <div class="input-box">
                 <span class="icon">
@@ -55,9 +58,7 @@
                         <a href="#" class="register-link">Register</a>
                     </p>
                 </div>
-                <div th:if="${param.error}" class="error-message">
-                    <p>Login failed. Please try again.</p>
-                </div>
+
             </form>
         </div>
         <!-- Register form -->

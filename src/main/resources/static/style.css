@@ -27,6 +27,8 @@ body {
 }
 main {
     padding: 3%;
+    background-color: var(---mainBackground);
+    user-select: none;
 }
 
 
@@ -54,6 +56,7 @@ h1, h2, h3, p {
 
 /*navbar*/
 header {
+    user-select: none;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -113,81 +116,4 @@ footer p {
 
 .location .email .phone {
     user-select: all;
-}
-/*footer end*/
-
-
-.details-filling-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
-.input-field {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: var(---secondBackground);
-}
-
-.input-field::placeholder {
-    color: lightgray;
-}
-
-@media (max-width: 130rem) {
-    .testimonials {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .progressbar {
-        width: 30%;
-    }
-}
-
-@media (max-width: 110rem) {
-    .testimonials {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-
-    .input-field {
-        padding: 0.5rem;
-        width: 7rem;
-    }
-
-    .details-filling-form {
-        gap: 1rem;
-
-    }
-
-    .about-us-card {
-        display: flex;
-        height: fit-content;
-        flex-direction: column;
-    }
-
-    .about-us-card.reverse {
-        flex-direction: column;
-    }
-
-    .text-section {
-        width: 90%;
-    }
-
-    .testimony {
-        display: block;
-        width: 90%;
-        height: fit-content;
-    }
-
-    .image{
-        width: 90%;
-
-    }
-    .testimony .image {
-        width: 90%;
-    }
 }
