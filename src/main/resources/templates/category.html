@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CyberPunk Store</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" th:href="@{images/logo.png}">
+  <!-- Icons from boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- personal styles -->
+  <link rel="stylesheet" th:href="@{~/style.css}"/>
+  <link rel="stylesheet" th:href="@{~/category.css}"/>
+
+</head>
+<body>
+<header th:replace="~{components/header}"></header>
+<main>
+<section class="categories">
+    <h2 class="heading">Category list</h2>
+  <div class="category-container" >
+    <a class="category-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
+     <div class="category-layer">
+        <h3 th:text="${category.name}"></h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="products">
+  <h2 class="heading">Products list for <span th:text="${category.name}"></span></h2>
+
+  <div class="product-container" >
+    <a class="product-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
+      <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+      <div class="product-layer">
+        <h3 th:text="${product.name}"></h3>
+      </div>
+    </a>
+  </div>
+</section>
+</main>
+<footer th:replace="~{components/footer}"></footer>
+
+</body>
+</html>

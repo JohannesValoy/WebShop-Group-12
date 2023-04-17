@@ -16,6 +16,9 @@ import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 public class ProductService {
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private ProductRepository productRepository;
 
     public Iterable<Product> getAllProducts() {
@@ -24,6 +27,10 @@ public class ProductService {
 
     public Product getProduct(int id) {
         return productRepository.findById(id);
+    }
+
+    public List<Product> getProductsByCategory(int id) {
+        return productRepository.findByCategory(categoryService.getCategory(id).get());
     }
 
     public Set<Product> getRandomProducts(long i) {
@@ -58,5 +65,4 @@ public class ProductService {
         }
         return products;
     }
-
 }
