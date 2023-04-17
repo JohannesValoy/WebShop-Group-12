@@ -72,6 +72,19 @@
         <section class="payment-section page">
             <h1 class="title">Order Complete!</h1>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
+            <section class="product-category-card">
+                <h2 class="card-heading">Cart <span>Products</span></h2>
+                <div class="card-container" >
+                    <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
+                        <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of a {name} (name=${quantity.product.name})}" alt="bought products">
+                        <div class="card-layer">
+                            <h3 th:text="${quantity.product.name}"></h3>
+                            <h3 th:text="${quantity.getAmount()}"></h3>
+                            <i class='bx bx-info-circle'></i>
+                        </div>
+                    </a>
+                </div>
+            </section>
         </section>
 
 </main>

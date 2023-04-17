@@ -20,13 +20,13 @@
 }
 
 body {
-    user-select: none;
     display: grid;
     grid-template-rows: 1fr 10fr 1fr;
     height: 100svh;
 }
 main {
     padding: 3%;
+    user-select: none;
 }
 
 
@@ -54,6 +54,7 @@ h1, h2, h3, p {
 
 /*navbar*/
 header {
+    user-select: none;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
