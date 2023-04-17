@@ -78,7 +78,6 @@ public class PageController {
     public String postCart(@PathVariable("id") int id, Model model) {
         cartService.addProductToCart(id);
         model.addAttribute("user", userService.getSessionUser());
-        model.addAttribute("quantities", cartService.getCart().getProducts());
         return "redirect:/cart";
     }
 
