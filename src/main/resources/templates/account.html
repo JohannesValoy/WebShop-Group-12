@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head th:replace="~{components/head}">
-    <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CyberPunk Store</title>
+    <link rel="icon" th:href="@{images/logo.png}">
+    <link rel="stylesheet" th:href="@{~/style.css}"/>
+
+    <link rel="stylesheet" th:href="@{~/product-page.css}"/>
+    <link rel="stylesheet" th:href="@{~/account.css}"/>
+    <link rel="stylesheet" th:href="@{~/cart.css}"/>
 </head>
 
 <body>
@@ -12,7 +21,7 @@
 <main class="page">
 
 
-    <section class="cart-section active">
+    <section class="page">
         <h1 class="title">Account</h1>
 
         <section class="account-details">

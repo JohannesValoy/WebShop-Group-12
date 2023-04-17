@@ -1,0 +1,130 @@
+.testimonials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 8rem 0;
+}
+.testimony {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 30rem;
+    height: 40rem;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+.image{
+    width: 25%;
+    object-fit: cover;
+}
+.testimony .image {
+    width: 75%;
+}
+
+.about-us-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.about-us-card.reverse {
+    flex-direction: row-reverse;
+}
+
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 35%;
+    margin: 5%;
+}
+
+@media (max-width: 130rem) {
+    .testimonials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .progressbar {
+        width: 30%;
+    }
+}
+
+@media (max-width: 110rem) {
+    .testimonials {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-section {
+        width: 100%;
+    }
+
+    .progressbar {
+        width: 80%;
+    }
+
+    .progress-bubble1, .progress-bubble2, .progress-bubble3 {
+        padding: 1rem 1.5rem;
+        width: 2rem;
+    }
+
+    .input-field {
+        padding: 0.5rem;
+        width: 7rem;
+    }
+
+    .details-filling-form {
+        gap: 1rem;
+
+    }
+
+    .about-us-card {
+        display: flex;
+        height: fit-content;
+        flex-direction: column;
+    }
+
+    .about-us-card.reverse {
+        flex-direction: column;
+    }
+
+    .text-section {
+        width: 90%;
+    }
+
+    .testimony {
+        display: block;
+        width: 90%;
+        height: fit-content;
+    }
+
+    .image {
+        width: 90%;
+
+    }
+
+    .testimony .image {
+        width: 90%;
+    }
+
+}

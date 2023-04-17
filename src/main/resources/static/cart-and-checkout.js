@@ -43,3 +43,6 @@ completeorder.onclick = () => {
     shippingsection.classList.remove("active");
 };
 
+progressbubble3.onclick = () => {
+    shippingsection.classList.add("clicked");
+};
