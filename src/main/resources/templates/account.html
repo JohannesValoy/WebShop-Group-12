@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head th:replace="~{components/head :: common_head(~{::title})}">
-        <title>Cyberpunk Store - Account</title>
-    </head>
+
+<head th:replace="~{components/head}">
+    <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
+</head>
+
 <body>
+
 <header th:replace="~{components/header}"></header>
 
+<main class="page">
+
+
+    <section class="cart-section active">
+        <h1 class="title">Account</h1>
+
+        <section class="account-details">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 profile-image">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+
+            <section class="account-email-and-phone">
+                <h2>Username</h2>
+                <a>UserEmail@email.com</a>
+                <a>+123 123 45 678</a>
+            </section>
+        </section>
+
+        <a class="red-button" href="/logout">Log out</a>
+        <section th:replace="~{components/featured-products}"></section>
+    </section>
+
+
+</main>
+
 <footer th:replace="~{components/footer}"></footer>
+<script th:src="@{~/cart-and-checkout.js}" defer></script>
+
 </body>
 </html>
