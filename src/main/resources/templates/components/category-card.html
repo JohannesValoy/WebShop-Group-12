@@ -1,0 +1,12 @@
+<section class="product-category-card">
+    <h2 class="card-heading">Selection of <span>Category</span></h2>
+
+    <div class="card-container" >
+        <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
+            <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="@{Picture of {name} (name=${category.name})}">
+            <div class="card-layer">
+                <h3 th:text="${category.name}"></h3>
+            </div>
+        </a>
+    </div>
+</section>

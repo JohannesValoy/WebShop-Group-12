@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{components/head}">
+<head>
     <meta charset="UTF-8"/>
     <title th:text="@{CyberPunk Store - {name} (name=${product.name})}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,6 +10,8 @@
     <!-- personal styles -->
     <link rel="stylesheet" th:href="@{~/style.css}"/>
     <link rel="stylesheet" th:href="@{~/product-page.css}"/>
+    <link rel="stylesheet" th:href="@{~/product-category-card.css}"/>
+
 </head>
 <body>
     <header th:replace="~{components/header}"></header>
@@ -48,9 +50,8 @@
             <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </section>
 
-        <featured-products>
-            <section th:replace="~{components/featured-products}"></section>
-        </featured-products>
+        <section th:replace="~{components/product-card}"></section>
+
 
 </main>
 <footer th:replace="~{components/footer}"></footer>
