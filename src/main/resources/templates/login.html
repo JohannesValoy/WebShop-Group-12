@@ -64,12 +64,12 @@
                 <p>Please provide the following to verify your identity</p>
             </div>
 
-            <form th:action="@{/login}" method="post" >
+            <form th:action="@{/register}" method="post" >
                 <div class="input-box">
                 <span class="icon">
                     <i class='bx bxs-user'></i>
                 </span>
-                    <label>
+                    <label for="signUpUsername">
                         <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" required >
                         <a id="signUpUsernameText">Username</a>
                     </label>
@@ -79,7 +79,7 @@
                 <span class="icon">
                     <i class='bx bx-lock-alt'></i>
                 </span>
-                    <label>
+                    <label for="signUpPassword">
                         <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required >
                         <a>New password</a>
                     </label>
@@ -89,7 +89,7 @@
                 <span class="icon">
                     <i class='bx bx-lock-alt'></i>
                 </span>
-                    <label>
+                    <label for="confirmSignUpPassword">
                         <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
                         <a id="confirmation">Confirm password</a>
                     </label>
