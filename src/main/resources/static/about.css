@@ -1,0 +1,52 @@
+.testimonials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 8rem 0;
+}
+.testimony {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 30rem;
+    height: 40rem;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+}
+.image{
+    width: 25%;
+    object-fit: cover;
+}
+.testimony .image {
+    width: 75%;
+}
+
+.about-us-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.about-us-card.reverse {
+    flex-direction: row-reverse;
+}
+
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 35%;
+    margin: 5%;
+}
