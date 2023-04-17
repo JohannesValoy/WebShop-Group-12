@@ -23,7 +23,7 @@ body {
     user-select: none;
     display: grid;
     grid-template-rows: 1fr 10fr 1fr;
-    height: 100vh;
+    height: 100svh;
 }
 main {
     padding: 3%;
@@ -48,6 +48,7 @@ p {
 
 h1, h2, h3, p {
     text-align: center;
+    pointer-events: none;
 }
 
 /*navbar*/

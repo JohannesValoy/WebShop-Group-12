@@ -53,6 +53,8 @@ public class PageController {
      */
     @GetMapping("/category")
     public String getCategory(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("user", userService.getSessionUser());
         return "category";
     }
@@ -117,17 +119,21 @@ public class PageController {
         return "about";
     }
 
-    /**
-     * The `Contact` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
-    @GetMapping("/products/{id}")
+    @GetMapping("/product/{id}")
     public String getProduct(@PathVariable("id") int id, Model model) {
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("products", productService.getRandomProductsByCategory(4, id));
         return "product";
+    }
+
+    @GetMapping("/category/{id}")
+    public String getCategory(@PathVariable("id") int id, Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("products", productService.getProductsByCategory(id));
+        model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("category", categoryService.getCategory(id).get());
+        return "category";
     }
 
     @GetMapping("/account")
