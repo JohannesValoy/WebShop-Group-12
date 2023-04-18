@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.ConstraintViolationException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
@@ -47,10 +47,17 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategoryCount());
     }
 
-    @PostMapping()
+    @PostMapping("")
     @Operation(summary = "Create a new category")
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.createCategory(category));
+        ResponseEntity<Category> response = null;
+        try {
+            Category newCategory = categoryService.createCategory(category);
+            response = ResponseEntity.ok().body(newCategory);
+        } catch (ConstraintViolationException e) {
+            response = ResponseEntity.badRequest().build();
+        }
+        return response;
     }
 
     @DeleteMapping("/{id}")

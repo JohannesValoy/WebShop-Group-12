@@ -18,7 +18,6 @@ public class Category {
     private String image;
 
     public Category() {
-        this(0, "", "");
     }
 
     public Category(String name) {
