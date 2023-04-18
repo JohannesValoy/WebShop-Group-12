@@ -34,11 +34,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/**").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
