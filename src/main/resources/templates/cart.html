@@ -35,10 +35,9 @@
                             <p>Amount Ordered:
                             <p th:text="${quantity.getAmount()}">
                             </p>
-<!--                            TODO: add remove-button-->
-<!--                            <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >-->
-<!--                                <button class="red-button" >Add to Cart</button>-->
-<!--                            </form>-->
+                            <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
+                                <button class="red-button" >Add to Cart</button>
+                            </form>
                             <i class='bx bx-info-circle'></i>
                         </div>
                     </a>
