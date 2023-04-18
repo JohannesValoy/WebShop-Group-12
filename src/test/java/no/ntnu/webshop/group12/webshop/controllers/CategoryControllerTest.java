@@ -28,28 +28,30 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(roles = "ADMIN")
     void testCreateCategory() throws JsonProcessingException, Exception {
-
         Category category = new Category("test");
-
-        mockMvc.perform(post("/api/category").content(objectMapper.writeValueAsString(category))
-                .contentType(MediaType.APPLICATION_JSON))
+        String json = objectMapper.writeValueAsString(category);
+        mockMvc.perform(post("/api/category").contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isOk());
 
     }
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void testDeleteCategory() {
 
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void testGetAllCategories() {
 
     }
 
     @Test
-    void testGetCategory() {
-
+    @WithMockUser(roles = "USER")
+    void testGetCategory() throws Exception {
+        mockMvc.perform(get("/api/category/1")).andExpect(status().isOk());
+        mockMvc.perform(get("/api/category/1000")).andExpect(status().isNotFound());
     }
 
     @Test
