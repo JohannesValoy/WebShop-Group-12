@@ -1,51 +1,51 @@
 const checkout = document.querySelector(".checkout-button");
-const progressbubble1 = document.querySelector(".progress-bubble1");
-const cartsection = document.querySelector(".cart-section");
-const progressbubble2= document.querySelector(".progress-bubble2");
-const shippingsection = document.querySelector(".shipping-section");
-const progressbubble3 = document.querySelector(".progress-bubble3");
-const paymentsection = document.querySelector(".payment-section");
-const completeorder= document.querySelector(".complete-order");
+const progressBubble1 = document.querySelector(".progress-bubble1");
+const cartSection = document.querySelector(".cart-section");
+const progressBubble2= document.querySelector(".progress-bubble2");
+const shippingSection = document.querySelector(".shipping-section");
+const progressBubble3 = document.querySelector(".progress-bubble3");
+const paymentSection = document.querySelector(".payment-section");
+const completeOrder= document.querySelector(".complete-order");
 const removeFromCartButton = document.querySelector(".remove-from-cart-button");
 
-progressbubble1.onclick = () => {
-    progressbubble1.classList.add("active");
-    cartsection.classList.add("active");
-    progressbubble2.classList.remove("active");
-    shippingsection.classList.remove("active");
-    progressbubble3.classList.remove("active");
-    paymentsection.classList.remove("active");
+progressBubble1.onclick = () => {
+    progressBubble1.classList.add("active");
+    cartSection.classList.add("active");
+    progressBubble2.classList.remove("active");
+    shippingSection.classList.remove("active");
+    progressBubble3.classList.remove("active");
+    paymentSection.classList.remove("active");
 };
 
 checkout.onclick = () => {
-    progressbubble2.classList.add("active");
-    shippingsection.classList.add("active");
-    progressbubble1.classList.remove("active");
-    cartsection.classList.remove("active");
-    progressbubble3.classList.remove("active");
-    paymentsection.classList.remove("active");
+    progressBubble2.classList.add("active");
+    shippingSection.classList.add("active");
+    progressBubble1.classList.remove("active");
+    cartSection.classList.remove("active");
+    progressBubble3.classList.remove("active");
+    paymentSection.classList.remove("active");
 };
 
-progressbubble2.onclick = () => {
-    progressbubble2.classList.add("active");
-    shippingsection.classList.add("active");
-    progressbubble1.classList.remove("active");
-    cartsection.classList.remove("active");
-    progressbubble3.classList.remove("active");
-    paymentsection.classList.remove("active");
+progressBubble2.onclick = () => {
+    progressBubble2.classList.add("active");
+    shippingSection.classList.add("active");
+    progressBubble1.classList.remove("active");
+    cartSection.classList.remove("active");
+    progressBubble3.classList.remove("active");
+    paymentSection.classList.remove("active");
 };
 
-completeorder.onclick = () => {
-    progressbubble3.classList.add("active");
-    paymentsection.classList.add("active");
-    progressbubble1.classList.remove("active");
-    cartsection.classList.remove("active");
-    progressbubble2.classList.remove("active");
-    shippingsection.classList.remove("active");
+completeOrder.onclick = () => {
+    progressBubble3.classList.add("active");
+    paymentSection.classList.add("active");
+    progressBubble1.classList.remove("active");
+    cartSection.classList.remove("active");
+    progressBubble2.classList.remove("active");
+    shippingSection.classList.remove("active");
 };
 
-progressbubble3.onclick = () => {
-    shippingsection.classList.add("clicked");
+progressBubble3.onclick = () => {
+    shippingSection.classList.add("clicked");
 };
 
 removeFromCartButton.onclick = () =>  {
@@ -54,8 +54,9 @@ removeFromCartButton.onclick = () =>  {
     fetch(`/cart/$@{/product/{id}`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
+                // Handle success response
             } else {
-
+                // Handle error response
             }
         });
 }
