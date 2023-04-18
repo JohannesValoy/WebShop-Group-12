@@ -34,6 +34,23 @@ public class Product {
 
     private String image;
 
+    private String imageWebp256;
+
+    private String imageWebp512;
+
+    private String imageWebp1024;
+
+    private String imageWebp2048;
+
+    private String imageJpg256;
+
+    private String imageJpg512;
+
+    private String imageJpg1024;
+
+    private String imageJpg2048;
+
+
     @Positive
     private double price;
 
