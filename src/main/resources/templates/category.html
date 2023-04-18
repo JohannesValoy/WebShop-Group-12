@@ -5,11 +5,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" th:href="@{images/logo.png}">
-  <!-- Icons from boxicons -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- personal styles -->
-  <link rel="stylesheet" th:href="@{~/style.css}"/>
-  <link rel="stylesheet" th:href="@{~/category.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/category.css}"/>
 
 </head>
 <body>
@@ -32,8 +30,16 @@
 
       <div class="card-container" >
         <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
-          <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
-          <div class="card-layer">
+          <picture>
+            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
+            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
+            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
+            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
+            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
+            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
+            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+          </picture>
+            <div class="card-layer">
             <h3 th:text="${product.name}"></h3>
           </div>
         </a>

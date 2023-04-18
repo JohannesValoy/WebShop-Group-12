@@ -51,18 +51,90 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 Category category11 = new Category("Controllers");
                 Category category12 = new Category("Batteries");
 
-                category1.setImage("category 1.png");
-                category2.setImage("category 2.png");
-                category3.setImage("category 3.png");
-                category4.setImage("category 4.png");
-                category5.setImage("category 5.png");
-                category6.setImage("category 6.png");
-                category7.setImage("category 7.png");
-                category8.setImage("category 8.png");
-                category9.setImage("category 9.png");
-                category10.setImage("category 10.png");
-                category11.setImage("category 11.png");
-                category12.setImage("category 12.png");
+                category1.setImage("category 1.jpg");
+                category1.setImageJpg512("category 1-512w.jpg");
+                category1.setImageJpg1024("category 1-1024w.jpg");
+                category1.setImageJpg2048("category 1-2048w.jpg");
+                category1.setImageWebp512("category 1-512w.webp");
+                category1.setImageWebp1024("category 1-1024w.webp");
+                category1.setImageWebp2048("category 1-2048w.webp");
+                category2.setImage("category 2.jpg");
+                category2.setImageJpg512("category 2-512w.jpg");
+                category2.setImageJpg1024("category 2-1024w.jpg");
+                category2.setImageJpg2048("category 2-2048w.jpg");
+                category2.setImageWebp512("category 2-512w.webp");
+                category2.setImageWebp1024("category 2-1024w.webp");
+                category2.setImageWebp2048("category 2-2048w.webp");
+                category3.setImage("category 3.jpg");
+                category3.setImageJpg512("category 3-512w.jpg");
+                category3.setImageJpg1024("category 3-1024w.jpg");
+                category3.setImageJpg2048("category 3-2048w.jpg");
+                category3.setImageWebp512("category 3-512w.webp");
+                category3.setImageWebp1024("category 3-1024w.webp");
+                category3.setImageWebp2048("category 3-2048w.webp");
+                category4.setImage("category 4.jpg");
+                category4.setImageJpg512("category 4-512w.jpg");
+                category4.setImageJpg1024("category 4-1024w.jpg");
+                category4.setImageJpg2048("category 4-2048w.jpg");
+                category4.setImageWebp512("category 4-512w.webp");
+                category4.setImageWebp1024("category 4-1024w.webp");
+                category4.setImageWebp2048("category 4-2048w.webp");
+                category5.setImage("category 5.jpg");
+                category5.setImageJpg512("category 5-512w.jpg");
+                category5.setImageJpg1024("category 5-1024w.jpg");
+                category5.setImageJpg2048("category 5-2048w.jpg");
+                category5.setImageWebp512("category 5-512w.webp");
+                category5.setImageWebp1024("category 5-1024w.webp");
+                category5.setImageWebp2048("category 5-2048w.webp");
+                category6.setImage("category 6.jpg");
+                category6.setImageJpg512("category 6-512w.jpg");
+                category6.setImageJpg1024("category 6-1024w.jpg");
+                category6.setImageJpg2048("category 6-2048w.jpg");
+                category6.setImageWebp512("category 6-512w.webp");
+                category6.setImageWebp1024("category 6-1024w.webp");
+                category6.setImageWebp2048("category 6-2048w.webp");
+                category7.setImage("category 7.jpg");
+                category7.setImageJpg512("category 7-512w.jpg");
+                category7.setImageJpg1024("category 7-1024w.jpg");
+                category7.setImageJpg2048("category 7-2048w.jpg");
+                category7.setImageWebp512("category 7-512w.webp");
+                category7.setImageWebp1024("category 7-1024w.webp");
+                category7.setImageWebp2048("category 7-2048w.webp");
+                category8.setImage("category 8.jpg");
+                category8.setImageJpg512("category 8-512w.jpg");
+                category8.setImageJpg1024("category 8-1024w.jpg");
+                category8.setImageJpg2048("category 8-2048w.jpg");
+                category8.setImageWebp512("category 8-512w.webp");
+                category8.setImageWebp1024("category 8-1024w.webp");
+                category8.setImageWebp2048("category 8-2048w.webp");
+                category9.setImage("category 9.jpg");
+                category9.setImageJpg512("category 9-512w.jpg");
+                category9.setImageJpg1024("category 9-1024w.jpg");
+                category9.setImageJpg2048("category 9-2048w.jpg");
+                category9.setImageWebp512("category 9-512w.webp");
+                category9.setImageWebp1024("category 9-1024w.webp");
+                category9.setImageWebp2048("category 9-2048w.webp");
+                category10.setImage("category 10.jpg");
+                category10.setImageJpg512("category 10-512w.jpg");
+                category10.setImageJpg1024("category 10-1024w.jpg");
+                category10.setImageJpg2048("category 10-2048w.jpg");
+                category10.setImageWebp512("category 10-512w.webp");
+                category10.setImageWebp1024("category 10-1024w.webp");
+                category10.setImageWebp2048("category 10-2048w.webp");
+                category11.setImage("category 11.jpg");
+                category11.setImageJpg512("category 11-512w.jpg");
+                category11.setImageJpg1024("category 11-1024w.jpg");
+                category11.setImageJpg2048("category 11-2048w.jpg");
+                category11.setImageWebp512("category 11-512w.webp");
+                category11.setImageWebp1024("category 11-1024w.webp");
+                category11.setImageWebp2048("category 11-2048w.webp");
+                category12.setImage("category 12.jpg");
+                category12.setImageJpg512("category 12-512w.jpg");
+                category12.setImageJpg1024("category 12-1024w.jpg");
+                category12.setImageJpg2048("category 12-2048w.jpg");
+                category12.setImageWebp512("category 12-512w.webp");
+                category12.setImageWebp1024("category 12-1024w.webp");
+                category12.setImageWebp2048("category 12-2048w.webp");
 
                 categoryRepository.save(category1);
                 categoryRepository.save(category2);
@@ -84,7 +156,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 mouse.addCategory(category1);
                 mouse.addCategory(category4);
-                mouse.setImage("computer_mouse#3.png");
+                mouse.setImage("computer_mouse-3.jpg");
+                mouse.setImageWebp2048("computer_mouse-3-2048w.webp");
+                mouse.setImageWebp512("computer_mouse-3-512w.webp");
+                mouse.setImageWebp1024("computer_mouse-3-1024w.webp");
+                mouse.setImageJpg2048("computer_mouse-3-2048w.jpg");
+                mouse.setImageJpg512("computer_mouse-3-512w.jpg");
+                mouse.setImageJpg1024("computer_mouse-3-1024w.jpg");
 
                 Product wirelessMouse = new Product("Wireless Gaming Mouse",
                         "This wireless gaming mouse is perfect for gamers who want freedom of movement without sacrificing accuracy. With its ergonomic design and precision optical tracking, you'll be able to dominate the competition with ease. Plus, its stylish design and customizable lighting make it a great addition to any gaming setup. And with its long battery life, you won't have to worry about running out of juice in the middle of a game. Get the Wireless Gaming Mouse today and take your gaming to the next level!",
@@ -92,7 +170,14 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 wirelessMouse.addCategory(category1);
                 wirelessMouse.addCategory(category4);
-                wirelessMouse.setImage("computer_mouse_wireless.png");
+                wirelessMouse.setImage("computer_mouse_wireless.jpg");
+                wirelessMouse.setImageWebp2048("computer_mouse_wireless-2048w.webp");
+                wirelessMouse.setImageWebp512("computer_mouse_wireless-512w.webp");
+                wirelessMouse.setImageWebp1024("computer_mouse_wireless-1024w.webp");
+                wirelessMouse.setImageJpg2048("computer_mouse_wireless-2048w.jpg");
+                wirelessMouse.setImageJpg512("computer_mouse_wireless-512w.jpg");
+                wirelessMouse.setImageJpg1024("computer_mouse_wireless-1024w.jpg");
+
 
                 Product wiredMouse = new Product("Wired Gaming Mouse",
                         "This wired gaming mouse is perfect for gamers who want a reliable, high-performance mouse without any lag or connectivity issues. With its ergonomic design and precision optical tracking, you'll be able to dominate the competition with ease. Plus, its stylish design and customizable lighting make it a great addition to any gaming setup. And with its durable construction and long cable, you won't have to worry about it breaking or running out of battery. Get the Wired Gaming Mouse today and take your gaming to the next level!",
@@ -100,7 +185,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 wiredMouse.addCategory(category1);
                 wiredMouse.addCategory(category4);
-                wiredMouse.setImage("computer_mouse#1.png");
+                wiredMouse.setImage("computer_mouse-1.jpg");
+                wiredMouse.setImageWebp2048("computer_mouse-1-2048w.webp");
+                wiredMouse.setImageWebp512("computer_mouse-1-512w.webp");
+                wiredMouse.setImageWebp1024("computer_mouse-1-1024w.webp");
+                wiredMouse.setImageJpg2048("computer_mouse-1-2048w.jpg");
+                wiredMouse.setImageJpg512("computer_mouse-1-512w.jpg");
+                wiredMouse.setImageJpg1024("computer_mouse-1-1024w.jpg");
 
                 productRepository.save(mouse);
                 productRepository.save(wirelessMouse);
@@ -113,7 +204,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 headsetOffice.addCategory(category1);
                 headsetOffice.addCategory(category2);
                 headsetOffice.addCategory(category3);
-                headsetOffice.setImage("headset#1.png");
+                headsetOffice.setImage("headset-1.jpg");
+                headsetOffice.setImageWebp2048("headset-1-2048w.webp");
+                headsetOffice.setImageWebp512("headset-1-512w.webp");
+                headsetOffice.setImageWebp1024("headset-1-1024w.webp");
+                headsetOffice.setImageJpg2048("headset-1-2048w.jpg");
+                headsetOffice.setImageJpg512("headset-1-512w.jpg");
+                headsetOffice.setImageJpg1024("headset-1-1024w.jpg");
 
                 Product wiredHeadset = new Product("Wired Gaming Headset",
                         "If you prefer a wired connection for your gaming headset, the Wired Gaming Headset is the perfect choice. With its comfortable over-ear design, high-quality sound, and noise-cancelling microphone, you'll be able to hear and communicate clearly with your teammates. Its durable construction and long cable make it perfect for long gaming sessions, and its stylish design will make you the envy of all your friends. Get the Wired Gaming Headset today and take your gaming to the next level!",
@@ -121,7 +218,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 wiredHeadset.addCategory(category1);
                 wiredHeadset.addCategory(category3);
-                wiredHeadset.setImage("headset#2.png");
+                wiredHeadset.setImage("headset-2.jpg");
+                wiredHeadset.setImageWebp2048("headset-2-2048w.webp");
+                wiredHeadset.setImageWebp512("headset-2-512w.webp");
+                wiredHeadset.setImageWebp1024("headset-2-1024w.webp");
+                wiredHeadset.setImageJpg2048("headset-2-2048w.jpg");
+                wiredHeadset.setImageJpg512("headset-2-512w.jpg");
+                wiredHeadset.setImageJpg1024("headset-2-1024w.jpg");
 
                 Product gamingHeadset = new Product("Hot Gaming Headset",
                         "Are you looking for the ultimate gaming headset? Look no further than the Flexible Gaming Headset! With top-notch sound quality and stylish lights on the sides, you'll be ready for your next gaming session. Plus, its flexible design is sure to make it comfortable for long hours of gaming. But watch out - it's so hot, your keyboard may melt! Get the Flexible Gaming Headset today and take your gaming to the next level.",
@@ -129,7 +232,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 gamingHeadset.addCategory(category1);
                 gamingHeadset.addCategory(category3);
-                gamingHeadset.setImage("headset_with_mic#1.png");
+                gamingHeadset.setImage("headset_with_mic-1.jpg");
+                gamingHeadset.setImageWebp2048("headset_with_mic-1-2048w.webp");
+                gamingHeadset.setImageWebp512("headset_with_mic-1-512w.webp");
+                gamingHeadset.setImageWebp1024("headset_with_mic-1-1024w.webp");
+                gamingHeadset.setImageJpg2048("headset_with_mic-1-2048w.jpg");
+                gamingHeadset.setImageJpg512("headset_with_mic-1-512w.jpg");
+                gamingHeadset.setImageJpg1024("headset_with_mic-1-1024w.jpg");
 
                 productRepository.save(headsetOffice);
                 productRepository.save(wiredHeadset);
@@ -141,7 +250,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 genericController.addCategory(category1);
                 genericController.addCategory(category11);
-                genericController.setImage("universal_controller#2.png");
+                genericController.setImage("universal_controller-2.jpg");
+                genericController.setImageWebp2048("universal_controller-2-2048w.webp");
+                genericController.setImageWebp512("universal_controller-2-512w.webp");
+                genericController.setImageWebp1024("universal_controller-2-1024w.webp");
+                genericController.setImageJpg2048("universal_controller-2-2048w.jpg");
+                genericController.setImageJpg512("universal_controller-2-512w.jpg");
+                genericController.setImageJpg1024("universal_controller-2-1024w.jpg");
 
                 productRepository.save(genericController);
 
@@ -152,7 +267,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 xbox.addCategory(category1);
                 xbox.addCategory(category5);
                 xbox.addCategory(category6);
-                xbox.setImage("xbox_with_controller#1.png");
+                xbox.setImage("xbox_with_controller-1.jpg");
+                xbox.setImageWebp512("xbox_with_controller-1-512w.webp");
+                xbox.setImageWebp1024("xbox_with_controller-1-1024w.webp");
+                xbox.setImageWebp2048("xbox_with_controller-1-2048w.webp");
+                xbox.setImageJpg512("xbox_with_controller-1-512w.jpg");
+                xbox.setImageJpg1024("xbox_with_controller-1-1024w.jpg");
+                xbox.setImageJpg2048("xbox_with_controller-1-2048w.jpg");
 
                 Product xboxSeriesX = new Product("Xbox Series X",
                         "Experience the most powerful gaming console ever made with the Xbox Series X. With stunning 4K visuals, lightning-fast load times, and immersive sound, you'll feel like you're part of the game. Plus, with access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. And with its sleek design and customizable lighting, the Xbox Series X looks great in any gaming setup. Get the Xbox Series X today and take your gaming to the next level!",
@@ -161,7 +282,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 xboxSeriesX.addCategory(category1);
                 xboxSeriesX.addCategory(category5);
                 xboxSeriesX.addCategory(category6);
-                xboxSeriesX.setImage("xbox.png");
+                xboxSeriesX.setImage("xbox.jpg");
+                xboxSeriesX.setImageWebp512("xbox-512w.webp");
+                xboxSeriesX.setImageWebp1024("xbox-1024w.webp");
+                xboxSeriesX.setImageWebp2048("xbox-2048w.webp");
+                xboxSeriesX.setImageJpg512("xbox-512w.jpg");
+                xboxSeriesX.setImageJpg1024("xbox-1024w.jpg");
+                xboxSeriesX.setImageJpg2048("xbox-2048w.jpg");
 
                 Product xboxSeriesS = new Product("Xbox Series S",
                         "Experience next-generation gaming with the Xbox Series S. With lightning-fast load times, high-quality visuals, and immersive sound, you'll feel like you're part of the game. Plus, with access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. And with its compact design and customizable lighting, the Xbox Series S is perfect for any gaming setup. Get the Xbox Series S today and take your gaming to the next level!",
@@ -170,7 +297,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 xboxSeriesS.addCategory(category1);
                 xboxSeriesS.addCategory(category5);
                 xboxSeriesS.addCategory(category6);
-                xboxSeriesS.setImage("xbox_with_controller#2.png");
+                xboxSeriesS.setImage("xbox_with_controller-2.jpg");
+                xboxSeriesS.setImageWebp512("xbox_with_controller-2-512w.webp");
+                xboxSeriesS.setImageWebp1024("xbox_with_controller-2-1024w.webp");
+                xboxSeriesS.setImageWebp2048("xbox_with_controller-2-2048w.webp");
+                xboxSeriesS.setImageJpg512("xbox_with_controller-2-512w.jpg");
+                xboxSeriesS.setImageJpg1024("xbox_with_controller-2-1024w.jpg");
+                xboxSeriesS.setImageJpg2048("xbox_with_controller-2-2048w.jpg");
 
                 productRepository.save(xbox);
                 productRepository.save(xboxSeriesX);
@@ -183,7 +316,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 xboxWirelessController.addCategory(category1);
                 xboxWirelessController.addCategory(category6);
                 xboxWirelessController.addCategory(category11);
-                xboxWirelessController.setImage("xbox_controller#1.png");
+                xboxWirelessController.setImage("xbox_controller-1.jpg");
+                xboxWirelessController.setImageWebp2048("xbox_controller-1-2048w.webp");
+                xboxWirelessController.setImageWebp512("xbox_controller-1-512w.webp");
+                xboxWirelessController.setImageWebp1024("xbox_controller-1-1024w.webp");
+                xboxWirelessController.setImageJpg2048("xbox_controller-1-2048w.jpg");
+                xboxWirelessController.setImageJpg512("xbox_controller-1-512w.jpg");
+                xboxWirelessController.setImageJpg1024("xbox_controller-1-1024w.jpg");
 
                 productRepository.save(xboxWirelessController);
 
@@ -193,7 +332,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 gamingKeyboard.addCategory(category1);
                 gamingKeyboard.addCategory(category9);
-                gamingKeyboard.setImage("keyboard#1.png");
+                gamingKeyboard.setImage("keyboard-1.jpg");
+                gamingKeyboard.setImageWebp2048("keyboard-1-2048w.webp");
+                gamingKeyboard.setImageWebp512("keyboard-1-512w.webp");
+                gamingKeyboard.setImageWebp1024("keyboard-1-1024w.webp");
+                gamingKeyboard.setImageJpg2048("keyboard-1-2048w.jpg");
+                gamingKeyboard.setImageJpg512("keyboard-1-512w.jpg");
+                gamingKeyboard.setImageJpg1024("keyboard-1-1024w.jpg");
 
                 productRepository.save(gamingKeyboard);
 
@@ -204,7 +349,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 nintendoSwitch.addCategory(category1);
                 nintendoSwitch.addCategory(category5);
                 nintendoSwitch.addCategory(category8);
-                nintendoSwitch.setImage("nintendo#1.png");
+                nintendoSwitch.setImage("nintendo-1.jpg");
+                nintendoSwitch.setImageWebp2048("nintendo-1-2048w.webp");
+                nintendoSwitch.setImageWebp512("nintendo-1-512w.webp");
+                nintendoSwitch.setImageWebp1024("nintendo-1-1024w.webp");
+                nintendoSwitch.setImageJpg2048("nintendo-1-2048w.jpg");
+                nintendoSwitch.setImageJpg512("nintendo-1-512w.jpg");
+                nintendoSwitch.setImageJpg1024("nintendo-1-1024w.jpg");
 
                 productRepository.save(nintendoSwitch);
 
@@ -215,19 +366,16 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 playstationX.addCategory(category1);
                 playstationX.addCategory(category5);
                 playstationX.addCategory(category7);
-                playstationX.setImage("Playstation#1.png");
+                playstationX.setImage("Playstation-1.jpg");
+                playstationX.setImageWebp2048("Playstation-1-2048w.webp");
+                playstationX.setImageWebp512("Playstation-1-512w.webp");
+                playstationX.setImageWebp1024("Playstation-1-1024w.webp");
+                playstationX.setImageJpg2048("Playstation-1-2048w.jpg");
+                playstationX.setImageJpg512("Playstation-1-512w.jpg");
+                playstationX.setImageJpg1024("Playstation-1-1024w.jpg");
 
                 productRepository.save(playstationX);
 
-                Product figurine = new Product("Gaming Figurine",
-                        "Add some personality to your gaming setup with the Gaming Figurine. With its sleek design and customizable lighting, you can personalize your figurine to match your gaming setup. Plus, with its durable construction, you can display your figurine without worrying about it breaking. Get the Gaming Figurine today and take your gaming to the next level!",
-                        500, 10);
-
-                figurine.addCategory(category2);
-                figurine.addCategory(category10);
-                figurine.setImage("figurine#1.png");
-
-                productRepository.save(figurine);
 
                 Product chargingBank1 = new Product("Charging Bank XS",
                         "Never run out of battery on your gaming devices with Charging Bank XS. With its high capacity battery, you can charge multiple devices at once. Plus, with its compact size, you can take it with you on the go. Get Charging Bank XS today and stay powered up!",
@@ -236,7 +384,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 chargingBank1.addCategory(category2);
                 chargingBank1.addCategory(category10);
                 chargingBank1.addCategory(category12);
-                chargingBank1.setImage("chargingBank#1.png");
+                chargingBank1.setImage("chargingBank-1.jpg");
+                chargingBank1.setImageWebp2048("chargingBank-1-2048w.webp");
+                chargingBank1.setImageWebp512("chargingBank-1-512w.webp");
+                chargingBank1.setImageWebp1024("chargingBank-1-1024w.webp");
+                chargingBank1.setImageJpg2048("chargingBank-1-2048w.jpg");
+                chargingBank1.setImageJpg512("chargingBank-1-512w.jpg");
+                chargingBank1.setImageJpg1024("chargingBank-1-1024w.jpg");
 
 
                 Product chargingBank2 = new Product("Charging Bank S",
@@ -246,7 +400,13 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 chargingBank2.addCategory(category2);
                 chargingBank2.addCategory(category10);
                 chargingBank2.addCategory(category12);
-                chargingBank2.setImage("chargingBank#2.png");
+                chargingBank2.setImage("chargingBank-2.jpg");
+                chargingBank2.setImageWebp2048("chargingBank-2-2048w.webp");
+                chargingBank2.setImageWebp512("chargingBank-2-512w.webp");
+                chargingBank2.setImageWebp1024("chargingBank-2-1024w.webp");
+                chargingBank2.setImageJpg2048("chargingBank-2-2048w.jpg");
+                chargingBank2.setImageJpg512("chargingBank-2-512w.jpg");
+                chargingBank2.setImageJpg1024("chargingBank-2-1024w.jpg");
 
 
                 Product chargingBank3 = new Product("ChargingBank X",
@@ -256,7 +416,14 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 chargingBank3.addCategory(category2);
                 chargingBank3.addCategory(category10);
                 chargingBank3.addCategory(category12);
-                chargingBank3.setImage("chargingBank#3.png");
+                chargingBank3.setImage("chargingBank-3.jpg");
+                chargingBank3.setImageWebp2048("chargingBank-3-2048w.webp");
+                chargingBank3.setImageWebp512("chargingBank-3-512w.webp");
+                chargingBank3.setImageWebp1024("chargingBank-3-1024w.webp");
+                chargingBank3.setImageJpg2048("chargingBank-3-2048w.jpg");
+                chargingBank3.setImageJpg512("chargingBank-3-512w.jpg");
+                chargingBank3.setImageJpg1024("chargingBank-3-1024w.jpg");
+
 
                 productRepository.save(chargingBank1);
                 productRepository.save(chargingBank2);

@@ -3,9 +3,17 @@
 
     <div class="card-container" >
         <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
-            <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="@{Picture of {name} (name=${category.name})}">
+            <picture>
+                <source media="(min-width: 2048px)" th:srcset="@{~/images/categories/2048w/{image} (image=${category.imageWebp2048})}">
+                <source media="(min-width: 2048px)" th:srcset="@{~/images/categories/2048w/{image} (image=${category.imageJpg2048})}">
+                <source media="(min-width: 1024px)" th:srcset="@{~/images/categories/1024w/{image} (image=${category.imageWebp1024})}">
+                <source media="(min-width: 1024px)" th:srcset="@{~/images/categories/1024w/{image} (image=${category.imageJpg1024})}">
+                <source media="(min-width: 512px)" th:srcset="@{~/images/categories/512w/{image} (image=${category.imageWebp512})}">
+                <source media="(min-width: 512px)" th:srcset="@{~/images/categories/512w/{image} (image=${category.imageJpg512})}">
+                <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="@{Picture of {name} (name=${category.name})}">
+            </picture>
             <div class="card-layer">
-                <h3 th:text="${category.name}"></h3>
+            <h3 th:text="${category.name}"></h3>
             </div>
         </a>
     </div>
