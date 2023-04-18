@@ -78,7 +78,6 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 categoryRepository.save(category12);
 
 
-
                 Product mouse = new Product("Gaming Mouse",
                                 "This gaming mouse is packed with features that make it the perfect tool for any gaming session. Its convenient wire location keeps your gaming area clutter-free, while its stylish red light ensures your gaming setup looks great. Comfort and accuracy are guaranteed with its ergonomic design and precision optical tracking. Plus, with its adjustable weight system, you can fine-tune the mouse to your liking. And the best part? The cat isn’t included!",
                                 700, 10);
@@ -220,7 +219,48 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(playstationX);
 
+                Product figurine = new Product("Gaming Figurine",
+                        "Add some personality to your gaming setup with the Gaming Figurine. With its sleek design and customizable lighting, you can personalize your figurine to match your gaming setup. Plus, with its durable construction, you can display your figurine without worrying about it breaking. Get the Gaming Figurine today and take your gaming to the next level!",
+                        500, 10);
 
+                figurine.addCategory(category2);
+                figurine.addCategory(category10);
+                figurine.setImage("figurine#1.png");
+
+                productRepository.save(figurine);
+
+                Product chargingBank1 = new Product("Charging Bank XS",
+                        "Never run out of battery on your gaming devices with Charging Bank XS. With its high capacity battery, you can charge multiple devices at once. Plus, with its compact size, you can take it with you on the go. Get Charging Bank XS today and stay powered up!",
+                        1000, 20);
+
+                chargingBank1.addCategory(category2);
+                chargingBank1.addCategory(category10);
+                chargingBank1.addCategory(category12);
+                chargingBank1.setImage("chargingBank#1.png");
+
+
+                Product chargingBank2 = new Product("Charging Bank S",
+                        "Keep your gaming devices charged and ready to go with Charging Bank S. With its sleek design and multiple charging ports, you can charge multiple devices at once. Plus, with its fast charging technology, you can get back to gaming in no time. Get Charging Bank S today and stay powered up!",
+                        1500, 15);
+
+                chargingBank2.addCategory(category2);
+                chargingBank2.addCategory(category10);
+                chargingBank2.addCategory(category12);
+                chargingBank2.setImage("chargingBank#2.png");
+
+
+                Product chargingBank3 = new Product("ChargingBank X",
+                        "Take your charging game to the next level with Charging Bank X. With its advanced features, including wireless charging capabilities and a built-in LED display, you can charge your devices with ease and style. Plus, with its high capacity battery, you can charge multiple devices multiple times. Get Charging Bank X today and stay powered up like a pro!",
+                        2500, 10);
+
+                chargingBank3.addCategory(category2);
+                chargingBank3.addCategory(category10);
+                chargingBank3.addCategory(category12);
+                chargingBank3.setImage("chargingBank#3.png");
+
+                productRepository.save(chargingBank1);
+                productRepository.save(chargingBank2);
+                productRepository.save(chargingBank3);
 
                 Role role = new Role("ROLE_USER");
                 Role role2 = new Role("ROLE_ADMIN");
