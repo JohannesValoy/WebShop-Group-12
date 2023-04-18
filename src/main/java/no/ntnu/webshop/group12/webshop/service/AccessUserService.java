@@ -18,6 +18,9 @@ import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
 import no.ntnu.webshop.group12.webshop.security.AccessUserDetails;
 
+/**
+ * Service for handling user access and authentication
+ */
 @Service
 public class AccessUserService implements UserDetailsService {
 
@@ -56,6 +59,11 @@ public class AccessUserService implements UserDetailsService {
         return error;
     }
 
+    /**
+     * Fetches the current user logged in
+     * 
+     * @return The current user logged in
+     */
     public User getSessionUser() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
@@ -63,12 +71,64 @@ public class AccessUserService implements UserDetailsService {
         return userRepository.findByUsername(username).orElse(null);
     }
 
+    /**
+     * Creates a hash of the password
+     * 
+     * @return the hash of the password
+     */
     private String createHash(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
+    /**
+     * Checks if a user exists
+     * 
+     * @param username The username to check
+     * @return True if the user exists
+     */
     private boolean userExist(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    /**
+     * Allows for updating the password of the current user
+     * 
+     * @param password The password to check
+     * @return True if the password is correct
+     */
+    public boolean updatePassword(String password) {
+        User user = getSessionUser();
+        return updatePassword(password, user);
+    }
+
+    /**
+     * Allows for updating the password of a user
+     * Should only be used by admins
+     * 
+     * @param password The password to check
+     * @param username The username of the user to update
+     * @return
+     */
+    public boolean updatePassword(String password, String username) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        return updatePassword(password, user);
+    }
+
+    /**
+     * Updates the password of a user
+     * 
+     * @param Password The password to update
+     * @param user     The user to update
+     * @return True if the password was updated
+     */
+    private boolean updatePassword(String password, User user) {
+        boolean returnValue = false;
+        if (user != null && passwordPattern.matcher(password).matches()) {
+            user.setPassword(createHash(password));
+            userRepository.save(user);
+            returnValue = true;
+        }
+        return returnValue;
     }
 
     @Override
