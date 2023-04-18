@@ -79,7 +79,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
 
                 Product mouse = new Product("Gaming Mouse",
-                                "This gaming mouse is packed with features that make it the perfect tool for any gaming session. Its convenient wire location keeps your gaming area clutter-free, while its stylish red light ensures your gaming setup looks great. Comfort and accuracy are guaranteed with its ergonomic design and precision optical tracking. Plus, with its adjustable weight system, you can fine-tune the mouse to your liking. And the best part? The cat isn’t included!",
+                                "This gaming mouse is packed with features that make it the perfect tool for any gaming session. Its convenient wire location keeps your gaming area clutter-free, while its stylish red light ensures your gaming setup looks great. Comfort and accuracy are guaranteed with its ergonomic design and precision optical tracking. Plus, with its adjustable weight system, you can fine-tune the mouse to your liking!",
                                 700, 10);
 
                 mouse.addCategory(category1);
@@ -87,7 +87,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 mouse.setImage("computer_mouse#3.png");
 
                 Product wirelessMouse = new Product("Wireless Gaming Mouse",
-                        "This wireless gaming mouse is perfect for gamers who want freedom of movement without sacrificing accuracy. With its ergonomic design and precision optical tracking, you'll be able to dominate the competition with ease. Plus, its stylish design and customizable lighting make it a great addition to any gaming setup. And with its long battery life, you won't have to worryabout running out of juice in the middle of a game. Get the Wireless Gaming Mouse today and take your gaming to the next level!",
+                        "This wireless gaming mouse is perfect for gamers who want freedom of movement without sacrificing accuracy. With its ergonomic design and precision optical tracking, you'll be able to dominate the competition with ease. Plus, its stylish design and customizable lighting make it a great addition to any gaming setup. And with its long battery life, you won't have to worry about running out of juice in the middle of a game. Get the Wireless Gaming Mouse today and take your gaming to the next level!",
                         800, 10);
 
                 wirelessMouse.addCategory(category1);

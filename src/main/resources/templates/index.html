@@ -15,10 +15,12 @@
 <body>
   <header th:replace="~{components/header}"></header>
 
-  <section th:replace="~{components/category-card}"></section>
+  <main class="page-wrapper">
 
-  <section th:replace="~{components/product-card}"></section>
+      <section th:replace="~{components/category-card}"></section>
 
+      <section th:replace="~{components/product-card}"></section>
+  </main>
   <footer th:replace="~{components/footer}"></footer>
 
 </body>

@@ -1,7 +1,7 @@
 :root {
     ---mainText: #F7EC50;
     ---secondText: #36EBF2;
-    ---mainBackground: #000000;
+    ---mainBackground: rgba(0, 0, 0, 0.61);
     ---thirdText: #00FF22D8;
     ---secondBackground: #333333;
     ---thirdBackground: #1A1A1A;
@@ -25,9 +25,13 @@ body {
     height: 100svh;
 }
 main {
-    padding: 3%;
-    background-color: var(---mainBackground);
+    background-image: url('images/background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 3% 10% 0 10%;
     user-select: none;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -63,6 +67,10 @@ header {
     background-color: var(---thirdBackground);
     padding: 1rem;
     gap: 1rem;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+
 }
 
 header .navbar {
@@ -131,9 +139,11 @@ footer p {
 
 
 @media (max-width: 512px) {
-    .page {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    header {
+        position: revert;
+        width: auto;
+    }
+    main {
+        padding: 0 5% 0 5%;
     }
 }
