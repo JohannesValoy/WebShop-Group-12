@@ -15,7 +15,7 @@ public class Category {
     @NotBlank
     private String name;
 
-    private String image;ss
+    private String image;
 
     public Category() {
         this(0, "", "");
