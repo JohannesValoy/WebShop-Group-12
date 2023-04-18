@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
     <link rel="icon" th:href="@{images/logo.png}">
-    <link rel="stylesheet" th:href="@{~/style.css}"/>
-    <link rel="stylesheet" th:href="@{~/cart.css}"/>
-    <link rel="stylesheet" th:href="@{~/product-category-card.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
 </head>
 
 <body>
@@ -29,7 +29,15 @@
                 <h2 class="card-heading">Cart <span>Products</span></h2>
                 <div class="card-container" >
                     <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
-                        <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of a {name} (name=${quantity.product.name})}" alt="bought products">
+                        <picture>
+                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
+                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
+                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
+                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
+                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
+                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
+                            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+                        </picture>
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
                             <p>Amount Ordered:
@@ -93,7 +101,7 @@
 </main>
 
 <footer th:replace="~{components/footer}"></footer>
-<script th:src="@{~/cart-and-checkout.js}" defer></script>
+<script th:src="@{~/js/cart-and-checkout.js}" defer></script>
 
 </body>
 </html>
