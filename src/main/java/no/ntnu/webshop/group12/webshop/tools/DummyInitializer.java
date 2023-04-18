@@ -13,6 +13,7 @@ import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
+import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
@@ -31,6 +32,9 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
         @Autowired
         private RoleRepository roleRepository;
+
+        @Autowired
+        private AccessUserService accessUserService;
 
         private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -138,9 +142,15 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(batteries);
 
-                Role role = new Role("USER");
-                Role role2 = new Role("ADMIN");
+                Role role = new Role("ROLE_USER");
+                Role role2 = new Role("ROLE_ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
-  }
+                accessUserService.tryCreateNewUser("Test", "Test1234");
+                accessUserService.tryCreateNewUser("Admin", "Admin1234");
+                userRepository.findByUsername("Admin").ifPresent(user -> {
+                        user.addRole(role2);
+                        userRepository.save(user);
+                });
+        }
 }
