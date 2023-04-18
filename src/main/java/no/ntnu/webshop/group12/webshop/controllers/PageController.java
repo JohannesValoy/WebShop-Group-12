@@ -4,6 +4,7 @@ import no.ntnu.webshop.group12.webshop.models.product.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,6 +81,13 @@ public class PageController {
     @PostMapping("/cart/{id}")
     public String postCart(@PathVariable("id") int id, Model model) {
         cartService.addProductToCart(id);
+        model.addAttribute("user", userService.getSessionUser());
+        return "redirect:/cart";
+    }
+
+    @DeleteMapping("/cart/{id}")
+    public String removeProductFromCart(@PathVariable("id") int id, Model model) {
+        cartService.removeProductFromCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";
     }
