@@ -6,6 +6,7 @@ const shippingsection = document.querySelector(".shipping-section");
 const progressbubble3 = document.querySelector(".progress-bubble3");
 const paymentsection = document.querySelector(".payment-section");
 const completeorder= document.querySelector(".complete-order");
+const removeFromCartButton = document.querySelector(".remove-from-cart-button");
 
 progressbubble1.onclick = () => {
     progressbubble1.classList.add("active");
@@ -46,3 +47,15 @@ completeorder.onclick = () => {
 progressbubble3.onclick = () => {
     shippingsection.classList.add("clicked");
 };
+
+removeFromCartButton.onclick = () =>  {
+    console.log("remove from cart");
+    const productId = event.target.getAttribute('data-product-id');
+    fetch(`/cart/$@{/product/{id}`, { method: 'DELETE' })
+        .then(response => {
+            if (response.ok) {
+            } else {
+
+            }
+        });
+}

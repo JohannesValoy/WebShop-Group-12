@@ -137,6 +137,13 @@ footer p {
     padding: 1em;
     margin: 1em;
     width: fit-content;
+    z-index: 999;
+}
+
+.red-button:hover {
+    background-color: var(---secondText);
+    color: white;
+    cursor: pointer;
 }
 
 
