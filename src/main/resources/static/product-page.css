@@ -63,7 +63,7 @@
 
 @media (max-width: 1024px) {
     .page .product-image {
-        width: 100%;
+        width: 50%;
         border-radius: 1rem;
     }
 
@@ -122,4 +122,11 @@
 }
 .carousel-next {
     right: 0;
+}
+
+@media (max-width: 512px) {
+    .page .product-image {
+        width: 100%;
+        border-radius: 1rem;
+    }
 }
