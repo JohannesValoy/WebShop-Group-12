@@ -89,7 +89,7 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return this.hasRole("ADMIN");
+        return this.hasRole("ROLE_ADMIN");
     }
 
     public boolean hasRole(String roleName) {

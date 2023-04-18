@@ -7,15 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
+import no.ntnu.webshop.group12.webshop.models.dto.UserDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.UserService;
 
@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public ResponseEntity<User> getUser(int id) {
+    public ResponseEntity<User> getUser(@PathVariable int id) {
         ResponseEntity<User> response = ResponseEntity.notFound().build();
         User user = userService.getUser(id);
         if (user != null) {
@@ -46,7 +46,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserCount());
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @Operation(summary = "Create a new user")
     public ResponseEntity<String> createUser(@ModelAttribute LoginDTO user) {
         ResponseEntity<String> response = ResponseEntity.ok().build();
@@ -57,14 +57,25 @@ public class UserController {
         return response;
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public ResponseEntity<User> deleteUser(int id) {
+    public ResponseEntity<User> deleteUser(@PathVariable int id) {
         ResponseEntity<User> response = ResponseEntity.notFound().build();
         User user = userService.getUser(id);
         if (user != null) {
             userService.deleteUser(user);
             response = ResponseEntity.ok().build();
+        }
+        return response;
+    }
+
+    @GetMapping("/find/{name}")
+    @Operation(summary = "Find a user by name")
+    public ResponseEntity<UserDTO> findUser(@PathVariable String name) {
+        ResponseEntity<UserDTO> response = ResponseEntity.notFound().build();
+        Optional<User> user = userService.findUser(name);
+        if (user.isPresent()) {
+            response = ResponseEntity.ok(new UserDTO(user.get()));
         }
         return response;
     }

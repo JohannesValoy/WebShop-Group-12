@@ -50,7 +50,7 @@ public class AccessUserService implements UserDetailsService {
         }
         if (error == null) {
             User user = new User(username, createHash(password));
-            user.addRole(roleRepository.findByName("USER"));
+            user.addRole(roleRepository.findByName("ROLE_USER"));
             userRepository.save(user);
         }
         return error;
