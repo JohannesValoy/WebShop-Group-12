@@ -1,5 +1,4 @@
 .product-category-card {
-    background-color: var(---mainBackground);
     padding: 5%;
     display: flex;
     flex-direction: column;

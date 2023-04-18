@@ -62,7 +62,7 @@
 }
 
 @media (max-width: 1024px) {
-    .page .product-image {
+    .sections .product-image {
         width: 50%;
         border-radius: 1rem;
     }
@@ -125,7 +125,7 @@
 }
 
 @media (max-width: 512px) {
-    .page .product-image {
+    .sections .product-image {
         width: 100%;
         border-radius: 1rem;
     }

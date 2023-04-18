@@ -15,7 +15,8 @@
 </head>
 <body>
     <header th:replace="~{components/header}"></header>
-    <main class="page">
+    <main>
+        <section class="sections">
         <ul class="product-intro">
             <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}"/>
             <li class="product-page-description">
@@ -54,7 +55,7 @@
 
         <section th:replace="~{components/product-card}"></section>
 
-
+        </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
     <script th:src="@{~/product-page.js}" defer></script>
