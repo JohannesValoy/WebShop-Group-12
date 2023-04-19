@@ -28,7 +28,7 @@
             <section class="product-category-card">
                 <h2 class="card-heading">Cart <span>Products</span></h2>
                 <div class="card-container" >
-                    <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
+                    <div class="card-box" th:each="quantity : ${quantities}">
                         <picture>
                             <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
                             <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageJpg2048})}">
@@ -43,10 +43,11 @@
                             <p>Amount Ordered:
                             <p th:text="${quantity.getAmount()}">
                             </p>
+                            <a class="red-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to Product page</a>
                             <button class="red-button remove-from-cart-button" data-product-id="${quantity.product.id}">Remove from Cart</button>
                             <i class='bx bx-info-circle'></i>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </section>
         </section>

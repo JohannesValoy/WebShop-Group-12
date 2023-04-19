@@ -17,51 +17,58 @@
     <header th:replace="~{components/header}"></header>
     <main>
         <section class="sections">
-        <ul class="product-intro">
-            <picture class="product-image">
-                <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-                <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
-                <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-                <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
-                <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-                <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
-                <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
-            </picture>
-            <li class="product-page-description">
-                <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
-                <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
-                    <button class="red-button" >Add to Cart</button>
-                </form>
-            </li>
-        </ul>
-        <section class="specs-rating-about-buttons">
+            <section class="product-intro">
 
-            <button class="specs-button" href="#">Specs</button>
+                <picture class="product-image">
+                    <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
+                    <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
+                    <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
+                    <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
+                    <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
+                    <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
+                    <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+                </picture>
 
-            <button class="rating-button" href="#">Rating</button>
+                <section class="product-page-description">
 
-            <button class="about-button" href="#">About</button>
+                    <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
+                    <p class="" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-        </section>
-        <section class="specs">
-            <h1 class="title">Specs</h1>
-            <p class="product-about-page-description">Specs about this product</p>
-            <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </section>
-        <section class="about active">
-            <h1 class="title">About</h1>
-            <p class="product-about-page-description">Information about this product</p>
-            <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
-        </section>
-        <section class="rating">
-            <h1 class="title">Rating</h1>
-            <p class="product-about-page-description">Rating about this product</p>
-            <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </section>
+                    <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
+                        <button class="red-button" >Add to Cart</button>
+                    </form>
 
-        <section th:replace="~{components/product-card}"></section>
+                </section>
+
+            </section>
+
+            <section class="specs-rating-about-buttons">
+
+                <button class="specs-button" href="#">Specs</button>
+
+                <button class="rating-button" href="#">Rating</button>
+
+                <button class="about-button" href="#">About</button>
+
+            </section>
+            <section class="specs">
+                <h1 class="title">Specs</h1>
+                <p class="product-about-page-description">Specs about this product</p>
+                <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </section>
+            <section class="about active">
+                <h1 class="title">About</h1>
+                <p class="product-about-page-description">Information about this product</p>
+                <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </section>
+            <section class="rating">
+                <h1 class="title">Rating</h1>
+                <p class="product-about-page-description">Rating about this product</p>
+                <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </section>
+
+            <section th:replace="~{components/product-card}"></section>
 
         </section>
 </main>
