@@ -95,7 +95,6 @@ header img.logo {
 /*page*/
 .sections .product-image{
     object-fit: cover;
-    width: 35%;
     transition: .5s ease;
     border-radius: 0.5rem;
 }
@@ -104,19 +103,12 @@ header img.logo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     min-height: 100svh;
     background-color: var(---mainBackground);
     gap: 1rem;
     padding: 3rem 1rem;
     border-radius: 1rem;
-}
-
-.page .product-image{
-    object-fit: cover;
-    width: 35%;
-    transition: .5s ease;
-    border-radius: 0.5rem;
 }
 
 /*footer*/
