@@ -54,9 +54,9 @@ removeFromCartButton.onclick = () =>  {
     fetch(`/cart/$@{/product/{id}`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
-                // Handle success response
+                console.log("removed from cart");
             } else {
-                // Handle error response
+                console.log("error");
             }
         });
 }
