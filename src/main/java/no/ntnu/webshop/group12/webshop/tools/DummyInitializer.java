@@ -206,6 +206,8 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 cups.addCategory(category2, category10);
                 cups.setImageAll("cups");
 
+                productRepository.save(cups);
+
                 Product batteriesAA = new Product("4x AA batteries",
                         "This 4x AA Battery Pack is the perfect solution for powering your electronic devices! With four high-capacity AA batteries, you can stay powered up for longer and get the most out of your gadgets. Our AA batteries are long-lasting and reliable, so you can trust that your device will stay powered for as long as you need. Plus, the lightweight and compact design of this battery pack makes it easy to carry and transport. Enjoy up to 10 hours of power with this 4x AA Battery Pack!",
                         80, 10);
