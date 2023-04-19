@@ -33,6 +33,7 @@ main {
     user-select: none;
     display: flex;
     flex-direction: column;
+    height: fit-content;
 }
 
 
@@ -99,17 +100,22 @@ header img.logo {
     border-radius: 0.5rem;
 }
 
+.sections .product-image:hover {
+    transform: scale(1.1);
+}
+
 .sections {
     display: flex;
-    height: fit-content;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(---mainBackground);
     gap: 1rem;
     padding: 3rem;
     border-radius: 1rem;
     margin: 2rem 0 2rem 0;
+    min-height: 60svh;
+    background-color: var(---mainBackground);
+
 }
 
 /*footer*/
