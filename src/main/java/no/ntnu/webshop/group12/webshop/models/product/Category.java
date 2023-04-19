@@ -59,6 +59,30 @@ public class Category {
         this.image = image;
     }
 
+    public String getImageWebp512() {
+        return imageWebp512;
+    }
+
+    public String getImageWebp1024() {
+        return imageWebp1024;
+    }
+
+    public String getImageWebp2048() {
+        return imageWebp2048;
+    }
+
+    public String getImageJpg512() {
+        return imageJpg512;
+    }
+
+    public String getImageJpg1024() {
+        return imageJpg1024;
+    }
+
+    public String getImageJpg2048() {
+        return imageJpg2048;
+    }
+
     public void setImageAll(String name) {
         this.image = name + ".jpg";
         this.imageWebp512 = name + "-512w.webp";
