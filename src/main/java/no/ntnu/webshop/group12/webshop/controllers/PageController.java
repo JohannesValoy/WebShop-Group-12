@@ -68,7 +68,7 @@ public class PageController {
     public String getCategory(@PathVariable("id") int id, Model model) {
         Optional<Category> category = categoryService.getCategory(id);
         category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
-        if(model.getAttribute("categoryName") == null) {
+        if (model.getAttribute("categoryName") == null) {
             return "redirect:/category";
         }
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -95,14 +95,6 @@ public class PageController {
     @PostMapping("/cart/{id}")
     public String postCart(@PathVariable("id") int id, Model model) {
         cartService.addProductToCart(id);
-        model.addAttribute("user", userService.getSessionUser());
-        return "redirect:/cart";
-    }
-
-    @DeleteMapping("/cart/{id}")
-    public String removeProductFromCart(@PathVariable("id") int id, Model model) {
-        System.out.println("Removing product from cart");
-        cartService.removeProductFromCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";
     }
@@ -144,8 +136,6 @@ public class PageController {
         model.addAttribute("products", productService.getRandomProductsByCategory(4, id));
         return "product";
     }
-
-
 
     @GetMapping("/account")
     public String getUser(Model model) {
