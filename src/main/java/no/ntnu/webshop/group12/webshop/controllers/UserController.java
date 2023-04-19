@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.models.dto.UserDTO;
@@ -31,11 +31,11 @@ public class UserController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public ResponseEntity<User> getUser(@PathVariable int id) {
-        ResponseEntity<User> response = ResponseEntity.notFound().build();
+    public ResponseEntity<UserDTO> getUser(@PathVariable int id) {
+        ResponseEntity<UserDTO> response = ResponseEntity.notFound().build();
         User user = userService.getUser(id);
         if (user != null) {
-            response = ResponseEntity.ok(user);
+            response = ResponseEntity.ok(new UserDTO(user));
         }
         return response;
     }
@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("")
     @Operation(summary = "Create a new user")
-    public ResponseEntity<String> createUser(@ModelAttribute LoginDTO user) {
+    public ResponseEntity<String> createUser(@RequestBody LoginDTO user) {
         ResponseEntity<String> response = ResponseEntity.ok().build();
         String error = accessUserService.tryCreateNewUser(user.getUsername(), user.getPassword());
         if (error != null) {
