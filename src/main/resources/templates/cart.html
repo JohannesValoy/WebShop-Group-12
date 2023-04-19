@@ -43,11 +43,10 @@
                             <p>Amount Ordered:
                             <p th:text="${quantity.getAmount()}">
                             </p>
-                            <a class="red-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to Product page</a>
-                            <button class="red-button remove-from-cart-button" data-product-id="${quantity.product.id}">Remove from Cart</button>
+                            <button class="red-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
                             <i class='bx bx-info-circle'></i>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </section>
         </section>

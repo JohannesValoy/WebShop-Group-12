@@ -49,15 +49,12 @@ progressBubble3.onclick = () => {
 };
 
 removeFromCartButton.onclick = () =>  {
-    console.log("remove from cart");
+    //TODO: Remove Event and find a way to get the product id.
     const productId = event.target.getAttribute('data-product-id');
-    console.log(productId);
-    fetch(`/cart/`+ productId, { method: 'DELETE' })
+    fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
-                console.log("removed from cart");
-            } else {
-                // Handle error response
+                document.querySelector(`[product-id="${productId}"]`).remove();
             }
         });
 }
