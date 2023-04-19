@@ -60,6 +60,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 category7.setImageAll("category 7");
                 category8.setImageAll("category 8");
                 category9.setImageAll("category 9");
+                category10.setImageAll("category 10");
                 category11.setImageAll("category 11");
                 category12.setImageAll("category 12");
 
@@ -198,6 +199,21 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(playstationX);
 
+                Product cups = new Product("Cups",
+                        "Enjoy your favorite beverage in style with the Cups. With its sleek design and durable construction, you can use these cups for years to come. Plus, with its large capacity, you can enjoy your favorite beverage without having to refill it. Get the Cups today and enjoy your favorite beverage in style!",
+                        100, 10);
+
+                cups.addCategory(category2, category10);
+                cups.setImageAll("cups");
+
+                productRepository.save(cups);
+
+                Product batteriesAA = new Product("4x AA batteries",
+                        "This 4x AA Battery Pack is the perfect solution for powering your electronic devices! With four high-capacity AA batteries, you can stay powered up for longer and get the most out of your gadgets. Our AA batteries are long-lasting and reliable, so you can trust that your device will stay powered for as long as you need. Plus, the lightweight and compact design of this battery pack makes it easy to carry and transport. Enjoy up to 10 hours of power with this 4x AA Battery Pack!",
+                        80, 10);
+
+                batteriesAA.addCategory(category10, category12);
+                batteriesAA.setImageAll("batteriesAA");
 
                 Product chargingBank1 = new Product("Charging Bank XS",
                         "Never run out of battery on your gaming devices with Charging Bank XS. With its high capacity battery, you can charge multiple devices at once. Plus, with its compact size, you can take it with you on the go. Get Charging Bank XS today and stay powered up!",
@@ -222,7 +238,7 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 chargingBank3.addCategory(category2, category10, category12);
                 chargingBank3.setImageAll("chargingBank-3");
 
-
+                productRepository.save(batteriesAA);
                 productRepository.save(chargingBank1);
                 productRepository.save(chargingBank2);
                 productRepository.save(chargingBank3);
