@@ -1,7 +1,6 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -88,8 +87,8 @@ public class Product {
         this.category = category;
     }
 
-    public void addCategory(Category category) {
-        this.category.add(category);
+    public void addCategory(Category... categories) {
+        Collections.addAll(this.category, categories);
     }
 
     public void removeCategory(Category category) {
@@ -198,5 +197,17 @@ public class Product {
 
     public void setImageJpg2048(String imageJpg2048) {
         this.imageJpg2048 = imageJpg2048;
+    }
+
+    public void setImageAll(String name) {
+        this.image = name + ".jpg";
+        this.imageWebp256 = name + "-256w.webp";
+        this.imageWebp512 = name + "-512w.webp";
+        this.imageWebp1024 = name + "-1024w.webp";
+        this.imageWebp2048 = name + "-2048w.webp";
+        this.imageJpg256 = name + "-256w.jpg";
+        this.imageJpg512 = name + "-512w.jpg";
+        this.imageJpg1024 = name + "-1024w.jpg";
+        this.imageJpg2048 = name + "-2048w.jpg";
     }
 }

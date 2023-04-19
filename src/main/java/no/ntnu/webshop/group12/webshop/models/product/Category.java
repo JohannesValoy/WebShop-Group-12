@@ -106,4 +106,14 @@ public class Category {
     public void setImageJpg2048(String imageJpg2048) {
         this.imageJpg2048 = imageJpg2048;
     }
+
+    public void setImageAll(String name) {
+        this.image = name + ".jpg";
+        this.imageWebp512 = name + "-512w.webp";
+        this.imageWebp1024 = name + "-1024w.webp";
+        this.imageWebp2048 = name + "-2048w.webp";
+        this.imageJpg512 = name + "-512w.jpg";
+        this.imageJpg1024 = name + "-1024w.jpg";
+        this.imageJpg2048 = name + "-2048w.jpg";
+    }
 }
