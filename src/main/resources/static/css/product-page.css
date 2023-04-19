@@ -78,7 +78,15 @@
 .specs-rating-about-buttons {
     justify-content: space-around;
 }
+.product-image{
+    object-fit: cover;
+    transition: .5s ease;
+    border-radius: 0.5rem;
+}
 
+.product-image:hover {
+    transform: scale(1.1);
+}
 .product-image img{
     width: 70%;
     border-radius: 1rem;
