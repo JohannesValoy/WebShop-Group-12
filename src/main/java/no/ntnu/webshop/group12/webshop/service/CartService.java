@@ -43,14 +43,17 @@ public class CartService {
         }
     }
 
-    public void removeProductFromCart(int productId) {
+    public Product removeProductFromCart(int productId) {
+        Product returnProduct = null;
         Cart cart = getCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             cart.removeProduct(q);
             cartRepository.save(cart);
+            returnProduct = product;
         }
+        return returnProduct;
     }
 
     public void updateProductQuantity(int productId, int quantity) {
