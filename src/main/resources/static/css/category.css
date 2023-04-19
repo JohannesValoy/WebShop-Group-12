@@ -1,10 +1,5 @@
 
-.sections {
-    display: flex;
-    flex-direction: column;
-    min-height: 100svh;
-    background-color: var(---mainBackground);
-}
+
 
 .categories {
     padding: 5% 2% 2% 2%;

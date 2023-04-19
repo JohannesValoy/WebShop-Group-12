@@ -14,7 +14,7 @@
 
 <header th:replace="~{components/header}"></header>
 
-<main class="page">
+<main class="sections">
 
         <section class="progressbar">
                 <a class="progress-bubble1 active">Products</a>
@@ -22,7 +22,7 @@
                 <a class="progress-bubble3">Payment</a>
         </section>
 
-        <section class="cart-section active page">
+        <section class="cart-section active sections">
             <h1 class="title">Shopping Cart</h1>
             <a class="checkout-button red-button" href="#">Checkout</a>
             <section class="product-category-card">
@@ -30,23 +30,20 @@
                 <div class="card-container" >
                     <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
                         <picture>
-                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
-                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
-                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
-                            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
+                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageJpg2048})}">
+                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
+                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageJpg1024})}">
+                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
+                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageJpg512})}">
+                            <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of {name} (name=${quantity.product.name})}">
                         </picture>
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
                             <p>Amount Ordered:
                             <p th:text="${quantity.getAmount()}">
                             </p>
-<!--                            TODO: add remove-button-->
-<!--                            <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >-->
-<!--                                <button class="red-button" >Add to Cart</button>-->
-<!--                            </form>-->
+                            <button class="red-button remove-from-cart-button" data-product-id="${quantity.product.id}">Remove from Cart</button>
                             <i class='bx bx-info-circle'></i>
                         </div>
                     </a>
@@ -54,7 +51,7 @@
             </section>
         </section>
 
-        <section class="shipping-section page">
+        <section class="shipping-section sections">
 
             <h2 class="title">Shipping</h2>
             <a class="complete-order red-button" href="#">Complete order</a>
@@ -83,7 +80,7 @@
 
         </section>
 
-        <section class="payment-section page">
+        <section class="payment-section sections">
             <h1 class="title">Order Complete!</h1>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
             <section class="product-category-card">

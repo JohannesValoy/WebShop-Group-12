@@ -101,6 +101,7 @@ public class PageController {
 
     @DeleteMapping("/cart/{id}")
     public String removeProductFromCart(@PathVariable("id") int id, Model model) {
+        System.out.println("Removing product from cart");
         cartService.removeProductFromCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";

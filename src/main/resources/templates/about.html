@@ -8,8 +8,8 @@
     <!-- Icons from boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- personal styles -->
-    <link rel="stylesheet" th:href="@{~/css/style.css}"/>
-    <link rel="stylesheet" th:href="@{~/css/about.css}"/>
+    <link rel="stylesheet" th:href="@{~/style.css}"/>
+    <link rel="stylesheet" th:href="@{~/about.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
@@ -89,5 +89,6 @@
 
 <footer th:replace="~{components/footer}"></footer>
 
+<script th:src="@{~/scripts.js}" defer></script>
 </body>
 </html>

@@ -15,9 +15,10 @@
 </head>
 <body>
     <header th:replace="~{components/header}"></header>
-    <main class="page">
+    <main>
+        <section class="sections">
         <ul class="product-intro">
-            <picture>
+            <picture class="product-image">
                 <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
                 <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
                 <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
@@ -62,7 +63,7 @@
 
         <section th:replace="~{components/product-card}"></section>
 
-
+        </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
     <script th:src="@{~/js/product-page.js}" defer></script>
