@@ -111,6 +111,14 @@ header img.logo {
     padding: 3rem 1rem;
     border-radius: 1rem;
 }
+
+.page .product-image{
+    object-fit: cover;
+    width: 35%;
+    transition: .5s ease;
+    border-radius: 0.5rem;
+}
+
 /*footer*/
 footer {
     text-align: center;

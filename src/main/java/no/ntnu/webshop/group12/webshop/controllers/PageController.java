@@ -57,8 +57,22 @@ public class PageController {
      */
     @GetMapping("/category")
     public String getCategory(Model model) {
+        model.addAttribute("categoryName", "All products");
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("user", userService.getSessionUser());
+        return "category";
+    }
+
+    @GetMapping("/category/{id}")
+    public String getCategory(@PathVariable("id") int id, Model model) {
+        Optional<Category> category = categoryService.getCategory(id);
+        category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
+        if(model.getAttribute("categoryName") == null) {
+            return "redirect:/category";
+        }
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());
         return "category";
     }
@@ -131,15 +145,7 @@ public class PageController {
         return "product";
     }
 
-    @GetMapping("/category/{id}")
-    public String getCategory(@PathVariable("id") int id, Model model) {
-        Optional<Category> category = categoryService.getCategory(id);
-        category.ifPresent(value -> model.addAttribute("category", value));
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("products", productService.getProductsByCategory(id));
-        model.addAttribute("user", userService.getSessionUser());
-        return "category";
-    }
+
 
     @GetMapping("/account")
     public String getUser(Model model) {
