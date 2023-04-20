@@ -94,7 +94,6 @@ header img.logo {
 .sections {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
     padding: 3rem;
     border-radius: 1rem;
