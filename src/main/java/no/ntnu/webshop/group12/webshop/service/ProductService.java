@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
@@ -69,5 +72,9 @@ public class ProductService {
     public Product saveProduct(Product product) {
         productRepository.save(product);
         return product;
+    }
+
+    public Iterable<Product> getProductsByFilter(Predicate predicate) {
+        return productRepository.findAll(predicate);
     }
 }
