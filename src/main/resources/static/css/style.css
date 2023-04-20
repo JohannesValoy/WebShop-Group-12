@@ -20,10 +20,9 @@
 }
 
 body {
-    background-color: var(---thirdBackground);
     display: grid;
-    grid-template-rows: 1fr 10fr 1fr;
-    height: 100svh;
+    min-height: 100svh;
+    grid-template-rows:  1fr auto;
 }
 main {
     background-image: url('../images/background.jpg');
@@ -33,7 +32,6 @@ main {
     user-select: none;
     display: flex;
     flex-direction: column;
-    height: fit-content;
 }
 
 
@@ -71,7 +69,7 @@ header {
     gap: 1rem;
     width: 100%;
     position: fixed;
-    z-index: 999;
+    z-index: 1;
 
 }
 
@@ -96,14 +94,11 @@ header img.logo {
 .sections {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
     padding: 3rem;
     border-radius: 1rem;
-    min-height: 60svh;
     background-color: var(---mainBackground);
-
+    height: 100%;
 }
 
 /*footer*/
@@ -143,6 +138,9 @@ footer p {
 }
 
 @media (max-width: 1024px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+    }
     header {
         position: revert;
         width: auto;

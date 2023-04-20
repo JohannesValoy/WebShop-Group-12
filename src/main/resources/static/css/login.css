@@ -1,9 +1,23 @@
+body {
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    position: revert;
+    width: revert;
+}
+
+main {
+    padding: 0;
+    background-attachment: unset;
+}
+
 .login {
     background-color: var(---mainBackground);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100svh;
+    height: 100%;
 }
 
 .login .logReg-box {
