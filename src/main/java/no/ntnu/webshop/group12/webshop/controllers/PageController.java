@@ -148,9 +148,10 @@ public class PageController {
             return "no-access";
         }
     }
-    
+
     @GetMapping("/error")
-    public String getError() {
+    public String getError(Model model) {
+        model.addAttribute("user", userService.getSessionUser());
         return "error";
     }
 }
