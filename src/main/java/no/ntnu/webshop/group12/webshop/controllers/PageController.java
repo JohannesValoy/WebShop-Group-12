@@ -148,4 +148,9 @@ public class PageController {
             return "no-access";
         }
     }
+    
+    @GetMapping("/error")
+    public String getError() {
+        return "error";
+    }
 }

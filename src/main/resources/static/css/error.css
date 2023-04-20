@@ -1,0 +1,13 @@
+header {
+    position: revert;
+    width: revert;
+}
+
+main{
+    padding: 0;
+    background-attachment: unset;
+}
+
+.sections {
+    height: 100%;
+}
