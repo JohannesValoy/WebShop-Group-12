@@ -69,7 +69,7 @@ header {
     gap: 1rem;
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
 
 }
 
@@ -97,6 +97,8 @@ header img.logo {
     gap: 1rem;
     padding: 3rem;
     border-radius: 1rem;
+    min-height: 60svh;
+    transition: 10s;
     background-color: var(---mainBackground);
     height: 100%;
 }
