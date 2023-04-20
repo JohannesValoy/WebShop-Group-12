@@ -58,13 +58,6 @@
     color: lightgray;
 }
 
-@media (max-width: 130rem) {
-
-    .progressbar {
-        width: 30%;
-    }
-}
-
 @media (max-width: 768px) {
     .testimonials {
         display: flex;
