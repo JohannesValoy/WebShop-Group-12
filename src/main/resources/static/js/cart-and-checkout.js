@@ -8,53 +8,64 @@ const paymentSection = document.querySelector(".payment-section");
 const completeOrder= document.querySelector(".complete-order");
 const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
 
-progressBubble1.onclick = () => {
+const nameField = document.querySelector(".name-field");
+const surNameField = document.querySelector(".surname-field");
+const addressField = document.querySelector(".address-field");
+const cardNumberField= document.querySelector(".card-number-field");
+const phoneNumberField = document.querySelector(".phone-number-field");
+const couponCodeField = document.querySelector(".card-coupon-field");
+const completeOrderbutton = document.querySelector(".complete-order-button");
+
+
+progressBubble1.addEventListener("click", () => {
     progressBubble1.classList.add("active");
     cartSection.classList.add("active");
     progressBubble2.classList.remove("active");
     shippingSection.classList.remove("active");
     progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
-};
+});
 
-checkout.onclick = () => {
+checkout.addEventListener("click", () => {
     progressBubble2.classList.add("active");
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
     progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
-};
+});
 
-progressBubble2.onclick = () => {
+progressBubble2.addEventListener("click", () => {
     progressBubble2.classList.add("active");
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
     progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
-};
+});
 
-completeOrder.onclick = () => {
+completeOrder.addEventListener("click", () => {
     progressBubble3.classList.add("active");
     paymentSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
     progressBubble2.classList.remove("active");
     shippingSection.classList.remove("active");
-};
+});
 
-progressBubble3.onclick = () => {
+progressBubble3.addEventListener("click", () => {
     shippingSection.classList.add("clicked");
-};
+});
 
-removeFromCartButton.forEach(onclick = () =>  {
-    //TODO: Remove Event and find a way to get the product id.
-    const productId = event.target.getAttribute('data-product-id');
-    fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
-        .then(response => {
-            if (response.ok) {
-                document.querySelector(`[product-id="${productId}"]`).remove();
-            }
-        });
-})
+removeFromCartButton.forEach(button => {
+    button.addEventListener("click", () => {
+        //TODO: Remove Event and find a way to get the product id.
+        const productId = button.getAttribute('data-product-id');
+        fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector(`[product-id="${productId}"]`).remove();
+                }
+            });
+    });
+});

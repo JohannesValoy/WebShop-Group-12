@@ -54,6 +54,15 @@
     background-color: var(---secondBackground);
 }
 
+.input-field:hover {
+    background-color: var(---mainBackground);
+    cursor: pointer;
+}
+
+.input-field.mismatch {
+    background-color: red;
+}
+
 .input-field::placeholder {
     color: lightgray;
 }

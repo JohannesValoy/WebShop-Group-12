@@ -49,6 +49,7 @@
                         </div>
                     </a>
                 </div>
+                    </div>
             </section>
         </section>
 
@@ -59,23 +60,26 @@
             <p class="product-about-page-description">Shipping information</p>
 
             <form class="details-filling-form">
-                <label>
-                    <input class="input-field" placeholder="First Name">
+
+                <label for="name">
+                    <input class="input-field" id="name" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Name">
+                    <a id="nameFieldText">Username</a>
+                </label>
+                <label for="surName">
+                    <input class="input-field" id="surName" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Last Name">
+                    <a id="surNameText">Username</a>
                 </label>
                 <label>
-                    <input class="input-field" placeholder="Last Name">
+                    <input class="input-field" placeholder="Address" onchange="checkValidAdress">
                 </label>
                 <label>
-                    <input class="input-field" placeholder="Address">
+                    <input class="input-field" placeholder="Card Number" onchange="checkNumber">
                 </label>
                 <label>
-                    <input class="input-field" placeholder="Card Number">
+                    <input class="input-field" placeholder="Phone Number" onchange="checkNumber">
                 </label>
                 <label>
-                    <input class="input-field" placeholder="Phone Number">
-                </label>
-                <label>
-                    <input class="input-field" placeholder="Coupon Code">
+                    <input class="input-field" placeholder="Coupon Code" onchange="checkNumber">
                 </label>
             </form>
 
