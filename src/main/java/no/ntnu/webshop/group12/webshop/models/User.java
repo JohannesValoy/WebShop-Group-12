@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class User {
     private String username;
 
     @NotBlank
+    @JsonIgnore
     @Column(nullable = false, columnDefinition = "TEXT")
     private String password;
 
