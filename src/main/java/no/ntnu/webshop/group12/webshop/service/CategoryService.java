@@ -1,9 +1,14 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
+
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 
@@ -32,5 +37,9 @@ public class CategoryService {
     public Category createCategory(Category category) {
         categoryRepository.save(category);
         return category;
+    }
+
+    public List<Category> getCategoriesByFilter(Predicate predicate, Pageable pageable) {
+        return categoryRepository.findAll(predicate, pageable).getContent();
     }
 }
