@@ -1,12 +1,11 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import java.util.List;
-
 import org.springdoc.core.annotations.ParameterObject;
-import org.springdoc.core.converters.models.Pageable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,8 +35,9 @@ public class ProductController {
     @GetMapping("/filter")
     @Operation(summary = "Get products by filter")
     public Iterable<Product> getProductsByFilter(
-            @QuerydslPredicate(root = Product.class) Predicate predicate) {
-        return productService.getProductsByFilter(predicate);
+            @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
+            @ParameterObject @QuerydslPredicate(root = Product.class) Predicate predicate) {
+        return productService.getProductsByFilter(predicate, pageable);
     }
 
     @PostMapping("")

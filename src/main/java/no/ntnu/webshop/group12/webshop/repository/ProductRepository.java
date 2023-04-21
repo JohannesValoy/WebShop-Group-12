@@ -4,6 +4,8 @@ import java.util.List;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -27,8 +29,13 @@ public interface ProductRepository
 
         List<Product> findAll(Predicate predicate);
 
+        Page<Product> findAll(Predicate predicate, Pageable pageable);
+
         @Override
         default void customize(QuerydslBindings bindings, QProduct root) {
-                bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+                bindings.bind(root.name).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+                bindings.bind(root.category.any().id).first((path, value) -> path.eq(value));
+                bindings.excluding(root.stock);
+                bindings.excluding(root.image);
         }
 }

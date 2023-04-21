@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.springdoc.core.converters.models.Pageable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,7 +74,7 @@ public class ProductService {
         return product;
     }
 
-    public Iterable<Product> getProductsByFilter(Predicate predicate) {
-        return productRepository.findAll(predicate);
+    public List<Product> getProductsByFilter(Predicate predicate, Pageable pageable) {
+        return productRepository.findAll(predicate, pageable).getContent();
     }
 }
