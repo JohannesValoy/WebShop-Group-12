@@ -1,9 +1,13 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
 
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
@@ -28,6 +32,10 @@ public class UserService {
 
     public Optional<User> findUser(String name) {
         return userRepository.findByUsername(name);
+    }
+
+    public List<User> getUsersByFilter(Predicate predicate, Pageable pageable) {
+        return userRepository.findAll(predicate, pageable).getContent();
     }
 
 }

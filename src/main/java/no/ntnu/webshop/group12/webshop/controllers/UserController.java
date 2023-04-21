@@ -1,8 +1,12 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import java.util.Optional;
-
+import java.util.List;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.querydsl.core.types.Predicate;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
-import no.ntnu.webshop.group12.webshop.models.dto.UserDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.UserService;
 
@@ -31,11 +36,11 @@ public class UserController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public ResponseEntity<UserDTO> getUser(@PathVariable int id) {
-        ResponseEntity<UserDTO> response = ResponseEntity.notFound().build();
+    public ResponseEntity<User> getUser(@PathVariable int id) {
+        ResponseEntity<User> response = ResponseEntity.notFound().build();
         User user = userService.getUser(id);
         if (user != null) {
-            response = ResponseEntity.ok(new UserDTO(user));
+            response = ResponseEntity.ok(user);
         }
         return response;
     }
@@ -69,14 +74,11 @@ public class UserController {
         return response;
     }
 
-    @GetMapping("/find/{name}")
-    @Operation(summary = "Find a user by name")
-    public ResponseEntity<UserDTO> findUser(@PathVariable String name) {
-        ResponseEntity<UserDTO> response = ResponseEntity.notFound().build();
-        Optional<User> user = userService.findUser(name);
-        if (user.isPresent()) {
-            response = ResponseEntity.ok(new UserDTO(user.get()));
-        }
-        return response;
+    @GetMapping("/filter")
+    @Operation(summary = "Get categories by filter")
+    public List<User> getCategoriesByFilter(
+            @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
+            @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
+        return userService.getUsersByFilter(predicate, pageable);
     }
 }
