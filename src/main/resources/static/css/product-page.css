@@ -65,7 +65,7 @@
 }
 
 .specs-button:hover, .rating-button:hover, .about-button:hover {
-    background-color: var(---secondBackground);
+    background-color: #b22cd3;
     color: var(---secondText);
     cursor: pointer;
 }
