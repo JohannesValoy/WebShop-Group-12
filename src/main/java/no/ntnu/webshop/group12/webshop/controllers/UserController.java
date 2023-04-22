@@ -19,12 +19,14 @@ import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.UserService;
 
 @RestController
+@Tag(name = "User", description = "User API")
 @RequestMapping("/api/user")
 public class UserController {
 

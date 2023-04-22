@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 
 @RestController
+@Tag(name = "Product", description = "Product API")
 @RequestMapping("/api/product")
 
 public class ProductController {

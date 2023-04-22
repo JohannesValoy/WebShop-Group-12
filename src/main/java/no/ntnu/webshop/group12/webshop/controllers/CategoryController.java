@@ -24,11 +24,13 @@ import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.ConstraintViolationException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
 @RestController
+@Tag(name = "Category", description = "Category API")
 @RequestMapping("/api/category")
 public class CategoryController {
 
