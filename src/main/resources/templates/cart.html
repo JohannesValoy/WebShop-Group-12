@@ -44,7 +44,7 @@
                             <p th:text="${quantity.getAmount()}">
                             </p>
                             <button class="red-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
-                            <button class="red-button">Go to product</button>
+                            <a class="red-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
                             <i class='bx bx-info-circle'></i>
                         </div>
                     </a>
@@ -61,24 +61,22 @@
 
             <form class="details-filling-form">
 
-                <label for="name">
+                <label for="name" class="input-field-label">
                     <input class="input-field" id="name" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Name">
-                    <a id="nameFieldText">Username</a>
                 </label>
-                <label for="surName">
+                <label for="surName" class="input-field-label">
                     <input class="input-field" id="surName" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Last Name">
-                    <a id="surNameText">Username</a>
                 </label>
-                <label>
+                <label class="input-field-label">
                     <input class="input-field" placeholder="Address" onchange="checkValidAdress">
                 </label>
-                <label>
+                <label class="input-field-label">
                     <input class="input-field" placeholder="Card Number" onchange="checkNumber">
                 </label>
-                <label>
+                <label class="input-field-label">
                     <input class="input-field" placeholder="Phone Number" onchange="checkNumber">
                 </label>
-                <label>
+                <label class="input-field-label">
                     <input class="input-field" placeholder="Coupon Code" onchange="checkNumber">
                 </label>
             </form>

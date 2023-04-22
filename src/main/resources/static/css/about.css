@@ -16,11 +16,19 @@
     gap: 1rem;
     margin: 1rem;
     padding: 1rem;
+    transition: var(---transition-time);
 }
+
 .image{
     width: 25%;
     object-fit: cover;
+    transition: var(---transition-time);
 }
+
+.image:hover {
+    transform: scale(1.3);
+}
+
 .testimony .image {
     width: 75%;
 }
@@ -49,6 +57,24 @@
     gap: 1rem;
     width: 35%;
     margin: 5%;
+    transition: var(---transition-time);
+}
+
+.text-section:hover {
+    transform: scale(1.3);
+}
+
+.sections h1:hover {
+    transform: scale(1.3);
+}
+
+
+.title {
+    transition: var(---transition-time);
+}
+
+.title:hover {
+    transform: scale(1.3);
 }
 
 @media (max-width: 1700px) {

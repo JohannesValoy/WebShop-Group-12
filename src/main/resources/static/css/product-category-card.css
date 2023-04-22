@@ -6,6 +6,8 @@
     align-items: center;
 }
 
+
+
 .card-box {
     min-height: 15rem;
 }
@@ -34,11 +36,16 @@
     box-shadow: 0 0 1rem black;
     display: flex;
     justify-content: center;
+    transition: var(---transition-time);
+}
+
+.card-container:hover .card-box:hover {
+    transform: scale(1.1);
 }
 
 .card-box img {
     max-height: 20rem;
-    transition: .5s ease;
+    transition: var(---transition-time) ease;
 }
 
 .card-box:hover img {
@@ -56,7 +63,7 @@
     text-align: center;
     align-items: center;
     transform: translateY(100%);
-    transition: .5s ease;
+    transition: var(---transition-time) ease;
 }
 
 .card-box:hover .card-layer {

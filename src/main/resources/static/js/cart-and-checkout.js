@@ -54,6 +54,15 @@ completeOrder.addEventListener("click", () => {
 });
 
 progressBubble3.addEventListener("click", () => {
+    progressBubble3.classList.add("active");
+    paymentSection.classList.add("active");
+    progressBubble1.classList.remove("active");
+    cartSection.classList.remove("active");
+    progressBubble2.classList.remove("active");
+    shippingSection.classList.remove("active");
+});
+
+progressBubble3.addEventListener("click", () => {
     shippingSection.classList.add("clicked");
 });
 

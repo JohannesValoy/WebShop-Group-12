@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .products .heading {
@@ -53,6 +54,16 @@
 .card-box img {
     max-height: 15rem;
     border-radius: 2rem;
+    overflow: hidden;
+}
+
+.card-box, .category-box {
+    transition: var(---transition-time);
+    width: fit-content;
+}
+
+.card-box:hover, .category-box:hover {
+    transform: scale(1.3);
 }
 
 
@@ -80,7 +91,12 @@
 @media (max-width: 769px) {
     .card-container {
         grid-template-columns: repeat(1, 1fr);
-        width: 80%;
+        width: fit-content;
+    }
+
+    .card-box, .category-box {
+        transition: var(---transition-time);
+        width: fit-content;
     }
 }
 
