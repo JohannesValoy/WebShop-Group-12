@@ -60,14 +60,12 @@ public class CategoryControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
     void testGetCategory() throws Exception {
         mockMvc.perform(get("/api/category/1")).andExpect(status().isOk());
         mockMvc.perform(get("/api/category/1000")).andExpect(status().isNotFound());
     }
 
     @Test
-    @WithMockUser(roles = "USER")
     void testGetCategoryByFilter() throws Exception {
         List categories = objectMapper.readValue(mockMvc.perform(get("/api/category/filter?name=Gaming"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
@@ -80,5 +78,14 @@ public class CategoryControllerTest {
         Integer categoriesCount = objectMapper.readValue(mockMvc.perform(get("/api/category/count"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Integer.class);
         assertEquals(5, categoriesCount);
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    void testNotAccess() throws Exception {
+        Category category = new Category("test");
+        String json = objectMapper.writeValueAsString(category);
+        mockMvc.perform(post("/api/category").content(json)).andExpect(status().isForbidden());
+        mockMvc.perform(delete("/api/category/1")).andExpect(status().isForbidden());
     }
 }

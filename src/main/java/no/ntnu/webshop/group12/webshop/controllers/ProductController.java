@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
 
+import groovy.lang.Delegate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
@@ -40,6 +42,12 @@ public class ProductController {
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = Product.class) Predicate predicate) {
         return productService.getProductsByFilter(predicate, pageable);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete product by id")
+    public void deleteProduct(int id) {
+        productService.deleteProduct(id);
     }
 
     @PostMapping("")

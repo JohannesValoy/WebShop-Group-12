@@ -77,4 +77,8 @@ public class ProductService {
     public List<Product> getProductsByFilter(Predicate predicate, Pageable pageable) {
         return productRepository.findAll(predicate, pageable).getContent();
     }
+
+    public void deleteProduct(int id) {
+        productRepository.deleteById(id);
+    }
 }
