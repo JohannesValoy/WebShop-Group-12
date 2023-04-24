@@ -31,7 +31,7 @@
                     </span>
                         <label for="username">
                             <input type="text" id="username" name="username" required autocomplete="off">
-                            <a>Username</a>
+                            <span>Username</span>
                         </label>
                     </div>
 
@@ -41,14 +41,12 @@
                     </span>
                         <label for="password">
                             <input type="password" id="password" name="password" required>
-                            <a>Password</a>
+                            <span>Password</span>
                         </label>
                     </div>
 
                     <div class="remember-forgot">
-                        <label><i class='bx bx-check-square'></i>
-                            <a>Remember me</a>
-                        </label>
+                        <label><i class='bx bx-check-square'></i> Remember me</label>
                     </div>
 
                     <button type="submit" class="btn">Login</button>
@@ -75,7 +73,7 @@
                     </span>
                         <label for="signUpUsername">
                             <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" name="username" autocomplete="off" required >
-                            <a id="signUpUsernameText">Username</a>
+                            <span id="signUpUsernameText">Username</span>
                         </label>
                     </div>
 
@@ -85,7 +83,7 @@
                     </span>
                         <label for="signUpPassword">
                             <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" name="password" autocomplete="off" required >
-                            <a>New password</a>
+                            <span>New password</span>
                         </label>
                     </div>
 
@@ -95,21 +93,19 @@
                     </span>
                         <label for="confirmSignUpPassword">
                             <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" autocomplete="off" required>
-                            <a id="confirmation">Confirm password</a>
+                            <span id="confirmation">Confirm password</span>
                         </label>
                     </div>
 
                     <div class="terms-conditions">
-                        <label><input type="checkbox" id="termsCheckbox">
-                            <a> I agree to the terms & conditions </a>
-                        </label>
+                        <label><input type="checkbox" id="termsCheckbox"> I agree to the terms & conditions </label>
                     </div>
 
                     <button id="submitButton" type="submit" class="btn" >Register</button>
 
                     <div class="logReg-link">
                         <p>Already have an account?
-                            <a  class="login-link">Login</a>
+                            <a class="login-link">Login</a>
                         </p>
                     </div>
                     <div th:if="${param.error}" class="error-message">

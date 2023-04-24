@@ -31,11 +31,8 @@
                     <div class="card-box" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
                         <picture>
                             <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
-                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageJpg2048})}">
                             <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
-                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageJpg1024})}">
                             <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
-                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageJpg512})}">
                             <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of {name} (name=${quantity.product.name})}">
                         </picture>
                         <div class="card-layer">

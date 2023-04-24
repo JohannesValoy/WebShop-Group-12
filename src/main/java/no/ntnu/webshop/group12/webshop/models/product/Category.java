@@ -21,12 +21,6 @@ public class Category {
 
     private String imageWebp2048;
 
-    private String imageJpg512;
-
-    private String imageJpg1024;
-
-    private String imageJpg2048;
-
     public Category() {
     }
 
@@ -71,25 +65,10 @@ public class Category {
         return imageWebp2048;
     }
 
-    public String getImageJpg512() {
-        return imageJpg512;
-    }
-
-    public String getImageJpg1024() {
-        return imageJpg1024;
-    }
-
-    public String getImageJpg2048() {
-        return imageJpg2048;
-    }
-
     public void setImageAll(String name) {
-        this.image = name + ".jpg";
+        this.image = name + ".webp";
         this.imageWebp512 = name + "-512w.webp";
         this.imageWebp1024 = name + "-1024w.webp";
         this.imageWebp2048 = name + "-2048w.webp";
-        this.imageJpg512 = name + "-512w.jpg";
-        this.imageJpg1024 = name + "-1024w.jpg";
-        this.imageJpg2048 = name + "-2048w.jpg";
     }
 }

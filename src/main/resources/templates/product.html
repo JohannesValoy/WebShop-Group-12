@@ -19,11 +19,8 @@
 
                 <picture class="product-image">
                     <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-                    <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageJpg2048})}">
                     <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-                    <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageJpg1024})}">
                     <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-                    <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageJpg512})}">
                     <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
                 </picture>
 
