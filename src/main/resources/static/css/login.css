@@ -164,7 +164,7 @@ main {
 
 .btn:hover {
     background: var(---secondText);
-    transform: scale(1.3);
+    transform: scale(var(---transform-scale));
 }
 
 .logReg-box .logReg-link {
