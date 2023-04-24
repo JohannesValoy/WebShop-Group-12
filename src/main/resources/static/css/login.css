@@ -159,12 +159,10 @@ main {
     font-size: 16px;
     color: black;
     font-weight: 600;
-    transition: var(---transition-time);
 }
 
 .btn:hover {
     background: var(---secondText);
-    transform: scale(var(---transform-scale));
 }
 
 .logReg-box .logReg-link {
