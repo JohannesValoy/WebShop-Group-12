@@ -21,8 +21,7 @@ main {
 }
 
 .login .logReg-box {
-    width: 50%;
-    height: auto;
+    width: 30%;
 }
 
 .login .form-box.login {
@@ -181,4 +180,10 @@ main {
 
 .logReg-link p a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 1440px) {
+    .login .logReg-box {
+        width: 50%;
+    }
 }

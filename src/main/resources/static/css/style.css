@@ -33,7 +33,7 @@ main {
     background-image: url('../images/background.jpg');
     background-attachment: fixed;
     background-size: cover;
-    padding: 3% 10% 0 10%;
+    padding: 2% 10% 0 10%;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -114,6 +114,7 @@ header img.logo {
     align-items: center;
     flex-direction: column;
     gap: 1rem;
+    padding: 2%;
     min-height: 60svh;
     background-color: var(---mainBackground);
     height: 100%;
@@ -156,7 +157,7 @@ footer p {
 }
 
 @media (max-width: 1440px) {
-    section {
+    .sections {
         padding: 5%;
     }
 }
@@ -173,7 +174,7 @@ footer p {
     main {
         padding: 0 5% 0 5%;
     }
-    section {
+    .sections {
         padding: 3%;
     }
 }

@@ -45,7 +45,6 @@
 }
 
 .card-container .card-box {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,12 +90,6 @@
 @media (max-width: 769px) {
     .card-container {
         grid-template-columns: repeat(1, 1fr);
-        width: fit-content;
-    }
-
-    .card-box, .category-box {
-        transition: var(---transition-time);
-        width: fit-content;
     }
 }
 
