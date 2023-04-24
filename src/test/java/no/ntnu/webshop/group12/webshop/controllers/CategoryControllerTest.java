@@ -6,20 +6,27 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.annotation.Profile;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class CategoryControllerTest {
 
     @Autowired
@@ -53,7 +60,6 @@ public class CategoryControllerTest {
 
         // Fetch to ensure deleted
         mockMvc.perform(get("/api/category/" + returnCategory.getId())).andExpect(status().isNotFound());
-
     }
 
     @Test
@@ -68,12 +74,14 @@ public class CategoryControllerTest {
     void testGetCategoryByFilter() throws Exception {
         List categories = objectMapper.readValue(mockMvc.perform(get("/api/category/filter?name=Gaming"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-
-        mockMvc.perform(get("/api/category/name/1000")).andExpect(status().isNotFound());
+        assertEquals(1, categories.size());
     }
 
     @Test
-    void testGetCategoryCount() {
-
+    void testGetCategoryCount()
+            throws Exception {
+        Integer categoriesCount = objectMapper.readValue(mockMvc.perform(get("/api/category/count"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Integer.class);
+        assertEquals(5, categoriesCount);
     }
 }
