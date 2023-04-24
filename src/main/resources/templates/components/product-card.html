@@ -14,7 +14,7 @@
       </picture>
       <div class="card-layer">
         <h3 th:text="${product.name}"></h3>
-        <p th:text="${product.description.length() > 170 ? product.description.substring(0, 170) + '...' : product.description}"></p>
+        <p class="description" th:text="${product.description.length() > 170 ? product.description.substring(0, 170) + '...' : product.description}"></p>
       </div>
     </a>
   </div>
