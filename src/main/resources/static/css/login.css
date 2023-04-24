@@ -77,7 +77,7 @@ main {
     background: transparent;
 }
 
-.input-box a {
+.input-box label span {
     position: absolute;
     top: 50%;
     left: 0;
@@ -93,8 +93,8 @@ main {
     color: red;
 }
 
-.input-box input:focus~a,
-.input-box input:valid~a {
+.input-box input:focus~span,
+.input-box input:valid~span {
     top: -5px;
 }
 
@@ -116,16 +116,16 @@ main {
     justify-content: space-between;
 }
 
-.remember-forgot label a {
+.remember-forgot label {
     pointer-events: none;
 }
 
-.remember-forgot a {
+.remember-forgot {
     color: white;
     text-decoration: none;
 }
 
-.remember-forgot a:hover {
+.remember-forgot label:hover {
     text-decoration: underline;
 }
 
@@ -138,12 +138,12 @@ main {
     justify-content: space-between;
 }
 
-.terms-conditions a {
+.terms-conditions label {
     color: white;
     text-decoration: none;
 }
 
-.terms-conditions a:hover {
+.terms-conditions label:hover {
     text-decoration: underline;
 }
 
