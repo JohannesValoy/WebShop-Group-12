@@ -53,9 +53,8 @@ function checkInfo() {
     const invalid = document.getElementById("invalid");
 
     const regexName = /^([A-Åa-å]){2,}$/;
-    const regexFull = /^([A-Åa-å0-9]){2,}$/;
+    const regexFull = /^([A-Åa-å0-9 ]){2,}$/;
     const regexNumber = /^([0-9]){2,}$/;
-
 
     if (name.value === "" && surName.value === "" && address.value === "" && cardNumber.value === "" && phone.value === "" && coupon.value === "") {
         invalid.innerHTML = "";
@@ -70,13 +69,13 @@ function checkInfo() {
         invalid.innerHTML = "Invalid address, needs to be 2 or more characters and only contain letters and numbers";
         submitButton.disabled = true;
     } else if(!regexNumber.test(cardNumber.value)) {
-        invalid.innerHTML = "Invalid card number, can only contain numbers";
+        invalid.innerHTML = "Invalid card number, needs to be 2 or more characters and can only contain numbers";
         submitButton.disabled = true;
     } else if(!regexNumber.test(phone.value)) {
-        invalid.innerHTML = "Invalid phone number, can only contain numbers";
+        invalid.innerHTML = "Invalid phone number, needs to be 2 or more characters and can only contain numbers";
         submitButton.disabled = true;
     } else if(!regexFull.test(coupon.value)) {
-        invalid.innerHTML = "Invalid coupon, can only contain letters and numbers";
+        invalid.innerHTML = "Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers";
         submitButton.disabled = true;
     } else {
         invalid.innerHTML = "";
