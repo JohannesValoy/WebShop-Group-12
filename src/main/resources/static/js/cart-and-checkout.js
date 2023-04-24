@@ -2,14 +2,15 @@ const checkout = document.querySelector(".checkout-button");
 const progressBubble1 = document.querySelector(".progress-bubble1");
 const cartSection = document.querySelector(".cart-section");
 const progressBubble2= document.querySelector(".progress-bubble2");
+const progressBubble3= document.querySelector(".progress-bubble3");
 const shippingSection = document.querySelector(".shipping-section");
 const paymentSection = document.querySelector(".payment-section");
 const completeOrder= document.getElementById("completeOrder");
 const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
 
 
-
 progressBubble1.addEventListener("click", () => {
+    event.preventDefault();
     progressBubble1.classList.add("active");
     cartSection.classList.add("active");
     progressBubble2.classList.remove("active");
@@ -18,6 +19,7 @@ progressBubble1.addEventListener("click", () => {
 });
 
 checkout.addEventListener("click", () => {
+    event.preventDefault();
     progressBubble2.classList.add("active");
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
@@ -26,6 +28,7 @@ checkout.addEventListener("click", () => {
 });
 
 progressBubble2.addEventListener("click", () => {
+    event.preventDefault();
     progressBubble2.classList.add("active");
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
@@ -34,7 +37,9 @@ progressBubble2.addEventListener("click", () => {
 });
 
 completeOrder.addEventListener("click", () => {
+    event.preventDefault();
     paymentSection.classList.add("active");
+    progressBubble3.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
     progressBubble2.classList.remove("active");
@@ -50,8 +55,8 @@ const coupon = document.getElementById("coupon");
 const submitButton = document.getElementById("completeOrder");
 const invalid = document.getElementById("invalid");
 function checkInfo() {
-    const regexName = /^([A-Åa-å]){2,}$/;
-    const regexFull = /^([A-Åa-å0-9 ,]){2,}$/;
+    const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
+    const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
     const regexCard = /^([0-9]){16}$/;
     const regexPhone = /^([0-9]){8}$/;
 
@@ -91,7 +96,6 @@ coupon.addEventListener("keyup", checkInfo);
 
 removeFromCartButton.forEach(button => {
     button.addEventListener("click", () => {
-        //TODO: Remove Event and find a way to get the product id.
         const productId = button.getAttribute('data-product-id');
         fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
             .then(response => {
