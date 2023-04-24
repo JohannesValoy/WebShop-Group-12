@@ -41,14 +41,6 @@ public class Product {
 
     private String imageWebp2048;
 
-    private String imageJpg256;
-
-    private String imageJpg512;
-
-    private String imageJpg1024;
-
-    private String imageJpg2048;
-
 
 
     @Positive
@@ -139,75 +131,23 @@ public class Product {
         return imageWebp256;
     }
 
-    public void setImageWebp256(String imageWebp256) {
-        this.imageWebp256 = imageWebp256;
-    }
-
     public String getImageWebp512() {
         return imageWebp512;
-    }
-
-    public void setImageWebp512(String imageWebp512) {
-        this.imageWebp512 = imageWebp512;
     }
 
     public String getImageWebp1024() {
         return imageWebp1024;
     }
 
-    public void setImageWebp1024(String imageWebp1024) {
-        this.imageWebp1024 = imageWebp1024;
-    }
-
     public String getImageWebp2048() {
         return imageWebp2048;
     }
 
-    public void setImageWebp2048(String imageWebp2048) {
-        this.imageWebp2048 = imageWebp2048;
-    }
-
-    public String getImageJpg256() {
-        return imageJpg256;
-    }
-
-    public void setImageJpg256(String imageJpg256) {
-        this.imageJpg256 = imageJpg256;
-    }
-
-    public String getImageJpg512() {
-        return imageJpg512;
-    }
-
-    public void setImageJpg512(String imageJpg512) {
-        this.imageJpg512 = imageJpg512;
-    }
-
-    public String getImageJpg1024() {
-        return imageJpg1024;
-    }
-
-    public void setImageJpg1024(String imageJpg1024) {
-        this.imageJpg1024 = imageJpg1024;
-    }
-
-    public String getImageJpg2048() {
-        return imageJpg2048;
-    }
-
-    public void setImageJpg2048(String imageJpg2048) {
-        this.imageJpg2048 = imageJpg2048;
-    }
-
     public void setImageAll(String name) {
-        this.image = name + ".jpg";
+        this.image = name + ".webp";
         this.imageWebp256 = name + "-256w.webp";
         this.imageWebp512 = name + "-512w.webp";
         this.imageWebp1024 = name + "-1024w.webp";
         this.imageWebp2048 = name + "-2048w.webp";
-        this.imageJpg256 = name + "-256w.jpg";
-        this.imageJpg512 = name + "-512w.jpg";
-        this.imageJpg1024 = name + "-1024w.jpg";
-        this.imageJpg2048 = name + "-2048w.jpg";
     }
 }
