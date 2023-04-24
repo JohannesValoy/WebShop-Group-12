@@ -41,20 +41,19 @@ completeOrder.addEventListener("click", () => {
     shippingSection.classList.remove("active");
 });
 
-
+const name = document.getElementById("name");
+const surName = document.getElementById("surName");
+const address = document.getElementById("address");
+const cardNumber = document.getElementById("cardNumber");
+const phone = document.getElementById("phone");
+const coupon = document.getElementById("coupon");
+const submitButton = document.getElementById("completeOrder");
+const invalid = document.getElementById("invalid");
 function checkInfo() {
-    const name = document.getElementById("name");
-    const surName = document.getElementById("surName");
-    const address = document.getElementById("address");
-    const cardNumber = document.getElementById("cardNumber");
-    const phone = document.getElementById("phone");
-    const coupon = document.getElementById("coupon");
-    const submitButton = document.getElementById("completeOrder");
-    const invalid = document.getElementById("invalid");
-
     const regexName = /^([A-Åa-å]){2,}$/;
-    const regexFull = /^([A-Åa-å0-9 ]){2,}$/;
-    const regexNumber = /^([0-9]){2,}$/;
+    const regexFull = /^([A-Åa-å0-9 ,]){2,}$/;
+    const regexCard = /^([0-9]){16}$/;
+    const regexPhone = /^([0-9]){8}$/;
 
     if (name.value === "" && surName.value === "" && address.value === "" && cardNumber.value === "" && phone.value === "" && coupon.value === "") {
         invalid.innerHTML = "";
@@ -68,11 +67,11 @@ function checkInfo() {
     } else if(!regexFull.test(address.value)) {
         invalid.innerHTML = "Invalid address, needs to be 2 or more characters and only contain letters and numbers";
         submitButton.disabled = true;
-    } else if(!regexNumber.test(cardNumber.value)) {
-        invalid.innerHTML = "Invalid card number, needs to be 2 or more characters and can only contain numbers";
+    } else if(!regexCard.test(cardNumber.value)) {
+        invalid.innerHTML = "Invalid card number, needs to be 16 characters and can only contain numbers";
         submitButton.disabled = true;
-    } else if(!regexNumber.test(phone.value)) {
-        invalid.innerHTML = "Invalid phone number, needs to be 2 or more characters and can only contain numbers";
+    } else if(!regexPhone.test(phone.value)) {
+        invalid.innerHTML = "Invalid phone number, needs to be 8 characters and can only contain numbers";
         submitButton.disabled = true;
     } else if(!regexFull.test(coupon.value)) {
         invalid.innerHTML = "Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers";
@@ -82,6 +81,13 @@ function checkInfo() {
         submitButton.disabled = false;
     }
 }
+
+name.addEventListener("keyup", checkInfo);
+surName.addEventListener("keyup", checkInfo);
+address.addEventListener("keyup", checkInfo);
+cardNumber.addEventListener("keyup", checkInfo);
+phone.addEventListener("keyup", checkInfo);
+coupon.addEventListener("keyup", checkInfo);
 
 removeFromCartButton.forEach(button => {
     button.addEventListener("click", () => {

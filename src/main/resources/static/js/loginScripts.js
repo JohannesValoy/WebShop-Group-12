@@ -10,15 +10,15 @@ loginLink.onclick = () => {
     login.classList.remove("register");
 };
 
-function checkPasswordAlike() {
-    const username = document.getElementById("signUpUsername");
-    const usernameText = document.getElementById("signUpUsernameText");
-    const password = document.getElementById("signUpPassword");
-    const confirmPassword = document.getElementById("confirmSignUpPassword");
-    const message = document.getElementById("confirmation");
-    const submitButton = document.getElementById("submitButton");
-    const termsCheckbox = document.getElementById("termsCheckbox");
 
+const username = document.getElementById("signUpUsername");
+const usernameText = document.getElementById("signUpUsernameText");
+const password = document.getElementById("signUpPassword");
+const confirmPassword = document.getElementById("confirmSignUpPassword");
+const message = document.getElementById("confirmation");
+const submitButton = document.getElementById("submitButton");
+const termsCheckbox = document.getElementById("termsCheckbox");
+function checkPasswordAlike() {
     const regexName = /^([A-Za-z0-9]){2,}$/;
     const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -55,12 +55,7 @@ function checkPasswordAlike() {
     }
 }
 
-const usernameInput = document.getElementById("signUpUsername");
-const passwordInput = document.getElementById("signUpPassword");
-const confirmPasswordInput = document.getElementById("confirmSignUpPassword");
-const termsCheckbox = document.getElementById("termsCheckbox");
-
-usernameInput.addEventListener("keyup", checkPasswordAlike);
-passwordInput.addEventListener("keyup", checkPasswordAlike);
-confirmPasswordInput.addEventListener("keyup", checkPasswordAlike);
+username.addEventListener("keyup", checkPasswordAlike);
+password.addEventListener("keyup", checkPasswordAlike);
+confirmPassword.addEventListener("keyup", checkPasswordAlike);
 termsCheckbox.addEventListener("change", checkPasswordAlike);
