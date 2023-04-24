@@ -10,6 +10,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,23 +30,29 @@ public class CategoryControllerTest {
 
     @Test
     @WithMockUser(roles = "ADMIN")
-    void testCreateCategory() throws JsonProcessingException, Exception {
+    void testCreateAndDeleteCategory() throws JsonProcessingException, Exception {
         Category category = new Category("test");
         String json = objectMapper.writeValueAsString(category);
-        mockMvc.perform(post("/api/category").contentType(MediaType.APPLICATION_JSON).content(json))
-                .andExpect(status().isOk());
 
-    }
+        // Create category
+        Category returnCategory = objectMapper
+                .readValue(mockMvc.perform(post("/api/category").contentType(MediaType.APPLICATION_JSON).content(json))
+                        .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Category.class);
 
-    @Test
-    @WithMockUser(roles = "ADMIN")
-    void testDeleteCategory() {
+        // Fetch to ensure created
+        Category fetchedCategory = objectMapper.readValue(
+                mockMvc.perform(get("/api/category/" + returnCategory.getId())).andExpect(status().isOk()).andReturn()
+                        .getResponse().getContentAsString(),
+                Category.class);
 
-    }
+        assert (returnCategory.getName().equals(category.getName()));
+        assert (returnCategory.equals(fetchedCategory));
 
-    @Test
-    @WithMockUser(roles = "USER")
-    void testGetAllCategories() {
+        // Delete category
+        mockMvc.perform(delete("/api/category/" + returnCategory.getId())).andExpect(status().isOk());
+
+        // Fetch to ensure deleted
+        mockMvc.perform(get("/api/category/" + returnCategory.getId())).andExpect(status().isNotFound());
 
     }
 
@@ -52,6 +61,15 @@ public class CategoryControllerTest {
     void testGetCategory() throws Exception {
         mockMvc.perform(get("/api/category/1")).andExpect(status().isOk());
         mockMvc.perform(get("/api/category/1000")).andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    void testGetCategoryByFilter() throws Exception {
+        List categories = objectMapper.readValue(mockMvc.perform(get("/api/category/filter?name=Gaming"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
+
+        mockMvc.perform(get("/api/category/name/1000")).andExpect(status().isNotFound());
     }
 
     @Test
