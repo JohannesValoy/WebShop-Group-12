@@ -33,7 +33,6 @@
     background-color: var(---fourthBackground);
     color: var(---fourthText);
     cursor: pointer;
-    transform: scale(1.3);
 }
 
 .cart-section.active, .payment-section.active, .shipping-section.active {

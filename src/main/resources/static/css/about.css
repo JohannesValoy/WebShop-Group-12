@@ -52,7 +52,7 @@
     margin: 5%;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 2048px) {
     .testimonials {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
