@@ -3,8 +3,10 @@
     ---secondText: #36EBF2;
     ---mainBackground: rgba(0, 0, 0, 0.61);
     ---thirdText: #00FF22D8;
+    ---fourthText: pink;
     ---secondBackground: #333333;
     ---thirdBackground: #1A1A1A;
+    ---fourthBackground: purple;
     ---transition-time: 0.5s;
     ---transform-scale: 1.1;
 
@@ -139,21 +141,21 @@ footer p {
 }
 
 
-.red-button {
+.focus-button {
     display: flex;
     align-self: center;
     border-radius: 5px;
-    background-color: purple;
+    background-color: var(---fourthBackground);
     color: var(---mainText);
     padding: 1em;
     width: fit-content;
     transition: var(---transition-time);
 }
 
-.red-button:hover {
-    background-color: var(---secondText);
-    color: white;
+.focus-button:hover {
+    color: var(---fourthText);
     cursor: pointer;
+    transform: scale(var(---transform-scale));
 }
 
 @media (max-width: 1024px) {

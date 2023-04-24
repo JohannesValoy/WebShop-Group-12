@@ -1,6 +1,3 @@
-* {
-    transition: var(---transition-time);
-}
 /*Cart*/
 .progressbar {
     align-self: center;
@@ -33,10 +30,9 @@
 }
 
 .progress-bubble1:hover, .progress-bubble2:hover, .progress-bubble3:hover {
-    background-color: var(---secondText);
-    color: black;
+    background-color: purple;
+    color: pink;
     cursor: pointer;
-    transform: scale(1.3);
 }
 
 .cart-section.active, .payment-section.active, .shipping-section.active {
@@ -66,14 +62,14 @@
 .input-field:hover {
     background-color: var(---mainBackground);
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(var(---transform-scale));
     border-color: var(---secondText);
 }
 
 .input-field:focus {
     background-color: black;
     cursor: pointer;
-    transform: scale(1.2);
+    transform: scale(var(---transform-scale));
     border-color: var(---secondText);
 }
 

@@ -4,6 +4,7 @@
     align-items: center;
     width: 50%;
     padding: 1rem;
+    gap: 1rem;
 }
 
 .buy-now-and-add-to-cart-button {
@@ -38,8 +39,8 @@
 }
 
 .specs-button:hover, .rating-button:hover, .about-button:hover {
-    background-color: #b22cd3;
-    color: var(---secondText);
+    background-color: var(---fourthBackground);
+    color: var(---fourthText);
     cursor: pointer;
 }
 
@@ -84,10 +85,6 @@
 .product-image img{
     width: 100%;
     border-radius: 1rem;
-}
-
-.product-page-description {
-    width: 50%;
 }
 
 .product-description {

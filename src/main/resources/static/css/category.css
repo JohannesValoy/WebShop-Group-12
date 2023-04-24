@@ -57,12 +57,12 @@
     overflow: hidden;
 }
 
-.card-box, .category-box {
+.card-box{
     transition: var(---transition-time);
     width: fit-content;
 }
 
-.card-box:hover, .category-box:hover {
+.card-box:hover{
     transform: scale(var(---transform-scale));
 }
 

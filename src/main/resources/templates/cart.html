@@ -24,7 +24,7 @@
 
         <section class="cart-section active sections">
             <h1 class="title">Shopping Cart</h1>
-            <a class="checkout-button red-button" href="#">Checkout</a>
+            <a class="checkout-button focus-button" href="#">Checkout</a>
             <section class="product-category-card">
                 <h2 class="card-heading">Cart <span>Products</span></h2>
                 <div class="card-container" >
@@ -41,8 +41,8 @@
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
                             <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
-                            <button class="red-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
-                            <a class="red-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
+                            <button class="focus-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
+                            <a class="focus-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
         <section class="shipping-section sections">
 
             <h2 class="title">Shipping</h2>
-            <a class="complete-order red-button" href="#">Complete order</a>
+            <a class="complete-order focus-button" href="#" th:name="name" th:surname="surname">Complete order</a>
             <p class="product-about-page-description">Shipping information</p>
 
             <form class="details-filling-form">
