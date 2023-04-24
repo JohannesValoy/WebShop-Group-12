@@ -19,7 +19,7 @@
         <section class="progressbar">
                 <a class="progress-bubble1 active">Products</a>
                 <a class="progress-bubble2">Shipping</a>
-                <a class="progress-bubble3">Payment</a>
+                <a class="progress-bubble3" disabled>Payment</a>
         </section>
 
         <section class="cart-section active">
@@ -49,26 +49,27 @@
         <div class="shipping-section">
             <form class="form-section">
                 <h2 class="title">Shipping</h2>
-                <button class="focus-button" type="submit" id="completeOrder">Complete order</button>
-                <p class="product-about-page-description">Shipping information</p>
+                <button class="focus-button" type="submit" id="completeOrder" disabled>Complete order</button>
+                <h3>Shipping information</h3>
+                <p id="invalid"></p>
                 <div class="details-filling-form">
                     <label for="name" class="input-field-label">
-                        <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" autocomplete="off" required placeholder="Name">
+                        <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" placeholder="Name" required>
                     </label>
                     <label for="surName" class="input-field-label">
-                        <input class="input-field" id="surName" onchange="checkInfo()" type="text" name="username" autocomplete="off" required placeholder="Last Name">
+                        <input class="input-field" id="surName" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
                     </label>
                     <label class="input-field-label">
-                        <input class="input-field" id="address" placeholder="Address" onchange="checkInfo()">
+                        <input class="input-field" id="address" placeholder="Address" type="text" onchange="checkInfo()" required>
                     </label>
                     <label class="input-field-label">
-                        <input class="input-field" id="cardNumber" placeholder="Card Number" onchange="checkInfo()">
+                        <input class="input-field" id="cardNumber" placeholder="Card Number" type="text" onchange="checkInfo()" required>
                     </label>
                     <label class="input-field-label">
-                        <input class="input-field" id="phone" placeholder="Phone Number" onchange="checkInfo()">
+                        <input class="input-field" id="phone" placeholder="Phone Number" type="text" onchange="checkInfo()" required>
                     </label>
                     <label class="input-field-label">
-                        <input class="input-field" id="coupon" placeholder="Coupon Code" onchange="checkInfo()">
+                        <input class="input-field" id="coupon" placeholder="Coupon Code" type="text" onchange="checkInfo()" required>
                     </label>
                 </div>
             </form>

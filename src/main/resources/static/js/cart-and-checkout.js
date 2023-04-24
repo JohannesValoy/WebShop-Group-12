@@ -3,7 +3,6 @@ const progressBubble1 = document.querySelector(".progress-bubble1");
 const cartSection = document.querySelector(".cart-section");
 const progressBubble2= document.querySelector(".progress-bubble2");
 const shippingSection = document.querySelector(".shipping-section");
-const progressBubble3 = document.querySelector(".progress-bubble3");
 const paymentSection = document.querySelector(".payment-section");
 const completeOrder= document.getElementById("completeOrder");
 const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
@@ -15,7 +14,6 @@ progressBubble1.addEventListener("click", () => {
     cartSection.classList.add("active");
     progressBubble2.classList.remove("active");
     shippingSection.classList.remove("active");
-    progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
 });
 
@@ -24,7 +22,6 @@ checkout.addEventListener("click", () => {
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
-    progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
 });
 
@@ -33,12 +30,10 @@ progressBubble2.addEventListener("click", () => {
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
-    progressBubble3.classList.remove("active");
     paymentSection.classList.remove("active");
 });
 
 completeOrder.addEventListener("click", () => {
-    progressBubble3.classList.add("active");
     paymentSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
@@ -46,60 +41,46 @@ completeOrder.addEventListener("click", () => {
     shippingSection.classList.remove("active");
 });
 
-progressBubble3.addEventListener("click", () => {
-    progressBubble3.classList.add("active");
-    paymentSection.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    progressBubble2.classList.remove("active");
-    shippingSection.classList.remove("active");
-});
-
-progressBubble3.addEventListener("click", () => {
-    shippingSection.classList.add("clicked");
-});
 
 function checkInfo() {
-    const username = document.getElementById("name");
-    const usernameText = document.getElementById("surName");
-    const password = document.getElementById("address");
-    const confirmPassword = document.getElementById("cardNumber");
-    const message = document.getElementById("phone");
-    const submitButton = document.getElementById("coupon");
+    const name = document.getElementById("name");
+    const surName = document.getElementById("surName");
+    const address = document.getElementById("address");
+    const cardNumber = document.getElementById("cardNumber");
+    const phone = document.getElementById("phone");
+    const coupon = document.getElementById("coupon");
+    const submitButton = document.getElementById("completeOrder");
+    const invalid = document.getElementById("invalid");
 
-    const regexName = /^([A-Za-z0-9]){2,}$/;
-    const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const regexName = /^([A-Åa-å]){2,}$/;
+    const regexFull = /^([A-Åa-å0-9]){2,}$/;
+    const regexNumber = /^([0-9]){2,}$/;
 
-    if (username.value === "") {
-        usernameText.classList.remove("password-mismatch");
-        usernameText.innerHTML = "Username";
+
+    if (name.value === "" && surName.value === "" && address.value === "" && cardNumber.value === "" && phone.value === "" && coupon.value === "") {
+        invalid.innerHTML = "";
         submitButton.disabled = true;
-    } else if (!regexName.test(username.value)){
-        usernameText.classList.add("password-mismatch");
-        usernameText.innerHTML = "Invalid username, needs to be 2 or more characters and only contain letters and numbers";
+    } else if(!regexName.test(name.value)) {
+        invalid.innerHTML = "Invalid name, needs to be 2 or more characters and only contain letters";
+        submitButton.disabled = true;
+    } else if(!regexName.test(surName.value)) {
+        invalid.innerHTML = "Invalid surname, needs to be 2 or more characters and only contain letters";
+        submitButton.disabled = true;
+    } else if(!regexFull.test(address.value)) {
+        invalid.innerHTML = "Invalid address, needs to be 2 or more characters and only contain letters and numbers";
+        submitButton.disabled = true;
+    } else if(!regexNumber.test(cardNumber.value)) {
+        invalid.innerHTML = "Invalid card number, can only contain numbers";
+        submitButton.disabled = true;
+    } else if(!regexNumber.test(phone.value)) {
+        invalid.innerHTML = "Invalid phone number, can only contain numbers";
+        submitButton.disabled = true;
+    } else if(!regexFull.test(coupon.value)) {
+        invalid.innerHTML = "Invalid coupon, can only contain letters and numbers";
         submitButton.disabled = true;
     } else {
-        usernameText.classList.remove("password-mismatch");
-        usernameText.innerHTML = "Username";
-        submitButton.disabled = !termsCheckbox.checked;
-    }
-
-    if (password.value === "" || confirmPassword.value === "") {
-        message.classList.remove("password-mismatch");
-        message.innerHTML = "Confirm password";
-        submitButton.disabled = true;
-    } else if (password.value !== confirmPassword.value) {
-        message.classList.add("password-mismatch");
-        message.innerHTML = "Passwords do not match";
-        submitButton.disabled = true;
-    } else if (!regexPass.test(password.value)){
-        message.classList.add("password-mismatch");
-        message.innerHTML = "Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long";
-        submitButton.disabled = true;
-    } else {
-        message.classList.remove("password-mismatch");
-        message.innerHTML = "New password confirmed";
-        submitButton.disabled = !termsCheckbox.checked;
+        invalid.innerHTML = "";
+        submitButton.disabled = false;
     }
 }
 
