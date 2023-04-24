@@ -40,12 +40,9 @@
                         </picture>
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
-                            <p>Amount Ordered:
-                            <p th:text="${quantity.getAmount()}">
-                            </p>
+                            <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
                             <button class="red-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
                             <a class="red-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
-                            <i class='bx bx-info-circle'></i>
                         </div>
                     </div>
                 </div>
