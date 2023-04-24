@@ -131,4 +131,8 @@
     .sections {
         padding: 0;
     }
+
+    .product-image {
+        width: 90%;
+    }
 }
