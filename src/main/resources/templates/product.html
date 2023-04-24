@@ -30,7 +30,7 @@
                 <section class="product-page-description">
 
                     <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
-                    <p class="" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p class="product-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
                         <button class="red-button" >Add to Cart</button>

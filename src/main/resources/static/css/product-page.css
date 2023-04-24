@@ -41,7 +41,6 @@
     background-color: #b22cd3;
     color: var(---secondText);
     cursor: pointer;
-    transform: scale(1.3);
 }
 
 .specs-rating-about-buttons{
@@ -78,13 +77,8 @@
 
 .product-image{
     object-fit: cover;
-    transition: var(---transition-time) ;
     width: 50%;
     border-radius: 1rem;
-}
-
-.product-image:hover {
-    transform: scale(1.1);
 }
 
 .product-image img{
@@ -96,12 +90,8 @@
     width: 50%;
 }
 
-
-
-@media (min-width: 1024px) {
-    .product-page-description {
-        width: 50%;
-    }
+.product-description {
+    width: 80%;
 }
 
 @media (max-width: 1024px) {
@@ -114,6 +104,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .product-image {
+        width: 90%;
+    }
+
+    .product-page-description {
+        width: 80%;
     }
 }
 

@@ -38,7 +38,7 @@
 }
 
 .card-container:hover .card-box:hover {
-    transform: scale(1.1);
+    transform: scale(var(---transform-scale));
 }
 
 .card-box img {
@@ -47,7 +47,7 @@
 }
 
 .card-box:hover img {
-    transform: scale(1.1);
+    transform: scale(var(---transform-scale));
 }
 
 .card-box .card-layer {
