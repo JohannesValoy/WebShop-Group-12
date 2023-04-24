@@ -97,6 +97,11 @@ main {
     top: -5px;
 }
 
+input:autofill {
+    -webkit-text-fill-color: white;
+    -webkit-background-clip: text;
+}
+
 .input-box .icon {
     position: absolute;
     top: 50%;
