@@ -29,9 +29,14 @@
     color: black;
 }
 
-.progress-bubble1:hover, .progress-bubble2:hover, .progress-bubble3:hover {
+.progress-bubble1:hover, .progress-bubble2:hover{
     background-color: var(---fourthBackground);
     color: var(---fourthText);
+    cursor: pointer;
+}
+
+.progress-bubble3:hover {
+    color: var(---thirdBackground);
     cursor: pointer;
 }
 

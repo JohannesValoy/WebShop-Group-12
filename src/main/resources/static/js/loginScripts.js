@@ -6,6 +6,12 @@ registerLink.onclick = () => {
     login.classList.add("register");
 };
 
+window.focus()
+window.onload = function() {
+    document.getElementById('username').focus();
+
+};
+
 loginLink.onclick = () => {
     login.classList.remove("register");
 };
