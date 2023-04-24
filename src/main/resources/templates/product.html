@@ -14,9 +14,8 @@
 <body>
     <header th:replace="~{components/header}"></header>
     <main>
-        <section class="sections product-page">
+        <section class="sections">
             <section class="product-intro">
-
                 <picture class="product-image">
                     <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
                     <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
@@ -25,38 +24,34 @@
                 </picture>
 
                 <section class="product-page-description">
-
-                    <h1 class="product-page-title" th:text="${product.name}">Product 1</h1>
-                    <p class="product-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1 class="product-page-title" th:text="${product.name}"></h1>
+                    <p class="product-description" th:text="${product.description}"></p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
                         <button class="focus-button" >Add to Cart</button>
                     </form>
-
                 </section>
-
             </section>
 
             <section class="specs-rating-about-buttons">
-
-                <button class="specs-button" href="#">Specs</button>
-
-                <button class="rating-button" href="#">Rating</button>
-
-                <button class="about-button" href="#">About</button>
-
+                <button class="specs-button" >Specs</button>
+                <button class="rating-button" >Rating</button>
+                <button class="about-button" >About</button>
             </section>
+
             <section class="specs">
                 <h1 class="title">Specs</h1>
                 <p class="product-about-page-description">Specs about this product</p>
                 <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </section>
+
             <section class="about active">
                 <h1 class="title">About</h1>
                 <p class="product-about-page-description">Information about this product</p>
                 <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </section>
+
             <section class="rating">
                 <h1 class="title">Rating</h1>
                 <p class="product-about-page-description">Rating about this product</p>
@@ -66,8 +61,8 @@
             <section th:replace="~{components/product-card}"></section>
 
         </section>
-</main>
-<footer th:replace="~{components/footer}"></footer>
+    </main>
+    <footer th:replace="~{components/footer}"></footer>
     <script th:src="@{~/js/product-page.js}" defer></script>
 </body>
 </html>
