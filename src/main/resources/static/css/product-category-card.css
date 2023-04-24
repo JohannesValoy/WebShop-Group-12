@@ -6,8 +6,6 @@
     align-items: center;
 }
 
-
-
 .card-box {
     min-height: 15rem;
 }
@@ -64,6 +62,7 @@
     align-items: center;
     transform: translateY(100%);
     transition: var(---transition-time) ease;
+    gap: 1rem;
 }
 
 .card-box:hover .card-layer {
