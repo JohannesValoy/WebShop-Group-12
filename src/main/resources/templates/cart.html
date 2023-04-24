@@ -15,14 +15,14 @@
 <header th:replace="~{components/header}"></header>
 
 <main>
-
+    <section class="sections">
         <section class="progressbar">
                 <a class="progress-bubble1 active">Products</a>
                 <a class="progress-bubble2">Shipping</a>
                 <a class="progress-bubble3">Payment</a>
         </section>
 
-        <section class="cart-section active sections">
+        <section class="cart-section active">
             <h1 class="title">Shopping Cart</h1>
             <a class="checkout-button focus-button" href="#">Checkout</a>
             <section class="product-category-card">
@@ -46,7 +46,7 @@
             </section>
         </section>
 
-        <section class="shipping-section sections">
+        <section class="shipping-section">
 
             <h2 class="title">Shipping</h2>
             <a class="complete-order focus-button" href="#" th:name="name" th:surname="surname">Complete order</a>
@@ -76,23 +76,23 @@
 
         </section>
 
-        <section class="payment-section sections">
-            <h1 class="title">Order Complete!</h1>
+        <section class="payment-section">
+            <h2 class="title">Order Complete!</h2>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
             <section class="product-category-card">
-                <h2 class="card-heading">Cart <span>Products</span></h2>
+                <h3 class="card-heading">Cart <span>Products</span></h3>
                 <div class="card-container" >
                     <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
                         <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of a {name} (name=${quantity.product.name})}" alt="bought products">
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
-                            <h3 th:text="${quantity.getAmount()}"></h3>
-                            <i class='bx bx-info-circle'></i>
+                            <p th:text="${quantity.getAmount()}"></p>
                         </div>
+                    </a>
                 </div>
             </section>
         </section>
-
+    </section>
 </main>
 
 <footer th:replace="~{components/footer}"></footer>
