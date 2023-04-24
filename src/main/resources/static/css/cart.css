@@ -45,16 +45,21 @@
     display: none;
 }
 
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .details-filling-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
     gap: 3rem;
-    justify-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .input-field {
-    border: 1px solid;
-    border-color: rgb(0, 0, 0, 0);
+    border: 1px solid rgb(0, 0, 0, 0);
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: var(---secondBackground);

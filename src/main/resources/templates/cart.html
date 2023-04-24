@@ -46,35 +46,33 @@
             </section>
         </section>
 
-        <section class="shipping-section">
-
-            <h2 class="title">Shipping</h2>
-            <a class="complete-order focus-button" href="#" th:name="name" th:surname="surname">Complete order</a>
-            <p class="product-about-page-description">Shipping information</p>
-
-            <form class="details-filling-form">
-
-                <label for="name" class="input-field-label">
-                    <input class="input-field" id="name" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Name">
-                </label>
-                <label for="surName" class="input-field-label">
-                    <input class="input-field" id="surName" onchange="checkValidName()" type="text" name="username" autocomplete="off" required placeholder="Last Name">
-                </label>
-                <label class="input-field-label">
-                    <input class="input-field" placeholder="Address" onchange="checkValidAdress">
-                </label>
-                <label class="input-field-label">
-                    <input class="input-field" placeholder="Card Number" onchange="checkNumber">
-                </label>
-                <label class="input-field-label">
-                    <input class="input-field" placeholder="Phone Number" onchange="checkNumber">
-                </label>
-                <label class="input-field-label">
-                    <input class="input-field" placeholder="Coupon Code" onchange="checkNumber">
-                </label>
+        <div class="shipping-section">
+            <form class="form-section">
+                <h2 class="title">Shipping</h2>
+                <button class="focus-button" type="submit" id="completeOrder">Complete order</button>
+                <p class="product-about-page-description">Shipping information</p>
+                <div class="details-filling-form">
+                    <label for="name" class="input-field-label">
+                        <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" autocomplete="off" required placeholder="Name">
+                    </label>
+                    <label for="surName" class="input-field-label">
+                        <input class="input-field" id="surName" onchange="checkInfo()" type="text" name="username" autocomplete="off" required placeholder="Last Name">
+                    </label>
+                    <label class="input-field-label">
+                        <input class="input-field" id="address" placeholder="Address" onchange="checkInfo()">
+                    </label>
+                    <label class="input-field-label">
+                        <input class="input-field" id="cardNumber" placeholder="Card Number" onchange="checkInfo()">
+                    </label>
+                    <label class="input-field-label">
+                        <input class="input-field" id="phone" placeholder="Phone Number" onchange="checkInfo()">
+                    </label>
+                    <label class="input-field-label">
+                        <input class="input-field" id="coupon" placeholder="Coupon Code" onchange="checkInfo()">
+                    </label>
+                </div>
             </form>
-
-        </section>
+        </div>
 
         <section class="payment-section">
             <h2 class="title">Order Complete!</h2>
