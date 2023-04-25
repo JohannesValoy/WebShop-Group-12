@@ -16,8 +16,6 @@ public interface UserRepository
         extends CrudRepository<User, Integer>, QuerydslPredicateExecutor<User>, QuerydslBinderCustomizer<QUser> {
     Optional<User> findByUsername(String username);
 
-    User findById(int id);
-
     @Override
     default void customize(QuerydslBindings bindings, QUser root) {
         bindings.bind(root.username).first((StringPath path, String value) -> path.like(value));

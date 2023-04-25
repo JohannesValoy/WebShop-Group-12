@@ -1,6 +1,9 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
 import org.springframework.data.domain.Pageable;
+
+import java.util.Optional;
+
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,6 +21,7 @@ import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 
@@ -32,8 +36,12 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
-    public Product getProduct(@PathVariable int id) {
-        return productService.getProduct(id);
+    public Product getProduct(@PathVariable int id) throws NotFoundException {
+        Optional<Product> product = productService.getProduct(id);
+        if (!product.isPresent()) {
+            throw new NotFoundException("Product not found");
+        }
+        return product.get();
     }
 
     @GetMapping("/count")

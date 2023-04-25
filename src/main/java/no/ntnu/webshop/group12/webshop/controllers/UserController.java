@@ -1,6 +1,8 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,7 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
@@ -41,11 +44,16 @@ public class UserController {
      * 
      * @param id user id
      * @return user if found, otherwise 404
+     * @throws NotFoundException if it did not find the user
      */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public User getUser(@PathVariable int id) {
-        return userService.getUser(id);
+    public User getUser(@PathVariable int id) throws NotFoundException {
+        Optional<User> user = userService.getUser(id);
+        if (!user.isPresent()) {
+            throw new NotFoundException("User not found");
+        }
+        return user.get();
     }
 
     /**
@@ -78,14 +86,13 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public ResponseEntity<User> deleteUser(@PathVariable int id) {
-        ResponseEntity<User> response = ResponseEntity.notFound().build();
-        User user = userService.getUser(id);
-        if (user != null) {
-            userService.deleteUser(user);
-            response = ResponseEntity.ok().build();
+    public User deleteUser(@PathVariable int id) throws NotFoundException {
+        Optional<User> user = userService.getUser(id);
+        if (!user.isPresent()) {
+            throw new NotFoundException("User not found");
         }
-        return response;
+        userService.deleteUser(user.get());
+        return user.get();
     }
 
     @GetMapping("/filter")
