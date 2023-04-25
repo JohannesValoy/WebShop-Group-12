@@ -94,10 +94,6 @@
 }
 
 @media (max-width: 768px) {
-    .testimonials {
-        display: flex;
-        flex-direction: column;
-    }
 
     .text-section {
         width: 100%;
