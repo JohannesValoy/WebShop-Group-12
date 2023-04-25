@@ -1,6 +1,7 @@
 package no.ntnu.webshop.group12.webshop.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 
@@ -25,7 +26,7 @@ public interface ProductRepository
 
         List<Product> findByCategory(Category category);
 
-        Product findById(int id);
+        Optional<Product> findById(int id);
 
         List<Product> findAll(Predicate predicate);
 
