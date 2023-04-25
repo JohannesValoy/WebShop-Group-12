@@ -120,3 +120,15 @@
     }
 }
 
+
+.product-card {
+    display: grid;
+    grid-template-rows: autoflow auto;
+    grid-template-columns: 1fr 2fr repeat(4, 0,5fr);
+}
+
+.product-card picture {
+    width: 1rem;
+    overflow: hidden;
+}
+

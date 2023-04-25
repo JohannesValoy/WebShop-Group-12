@@ -1,5 +1,7 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -88,7 +90,7 @@ public class CartService {
         cartRepository.delete(cart);
     }
 
-    public Object getCurrentUserProducts() {
-        return null;
+    public Set<Quantity> getCurrentUserProducts() {
+        return getCart().getProducts();
     }
 }

@@ -1,0 +1,16 @@
+<div class="product-card" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
+    <picture>
+        <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
+        <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
+        <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
+        <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
+    </picture>
+    <h3 th:text="${quantity.product.name}"></h3>
+    <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
+    <p>Price per Item: <span th:text="${quantity.product.price}"></span></p>
+    <div class="product-card-price">
+        <p th:text="${quantity.product.price}"></p>
+        <p th:text="${quantity.product.price * quantity.getAmount()}"></p>
+    </div>
+    <button class="focus-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
+</div>

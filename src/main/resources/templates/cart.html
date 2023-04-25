@@ -7,7 +7,6 @@
     <link rel="icon" th:href="@{~/images/logo.png}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
-    <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
 </head>
 
 <body>
@@ -27,21 +26,7 @@
             <a class="checkout-button focus-button" >Checkout</a>
             <section class="product-category-card">
                 <h2 class="card-heading">Cart <span>Products</span></h2>
-                <div class="card-container" >
-                    <div class="card-box" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
-                        <picture>
-                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
-                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
-                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
-                            <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
-                        </picture>
-                        <div class="card-layer">
-                            <h3 th:text="${quantity.product.name}"></h3>
-                            <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
-                            <button class="focus-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
-                            <a class="focus-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
-                        </div>
-                    </div>
+                <div class="card-container" th:insert="~{components/cart-products}">
                 </div>
             </section>
         </div>
