@@ -18,6 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private static final String ADMIN = "ADMIN";
+
     @Autowired
     UserDetailsService userDetailService;
 
@@ -32,12 +34,20 @@ public class SecurityConfiguration {
         // to least restrictive on bottom
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
+                // Admin endpoints
+                .requestMatchers("/admin/**").hasRole(ADMIN)
+
+                // API endpoints
+                .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+
+                // Account endpoints
+                .requestMatchers("/account").hasAnyRole("USER", ADMIN)
+
+                // All other endpoints
                 .requestMatchers("/**").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
