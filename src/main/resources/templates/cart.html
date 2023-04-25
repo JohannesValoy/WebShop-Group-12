@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
-    <link rel="icon" th:href="@{~/images/logo.png}">
+    <link rel="icon" th:href="@{~/images/logo.webp}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
@@ -24,7 +24,7 @@
 
         <div class="cart-section active">
             <h1 class="title">Shopping Cart</h1>
-            <a class="checkout-button focus-button" >Checkout</a>
+            <a class="checkout-button button" >Checkout</a>
             <section class="product-category-card">
                 <h2 class="card-heading">Cart <span>Products</span></h2>
                 <div class="card-container" >
@@ -38,8 +38,8 @@
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
                             <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
-                            <button class="focus-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
-                            <a class="focus-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
+                            <button class="button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
+                            <a class="button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         <div class="shipping-section">
             <form class="form-section">
                 <h2 class="title">Shipping</h2>
-                <button class="focus-button" type="submit" id="completeOrder" disabled>Complete order</button>
+                <button class="button" type="submit" id="completeOrder" disabled>Complete order</button>
                 <h3>Shipping information</h3>
                 <p id="invalid"></p>
                 <div class="details-filling-form">

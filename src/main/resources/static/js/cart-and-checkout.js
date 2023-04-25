@@ -9,6 +9,7 @@ const completeOrder= document.getElementById("completeOrder");
 const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
 
 
+
 progressBubble1.addEventListener("click", () => {
     event.preventDefault();
     progressBubble1.classList.add("active");
@@ -16,25 +17,22 @@ progressBubble1.addEventListener("click", () => {
     progressBubble2.classList.remove("active");
     shippingSection.classList.remove("active");
     paymentSection.classList.remove("active");
+    progressBubble3.classList.remove("active");
 });
 
-checkout.addEventListener("click", () => {
+function showShippingSection(event) {
     event.preventDefault();
     progressBubble2.classList.add("active");
     shippingSection.classList.add("active");
     progressBubble1.classList.remove("active");
     cartSection.classList.remove("active");
     paymentSection.classList.remove("active");
-});
+    progressBubble3.classList.remove("active");
+}
 
-progressBubble2.addEventListener("click", () => {
-    event.preventDefault();
-    progressBubble2.classList.add("active");
-    shippingSection.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-});
+checkout.addEventListener("click", showShippingSection);
+progressBubble2.addEventListener("click", showShippingSection);
+
 
 completeOrder.addEventListener("click", () => {
     event.preventDefault();

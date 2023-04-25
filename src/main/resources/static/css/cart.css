@@ -10,6 +10,7 @@
     border-radius: 1rem;
     background-color: var(---secondBackground);
     width: 50%;
+    user-select: none;
 }
 
 .progress-bubble1, .progress-bubble2, .progress-bubble3{

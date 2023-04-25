@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title th:text="'CyberPunk Store - ' + ${product.name}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" th:href="@{~/images/logo.png}">
+    <link rel="icon" th:href="@{~/images/logo.webp}">
     <!-- personal styles -->
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-page.css}"/>
@@ -28,7 +28,7 @@
                     <p class="product-description" th:text="${product.description}"></p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
-                        <button class="focus-button" >Add to Cart</button>
+                        <button class="button" >Add to Cart</button>
                     </form>
                 </section>
             </section>
