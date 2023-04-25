@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
-    <link rel="icon" th:href="@{images/logo.png}">
+    <link rel="icon" th:href="@{~/images/logo.png}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
@@ -33,7 +33,7 @@
                             <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
                             <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
                             <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
-                            <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of {name} (name=${quantity.product.name})}">
+                            <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
                         </picture>
                         <div class="card-layer">
                             <h3 th:text="${quantity.product.name}"></h3>
