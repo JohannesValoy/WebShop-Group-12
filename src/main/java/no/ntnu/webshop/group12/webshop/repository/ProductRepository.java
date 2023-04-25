@@ -26,7 +26,7 @@ public interface ProductRepository
 
         List<Product> findByCategory(Category category);
 
-        Optional<Product> findById(int id);
+        Product findById(int id);
 
         List<Product> findAll(Predicate predicate);
 

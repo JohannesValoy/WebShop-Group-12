@@ -47,7 +47,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             message = "Invalid input, please check your input and try again.";
         }
         body.put("message", message);
-        return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

@@ -29,7 +29,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProduct(int id) {
+    public Product getProduct(int id) {
         return productRepository.findById(id);
     }
 
@@ -45,13 +45,13 @@ public class ProductService {
         }
 
         for (int j = 0; i > j; j++) {
-            products.add(productRepository.findById((int) (random.nextInt() * productRepository.count())).get());
+            products.add(productRepository.findById((int) (random.nextInt() * productRepository.count())));
         }
         return products;
     }
 
     public Set<Product> getRandomProductsByCategory(long i, int id) {
-        Product baseProduct = productRepository.findById(id).get();
+        Product baseProduct = productRepository.findById(id);
         Set<Category> categories = baseProduct.getCategory();
         return getRandomProductsByCategory(i, baseProduct.getCategory().toArray(new Category[categories.size()])[0]);
     }

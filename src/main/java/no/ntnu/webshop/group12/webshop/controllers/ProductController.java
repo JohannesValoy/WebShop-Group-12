@@ -1,14 +1,11 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Pageable;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +32,8 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
-    public ResponseEntity<Product> getProduct(@PathVariable int id) {
-        Optional<Product> product = productService.getProduct(id);
-        if (product.isPresent()) {
-            return ResponseEntity.ok(product.get());
-        }
-        return ResponseEntity.notFound().build();
+    public Product getProduct(@PathVariable int id) {
+        return productService.getProduct(id);
     }
 
     @GetMapping("/count")

@@ -21,6 +21,10 @@ public interface UserRepository
     @Override
     default void customize(QuerydslBindings bindings, QUser root) {
         bindings.bind(root.username).first((StringPath path, String value) -> path.like(value));
+        root.active.eq(true);
+        bindings.excluding(root.id);
+        bindings.excluding(root.roles);
+        bindings.excluding(root.active);
         bindings.excluding(root.password);
     }
 }
