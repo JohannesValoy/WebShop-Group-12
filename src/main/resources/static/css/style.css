@@ -23,6 +23,10 @@
     scroll-behavior: smooth;
 }
 
+.ninja {
+    display: none;
+}
+
 body {
     display: grid;
     min-height: 100svh;
@@ -30,11 +34,10 @@ body {
     background-color: var(---thirdBackground);
 }
 main {
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/background.webp');
     background-attachment: fixed;
     background-size: cover;
     padding: 2% 10% 0 10%;
-    user-select: none;
     display: flex;
     flex-direction: column;
 }
@@ -122,6 +125,8 @@ header img.logo {
 
 /*footer*/
 footer {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     background-color: var(---thirdBackground);
     padding: 1em;
