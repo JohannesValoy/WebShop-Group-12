@@ -5,6 +5,7 @@
     justify-content: center;
     gap: 1rem;
 }
+
 .testimony {
     display: flex;
     flex-direction: column;

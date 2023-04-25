@@ -16,15 +16,15 @@
     <main>
         <section class="sections">
             <section class="product-intro">
-                <picture class="product-image">
+                <picture>
                     <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
                     <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
                     <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-                    <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
+                    <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
                 </picture>
 
                 <section class="product-page-description">
-                    <h1 class="product-page-title" th:text="${product.name}"></h1>
+                    <h2 class="title" th:text="${product.name}"></h2>
                     <p class="product-description" th:text="${product.description}"></p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
@@ -40,20 +40,20 @@
             </section>
 
             <section class="specs">
-                <h1 class="title">Specs</h1>
+                <h2 class="title">Specs</h2>
                 <p class="product-about-page-description">Specs about this product</p>
                 <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </section>
 
             <section class="about active">
-                <h1 class="title">About</h1>
+                <h2 class="title">About</h2>
                 <p class="product-about-page-description">Information about this product</p>
                 <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </section>
 
             <section class="rating">
-                <h1 class="title">Rating</h1>
+                <h2 class="title">Rating</h2>
                 <p class="product-about-page-description">Rating about this product</p>
                 <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </section>

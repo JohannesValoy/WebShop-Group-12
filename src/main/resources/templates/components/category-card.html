@@ -1,5 +1,5 @@
 <section class="product-category-card">
-    <h2 class="card-heading">Selection of <span>Category</span></h2>
+    <h2 class="card-heading">Selection of Category</h2>
 
     <div class="card-container" >
         <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">

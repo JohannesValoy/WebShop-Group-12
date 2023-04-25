@@ -36,7 +36,7 @@
 
         <a class="button" href="/logout">Log out</a>
         <section class="product-category-card">
-            <h2 class="card-heading">Cart <span>Products</span></h2>
+            <h2 class="card-heading">Cart Products</h2>
             <div class="card-container" >
                 <a class="card-box" th:each="quantity : ${quantities}" th:href="@{${quantity.product.id}}">
                     <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
@@ -54,7 +54,6 @@
 </main>
 
 <footer th:replace="~{components/footer}"></footer>
-<script th:src="@{~/js/cart-and-checkout.js}" defer></script>
 
 </body>
 </html>
