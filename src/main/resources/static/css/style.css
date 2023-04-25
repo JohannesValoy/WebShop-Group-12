@@ -144,18 +144,18 @@ footer p {
 }
 
 
-.focus-button {
+.button {
     display: flex;
     align-self: center;
     border-radius: 5px;
     background-color: var(---fourthBackground);
     color: var(---mainText);
     padding: 1em;
-    width: fit-content;
     transition: var(---transition-time);
+    user-select: none;
 }
 
-.focus-button:hover {
+.button:hover {
     color: var(---fourthText);
     cursor: pointer;
     transform: scale(var(---transform-scale));
