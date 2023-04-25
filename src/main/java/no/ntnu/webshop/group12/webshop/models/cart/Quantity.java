@@ -31,6 +31,11 @@ public class Quantity {
         this.amount = amount;
     }
 
+    public Quantity(Quantity quantity) {
+        this.product = quantity.getProduct();
+        this.amount = quantity.getAmount();
+    }
+
     public int getId() {
         return id;
     }

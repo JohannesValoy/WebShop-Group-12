@@ -37,6 +37,14 @@ public class Cart {
         this.user = user;
     }
 
+    public Cart(Cart cart) {
+        this();
+        this.user = cart.getUser();
+        for (Quantity quantity : cart.getProducts()) {
+            this.addProduct(new Quantity(quantity));
+        }
+    }
+
     public int getId() {
         return id;
     }
