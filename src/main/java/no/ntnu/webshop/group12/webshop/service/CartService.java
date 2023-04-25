@@ -70,7 +70,7 @@ public class CartService {
      * 
      * @return The cart for the current user.
      */
-    public Cart getCart() {
+    private Cart getCart() {
         // TODO: Find a better way to do this.
         if (accessUserService.getSessionUser() == null) {
             return null;
@@ -83,4 +83,12 @@ public class CartService {
         return cart;
     }
 
+    public void confirmCart() {
+        Cart cart = getCart();
+        cartRepository.delete(cart);
+    }
+
+    public Object getCurrentUserProducts() {
+        return null;
+    }
 }

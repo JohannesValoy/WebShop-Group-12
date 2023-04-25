@@ -4,7 +4,6 @@ import no.ntnu.webshop.group12.webshop.models.product.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,7 +87,7 @@ public class PageController {
         if (userService.getSessionUser() == null) {
             return "redirect:/login";
         }
-        model.addAttribute("quantities", cartService.getCart().getProducts());
+        model.addAttribute("quantities", cartService.getCurrentUserProducts());
         return "cart";
     }
 
@@ -97,6 +96,16 @@ public class PageController {
         cartService.addProductToCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";
+    }
+
+    @GetMapping("/cart/confirm")
+    public String confirmCart(Model model) {
+        if (userService.getSessionUser() == null) {
+            return "redirect:/login";
+        }
+        cartService.confirmCart();
+        model.addAttribute("user", userService.getSessionUser());
+        return "purchase-confirmed";
     }
 
     /**
