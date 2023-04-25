@@ -32,6 +32,8 @@ public class CategoryControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    private static final String BASE_URL = "/api/category";
+
     @Test
     @WithMockUser(roles = "ADMIN")
     void testCreateAndDeleteCategory() throws JsonProcessingException, Exception {
@@ -40,12 +42,12 @@ public class CategoryControllerTest {
 
         // Create category
         Category returnCategory = objectMapper
-                .readValue(mockMvc.perform(post("/api/category").contentType(MediaType.APPLICATION_JSON).content(json))
+                .readValue(mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON).content(json))
                         .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Category.class);
 
         // Fetch to ensure created
         Category fetchedCategory = objectMapper.readValue(
-                mockMvc.perform(get("/api/category/" + returnCategory.getId())).andExpect(status().isOk()).andReturn()
+                mockMvc.perform(get(BASE_URL + "/" + returnCategory.getId())).andExpect(status().isOk()).andReturn()
                         .getResponse().getContentAsString(),
                 Category.class);
 
@@ -53,21 +55,21 @@ public class CategoryControllerTest {
         assert (returnCategory.equals(fetchedCategory));
 
         // Delete category
-        mockMvc.perform(delete("/api/category/" + returnCategory.getId())).andExpect(status().isOk());
+        mockMvc.perform(delete(BASE_URL + "/" + returnCategory.getId())).andExpect(status().isOk());
 
         // Fetch to ensure deleted
-        mockMvc.perform(get("/api/category/" + returnCategory.getId())).andExpect(status().isNotFound());
+        mockMvc.perform(get(BASE_URL + "/" + returnCategory.getId())).andExpect(status().isNotFound());
     }
 
     @Test
     void testGetCategory() throws Exception {
-        mockMvc.perform(get("/api/category/1")).andExpect(status().isOk());
-        mockMvc.perform(get("/api/category/1000")).andExpect(status().isNotFound());
+        mockMvc.perform(get(BASE_URL + "/" + "1")).andExpect(status().isOk());
+        mockMvc.perform(get(BASE_URL + "/" + "1000")).andExpect(status().isNotFound());
     }
 
     @Test
     void testGetCategoryByFilter() throws Exception {
-        List categories = objectMapper.readValue(mockMvc.perform(get("/api/category/filter?name=Gaming"))
+        List categories = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/" + "filter?name=Gaming"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
         assertEquals(1, categories.size());
     }
@@ -75,7 +77,7 @@ public class CategoryControllerTest {
     @Test
     void testGetCategoryCount()
             throws Exception {
-        Integer categoriesCount = objectMapper.readValue(mockMvc.perform(get("/api/category/count"))
+        Integer categoriesCount = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/" + "count"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Integer.class);
         assertEquals(5, categoriesCount);
     }
@@ -85,7 +87,7 @@ public class CategoryControllerTest {
     void testNotAccess() throws Exception {
         Category category = new Category("test");
         String json = objectMapper.writeValueAsString(category);
-        mockMvc.perform(post("/api/category").content(json)).andExpect(status().isForbidden());
-        mockMvc.perform(delete("/api/category/1")).andExpect(status().isForbidden());
+        mockMvc.perform(post(BASE_URL).content(json)).andExpect(status().isForbidden());
+        mockMvc.perform(delete(BASE_URL + "/" + "1")).andExpect(status().isForbidden());
     }
 }
