@@ -51,6 +51,76 @@
     display: none;
 }
 
+.cart-grid {
+    display: grid;
+    grid-template-rows: auto;
+    padding: 2%;
+    width: 100%;
+}
+
+.cart-product {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.div-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.div-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.div-product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 15rem;
+    max-height: 20rem;
+    overflow: hidden;
+}
+
+.div-product-info h3 {
+    color: var(---secondText);
+}
+
+.product-img {
+    max-height: 20rem;
+    border-radius: 1rem;
+}
+
+.minus, .plus {
+    color: var(---mainText);
+    background-color: transparent;
+    padding: 1%;
+    user-select: none;
+    cursor: pointer;
+}
+
+.delete {
+    color: red;
+    background-color: transparent;
+    padding: 1%;
+    user-select: none;
+    cursor: pointer;
+}
+
 .form-section {
     display: flex;
     flex-direction: column;
@@ -70,13 +140,6 @@
     border-radius: 0.5rem;
     background-color: var(---secondBackground);
     transition: var(---transition-time);
-}
-
-.input-field:hover {
-    background-color: var(---mainBackground);
-    cursor: pointer;
-    transform: scale(var(---transform-scale));
-    border-color: var(---secondText);
 }
 
 .input-field:focus {
@@ -117,19 +180,18 @@
 
     .details-filling-form {
         gap: 1rem;
+    }
 
+    .product-img {
+        max-height: 10rem;
+    }
+
+    .div-product-info {
+        max-width: 10rem;
+        max-height: 10rem;
     }
 }
 
 
-.product-card {
-    display: grid;
-    grid-template-rows: autoflow auto;
-    grid-template-columns: 1fr 2fr repeat(4, 0,5fr);
-}
 
-.product-card picture {
-    width: 1rem;
-    overflow: hidden;
-}
 
