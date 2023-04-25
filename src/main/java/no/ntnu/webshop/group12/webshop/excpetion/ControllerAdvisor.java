@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.excpetion;
 
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -36,13 +37,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 "This is not the method you are after", HttpStatus.FORBIDDEN);
     }
 
-    // @ExceptionHandler({ ConversionFailedException.class, ClassCastException.class
-    // })
+    @ExceptionHandler({ ConversionFailedException.class })
     protected ResponseEntity<Object> handleConversionFailedException(
             Exception ex, WebRequest request) {
 
         Map<String, Object> body = newBody();
-
+        String message = ex.getLocalizedMessage();
+        if (message.contains("Failed to convert from type")) {
+            message = "Invalid input, please check your input and try again.";
+        }
+        body.put("message", message);
         return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
     }
 

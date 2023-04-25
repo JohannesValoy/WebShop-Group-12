@@ -3,7 +3,7 @@ package no.ntnu.webshop.group12.webshop.controllers;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
-import org.springdoc.api.annotations.ParameterObject;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;

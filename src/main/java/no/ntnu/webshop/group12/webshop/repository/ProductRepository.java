@@ -35,7 +35,10 @@ public interface ProductRepository
         @Override
         default void customize(QuerydslBindings bindings, QProduct root) {
                 bindings.bind(root.name).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-                bindings.bind(root.category.any().id).first((path, value) -> path.eq(value));
+                bindings.bind(root.category.any().id).as("category.id").first((path, value) -> path.eq(value));
+                bindings.bind(root.category.any().name).as("category.name")
+                                .first((path, value) -> path.containsIgnoreCase(value));
+                bindings.excluding(root.category);
                 bindings.excluding(root.description);
                 bindings.excluding(root.stock);
                 bindings.excluding(root.image);

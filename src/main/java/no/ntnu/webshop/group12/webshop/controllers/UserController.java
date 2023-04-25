@@ -44,13 +44,8 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public ResponseEntity<User> getUser(@PathVariable int id) {
-        ResponseEntity<User> response = ResponseEntity.notFound().build();
-        User user = userService.getUser(id);
-        if (user != null) {
-            response = ResponseEntity.ok(user);
-        }
-        return response;
+    public User getUser(@PathVariable int id) {
+        return userService.getUser(id);
     }
 
     /**
@@ -95,7 +90,7 @@ public class UserController {
 
     @GetMapping("/filter")
     @Operation(summary = "Get categories by filter")
-    public List<User> getCategoriesByFilter(
+    public List<User> getUsersByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
         return userService.getUsersByFilter(predicate, pageable);
