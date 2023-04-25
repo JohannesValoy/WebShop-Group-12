@@ -25,6 +25,12 @@ import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 
+/**
+ * Rest controller for product
+ * 
+ * @version 1.0
+ * @since 2023-04-25
+ */
 @RestController
 @Tag(name = "Product", description = "Product API")
 @RequestMapping("/api/product")

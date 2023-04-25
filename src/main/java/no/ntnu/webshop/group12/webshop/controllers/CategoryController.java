@@ -29,6 +29,12 @@ import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
+/**
+ * Rest controller for category
+ * 
+ * @version 1.0
+ * @since 2023-04-25
+ */
 @RestController
 @Tag(name = "Category", description = "Category API")
 @RequestMapping("/api/category")

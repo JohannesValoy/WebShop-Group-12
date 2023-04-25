@@ -28,6 +28,12 @@ import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.UserService;
 
+/**
+ * Rest controller for user
+ * 
+ * @version 1.0
+ * @since 2023-04-25
+ */
 @RestController
 @Tag(name = "User", description = "User API")
 @RequestMapping("/api/user")
@@ -84,6 +90,13 @@ public class UserController {
         return response;
     }
 
+    /**
+     * Delete a user
+     * 
+     * @param id user id
+     * @return deleted user
+     * @throws NotFoundException if it did not find the user
+     */
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
     public User deleteUser(@PathVariable int id) throws NotFoundException {
@@ -95,6 +108,13 @@ public class UserController {
         return user.get();
     }
 
+    /**
+     * Get users by filter
+     * 
+     * @param pageable
+     * @param predicate
+     * @return list of users
+     */
     @GetMapping("/filter")
     @Operation(summary = "Get categories by filter")
     public List<User> getUsersByFilter(
