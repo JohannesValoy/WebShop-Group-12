@@ -36,6 +36,12 @@ public class UserController {
     @Autowired
     private AccessUserService accessUserService;
 
+    /**
+     * Get user by id
+     * 
+     * @param id user id
+     * @return user if found, otherwise 404
+     */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
     public ResponseEntity<User> getUser(@PathVariable int id) {
@@ -47,12 +53,23 @@ public class UserController {
         return response;
     }
 
+    /**
+     * Get the number of users
+     * 
+     * @return number of users
+     */
     @GetMapping("/count")
     @Operation(summary = "Get number of users")
     public ResponseEntity<Long> getUserCount() {
         return ResponseEntity.ok(userService.getUserCount());
     }
 
+    /**
+     * Creates a new user
+     * 
+     * @param user user to create
+     * @return 200 if successful, otherwise 400
+     */
     @PostMapping("")
     @Operation(summary = "Create a new user")
     public ResponseEntity<String> createUser(@RequestBody LoginDTO user) {

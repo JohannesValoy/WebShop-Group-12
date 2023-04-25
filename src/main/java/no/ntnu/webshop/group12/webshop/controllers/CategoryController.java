@@ -25,7 +25,7 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.ConstraintViolationException;
+import javassist.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
@@ -42,13 +42,12 @@ public class CategoryController {
     @GetMapping("/{id}")
     @Operation(summary = "Get category by id")
     @Parameter(name = "id", description = "Category id", required = true)
-    public ResponseEntity<Category> getCategory(@PathVariable int id) {
-        ResponseEntity<Category> response = ResponseEntity.notFound().build();
+    public Category getCategory(@PathVariable int id) throws NotFoundException {
         Optional<Category> category = categoryService.getCategory(id);
-        if (category.isPresent()) {
-            response = ResponseEntity.ok(category.get());
+        if (!category.isPresent()) {
+            throw new NotFoundException("Category not found");
         }
-        return response;
+        return category.get();
     }
 
     @GetMapping(path = "/count", produces = "application/json")
@@ -67,15 +66,8 @@ public class CategoryController {
 
     @PostMapping("")
     @Operation(summary = "Create a new category")
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        ResponseEntity<Category> response = null;
-        try {
-            Category newCategory = categoryService.createCategory(category);
-            response = ResponseEntity.ok().body(newCategory);
-        } catch (ConstraintViolationException e) {
-            response = ResponseEntity.badRequest().build();
-        }
-        return response;
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.createCategory(category);
     }
 
     @DeleteMapping("/{id}")
