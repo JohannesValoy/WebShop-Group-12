@@ -42,6 +42,7 @@ public class CartService {
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             cart.removeProduct(q);
+            quantityRepository.delete(q);
             cartRepository.save(cart);
             returnProduct = product;
         }
@@ -69,6 +70,7 @@ public class CartService {
         } else {
             q = new Quantity(product, quantity);
             cart.addProduct(q);
+            quantityRepository.save(q);
             cartRepository.save(cart);
             returnProduct = product;
         }
