@@ -14,10 +14,6 @@
     gap: 1rem;
 }
 
-.title {
-    color: var(---secondText);
-}
-
 .product-intro {
     display: flex;
     flex-direction: row;
