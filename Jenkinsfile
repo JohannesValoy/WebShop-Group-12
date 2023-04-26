@@ -29,6 +29,7 @@ pipeline {
         script {
           sh "docker compose build"
           sh 'docker stack deploy --compose-file docker-compose.yaml webshop'
+          sh 'docker service update --force webshop_Website'
         }
       }
     }
