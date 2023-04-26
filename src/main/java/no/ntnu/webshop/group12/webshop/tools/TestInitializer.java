@@ -12,17 +12,12 @@ import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
-import no.ntnu.webshop.group12.webshop.repository.UserRepository;
-import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
 @Profile("test")
 public class TestInitializer implements ApplicationListener<ApplicationReadyEvent> {
-
-        @Autowired
-        private UserRepository userRepository;
 
         @Autowired
         private ProductRepository productRepository;
@@ -32,9 +27,6 @@ public class TestInitializer implements ApplicationListener<ApplicationReadyEven
 
         @Autowired
         private RoleRepository roleRepository;
-
-        @Autowired
-        private AccessUserService accessUserService;
 
         private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
