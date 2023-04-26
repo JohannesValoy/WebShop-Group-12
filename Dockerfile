@@ -8,7 +8,7 @@ RUN mvn dependency:go-offline
 
 COPY src/ ./src/
 
-RUN mvn clean package -DskipTests -Pprod
+RUN mvn clean package -DskipTests -Dspring.profiles.active=prod
 
 FROM openjdk:18
 

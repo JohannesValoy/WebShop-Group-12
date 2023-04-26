@@ -12,17 +12,12 @@ import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
-import no.ntnu.webshop.group12.webshop.repository.UserRepository;
-import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
-@Profile("dev")
-public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
-
-        @Autowired
-        private UserRepository userRepository;
+@Profile("test")
+public class TestInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
         @Autowired
         private ProductRepository productRepository;
@@ -32,9 +27,6 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
         @Autowired
         private RoleRepository roleRepository;
-
-        @Autowired
-        private AccessUserService accessUserService;
 
         private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -47,39 +39,18 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 Category category3 = new Category("Headset");
                 Category category4 = new Category("Computer Mouse");
                 Category category5 = new Category("Console");
-                Category category6 = new Category("Xbox");
-                Category category7 = new Category("Playstation");
-                Category category8 = new Category("Nintendo");
-                Category category9 = new Category("Keyboard");
-                Category category10 = new Category("Accessories");
-                Category category11 = new Category("Controllers");
-                Category category12 = new Category("Batteries");
 
                 category1.setImage("category 1.png");
                 category2.setImage("category 2.png");
                 category3.setImage("category 3.png");
                 category4.setImage("category 4.png");
                 category5.setImage("category 5.png");
-                category6.setImage("category 6.png");
-                category7.setImage("category 7.png");
-                category8.setImage("category 8.png");
-                category9.setImage("category 9.png");
-                category10.setImage("category 10.png");
-                category11.setImage("category 11.png");
-                category12.setImage("category 12.png");
 
                 categoryRepository.save(category1);
                 categoryRepository.save(category2);
                 categoryRepository.save(category3);
                 categoryRepository.save(category4);
                 categoryRepository.save(category5);
-                categoryRepository.save(category6);
-                categoryRepository.save(category7);
-                categoryRepository.save(category8);
-                categoryRepository.save(category9);
-                categoryRepository.save(category10);
-                categoryRepository.save(category11);
-                categoryRepository.save(category12);
 
                 Product headsetOffice = new Product("Headset for office and gaming",
                                 "This headset is the perfect all-around choice for those who are looking for comfortable, practical sound quality. Its active noise cancellation feature and grey color make it an ideal choice for an office environment. The headset is designed to be comfortable and practical, with a lightweight and ergonomic design that fits snugly on your head. It also has adjustable ear cups and a padded headband for maximum comfort. The active noise cancellation feature ensures that you hear only what you want to hear, blocking out any unwanted distractions. With this headset, you can expect the highest quality of sound for all your audio needs.",
@@ -112,45 +83,9 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
                 productRepository.save(gamingHeadset);
 
-                Product xbox = new Product("Xbox gaming console + controller",
-                                "Experience the ultimate gaming experience with the Xbox Console! This sleek white Xbox console comes with the must-have Xbox wireless controller, so you can dive into the action right away. Enjoy stunning 4K visuals, immersive sound, and endless entertainment with the Xbox console. With access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. Plus, you can stream movies, shows, and music, and connect with friends online. Get ready for the ultimate gaming experience with the Xbox Console",
-                                6800, 10);
-
-                xbox.addCategory(category5);
-                xbox.addCategory(category6);
-                xbox.setImage("Product 4.jpg");
-
-                productRepository.save(xbox);
-
-                Product xboxController = new Product("Xbox Controller",
-                                "This Wireless Xbox Controller in White is the perfect accessory for your gaming needs! It features a sleek, modern design with easy to reach buttons and a comfortable grip. The controller is compatible with Xbox One and Xbox Series X|S and is a great choice for both casual and competitive gamers. The wireless connection ensures a lag-free gaming experience and the adjustable sensitivity of the analog sticks allows you too customize your gaming experience. Batteries not included",
-                                499, 10);
-
-                xboxController.addCategory(category6);
-                xboxController.addCategory(category11);
-                xboxController.setImage("Product 5.jpg");
-
-                productRepository.save(xboxController);
-
-                Product batteries = new Product("4x AA batteries",
-                                "This 4x AA Battery Pack is the perfect solution for powering your electronic devices! With four high-capacity AA batteries, you can stay powered up for longer and get the most out of your gadgets. Our AA batteries are long-lasting and reliable, so you can trust that your device will stay powered for as long as you need. Plus, the lightweight and compact design of this battery pack makes it easy to carry and transport. Enjoy up to 10 hours of power with this 4x AA Battery Pack!",
-                                80, 0);
-
-                batteries.addCategory(category10);
-                batteries.addCategory(category12);
-                batteries.setImage("Product 6.jpg");
-
-                productRepository.save(batteries);
-
                 Role role = new Role("ROLE_USER");
                 Role role2 = new Role("ROLE_ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
-                accessUserService.tryCreateNewUser("Test", "Test1234");
-                accessUserService.tryCreateNewUser("Admin", "Admin1234");
-                userRepository.findByUsername("Admin").ifPresent(user -> {
-                        user.addRole(role2);
-                        userRepository.save(user);
-                });
         }
 }

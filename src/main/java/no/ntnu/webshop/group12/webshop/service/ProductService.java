@@ -2,11 +2,15 @@ package no.ntnu.webshop.group12.webshop.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.querydsl.core.types.Predicate;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
@@ -25,7 +29,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProduct(int id) {
+    public Optional<Product> getProduct(int id) {
         return productRepository.findById(id);
     }
 
@@ -41,13 +45,13 @@ public class ProductService {
         }
 
         for (int j = 0; i > j; j++) {
-            products.add(productRepository.findById((int) (random.nextInt() * productRepository.count())));
+            products.add(productRepository.findById((int) (random.nextInt() * productRepository.count())).get());
         }
         return products;
     }
 
     public Set<Product> getRandomProductsByCategory(long i, int id) {
-        Product baseProduct = productRepository.findById(id);
+        Product baseProduct = productRepository.findById(id).get();
         Set<Category> categories = baseProduct.getCategory();
         return getRandomProductsByCategory(i, baseProduct.getCategory().toArray(new Category[categories.size()])[0]);
     }
@@ -64,5 +68,22 @@ public class ProductService {
             products.add(productsByCategory.get((random.nextInt(productsByCategory.size()))));
         }
         return products;
+    }
+
+    public Product saveProduct(Product product) {
+        productRepository.save(product);
+        return product;
+    }
+
+    public List<Product> getProductsByFilter(Predicate predicate, Pageable pageable) {
+        return productRepository.findAll(predicate, pageable).getContent();
+    }
+
+    public void deleteProduct(int id) {
+        productRepository.deleteById(id);
+    }
+
+    public long getProductCount() {
+        return productRepository.count();
     }
 }
