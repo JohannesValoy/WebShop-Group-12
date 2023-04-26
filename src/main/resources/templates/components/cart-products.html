@@ -1,6 +1,6 @@
 
 <section class="cart">
-    <h2 class="title">Cart Products</h2>
+    <h3 class="title">Cart Products</h3>
     <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
         <div class="cart-product">
             <div class="div-row">
@@ -11,7 +11,7 @@
                     <img class="product-img" th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
                 </picture>
                 <div class="div-product-info">
-                    <h3 th:text="${quantity.product.name}"></h3>
+                    <h4 th:text="${quantity.product.name}"></h4>
                     <p class="description" th:text="${quantity.product.description}"></p>
                 </div>
             </div>

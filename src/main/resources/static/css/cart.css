@@ -140,6 +140,7 @@
     border-radius: 0.5rem;
     background-color: var(---secondBackground);
     transition: var(---transition-time);
+    user-select: none;
 }
 
 .input-field:focus {
@@ -149,8 +150,16 @@
     border-color: var(---secondText);
 }
 
-.input-field.mismatch {
-    background-color: red;
+.input-field-label {
+    user-select: none;
+}
+
+.form-section p {
+    color: red;
+}
+
+.mismatch {
+    border-color: red;
 }
 
 .input-field::placeholder {

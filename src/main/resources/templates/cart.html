@@ -16,43 +16,54 @@
 <main>
     <section class="sections">
         <div class="progressbar">
-                <a class="progress-bubble1 active">Products</a>
-                <a class="progress-bubble2">Shipping</a>
-                <a class="progress-bubble3" disabled>Payment</a>
+                <a class="progress-bubble1 active">Cart</a>
+                <a class="progress-bubble2">Checkout</a>
+                <a class="progress-bubble3" disabled>Complete</a>
         </div>
 
         <div class="cart-section active">
-            <h1 class="title">Shopping Cart</h1>
-            <a class="checkout-button button" >Checkout</a>
+            <h2 class="title">Shopping Cart</h2>
             <section th:replace="~{components/cart-products}"></section>
+            <button class="checkout-button button" >Checkout</button>
         </div>
 
         <div class="shipping-section">
-            <form class="form-section">
-                <h2 class="title">Shipping</h2>
-                <button class="button" type="submit" id="completeOrder" disabled>Complete order</button>
+            <form class="form-section" method="get" th:action="@{/cart/confirm}">
+                <h2 class="title">Checkout</h2>
                 <h3>Shipping information</h3>
-                <p id="invalid"></p>
+                <p id="p-name" hidden>Invalid name, needs to be 2 or more characters and only contain letters</p>
+                <p id="p-surname" hidden>Invalid surname, needs to be 2 or more characters and only contain letters</p>
+                <p id="p-address" hidden>Invalid address, needs to be 2 or more characters and only contain letters and numbers</p>
+                <p id="p-cardNumber" hidden>Invalid card number, needs to be 16 characters and can only contain numbers</p>
+                <p id="p-phone" hidden>Invalid phone number, needs to be 8 characters and can only contain numbers</p>
+                <p id="p-coupon" hidden>Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers</p>
                 <div class="details-filling-form">
-                    <label for="name" class="input-field-label">
+                    <div class="div-column">
+                        <label for="name" class="input-field-label">Name</label>
                         <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" placeholder="Name" required>
-                    </label>
-                    <label for="surName" class="input-field-label">
-                        <input class="input-field" id="surName" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
-                    </label>
-                    <label class="input-field-label">
-                        <input class="input-field" id="address" placeholder="Address" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
-                        <input class="input-field" id="cardNumber" placeholder="Card Number" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
+                    </div>
+                    <div class="div-column">
+                        <label for="surname" class="input-field-label">Last Name</label>
+                        <input class="input-field" id="surname" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="address">Address</label>
+                        <input class="input-field" id="address" onchange="checkInfo()" type="text" name="username" placeholder="Address" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="cardNumber">Card Number</label>
+                        <input class="input-field" id="cardNumber" onchange="checkInfo()" type="text" name="username" placeholder="Card Number" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="phone">Phone Number</label>
                         <input class="input-field" id="phone" placeholder="Phone Number" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="coupon">Coupon Code</label>
                         <input class="input-field" id="coupon" placeholder="Coupon Code" type="text" onchange="checkInfo()" required>
-                    </label>
+                    </div>
                 </div>
+                <button class="button" type="submit" id="completeOrder"  disabled>Complete order</button>
             </form>
         </div>
 
