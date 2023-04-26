@@ -1,47 +1,51 @@
-const checkout = document.querySelector(".checkout-button");
-const progressBubble1 = document.querySelector(".progress-bubble1");
+
+const cartBar = document.querySelector(".cart-bar");
 const cartSection = document.querySelector(".cart-section");
-const progressBubble2= document.querySelector(".progress-bubble2");
-const progressBubble3= document.querySelector(".progress-bubble3");
-const shippingSection = document.querySelector(".shipping-section");
-const paymentSection = document.querySelector(".payment-section");
-const completeOrder= document.getElementById("completeOrder");
-const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
+const checkoutBtn = document.querySelector(".checkout-button");
+const checkoutBar= document.querySelector(".checkout-bar");
+const checkoutSection = document.querySelector(".checkout-section");
+const completeOrderBtn= document.getElementById("completeOrder");
+const completeBar= document.querySelector(".complete-bar");
+const completeSection = document.querySelector(".complete-section");
 
 
-
-progressBubble1.addEventListener("click", () => {
-    event.preventDefault();
-    progressBubble1.classList.add("active");
-    cartSection.classList.add("active");
-    progressBubble2.classList.remove("active");
-    shippingSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-    progressBubble3.classList.remove("active");
-});
-
-function showShippingSection(event) {
-    event.preventDefault();
-    progressBubble2.classList.add("active");
-    shippingSection.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-    progressBubble3.classList.remove("active");
+if (document.querySelector(".cart").children.length > 1) {
+    checkoutBtn.removeAttribute("hidden");
+    document.getElementById("cart-title").innerHTML = "Cart products";
+} else {
+    document.getElementById("cart-title").innerHTML = "Your cart is empty";
+    checkoutBtn.setAttribute("hidden", "hidden");
 }
 
-checkout.addEventListener("click", showShippingSection);
-progressBubble2.addEventListener("click", showShippingSection);
+const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
+removeFromCartBtn.forEach(button => {
+    button.addEventListener("click", () => {
+        const productId = button.getAttribute('data-product-id');
+        fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector(`[product-id="${productId}"]`).remove();
+                }
+            });
+    });
+});
 
-
-completeOrder.addEventListener("click", () => {
-    event.preventDefault();
-    paymentSection.classList.add("active");
-    progressBubble3.classList.add("active");
-    progressBubble1.classList.remove("active");
+checkoutBtn.addEventListener("click", () => {
+    checkoutSection.classList.add("active");
+    checkoutBar.classList.add("active");
+    cartBar.classList.remove("active");
     cartSection.classList.remove("active");
-    progressBubble2.classList.remove("active");
-    shippingSection.classList.remove("active");
+    completeBar.classList.remove("active");
+    completeSection.classList.remove("active");
+});
+
+completeOrderBtn.addEventListener("click", () => {
+    completeSection.classList.add("active");
+    completeBar.classList.add("active");
+    cartBar.classList.remove("active");
+    cartSection.classList.remove("active");
+    checkoutBar.classList.remove("active");
+    checkoutSection.classList.remove("active");
 });
 
 const name = document.getElementById("name");
@@ -51,8 +55,7 @@ const cardNumber = document.getElementById("cardNumber");
 const phone = document.getElementById("phone");
 const coupon = document.getElementById("coupon");
 const submitButton = document.getElementById("completeOrder");
-function checkInfo(qualifiedName, value) {
-
+function checkInfo() {
     const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
     const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
     const regexCard = /^([0-9]){16}$/;
@@ -108,15 +111,3 @@ address.addEventListener("keyup", checkInfo);
 cardNumber.addEventListener("keyup", checkInfo);
 phone.addEventListener("keyup", checkInfo);
 coupon.addEventListener("keyup", checkInfo);
-
-removeFromCartButton.forEach(button => {
-    button.addEventListener("click", () => {
-        const productId = button.getAttribute('data-product-id');
-        fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
-            .then(response => {
-                if (response.ok) {
-                    document.querySelector(`[product-id="${productId}"]`).remove();
-                }
-            });
-    });
-});

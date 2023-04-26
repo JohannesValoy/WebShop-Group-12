@@ -1,6 +1,6 @@
 
 <section class="cart">
-    <h3 class="title">Cart Products</h3>
+    <h3 id="cart-title"></h3>
     <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
         <div class="cart-product">
             <div class="div-row">
@@ -35,7 +35,7 @@
             </div>
             <div class="div-column">
                 <p>Delete</p>
-                <button class="delete remove-from-cart-button" th:data-product-id="${quantity.product.id}">X</button>
+                <button class="delete remove-from-cart" onclick="window.location.reload()" th:data-product-id="${quantity.product.id}">X</button>
             </div>
         </div>
     </div>
