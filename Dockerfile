@@ -16,4 +16,4 @@ WORKDIR /app
 
 COPY --from=builder /app/target/*.war Group12-WebShop.war
 
-ENTRYPOINT ["java", "-jar", "Group12-WebShop.war", "-Dspring.profiles.active=prod"]
+ENTRYPOINT ["java", "-jar", "Group12-WebShop.war", "--spring.profiles.active=prod"]
