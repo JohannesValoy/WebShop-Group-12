@@ -8,7 +8,7 @@ RUN mvn dependency:go-offline
 
 COPY src/ ./src/
 
-RUN mvn clean package -DskipTests -Dspring.profiles.active=prod
+RUN mvn clean package -DskipTests
 
 FROM openjdk:18
 
@@ -16,4 +16,4 @@ WORKDIR /app
 
 COPY --from=builder /app/target/*.war Group12-WebShop.war
 
-ENTRYPOINT ["java", "-jar", "Group12-WebShop.war"]
+ENTRYPOINT ["java", "-jar", "Group12-WebShop.war", "-Dspring.profiles.active=prod"]
