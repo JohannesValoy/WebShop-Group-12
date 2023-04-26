@@ -95,11 +95,5 @@ public class TestInitializer implements ApplicationListener<ApplicationReadyEven
                 Role role2 = new Role("ROLE_ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
-                accessUserService.tryCreateNewUser("Test", "Test1234");
-                accessUserService.tryCreateNewUser("Admin", "Admin1234");
-                userRepository.findByUsername("Admin").ifPresent(user -> {
-                        user.addRole(role2);
-                        userRepository.save(user);
-                });
         }
 }
