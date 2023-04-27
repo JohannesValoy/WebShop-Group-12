@@ -29,8 +29,8 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    justify-content: space-around;
-    list-style-type: none;
+    justify-content: space-evenly;
+    width: 80%;
 }
 
 .specs.active, .rating.active, .about.active {
@@ -49,11 +49,6 @@
 
 .product-about-page {
     width: 100%;
-}
-
-
-.specs-rating-about-buttons {
-    justify-content: space-around;
 }
 
 .product-intro img{
