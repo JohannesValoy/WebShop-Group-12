@@ -122,7 +122,7 @@ const cvc = document.getElementById("cvc");
 const submitButton = document.getElementById("completeOrder");
 
 function checkInfo() {
-    const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
+    const regexName = /^([A-Za-zØÆÅøæå ]){2,}$/;
     const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
     const regexCard = /^([0-9]){16}$/;
     const regexPhone = /^([0-9]){8}$/;

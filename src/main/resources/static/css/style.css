@@ -170,6 +170,12 @@ footer p {
     user-select: none;
 }
 
+.button:disabled {
+    pointer-events: none;
+    background-color: gray;
+    color: lightgray;
+}
+
 .button:hover {
     color: var(---fourthText);
     transform: scale(var(---transform-scale-small));
