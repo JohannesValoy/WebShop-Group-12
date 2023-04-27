@@ -89,9 +89,13 @@ h1, h2, h3, h4, p {
 
 .ghostHeader {
     user-select: none;
-    display: flex;
     background-color: transparent;
     padding: 1rem;
+}
+
+.ghostHeader h1 {
+    color: transparent;
+    text-shadow: none;
 }
 
 .header .navbar {
