@@ -177,6 +177,7 @@
 
     .progressbar {
         width: 80%;
+        min-width: -moz-fit-content;
         min-width: fit-content;
     }
 
