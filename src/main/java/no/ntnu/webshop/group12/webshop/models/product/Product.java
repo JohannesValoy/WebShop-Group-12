@@ -1,6 +1,7 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -129,10 +130,6 @@ public class Product {
         this.image = image;
     }
 
-    public String getImageWebp256() {
-        return imageWebp256;
-    }
-
     public String getImageWebp512() {
         return imageWebp512;
     }
@@ -147,7 +144,6 @@ public class Product {
 
     public void setImageAll(String name) {
         this.image = name + ".webp";
-        this.imageWebp256 = name + "-256w.webp";
         this.imageWebp512 = name + "-512w.webp";
         this.imageWebp1024 = name + "-1024w.webp";
         this.imageWebp2048 = name + "-2048w.webp";
