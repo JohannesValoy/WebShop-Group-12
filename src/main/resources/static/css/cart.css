@@ -94,7 +94,7 @@
     user-select: none;
 }
 
-.product-img {
+.div-row img {
     max-height: 20rem;
     border-radius: var(---border-radius);
 }
@@ -189,7 +189,7 @@
         gap: 1rem;
     }
 
-    .product-img {
+    .div-row img{
         max-height: 10rem;
     }
 

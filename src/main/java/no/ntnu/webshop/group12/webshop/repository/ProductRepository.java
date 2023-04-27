@@ -6,7 +6,6 @@ import no.ntnu.webshop.group12.webshop.models.product.Category;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -40,5 +39,6 @@ public interface ProductRepository
                 bindings.excluding(root.description);
                 bindings.excluding(root.stock);
                 bindings.excluding(root.image);
+
         }
 }

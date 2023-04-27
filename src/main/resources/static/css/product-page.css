@@ -71,7 +71,7 @@
     justify-content: space-around;
 }
 
-.product-image{
+.product-intro img{
     max-width: 30rem;
     border-radius: var(---border-radius);
 }
@@ -82,7 +82,7 @@
 
 @media (max-width: 1024px) {
 
-    .product-image{
+    .product-intro img{
         max-width: 25rem;
     }
 

@@ -1,12 +1,9 @@
 <section class="product-category-card">
   <div class="card-container" >
     <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
-      <picture>
-        <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-        <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-        <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-        <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
-      </picture>
+      <th:block th:if="${product?.image != null} ">
+        <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+      </th:block>
       <div class="card-layer">
         <h3 th:text="${product.name}"></h3>
         <p class="description" th:text="${product.description.length() > 170 ? product.description.substring(0, 170) + '...' : product.description}"></p>
