@@ -205,13 +205,15 @@ footer p {
     -webkit-user-select: none;
     user-select: none;
     min-width: 2rem;
+    width: 2rem;
+    height: 2rem;
     min-height: 1rem;
 }
 
 .boring-button:disabled {
     pointer-events: none;
     background-color: var(---thirdBackground);
-    color: var(---secondBackground);
+    color: var(---secondText);
     cursor: pointer;
 }
 
