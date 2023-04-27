@@ -44,7 +44,7 @@ public class Product {
 
 
     @Positive
-    private double price;
+    private int price;
 
     @PositiveOrZero
     private int stock;
@@ -52,14 +52,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, double price, int stock) {
+    public Product(String name, String description, int price, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
     }
 
-    public Product(String name, String description, double price, int stock, String image) {
+    public Product(String name, String description, int price, int stock, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -103,11 +103,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

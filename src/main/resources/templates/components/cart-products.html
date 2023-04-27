@@ -28,11 +28,11 @@
                 </div>
                 <div class="div-column">
                 <p>Price per Item</p>
-                <span th:text="${quantity.product.price}"></span>
+                <p><span th:text="${quantity.product.price}"></span> kr</p>
                 </div>
                 <div class="div-column">
                 <p>Total product price</p>
-                <p th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></p>
+                <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
                 </div>
             </div>
             <div class="div-column">
