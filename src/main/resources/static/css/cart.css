@@ -112,6 +112,10 @@
     cursor: pointer;
 }
 
+.decrease svg, .increase svg {
+    min-width: 1rem;
+}
+
 .delete {
     color: red;
 }
