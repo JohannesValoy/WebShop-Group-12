@@ -37,7 +37,6 @@ public class CartService {
     }
 
     public Product removeProductFromCart(int productId) {
-        Product returnProduct = null;
         Cart cart = getCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
@@ -45,37 +44,33 @@ public class CartService {
             cart.removeProduct(q);
             quantityRepository.delete(q);
             cartRepository.save(cart);
-            returnProduct = product;
         }
-        return returnProduct;
+        return q.getProduct();
     }
 
-    public Product updateProductQuantity(int productId, int quantity) {
-        Product returnProduct = null;
+    public Quantity updateProductQuantity(int productId, int quantity) {
+        Quantity returnQuantity = null;
         if (quantity <= 0) {
-            return removeProductFromCart(productId);
+            return new Quantity(removeProductFromCart(productId), 0);
         } else {
             return setProductQuantity(productId, quantity);
         }
     }
 
-    private Product setProductQuantity(int productId, int quantity) {
-        Product returnProduct = null;
+    private Quantity setProductQuantity(int productId, int quantity) {
         Cart cart = getCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             q.setAmount(quantity);
             quantityRepository.save(q);
-            returnProduct = product;
         } else {
             q = new Quantity(product, quantity);
             cart.addProduct(q);
             quantityRepository.save(q);
             cartRepository.save(cart);
-            returnProduct = product;
         }
-        return returnProduct;
+        return q;
     }
 
     /**
