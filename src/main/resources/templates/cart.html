@@ -37,31 +37,31 @@
                 <p id="p-address" hidden>Invalid address, needs to be 2 or more characters and only contain letters and numbers</p>
                 <p id="p-cardNumber" hidden>Invalid card number, needs to be 16 characters and can only contain numbers</p>
                 <p id="p-phone" hidden>Invalid phone number, needs to be 8 characters and can only contain numbers</p>
-                <p id="p-coupon" hidden>Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers</p>
+                <p id="p-cvc" hidden>Invalid CVC, needs to be 3 characters and can only contain numbers</p>
                 <div class="details-filling-form">
                     <div class="div-column">
                         <label for="name" class="input-field-label">Name</label>
-                        <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" placeholder="Name" required>
+                        <input class="input-field" id="name" maxlength="100" onchange="checkInfo()" type="text" name="username" placeholder="Name" required>
                     </div>
                     <div class="div-column">
                         <label for="surname" class="input-field-label">Last Name</label>
-                        <input class="input-field" id="surname" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
+                        <input class="input-field" id="surname" maxlength="100" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
                     </div>
                     <div class="div-column">
                         <label class="input-field-label" for="address">Address</label>
-                        <input class="input-field" id="address" onchange="checkInfo()" type="text" name="username" placeholder="Address" required>
+                        <input class="input-field" id="address" maxlength="100" onchange="checkInfo()" type="text" name="username" placeholder="Address" required>
                     </div>
                     <div class="div-column">
                         <label class="input-field-label" for="cardNumber">Card Number</label>
-                        <input class="input-field" id="cardNumber" onchange="checkInfo()" type="text" name="username" placeholder="Card Number" required>
+                        <input class="input-field" id="cardNumber" maxlength="16" onchange="checkInfo()" type="text" name="username" placeholder="Card Number" required>
                     </div>
                     <div class="div-column">
                         <label class="input-field-label" for="phone">Phone Number</label>
-                        <input class="input-field" id="phone" placeholder="Phone Number" type="text" onchange="checkInfo()" required>
+                        <input class="input-field" id="phone" maxlength="8" placeholder="Phone Number" type="text" onchange="checkInfo()" required>
                     </div>
                     <div class="div-column">
-                        <label class="input-field-label" for="coupon">Coupon Code</label>
-                        <input class="input-field" id="coupon" placeholder="Coupon Code" type="text" onchange="checkInfo()" required>
+                        <label class="input-field-label" for="cvc">CVC</label>
+                        <input class="input-field" id="cvc" maxlength="3" placeholder="CVC" type="text" onchange="checkInfo()" required>
                     </div>
                 </div>
                 <button class="button" type="submit" id="completeOrder"  disabled>Complete order</button>

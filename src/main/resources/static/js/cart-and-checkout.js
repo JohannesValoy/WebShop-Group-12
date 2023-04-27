@@ -101,7 +101,7 @@ const surname = document.getElementById("surname");
 const address = document.getElementById("address");
 const cardNumber = document.getElementById("cardNumber");
 const phone = document.getElementById("phone");
-const coupon = document.getElementById("coupon");
+const cvc = document.getElementById("cvc");
 const submitButton = document.getElementById("completeOrder");
 
 function checkInfo() {
@@ -109,6 +109,7 @@ function checkInfo() {
     const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
     const regexCard = /^([0-9]){16}$/;
     const regexPhone = /^([0-9]){8}$/;
+    const regexCVC = /^([0-9 ,]){3}$/;
 
     if (!regexName.test(name.value) && name.value !== "") {
         document.getElementById("p-name").removeAttribute("hidden");
@@ -140,18 +141,18 @@ function checkInfo() {
     } else {
         document.getElementById("p-phone").setAttribute("hidden", "hidden");
         phone.classList.remove("mismatch");
-    } if (!regexFull.test(coupon.value) && coupon.value !== "") {
-        document.getElementById("p-coupon").removeAttribute("hidden");
-        coupon.classList.add("mismatch");
+    } if (!regexCVC.test(cvc.value) && cvc.value !== "") {
+        document.getElementById("p-cvc").removeAttribute("hidden");
+        cvc.classList.add("mismatch");
     } else {
-        document.getElementById("p-coupon").setAttribute("hidden", "hidden");
-        coupon.classList.remove("mismatch");
+        document.getElementById("p-cvc").setAttribute("hidden", "hidden");
+        cvc.classList.remove("mismatch");
     } submitButton.disabled = !(regexName.test(name.value) &&
         regexName.test(surname.value) &&
         regexFull.test(address.value) &&
         regexCard.test(cardNumber.value) &&
         regexPhone.test(phone.value) &&
-        regexFull.test(coupon.value));
+        regexCVC.test(cvc.value));
 }
 
 name.addEventListener("keyup", checkInfo);
@@ -159,4 +160,4 @@ surname.addEventListener("keyup", checkInfo);
 address.addEventListener("keyup", checkInfo);
 cardNumber.addEventListener("keyup", checkInfo);
 phone.addEventListener("keyup", checkInfo);
-coupon.addEventListener("keyup", checkInfo);
+cvc.addEventListener("keyup", checkInfo);
