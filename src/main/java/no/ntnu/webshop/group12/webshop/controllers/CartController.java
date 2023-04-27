@@ -25,7 +25,7 @@ public class CartController {
         return cartService.removeProductFromCart(id);
     }
 
-    @PatchMapping("product/{id}/quantity/{quantity}")
+    @PatchMapping("/product/{id}/quantity/{quantity}")
     public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
         return cartService.updateProductQuantity(id, quantity);
     }
