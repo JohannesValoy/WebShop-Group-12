@@ -5,9 +5,6 @@ const checkoutBtn = document.querySelector(".checkout-button");
 const checkoutBar= document.querySelector(".checkout-bar");
 const checkoutSection = document.querySelector(".checkout-section");
 const backToCartBtn = document.getElementById("back-to-cart");
-const completeOrderBtn= document.getElementById("completeOrder");
-const completeBar= document.querySelector(".complete-bar");
-const completeSection = document.querySelector(".complete-section");
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 
 // If cart is empty, hide checkout button and change cart title
@@ -87,14 +84,12 @@ removeFromCartBtn.forEach(button => {
     });
 });
 
-// Changes active section in cart to checkout
+// Changes active section in cart to check out
 checkoutBtn.addEventListener("click", () => {
     checkoutSection.classList.add("active");
     checkoutBar.classList.add("active");
     cartBar.classList.remove("active");
     cartSection.classList.remove("active");
-    completeBar.classList.remove("active");
-    completeSection.classList.remove("active");
 });
 
 // Changes active section in cart to cart
@@ -103,18 +98,6 @@ backToCartBtn.addEventListener("click", () => {
     cartSection.classList.add("active");
     checkoutSection.classList.remove("active");
     checkoutBar.classList.remove("active");
-    completeBar.classList.remove("active");
-    completeSection.classList.remove("active");
-});
-
-// Changes active section in cart to purchase complete
-completeOrderBtn.addEventListener("click", () => {
-    completeSection.classList.add("active");
-    completeBar.classList.add("active");
-    cartBar.classList.remove("active");
-    cartSection.classList.remove("active");
-    checkoutBar.classList.remove("active");
-    checkoutSection.classList.remove("active");
 });
 
 // Path: src\main\resources\static\js\checkout.js
@@ -142,31 +125,36 @@ function checkInfo() {
     } else {
         document.getElementById("p-name").setAttribute("hidden", "hidden");
         name.classList.remove("mismatch");
-    } if (!regexName.test(surname.value) && surname.value !== "") {
+    }
+    if (!regexName.test(surname.value) && surname.value !== "") {
         document.getElementById("p-surname").removeAttribute("hidden");
         surname.classList.add("mismatch");
     } else {
         document.getElementById("p-surname").setAttribute("hidden", "hidden");
         surname.classList.remove("mismatch");
-    } if (!regexAddress.test(address.value) && address.value !== "") {
+    }
+    if (!regexAddress.test(address.value) && address.value !== "") {
         document.getElementById("p-address").removeAttribute("hidden");
         address.classList.add("mismatch");
     } else {
         document.getElementById("p-address").setAttribute("hidden", "hidden");
         address.classList.remove("mismatch");
-    } if (!regexCard.test(cardNumber.value) && cardNumber.value !== "") {
+    }
+    if (!regexCard.test(cardNumber.value) && cardNumber.value !== "") {
         document.getElementById("p-cardNumber").removeAttribute("hidden");
         cardNumber.classList.add("mismatch");
     } else {
         document.getElementById("p-cardNumber").setAttribute("hidden", "hidden");
         cardNumber.classList.remove("mismatch");
-    } if (!regexPhone.test(phone.value) && phone.value !== "") {
+    }
+    if (!regexPhone.test(phone.value) && phone.value !== "") {
         document.getElementById("p-phone").removeAttribute("hidden");
         phone.classList.add("mismatch");
     } else {
         document.getElementById("p-phone").setAttribute("hidden", "hidden");
         phone.classList.remove("mismatch");
-    } if (!regexCVC.test(cvc.value) && cvc.value !== "") {
+    }
+    if (!regexCVC.test(cvc.value) && cvc.value !== "") {
         document.getElementById("p-cvc").removeAttribute("hidden");
         cvc.classList.add("mismatch");
     } else {
