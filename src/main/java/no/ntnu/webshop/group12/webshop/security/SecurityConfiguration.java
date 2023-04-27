@@ -57,6 +57,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/product/**").permitAll()
                 .requestMatchers("/category/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/register").permitAll()
                 .requestMatchers("/", "/about").permitAll()
 
                 .and().formLogin().loginPage("/login").permitAll()
