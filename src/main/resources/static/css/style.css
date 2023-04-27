@@ -200,8 +200,8 @@ footer p {
 
 @media (max-width: 512px) {
 
-    * {
-        ---transform-scale: 1;
+    .button:hover {
+        transform: none;
+        color: var(---mainText);
     }
-
 }
