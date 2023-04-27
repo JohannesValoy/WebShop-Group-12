@@ -42,13 +42,26 @@ function changeCartAmount(id, amount) {
             .then(response => {
                 if (response.ok) {
                     response.json().then( data => {
+                        if (Number(data.amount) > 0) {
                         document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
                         document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
+                        } else {
+                            removeProductFromCart(id);
+                        }
                     });
                 } else {
                     throw new Error("Something went wrong");
                 }
             });
+}
+
+function removeProductFromCart(productId) {
+    document.querySelector(`[product-id="${productId}"]`).remove();
+    let cart = document.querySelector(".cart");
+    if(cart.getAttribute(".cart-grid") == undefined || cart.getAttribute(".cart-grid").getChildCount() == 0) {
+        document.getElementById("cart-title").innerHTML = "Your cart is empty";
+        checkoutBtn.setAttribute("hidden", "hidden");
+    }
 }
 
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
@@ -58,7 +71,7 @@ removeFromCartBtn.forEach(button => {
         fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
-                    document.querySelector(`[product-id="${productId}"]`).remove();
+                    removeProductFromCart(productId);
                 }
             });
     });
@@ -89,6 +102,7 @@ const cardNumber = document.getElementById("cardNumber");
 const phone = document.getElementById("phone");
 const coupon = document.getElementById("coupon");
 const submitButton = document.getElementById("completeOrder");
+
 function checkInfo() {
     const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
     const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
