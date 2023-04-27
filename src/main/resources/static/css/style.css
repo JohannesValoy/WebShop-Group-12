@@ -172,7 +172,7 @@ footer p {
 /*universal for sections end*/
 
 /*universal for buttons*/
-.button {
+.focus-button {
     align-self: center;
     border-radius: var(---border-radius-small);
     background-color: var(---fourthBackground);
@@ -183,16 +183,40 @@ footer p {
     user-select: none;
 }
 
-.button:disabled {
+.focus-button:disabled {
     pointer-events: none;
     background-color: gray;
     color: lightgray;
 }
 
-.button:hover {
+.focus-button:hover {
     color: var(---fourthText);
     transform: scale(var(---transform-scale-small));
     cursor: pointer;
+}
+
+.boring-button {
+    align-self: center;
+    border-radius: var(---border-radius-small);
+    background-color: var(---secondBackground);
+    transition: var(---transition-time);
+    color: var(---mainText);
+    padding: 1em;
+    -webkit-user-select: none;
+    user-select: none;
+    min-width: 5rem;
+    min-height: 3rem;
+}
+
+.boring-button:disabled {
+    pointer-events: none;
+    background-color: var(---thirdBackground);
+    color: var(---secondBackground);
+    cursor: pointer;
+}
+
+.boring-button:hover {
+    color: var(---mainBackground);
 }
 
 /*universal for buttons end*/
@@ -217,7 +241,7 @@ footer p {
 @media (max-width: 512px) {
 
     /*removes hover effect on mobile*/
-    .button:hover {
+    .focus-button:hover, .boring-button:hover {
         transform: none;
         color: var(---mainText);
     }

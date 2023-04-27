@@ -24,21 +24,6 @@
     width: 100%;
 }
 
-.specs-button, .rating-button, .about-button {
-    border-radius: var(---border-radius-small);
-    background-color: var(---secondBackground);
-    color: white;
-    padding: 1em;
-    margin: 1em;
-    transition: var(---transition-time);
-}
-
-.specs-button:hover, .rating-button:hover, .about-button:hover {
-    background-color: var(---fourthBackground);
-    color: var(---fourthText);
-    cursor: pointer;
-}
-
 .specs-rating-about-buttons{
     display: flex;
     flex-direction: row;
