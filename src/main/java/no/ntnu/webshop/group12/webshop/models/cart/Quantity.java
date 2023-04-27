@@ -52,8 +52,8 @@ public class Quantity {
         return amount;
     }
 
-    public int setAmount(int amount) {
-        return this.amount = amount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void addAmount(int amount) {

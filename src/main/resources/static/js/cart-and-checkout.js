@@ -65,7 +65,7 @@ function removeProductFromCart(productId) {
     document.querySelector(`[product-id="${productId}"]`).remove();
     let cart = document.querySelector(".cart");
     let products = cart.getElementsByClassName("cart-grid");
-    if(products.length == 0) {
+    if(products.length === 0) {
         document.getElementById("cart-title").innerHTML = "Your cart is empty";
         checkoutBtn.setAttribute("hidden", "hidden");
     }

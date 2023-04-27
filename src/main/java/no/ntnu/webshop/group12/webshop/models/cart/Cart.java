@@ -40,9 +40,7 @@ public class Cart {
     public Cart(Cart cart) {
         this();
         this.user = cart.getUser();
-        cart.getProducts().iterator().forEachRemaining((quantity) -> {
-            this.addProduct(new Quantity(quantity));
-        });
+        cart.getProducts().iterator().forEachRemaining(quantity -> this.addProduct(new Quantity(quantity)));
     }
 
     public int getId() {
@@ -74,12 +72,9 @@ public class Cart {
     }
 
     public Quantity getQuantity(Product product) {
-        Optional<Quantity> quantity = products.stream().filter((q) -> (q.getProduct().getId() == product.getId()))
+        Optional<Quantity> quantity = products.stream().filter(q -> (q.getProduct().getId() == product.getId()))
                 .findFirst();
-        if (quantity.isPresent()) {
-            return quantity.get();
-        }
-        return null;
+        return quantity.orElse(null);
     }
 
 }
