@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import no.ntnu.webshop.group12.webshop.models.Purchase;
 import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
@@ -92,9 +93,10 @@ public class CartService {
         return cart;
     }
 
-    public void confirmCart(CartPurchase cartPurchase) {
+    public Purchase confirmCart(CartPurchase cartPurchase) {
         Cart cart = getCart();
         cartRepository.delete(cart);
+        return new Purchase(cart);
     }
 
     public Set<Quantity> getCurrentUserProducts() {

@@ -104,8 +104,9 @@ public class PageController {
         if (userService.getSessionUser() == null) {
             return "redirect:/login";
         }
-        cartService.confirmCart(body);
+
         model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("purchase", cartService.confirmCart(body));
         return "purchase-confirmed";
     }
 
