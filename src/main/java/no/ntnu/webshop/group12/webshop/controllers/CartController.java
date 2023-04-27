@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @RestController
 @RequestMapping("/api/cart")
+@Tag(name = "Cart", description = "The cart API")
 public class CartController {
 
     @Autowired
