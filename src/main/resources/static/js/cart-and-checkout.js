@@ -23,40 +23,33 @@ const increaseBtn = document.querySelectorAll(".increase");
 
 decreaseBtn.forEach(button => {
     button.addEventListener("click", () => {
-        const productId = button.getAttribute('data-product');
-        const quantity = button.getAttribute('data-quantity');
-        const price = button.getAttribute('data-price');
-        fetch(`/api/cart/product/${productId}/quantity/${Number(quantity)-1}`, { method: 'PATCH' })
-            .then(response => {
-                if (response.ok) {
-                    document.querySelector(`[quantity="${Number(quantity)-1}`);
-                }
-            })
-        .then(data => {
-            document.getElementById("amount").innerHTML = quantity;
-
-        });
+        const productId = Number(button.getAttribute('data-product'));
+        let quantity = Number(document.getElementById("amount-".concat(productId)).innerText);
+        changeCartAmount(productId, (quantity - 1));
     });
 });
 
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
-        const productId = button.getAttribute('data-product-id');
-        let quantity = button.getAttribute('data-quantity');
-        const price = button.getAttribute('data-price');
-        fetch(`/api/cart/product/${Number(productId)}/quantity/${Number(quantity)+1}`, { method: 'PATCH' })
-            .then(response => {
-                if (response.ok) {
-                    quantity="${Number(quantity)+1}".toString();
-                }
-            })
-            .then(data => {
-                document.getElementById("amount").innerHTML = quantity;
-                document.getElementById("total").innerHTML = Number(price * quantity).toString();
-            });
+        const productId = Number(button.getAttribute('data-product'));
+        let quantity =Number(document.getElementById("amount-".concat(productId)).innerText);
+        changeCartAmount(productId, quantity+1);
     });
 });
 
+function changeCartAmount(id, amount) {
+    fetch(`/api/cart/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then( data => {
+                        document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
+                        document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
+                    });
+                } else {
+                    throw new Error("Something went wrong");
+                }
+            });
+}
 
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 removeFromCartBtn.forEach(button => {

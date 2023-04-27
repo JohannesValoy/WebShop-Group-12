@@ -21,9 +21,9 @@
                 <div class="div-column">
                 <p>Amount Ordered</p>
                 <div class="div-row">
-                    <button class="decrease" th:data-product="${quantity.product.id}" th:data-quantity="${quantity.getAmount()}" th:data-price="${quantity.product.price}">-</button>
-                    <p id="amount" th:text="${quantity.getAmount()}"></p>
-                    <button class="increase" th:data-product="${quantity.product.id}" th:data-quantity="${quantity.getAmount()}" th:data-price="${quantity.product.price}">+</button>
+                    <button class="decrease" th:data-product="${quantity.product.id}">-</button>
+                    <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
+                    <button class="increase" th:data-product="${quantity.product.id}">+</button>
                 </div>
                 </div>
                 <div class="div-column">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="div-column">
                 <p>Total product price</p>
-                <p id="totalPrice" th:text="${quantity.product.price * quantity.getAmount()}"></p>
+                <p th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></p>
                 </div>
             </div>
             <div class="div-column">
