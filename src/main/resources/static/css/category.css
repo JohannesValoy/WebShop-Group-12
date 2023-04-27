@@ -51,7 +51,7 @@
 
 .card-box img {
     max-height: 15rem;
-    border-radius: 2rem;
+    border-radius: var(---border-radius);
     overflow: hidden;
 }
 

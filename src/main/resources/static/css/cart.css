@@ -1,28 +1,27 @@
 /*Cart*/
 .progressbar {
-    align-self: center;
     justify-self: start;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     margin: 3rem;
-    border-radius: 1rem;
     background-color: var(---secondBackground);
     width: 50%;
+    -webkit-user-select: none;
     user-select: none;
 }
 
-.progressbar p{
+.progressbar, .progressbar p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-radius: var(---border-radius-small);
+    transition: var(---transition-time);
+}
+
+.progressbar p{
     justify-content: center;
     padding: 1rem 2rem;
     width: 3rem;
-    border-radius: 0.75rem;
     background-color: rgb(0, 0, 0, 0);
-    transition: var(---transition-time);
     text-shadow: none;
 }
 
@@ -91,18 +90,20 @@
 }
 
 .price p {
+    -webkit-user-select: none;
     user-select: none;
 }
 
 .product-img {
     max-height: 20rem;
-    border-radius: 1rem;
+    border-radius: var(---border-radius);
 }
 
 .decrease, .increase {
     color: var(---mainText);
     background-color: transparent;
     padding: 1%;
+    -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
 }
@@ -111,6 +112,7 @@
     color: red;
     background-color: transparent;
     padding: 1%;
+    -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
 }
@@ -131,20 +133,22 @@
 .input-field {
     border: 1px solid rgb(0, 0, 0, 0);
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(---border-radius-small);
     background-color: var(---secondBackground);
     transition: var(---transition-time);
+    -webkit-user-select: none;
     user-select: none;
 }
 
 .input-field:focus {
     background-color: black;
     cursor: pointer;
-    transform: scale(var(---transform-scale));
+    transform: scale(var(---transform-scale-small));
     border-color: var(---secondText);
 }
 
 .input-field-label {
+    -webkit-user-select: none;
     user-select: none;
 }
 
