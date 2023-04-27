@@ -2,7 +2,7 @@
 .progressbar {
     justify-content: space-around;
     background-color: var(---secondBackground);
-    width: 100%;
+    width: 50%;
     -webkit-user-select: none;
     user-select: none;
 }
@@ -173,6 +173,11 @@
 
     .details-filling-form {
         gap: 1rem;
+    }
+
+    .progressbar {
+        width: 80%;
+        min-width: fit-content;
     }
 
     .mobile {
