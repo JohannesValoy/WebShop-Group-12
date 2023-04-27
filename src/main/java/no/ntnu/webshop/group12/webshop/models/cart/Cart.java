@@ -40,9 +40,9 @@ public class Cart {
     public Cart(Cart cart) {
         this();
         this.user = cart.getUser();
-        for (Quantity quantity : cart.getProducts()) {
+        cart.getProducts().iterator().forEachRemaining((quantity) -> {
             this.addProduct(new Quantity(quantity));
-        }
+        });
     }
 
     public int getId() {
