@@ -221,4 +221,9 @@ footer p {
         transform: none;
         color: var(---mainText);
     }
+
+    main {
+        padding: 0;
+    }
+
 }
