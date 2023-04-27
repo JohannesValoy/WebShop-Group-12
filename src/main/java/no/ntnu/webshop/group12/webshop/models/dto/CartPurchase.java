@@ -42,12 +42,4 @@ public class CartPurchase {
         this.cardNumber = cardNumber;
     }
 
-    public String getCouponCode() {
-        return couponCode;
-    }
-
-    public void setCouponCode(String couponCode) {
-        this.couponCode = couponCode;
-    }
-
 }
