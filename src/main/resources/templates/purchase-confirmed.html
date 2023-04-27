@@ -30,7 +30,7 @@
         <h3>Your Purchases:</h3>
         <div class="cart-grid" th:each="quantity : ${purchase.products}">
           <div class="cart-product">
-            <div class="div-row">
+            <div class="div-row mobile">
               <a th:href="@{/product/{id} (id=${quantity.product.id})}">
                 <picture >
                   <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
