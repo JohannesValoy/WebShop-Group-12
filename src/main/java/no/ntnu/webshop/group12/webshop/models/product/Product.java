@@ -9,21 +9,24 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "products")
 @Schema(description = "A product in the webshop", name = "Product")
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -37,13 +40,8 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String image;
-
-    private String imageWebp512;
-
-    private String imageWebp1024;
-
-    private String imageWebp2048;
+    @ManyToOne
+    private WebpImage image;
 
     @Positive
     private int price;
@@ -61,7 +59,7 @@ public class Product {
         this.stock = stock;
     }
 
-    public Product(String name, String description, int price, int stock, String image) {
+    public Product(String name, String description, int price, int stock, WebpImage image) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -121,31 +119,16 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getImage() {
+    public WebpImage getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(WebpImage image) {
         this.image = image;
     }
 
-    public String getImageWebp512() {
-        return imageWebp512;
-    }
-
-    public String getImageWebp1024() {
-        return imageWebp1024;
-    }
-
-    public String getImageWebp2048() {
-        return imageWebp2048;
-    }
-
-    public void setImageAll(String name) {
-        this.image = name + ".webp";
-        this.imageWebp512 = name + "-512w.webp";
-        this.imageWebp1024 = name + "-1024w.webp";
-        this.imageWebp2048 = name + "-2048w.webp";
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -157,9 +140,7 @@ public class Product {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((image == null) ? 0 : image.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(price);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + price;
         result = prime * result + stock;
         return result;
     }
@@ -195,10 +176,11 @@ public class Product {
                 return false;
         } else if (!image.equals(other.image))
             return false;
-        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+        if (price != other.price)
             return false;
         if (stock != other.stock)
             return false;
         return true;
     }
+
 }

@@ -8,6 +8,7 @@
   <link rel="icon" th:href="@{~/images/logo.webp}">
   <!-- personal styles -->
   <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
   <link rel="stylesheet" th:href="@{~/css/category.css}"/>
 
 </head>
@@ -25,23 +26,10 @@
         </a>
       </div>
     </section>
-
     <section class="products">
       <h2 class="heading">Product list for <span th:text="${categoryName}"></span></h2>
-
-      <div class="card-container" >
-        <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
-          <picture>
-            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
-          </picture>
-            <div class="card-layer">
-            <h3 th:text="${product.name}"></h3>
-          </div>
-        </a>
-      </div>
+        <section th:replace="components/product-card">
+        </section>
     </section>
   </section>
 </main>

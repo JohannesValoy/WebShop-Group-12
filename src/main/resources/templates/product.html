@@ -17,12 +17,9 @@
     <main>
         <section class="sections">
             <section class="product-intro">
-                <picture>
-                    <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
-                    <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
-                    <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-                    <img class="product-image" th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
-                </picture>
+                <th:block th:if="${product?.image != null} ">
+                    <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+                  </th:block>
 
                 <section class="product-page-description">
                     <h2 th:text="${product.name}"></h2>
