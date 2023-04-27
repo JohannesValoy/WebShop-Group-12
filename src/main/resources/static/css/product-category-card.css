@@ -29,7 +29,7 @@
 /*The box around the product*/
 .card-container .card-box {
     position: relative;
-    border-radius: 2rem;
+    border-radius: var(---border-radius);
     overflow: hidden;
     box-shadow: 0 0 1rem black;
     display: flex;

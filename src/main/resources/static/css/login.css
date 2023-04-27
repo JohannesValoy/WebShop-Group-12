@@ -157,7 +157,7 @@ input:autofill {
     background: white;
     border: none;
     outline: none;
-    border-radius: 40px;
+    border-radius: var(---border-radius);
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
     cursor: pointer;
     font-size: 16px;

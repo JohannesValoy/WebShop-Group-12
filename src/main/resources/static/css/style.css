@@ -9,6 +9,9 @@
     ---fourthBackground: purple;
     ---transition-time: 0.5s;
     ---transform-scale: 1.1;
+    ---transform-scale-small: 1.2;
+    ---border-radius: 1.5rem;
+    ---border-radius-small: 0.5rem;
 
 }
 
@@ -74,6 +77,7 @@ h1, h2, h3, h4, p {
 
 /*navbar*/
 .header {
+    -webkit-user-select: none;
     user-select: none;
     display: flex;
     flex-flow: row wrap;
@@ -88,6 +92,7 @@ h1, h2, h3, h4, p {
 }
 
 .ghostHeader {
+    -webkit-user-select: none;
     user-select: none;
     background-color: transparent;
     padding: 1rem;
@@ -112,20 +117,14 @@ h1, h2, h3, h4, p {
 .search-bar .search {
     padding: 6px;
     border: 2px solid var(---mainText);
-    border-radius: 0.5rem;
+    border-radius: var(---border-radius-small);
     background-color: var(---thirdBackground);
-}
-
-.search-bar {
     transition: var(---transition-time);
 }
-
-.search-bar:hover {
-    transform: scale(var(---transform-scale));
-}
-
-.search-bar:focus {
-    transform: scale(var(---transform-scale));
+.search-bar .search:focus {
+    outline: none;
+    border: 2px solid var(---secondText);
+    transform: scale(var(---transform-scale-small));
 }
 
 .sections {
@@ -162,18 +161,19 @@ footer p {
 
 .button {
     align-self: center;
-    border-radius: 5px;
+    border-radius: var(---border-radius-small);
     background-color: var(---fourthBackground);
+    transition: var(---transition-time);
     color: var(---mainText);
     padding: 1em;
-    transition: var(---transition-time);
+    -webkit-user-select: none;
     user-select: none;
 }
 
 .button:hover {
     color: var(---fourthText);
+    transform: scale(var(---transform-scale-small));
     cursor: pointer;
-    transform: scale(var(---transform-scale));
 }
 
 @media (max-width: 1024px) {
