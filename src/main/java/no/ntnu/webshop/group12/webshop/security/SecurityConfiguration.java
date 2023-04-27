@@ -3,6 +3,7 @@ package no.ntnu.webshop.group12.webshop.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+
+    private static final String ADMIN = "ADMIN";
 
     @Autowired
     UserDetailsService userDetailService;
@@ -31,11 +34,27 @@ public class SecurityConfiguration {
         // to least restrictive on bottom
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/account").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/cart").hasAnyRole("USER", "ADMIN")
+                
+                // Admin endpoints
+                .requestMatchers("/admin/**").hasRole(ADMIN)
+
+                // API endpoints
                 .requestMatchers("/api/cart/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+
+                // Account endpoints
+                .requestMatchers("/account").hasAnyRole("USER", ADMIN)
+                .requestMatchers("/cart").hasAnyRole("USER", "ADMIN")
+
+                // All other endpoints
+                
+                .requestMatchers("/js/**").permitAll()
+                .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/images/**").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
