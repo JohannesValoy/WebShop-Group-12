@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import no.ntnu.webshop.group12.webshop.service.CartService;
+import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @RestController
@@ -23,7 +24,7 @@ public class CartController {
     }
 
     @PatchMapping("product/{id}/quantity/{quantity}")
-    public Product updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
+    public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
         return cartService.updateProductQuantity(id, quantity);
     }
 
