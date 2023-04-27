@@ -34,12 +34,12 @@ public class SecurityConfiguration {
         // to least restrictive on bottom
         http.csrf().disable()
                 .authorizeHttpRequests()
-                
+
                 // Admin endpoints
                 .requestMatchers("/admin/**").hasRole(ADMIN)
 
                 // API endpoints
-                .requestMatchers("/api/cart/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/api/cart/**").hasAnyRole("USER", ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
@@ -48,13 +48,16 @@ public class SecurityConfiguration {
 
                 // Account endpoints
                 .requestMatchers("/account").hasAnyRole("USER", ADMIN)
-                .requestMatchers("/cart").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/cart", "/cart/**").hasAnyRole("USER", ADMIN)
 
-                // All other endpoints
-                
+                // Website endpoints
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/images/**").permitAll()
+                .requestMatchers("/product/**").permitAll()
+                .requestMatchers("/category/**").permitAll()
+                .requestMatchers("/", "/about").permitAll()
+
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
