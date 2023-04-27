@@ -112,7 +112,7 @@
     cursor: pointer;
 }
 
-.decrease svg, .increase svg {
+svg {
     min-width: 1rem;
 }
 

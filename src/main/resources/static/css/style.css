@@ -204,8 +204,8 @@ footer p {
     padding: 1em;
     -webkit-user-select: none;
     user-select: none;
-    min-width: 5rem;
-    min-height: 3rem;
+    min-width: 2rem;
+    min-height: 1rem;
 }
 
 .boring-button:disabled {
