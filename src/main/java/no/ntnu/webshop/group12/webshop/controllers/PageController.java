@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import no.ntnu.webshop.group12.webshop.models.User;
+import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
@@ -98,12 +99,12 @@ public class PageController {
         return "redirect:/cart";
     }
 
-    @GetMapping("/cart/confirm")
-    public String confirmCart(Model model) {
+    @PostMapping("/cart/confirm")
+    public String confirmCart(Model model, @ModelAttribute CartPurchase body) {
         if (userService.getSessionUser() == null) {
             return "redirect:/login";
         }
-        cartService.confirmCart();
+        cartService.confirmCart(body);
         model.addAttribute("user", userService.getSessionUser());
         return "purchase-confirmed";
     }
