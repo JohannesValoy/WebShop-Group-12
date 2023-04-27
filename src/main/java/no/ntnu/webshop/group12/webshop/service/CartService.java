@@ -95,8 +95,9 @@ public class CartService {
 
     public Purchase confirmCart(CartPurchase cartPurchase) {
         Cart cart = getCart();
+        Purchase purchase = new Purchase(cart);
         cartRepository.delete(cart);
-        return new Purchase(cart);
+        return purchase;
     }
 
     public Set<Quantity> getCurrentUserProducts() {
