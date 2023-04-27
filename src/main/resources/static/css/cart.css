@@ -172,17 +172,13 @@
 
     .progressbar {
         width: 80%;
+        min-width: -moz-fit-content;
         min-width: fit-content;
     }
 
     .progress-bubble1, .progress-bubble2, .progress-bubble3 {
         padding: 1rem 1.5rem;
         width: 2rem;
-    }
-
-    .input-field {
-        padding: 0.5rem;
-        width: 7rem;
     }
 
     .details-filling-form {
@@ -197,6 +193,8 @@
         max-width: 10rem;
         max-height: 10rem;
     }
+
+
 }
 
 
