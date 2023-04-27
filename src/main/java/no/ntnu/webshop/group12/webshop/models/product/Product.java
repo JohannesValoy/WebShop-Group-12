@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -37,8 +38,6 @@ public class Product {
     private String description;
 
     private String image;
-
-    private String imageWebp256;
 
     private String imageWebp512;
 
@@ -148,6 +147,7 @@ public class Product {
         this.imageWebp1024 = name + "-1024w.webp";
         this.imageWebp2048 = name + "-2048w.webp";
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
