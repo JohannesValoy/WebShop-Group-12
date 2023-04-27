@@ -3,7 +3,7 @@
     <h3 id="cart-title"></h3>
     <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
         <div class="cart-product">
-            <div class="div-row">
+            <div class="div-row mobile">
                 <a th:href="@{/product/{id} (id=${quantity.product.id})}">
                 <picture >
                     <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">

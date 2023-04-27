@@ -106,6 +106,8 @@ h1, h2, h3, h4, p {
 .header .navbar {
     margin-bottom: 0.5em;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
 }
 
