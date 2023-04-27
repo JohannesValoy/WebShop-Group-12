@@ -18,26 +18,32 @@
                 </div>
             </div>
             <div class="div-row price">
+
+                <section class="div-row">
                 <div class="div-column">
-                <p>Amount Ordered</p>
-                <div class="div-row">
-                    <button class="decrease" th:data-product="${quantity.product.id}" th:disabled="${quantity.getAmount() <= 1} ?: 'disabled'">-</button>
-                    <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
-                    <button class="increase" th:data-product="${quantity.product.id}">+</button>
+                    <p>Price per Item</p>
+                    <p><span th:text="${quantity.product.price}"></span> kr</p>
                 </div>
-                </div>
+
                 <div class="div-column">
-                <p>Price per Item</p>
-                <p><span th:text="${quantity.product.price}"></span> kr</p>
+                    <p>Total product price</p>
+                    <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
                 </div>
+                </section>
+
                 <div class="div-column">
-                <p>Total product price</p>
-                <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
+                    <p>Amount Ordered</p>
+
+                    <div class="div-row">
+                        <button class="decrease boring-button" th:data-product="${quantity.product.id}" th:disabled="${quantity.getAmount() <= 1} ?: 'disabled'">-</button>
+                        <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
+                        <button class="increase boring-button" th:data-product="${quantity.product.id}">+</button>
+                    </div>
                 </div>
             </div>
             <div class="div-column">
                 <p>Delete</p>
-                <button class="delete remove-from-cart" th:data-product-id="${quantity.product.id}">X</button>
+                <button class="delete remove-from-cart boring-button" th:data-product-id="${quantity.product.id}">X</button>
             </div>
         </div>
     </div>
