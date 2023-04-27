@@ -4,24 +4,26 @@
     <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
         <div class="cart-product">
             <div class="div-row">
+                <a th:href="@{/product/{id} (id=${quantity.product.id})}">
                 <picture >
                     <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
                     <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
                     <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
                     <img class="product-img" th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
                 </picture>
+                </a>
                 <div class="div-product-info">
                     <h4 th:text="${quantity.product.name}"></h4>
                     <p class="description" th:text="${quantity.product.description}"></p>
                 </div>
             </div>
-            <div class="div-row">
+            <div class="div-row price">
                 <div class="div-column">
                 <p>Amount Ordered</p>
                 <div class="div-row">
-                    <button class="minus" th:data-product-id="${quantity.product.id}" th:data-amount="${quantity.getAmount()}" th:data-action="decrease">-</button>
-                    <span th:text="${quantity.getAmount()}"></span>
-                    <button class="plus" th:data-product-id="${quantity.product.id}" th:data-amount="${quantity.getAmount()}" th:data-action="increase">+</button>
+                    <button class="decrease" th:data-product="${quantity.product.id}" th:data-quantity="${quantity.getAmount()}" th:data-price="${quantity.product.price}">-</button>
+                    <p id="amount" th:text="${quantity.getAmount()}"></p>
+                    <button class="increase" th:data-product="${quantity.product.id}" th:data-quantity="${quantity.getAmount()}" th:data-price="${quantity.product.price}">+</button>
                 </div>
                 </div>
                 <div class="div-column">
@@ -30,7 +32,7 @@
                 </div>
                 <div class="div-column">
                 <p>Total product price</p>
-                <p th:text="${quantity.product.price * quantity.getAmount()}"></p>
+                <p id="totalPrice" th:text="${quantity.product.price * quantity.getAmount()}"></p>
                 </div>
             </div>
             <div class="div-column">

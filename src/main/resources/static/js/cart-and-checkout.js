@@ -17,6 +17,47 @@ if (document.querySelector(".cart").children.length > 1) {
     checkoutBtn.setAttribute("hidden", "hidden");
 }
 
+const decreaseBtn = document.querySelectorAll(".decrease");
+const increaseBtn = document.querySelectorAll(".increase");
+
+
+decreaseBtn.forEach(button => {
+    button.addEventListener("click", () => {
+        const productId = button.getAttribute('data-product');
+        const quantity = button.getAttribute('data-quantity');
+        const price = button.getAttribute('data-price');
+        fetch(`/api/cart/product/${productId}/quantity/${Number(quantity)-1}`, { method: 'PATCH' })
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector(`[quantity="${Number(quantity)-1}`);
+                }
+            })
+        .then(data => {
+            document.getElementById("amount").innerHTML = quantity;
+
+        });
+    });
+});
+
+increaseBtn.forEach(button => {
+    button.addEventListener("click", () => {
+        const productId = button.getAttribute('data-product-id');
+        let quantity = button.getAttribute('data-quantity');
+        const price = button.getAttribute('data-price');
+        fetch(`/api/cart/product/${Number(productId)}/quantity/${Number(quantity)+1}`, { method: 'PATCH' })
+            .then(response => {
+                if (response.ok) {
+                    quantity="${Number(quantity)+1}".toString();
+                }
+            })
+            .then(data => {
+                document.getElementById("amount").innerHTML = quantity;
+                document.getElementById("total").innerHTML = Number(price * quantity).toString();
+            });
+    });
+});
+
+
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {

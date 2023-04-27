@@ -90,12 +90,16 @@
     color: var(---secondText);
 }
 
+.price p {
+    user-select: none;
+}
+
 .product-img {
     max-height: 20rem;
     border-radius: 1rem;
 }
 
-.minus, .plus {
+.decrease, .increase {
     color: var(---mainText);
     background-color: transparent;
     padding: 1%;
