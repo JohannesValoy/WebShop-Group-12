@@ -98,6 +98,10 @@
      align-items: center;
  }
 
+ .price p {
+     user-select: none;
+ }
+
 .div-row img {
     max-height: 20rem;
     border-radius: var(---border-radius);
