@@ -24,16 +24,22 @@ const increaseBtn = document.querySelectorAll(".increase");
 decreaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
-        let quantity = Number(document.getElementById("amount-".concat(productId)).innerText);
-        changeCartAmount(productId, (quantity - 1));
+        let quantity = Number(document.getElementById("amount-".concat(productId)).innerText) - 1;
+        changeCartAmount(productId, quantity);
+        if (quantity <= 1) {
+            button.setAttribute("disabled", "disabled");   
+        }
     });
 });
 
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
-        let quantity =Number(document.getElementById("amount-".concat(productId)).innerText);
-        changeCartAmount(productId, quantity+1);
+        let quantity =Number(document.getElementById("amount-".concat(productId)).innerText)+1;
+        changeCartAmount(productId, quantity);
+        if (quantity > 1) {
+            document.querySelector(`[data-product="${productId}"].decrease`).removeAttribute("disabled");
+        }
     });
 });
 

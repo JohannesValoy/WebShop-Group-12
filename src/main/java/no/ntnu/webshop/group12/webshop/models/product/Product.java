@@ -41,8 +41,6 @@ public class Product {
 
     private String imageWebp2048;
 
-
-
     @Positive
     private int price;
 
