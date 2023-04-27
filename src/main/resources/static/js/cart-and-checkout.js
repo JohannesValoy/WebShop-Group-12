@@ -8,8 +8,9 @@ const backToCartBtn = document.getElementById("back-to-cart");
 const completeOrderBtn= document.getElementById("completeOrder");
 const completeBar= document.querySelector(".complete-bar");
 const completeSection = document.querySelector(".complete-section");
+const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 
-
+// If cart is empty, hide checkout button and change cart title
 if (document.querySelector(".cart").children.length > 1) {
     checkoutBtn.removeAttribute("hidden");
     document.getElementById("cart-title").innerHTML = "Cart products";
@@ -18,10 +19,11 @@ if (document.querySelector(".cart").children.length > 1) {
     checkoutBtn.setAttribute("hidden", "hidden");
 }
 
+// Change amount of products in cart
 const decreaseBtn = document.querySelectorAll(".decrease");
 const increaseBtn = document.querySelectorAll(".increase");
 
-
+// Decreases amount of products. Disables if amount is 1
 decreaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
@@ -33,6 +35,7 @@ decreaseBtn.forEach(button => {
     });
 });
 
+// Increases amount of products. Enables decrease button if amount is more than 1
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
@@ -44,17 +47,14 @@ increaseBtn.forEach(button => {
     });
 });
 
+// Changes amount of products in cart. Fetches data from API. Updates total price
 function changeCartAmount(id, amount) {
     fetch(`/api/cart/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
             .then(response => {
                 if (response.ok) {
                     response.json().then( data => {
-                        if (Number(data.amount) > 0) {
                         document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
                         document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
-                        } else {
-                            removeProductFromCart(id);
-                        }
                     });
                 } else {
                     throw new Error("Something went wrong");
@@ -62,6 +62,7 @@ function changeCartAmount(id, amount) {
             });
 }
 
+// Removes product from cart one by one.
 function removeProductFromCart(productId) {
     document.querySelector(`[product-id="${productId}"]`).remove();
     let cart = document.querySelector(".cart");
@@ -72,7 +73,8 @@ function removeProductFromCart(productId) {
     }
 }
 
-const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
+
+// Removes type of product from cart.
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = button.getAttribute('data-product-id');
@@ -85,6 +87,7 @@ removeFromCartBtn.forEach(button => {
     });
 });
 
+// Changes active section in cart to checkout
 checkoutBtn.addEventListener("click", () => {
     checkoutSection.classList.add("active");
     checkoutBar.classList.add("active");
@@ -94,6 +97,7 @@ checkoutBtn.addEventListener("click", () => {
     completeSection.classList.remove("active");
 });
 
+// Changes active section in cart to cart
 backToCartBtn.addEventListener("click", () => {
     cartBar.classList.add("active");
     cartSection.classList.add("active");
@@ -103,7 +107,7 @@ backToCartBtn.addEventListener("click", () => {
     completeSection.classList.remove("active");
 });
 
-
+// Changes active section in cart to purchase complete
 completeOrderBtn.addEventListener("click", () => {
     completeSection.classList.add("active");
     completeBar.classList.add("active");
@@ -113,6 +117,8 @@ completeOrderBtn.addEventListener("click", () => {
     checkoutSection.classList.remove("active");
 });
 
+// Path: src\main\resources\static\js\checkout.js
+// Checks if input is valid. If not, shows error message and adds red border to input field
 const name = document.getElementById("name");
 const surname = document.getElementById("surname");
 const address = document.getElementById("address");
@@ -122,12 +128,14 @@ const cvc = document.getElementById("cvc");
 const submitButton = document.getElementById("completeOrder");
 
 function checkInfo() {
+    // Regex for input validation
     const regexName = /^([A-Za-zØÆÅøæå ]){2,}$/;
-    const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
+    const regexAddress = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
     const regexCard = /^([0-9]){16}$/;
     const regexPhone = /^([0-9]){8}$/;
     const regexCVC = /^([0-9 ,]){3}$/;
 
+    // Checks if input is valid. If not, shows error message and adds red border to input field
     if (!regexName.test(name.value) && name.value !== "") {
         document.getElementById("p-name").removeAttribute("hidden");
         name.classList.add("mismatch");
@@ -140,7 +148,7 @@ function checkInfo() {
     } else {
         document.getElementById("p-surname").setAttribute("hidden", "hidden");
         surname.classList.remove("mismatch");
-    } if (!regexFull.test(address.value) && address.value !== "") {
+    } if (!regexAddress.test(address.value) && address.value !== "") {
         document.getElementById("p-address").removeAttribute("hidden");
         address.classList.add("mismatch");
     } else {
@@ -165,13 +173,16 @@ function checkInfo() {
         document.getElementById("p-cvc").setAttribute("hidden", "hidden");
         cvc.classList.remove("mismatch");
     } submitButton.disabled = !(regexName.test(name.value) &&
+
+        // Checks if all input fields are valid. If not, submit button is disabled
         regexName.test(surname.value) &&
-        regexFull.test(address.value) &&
+        regexAddress.test(address.value) &&
         regexCard.test(cardNumber.value) &&
         regexPhone.test(phone.value) &&
         regexCVC.test(cvc.value));
 }
 
+//Checks input on keyup, so that error message and red border is added when input is invalid and removed when input is valid
 name.addEventListener("keyup", checkInfo);
 surname.addEventListener("keyup", checkInfo);
 address.addEventListener("keyup", checkInfo);
