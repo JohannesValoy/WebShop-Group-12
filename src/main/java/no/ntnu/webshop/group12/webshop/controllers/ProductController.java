@@ -43,11 +43,7 @@ public class ProductController {
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
     public Product getProduct(@PathVariable int id) throws NotFoundException {
-        Optional<Product> product = productService.getProduct(id);
-        if (!product.isPresent()) {
-            throw new NotFoundException("Product not found");
-        }
-        return product.get();
+        return productService.getProduct(id);
     }
 
     @GetMapping("/count")

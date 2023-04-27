@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
@@ -29,19 +31,22 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProduct(int id) {
-        return productRepository.findById(id);
+    public Product getProduct(int id) throws NotFoundException{
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            return product.get();
+        }
+        throw new NotFoundException("Product with id " + id + " not found");
     }
 
     public List<Product> getProductsByCategory(int id) {
         Optional<Category> category = categoryService.getCategory(id);
-        if(category.isPresent()) {
+        if (category.isPresent()) {
             return productRepository.findByCategory(category.get());
         } else {
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
     }
-
 
     public Set<Product> getRandomProducts(long i) {
         Set<Product> products = new HashSet<>();

@@ -1,10 +1,12 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.Purchase;
 import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
@@ -28,7 +30,7 @@ public class CartService {
     @Autowired
     private QuantityRepository quantityRepository;
 
-    public Cart addProductToCart(int productId) {
+    public Cart addProductToCart(int productId) throws NotFoundException {
         Cart cart = getCart();
         if (cart == null) {
             return null;
@@ -44,10 +46,11 @@ public class CartService {
             quantityRepository.save(q);
             cartRepository.save(cart);
         }
+
         return cart;
     }
 
-    public Product removeProductFromCart(int productId) {
+    public Product removeProductFromCart(int productId) throws NotFoundException {
         Cart cart = getCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
@@ -59,18 +62,18 @@ public class CartService {
         return q.getProduct();
     }
 
-    public Quantity updateProductQuantity(int productId, int quantity) {
-        Quantity returnQuantity = null;
+    public Quantity updateProductQuantity(int productId, int quantity) throws NotFoundException {
+        Product product = productService.getProduct(productId);
         if (quantity <= 0) {
             return new Quantity(removeProductFromCart(productId), 0);
         } else {
-            return setProductQuantity(productId, quantity);
+            return setProductQuantity(product, quantity);
         }
+
     }
 
-    private Quantity setProductQuantity(int productId, int quantity) {
+    private Quantity setProductQuantity(Product product, int quantity) {
         Cart cart = getCart();
-        Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             q.setAmount(quantity);
