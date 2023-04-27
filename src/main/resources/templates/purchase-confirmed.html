@@ -26,16 +26,39 @@
     <div class="complete-section active">
       <h2>Order Complete!</h2>
       <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
-      <section class="product-category-card">
-        <h3 class="card-heading">Cart Products</h3>
-        <div class="card-container" >
-          <a class="card-box" th:each="quantity : ${purchase.products}" th:href="@{/product/{id} (id=${quantity.product.id})}">
-            <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of a {name} (name=${quantity.product.name})}" alt="bought products">
-            <div class="card-layer">
-              <h3 th:text="${quantity.product.name}"></h3>
-              <p th:text="${quantity.amount}"></p>
+      <section class="cart">
+        <h3>Your Purchases:</h3>
+        <div class="cart-grid" th:each="quantity : ${purchase.products}">
+          <div class="cart-product">
+            <div class="div-row mobile">
+              <a th:href="@{/product/{id} (id=${quantity.product.id})}">
+                <picture >
+                  <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
+                  <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
+                  <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
+                  <img class="product-img" th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
+                </picture>
+              </a>
+              <div class="div-product-info">
+                <h4 th:text="${quantity.product.name}"></h4>
+                <p class="description" th:text="${quantity.product.description}"></p>
+              </div>
             </div>
-          </a>
+            <div class="div-row price">
+              <div class="div-column">
+                <p>Amount Ordered</p>
+                <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
+              </div>
+              <div class="div-column">
+                <p>Price per Item</p>
+                <p><span th:text="${quantity.product.price}"></span> kr</p>
+              </div>
+              <div class="div-column">
+                <p>Total product price</p>
+                <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -43,7 +66,6 @@
 </main>
 
 <footer th:replace="~{components/footer}"></footer>
-<script th:src="@{~/js/cart-and-checkout.js}" defer></script>
 
 </body>
 </html>

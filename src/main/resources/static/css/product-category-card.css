@@ -97,7 +97,10 @@
 @media (max-width: 768px) {
     .card-container {
         grid-template-columns: repeat(1, 1fr);
-        width: 90%;
+    }
+
+    .card-box img {
+        max-height: 25rem;
     }
 
     .card-box:hover img, .card-box:hover .card-layer {
@@ -113,4 +116,10 @@
         display: none;
     }
 
+}
+
+@media (max-width: 426px) {
+    .card-box img {
+        max-height: 15rem;
+    }
 }
