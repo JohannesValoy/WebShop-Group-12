@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
+import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CartRepository;
 import no.ntnu.webshop.group12.webshop.repository.QuantityRepository;
@@ -96,7 +97,7 @@ public class CartService {
         return cart;
     }
 
-    public void confirmCart() {
+    public void confirmCart(CartPurchase cartPurchase) {
         Cart cart = getCart();
         cartRepository.delete(cart);
     }
