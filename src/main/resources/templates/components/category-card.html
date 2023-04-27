@@ -1,13 +1,11 @@
 <section class="product-category-card">
-    <h2 class="card-heading">Selection of <span>Category</span></h2>
-
-    <div class="card-container" >
+        <div class="card-container" >
         <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
             <picture>
                 <source media="(min-width: 2048px)" th:srcset="@{~/images/categories/2048w/{image} (image=${category.imageWebp2048})}">
                 <source media="(min-width: 1024px)" th:srcset="@{~/images/categories/1024w/{image} (image=${category.imageWebp1024})}">
                 <source media="(min-width: 512px)" th:srcset="@{~/images/categories/512w/{image} (image=${category.imageWebp512})}">
-                <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="@{Picture of {name} (name=${category.name})}">
+                <img th:src="@{images/categories/{image} (image=${category.image})}" th:alt="'Picture of ' + ${category.name} + ' category'">
             </picture>
             <div class="card-layer">
             <h3 th:text="${category.name}"></h3>

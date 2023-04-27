@@ -23,6 +23,10 @@
     scroll-behavior: smooth;
 }
 
+.ninja {
+    display: none;
+}
+
 body {
     display: grid;
     min-height: 100svh;
@@ -30,11 +34,10 @@ body {
     background-color: var(---thirdBackground);
 }
 main {
-    background-image: url('../images/background.jpg');
+    background-image: url('../images/background.webp');
     background-attachment: fixed;
     background-size: cover;
     padding: 2% 10% 0 10%;
-    user-select: none;
     display: flex;
     flex-direction: column;
 }
@@ -45,18 +48,24 @@ h1 {
 }
 
 h2 {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    color: var(---secondText);
+}
+
+h4 {
+    font-size: 1.4rem;
+    color: var(---secondText);
 }
 
 p {
     font-size: 1rem;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, h4, p {
     text-align: center;
     pointer-events: none;
     text-shadow: black 0 0 3px;
@@ -122,6 +131,8 @@ header img.logo {
 
 /*footer*/
 footer {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     background-color: var(---thirdBackground);
     padding: 1em;
@@ -139,18 +150,17 @@ footer p {
 }
 
 
-.focus-button {
-    display: flex;
+.button {
     align-self: center;
     border-radius: 5px;
     background-color: var(---fourthBackground);
     color: var(---mainText);
     padding: 1em;
-    width: fit-content;
     transition: var(---transition-time);
+    user-select: none;
 }
 
-.focus-button:hover {
+.button:hover {
     color: var(---fourthText);
     cursor: pointer;
     transform: scale(var(---transform-scale));

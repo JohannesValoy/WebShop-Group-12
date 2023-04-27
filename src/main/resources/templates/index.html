@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
-    <link rel="icon" th:href="@{images/logo.png}">
+    <link rel="icon" th:href="@{~/images/logo.webp}">
     <!-- personal styles -->
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
@@ -15,9 +16,10 @@
 
   <main>
       <section class="sections">
-      <section th:replace="~{components/category-card}"></section>
-
-      <section th:replace="~{components/product-card}"></section>
+          <h2 class="card-heading">Selection of Category</h2>
+          <section th:replace="~{components/category-card}"></section>
+          <h2 class="card-heading">Featured Products</h2>
+          <section th:replace="~{components/product-card}"></section>
       </section>
 
   </main>

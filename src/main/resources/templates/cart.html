@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CyberPunk Store</title>
-    <link rel="icon" th:href="@{images/logo.png}">
+    <link rel="icon" th:href="@{~/images/logo.webp}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
-    <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
 </head>
 
 <body>
@@ -17,69 +17,62 @@
 <main>
     <section class="sections">
         <div class="progressbar">
-                <a class="progress-bubble1 active">Products</a>
-                <a class="progress-bubble2">Shipping</a>
-                <a class="progress-bubble3" disabled>Payment</a>
+                <p class="cart-bar active" >Cart</p>
+                <p class="checkout-bar">Checkout</p>
+                <p class="complete-bar">Complete</p>
         </div>
 
         <div class="cart-section active">
-            <h1 class="title">Shopping Cart</h1>
-            <a class="checkout-button focus-button" >Checkout</a>
-            <section class="product-category-card">
-                <h2 class="card-heading">Cart <span>Products</span></h2>
-                <div class="card-container" >
-                    <div class="card-box" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
-                        <picture>
-                            <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${quantity.product.imageWebp2048})}">
-                            <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${quantity.product.imageWebp1024})}">
-                            <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${quantity.product.imageWebp512})}">
-                            <img th:src="@{~/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of {name} (name=${quantity.product.name})}">
-                        </picture>
-                        <div class="card-layer">
-                            <h3 th:text="${quantity.product.name}"></h3>
-                            <p>Amount Ordered: <span th:text="${quantity.getAmount()}"></span></p>
-                            <button class="focus-button remove-from-cart-button" th:data-product-id="${quantity.product.id}">Remove from Cart</button>
-                            <a class="focus-button" th:href="@{/product/{id} (id=${quantity.product.id})}">Go to product</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <h2>Shopping Cart</h2>
+            <section th:replace="~{components/cart-products}"></section>
+            <button class="checkout-button button" hidden>Checkout</button>
         </div>
 
-        <div class="shipping-section">
-            <form class="form-section">
-                <h2 class="title">Shipping</h2>
-                <button class="focus-button" type="submit" id="completeOrder" disabled>Complete order</button>
+        <div class="checkout-section">
+            <form class="form-section" method="get" th:action="@{/cart/confirm}">
+                <h2>Checkout</h2>
                 <h3>Shipping information</h3>
-                <p id="invalid"></p>
+                <p id="p-name" hidden>Invalid name, needs to be 2 or more characters and only contain letters</p>
+                <p id="p-surname" hidden>Invalid surname, needs to be 2 or more characters and only contain letters</p>
+                <p id="p-address" hidden>Invalid address, needs to be 2 or more characters and only contain letters and numbers</p>
+                <p id="p-cardNumber" hidden>Invalid card number, needs to be 16 characters and can only contain numbers</p>
+                <p id="p-phone" hidden>Invalid phone number, needs to be 8 characters and can only contain numbers</p>
+                <p id="p-coupon" hidden>Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers</p>
                 <div class="details-filling-form">
-                    <label for="name" class="input-field-label">
+                    <div class="div-column">
+                        <label for="name" class="input-field-label">Name</label>
                         <input class="input-field" id="name" onchange="checkInfo()" type="text" name="username" placeholder="Name" required>
-                    </label>
-                    <label for="surName" class="input-field-label">
-                        <input class="input-field" id="surName" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
-                    </label>
-                    <label class="input-field-label">
-                        <input class="input-field" id="address" placeholder="Address" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
-                        <input class="input-field" id="cardNumber" placeholder="Card Number" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
+                    </div>
+                    <div class="div-column">
+                        <label for="surname" class="input-field-label">Last Name</label>
+                        <input class="input-field" id="surname" onchange="checkInfo()" type="text" name="username" placeholder="Last Name" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="address">Address</label>
+                        <input class="input-field" id="address" onchange="checkInfo()" type="text" name="username" placeholder="Address" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="cardNumber">Card Number</label>
+                        <input class="input-field" id="cardNumber" onchange="checkInfo()" type="text" name="username" placeholder="Card Number" required>
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="phone">Phone Number</label>
                         <input class="input-field" id="phone" placeholder="Phone Number" type="text" onchange="checkInfo()" required>
-                    </label>
-                    <label class="input-field-label">
+                    </div>
+                    <div class="div-column">
+                        <label class="input-field-label" for="coupon">Coupon Code</label>
                         <input class="input-field" id="coupon" placeholder="Coupon Code" type="text" onchange="checkInfo()" required>
-                    </label>
+                    </div>
                 </div>
+                <button class="button" type="submit" id="completeOrder"  disabled>Complete order</button>
             </form>
         </div>
 
-        <div class="payment-section">
-            <h2 class="title">Order Complete!</h2>
+        <div class="complete-section">
+            <h2>Order Complete!</h2>
             <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
             <section class="product-category-card">
-                <h3 class="card-heading">Cart <span>Products</span></h3>
+                <h3 class="card-heading">Cart Products</h3>
                 <div class="card-container" >
                     <a class="card-box" th:each="quantity : ${quantities}" th:href="@{/product/{id} (id=${quantity.product.id})}">
                         <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="@{Picture of a {name} (name=${quantity.product.name})}" alt="bought products">

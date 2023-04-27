@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>CyberPunk Store</title>
   <meta charset="UTF-8"/>
+  <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" th:href="@{images/logo.png}">
+  <title>CyberPunk Store</title>
+  <link rel="icon" th:href="@{~/images/logo.webp}">
   <!-- personal styles -->
   <link rel="stylesheet" th:href="@{~/css/style.css}"/>
   <link rel="stylesheet" th:href="@{~/css/category.css}"/>
@@ -34,7 +35,7 @@
             <source media="(min-width: 2048px)" th:srcset="@{~/images/products/2048w/{image} (image=${product.imageWebp2048})}">
             <source media="(min-width: 1024px)" th:srcset="@{~/images/products/1024w/{image} (image=${product.imageWebp1024})}">
             <source media="(min-width: 512px)" th:srcset="@{~/images/products/512w/{image} (image=${product.imageWebp512})}">
-            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="@{Picture of {name} (name=${product.name})}">
+            <img th:src="@{~/images/products/{image} (image=${product.image})}" th:alt="'Picture of ' + ${product.name}">
           </picture>
             <div class="card-layer">
             <h3 th:text="${product.name}"></h3>
@@ -45,6 +46,5 @@
   </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
-<script th:src="@{~/js/headerPosition.js}"></script>
 </body>
 </html>

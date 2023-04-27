@@ -1,100 +1,24 @@
-const checkout = document.querySelector(".checkout-button");
-const progressBubble1 = document.querySelector(".progress-bubble1");
+
+const cartBar = document.querySelector(".cart-bar");
 const cartSection = document.querySelector(".cart-section");
-const progressBubble2= document.querySelector(".progress-bubble2");
-const progressBubble3= document.querySelector(".progress-bubble3");
-const shippingSection = document.querySelector(".shipping-section");
-const paymentSection = document.querySelector(".payment-section");
-const completeOrder= document.getElementById("completeOrder");
-const removeFromCartButton = document.querySelectorAll(".remove-from-cart-button");
+const checkoutBtn = document.querySelector(".checkout-button");
+const checkoutBar= document.querySelector(".checkout-bar");
+const checkoutSection = document.querySelector(".checkout-section");
+const completeOrderBtn= document.getElementById("completeOrder");
+const completeBar= document.querySelector(".complete-bar");
+const completeSection = document.querySelector(".complete-section");
 
 
-progressBubble1.addEventListener("click", () => {
-    event.preventDefault();
-    progressBubble1.classList.add("active");
-    cartSection.classList.add("active");
-    progressBubble2.classList.remove("active");
-    shippingSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-});
-
-checkout.addEventListener("click", () => {
-    event.preventDefault();
-    progressBubble2.classList.add("active");
-    shippingSection.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-});
-
-progressBubble2.addEventListener("click", () => {
-    event.preventDefault();
-    progressBubble2.classList.add("active");
-    shippingSection.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    paymentSection.classList.remove("active");
-});
-
-completeOrder.addEventListener("click", () => {
-    event.preventDefault();
-    paymentSection.classList.add("active");
-    progressBubble3.classList.add("active");
-    progressBubble1.classList.remove("active");
-    cartSection.classList.remove("active");
-    progressBubble2.classList.remove("active");
-    shippingSection.classList.remove("active");
-});
-
-const name = document.getElementById("name");
-const surName = document.getElementById("surName");
-const address = document.getElementById("address");
-const cardNumber = document.getElementById("cardNumber");
-const phone = document.getElementById("phone");
-const coupon = document.getElementById("coupon");
-const submitButton = document.getElementById("completeOrder");
-const invalid = document.getElementById("invalid");
-function checkInfo() {
-    const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
-    const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
-    const regexCard = /^([0-9]){16}$/;
-    const regexPhone = /^([0-9]){8}$/;
-
-    if (name.value === "" && surName.value === "" && address.value === "" && cardNumber.value === "" && phone.value === "" && coupon.value === "") {
-        invalid.innerHTML = "";
-        submitButton.disabled = true;
-    } else if(!regexName.test(name.value)) {
-        invalid.innerHTML = "Invalid name, needs to be 2 or more characters and only contain letters";
-        submitButton.disabled = true;
-    } else if(!regexName.test(surName.value)) {
-        invalid.innerHTML = "Invalid surname, needs to be 2 or more characters and only contain letters";
-        submitButton.disabled = true;
-    } else if(!regexFull.test(address.value)) {
-        invalid.innerHTML = "Invalid address, needs to be 2 or more characters and only contain letters and numbers";
-        submitButton.disabled = true;
-    } else if(!regexCard.test(cardNumber.value)) {
-        invalid.innerHTML = "Invalid card number, needs to be 16 characters and can only contain numbers";
-        submitButton.disabled = true;
-    } else if(!regexPhone.test(phone.value)) {
-        invalid.innerHTML = "Invalid phone number, needs to be 8 characters and can only contain numbers";
-        submitButton.disabled = true;
-    } else if(!regexFull.test(coupon.value)) {
-        invalid.innerHTML = "Invalid coupon, needs to be 2 or more characters and can only contain letters and numbers";
-        submitButton.disabled = true;
-    } else {
-        invalid.innerHTML = "";
-        submitButton.disabled = false;
-    }
+if (document.querySelector(".cart").children.length > 1) {
+    checkoutBtn.removeAttribute("hidden");
+    document.getElementById("cart-title").innerHTML = "Cart products";
+} else {
+    document.getElementById("cart-title").innerHTML = "Your cart is empty";
+    checkoutBtn.setAttribute("hidden", "hidden");
 }
 
-name.addEventListener("keyup", checkInfo);
-surName.addEventListener("keyup", checkInfo);
-address.addEventListener("keyup", checkInfo);
-cardNumber.addEventListener("keyup", checkInfo);
-phone.addEventListener("keyup", checkInfo);
-coupon.addEventListener("keyup", checkInfo);
-
-removeFromCartButton.forEach(button => {
+const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
+removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = button.getAttribute('data-product-id');
         fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
@@ -105,3 +29,85 @@ removeFromCartButton.forEach(button => {
             });
     });
 });
+
+checkoutBtn.addEventListener("click", () => {
+    checkoutSection.classList.add("active");
+    checkoutBar.classList.add("active");
+    cartBar.classList.remove("active");
+    cartSection.classList.remove("active");
+    completeBar.classList.remove("active");
+    completeSection.classList.remove("active");
+});
+
+completeOrderBtn.addEventListener("click", () => {
+    completeSection.classList.add("active");
+    completeBar.classList.add("active");
+    cartBar.classList.remove("active");
+    cartSection.classList.remove("active");
+    checkoutBar.classList.remove("active");
+    checkoutSection.classList.remove("active");
+});
+
+const name = document.getElementById("name");
+const surname = document.getElementById("surname");
+const address = document.getElementById("address");
+const cardNumber = document.getElementById("cardNumber");
+const phone = document.getElementById("phone");
+const coupon = document.getElementById("coupon");
+const submitButton = document.getElementById("completeOrder");
+function checkInfo() {
+    const regexName = /^([A-Za-zØÆÅøæå]){2,}$/;
+    const regexFull = /^([A-Za-z0-9ØÆÅøæå ,]){2,}$/;
+    const regexCard = /^([0-9]){16}$/;
+    const regexPhone = /^([0-9]){8}$/;
+
+    if (!regexName.test(name.value) && name.value !== "") {
+        document.getElementById("p-name").removeAttribute("hidden");
+        name.classList.add("mismatch");
+    } else {
+        document.getElementById("p-name").setAttribute("hidden", "hidden");
+        name.classList.remove("mismatch");
+    } if (!regexName.test(surname.value) && surname.value !== "") {
+        document.getElementById("p-surname").removeAttribute("hidden");
+        surname.classList.add("mismatch");
+    } else {
+        document.getElementById("p-surname").setAttribute("hidden", "hidden");
+        surname.classList.remove("mismatch");
+    } if (!regexFull.test(address.value) && address.value !== "") {
+        document.getElementById("p-address").removeAttribute("hidden");
+        address.classList.add("mismatch");
+    } else {
+        document.getElementById("p-address").setAttribute("hidden", "hidden");
+        address.classList.remove("mismatch");
+    } if (!regexCard.test(cardNumber.value) && cardNumber.value !== "") {
+        document.getElementById("p-cardNumber").removeAttribute("hidden");
+        cardNumber.classList.add("mismatch");
+    } else {
+        document.getElementById("p-cardNumber").setAttribute("hidden", "hidden");
+        cardNumber.classList.remove("mismatch");
+    } if (!regexPhone.test(phone.value) && phone.value !== "") {
+        document.getElementById("p-phone").removeAttribute("hidden");
+        phone.classList.add("mismatch");
+    } else {
+        document.getElementById("p-phone").setAttribute("hidden", "hidden");
+        phone.classList.remove("mismatch");
+    } if (!regexFull.test(coupon.value) && coupon.value !== "") {
+        document.getElementById("p-coupon").removeAttribute("hidden");
+        coupon.classList.add("mismatch");
+    } else {
+        document.getElementById("p-coupon").setAttribute("hidden", "hidden");
+        coupon.classList.remove("mismatch");
+    } submitButton.disabled = !(regexName.test(name.value) &&
+        regexName.test(surname.value) &&
+        regexFull.test(address.value) &&
+        regexCard.test(cardNumber.value) &&
+        regexPhone.test(phone.value) &&
+        regexFull.test(coupon.value));
+}
+
+name.addEventListener("keyup", checkInfo);
+surname.addEventListener("keyup", checkInfo);
+address.addEventListener("keyup", checkInfo);
+cardNumber.addEventListener("keyup", checkInfo);
+phone.addEventListener("keyup", checkInfo);
+coupon.addEventListener("keyup", checkInfo);

@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     width: 50%;
-    padding: 1rem;
     gap: 1rem;
 }
 
@@ -15,18 +14,14 @@
     gap: 1rem;
 }
 
-.product-page-description h1 {
-    font-size: 2rem;
-    width: 100%;
-    color: var(---secondText);
-}
-
 .product-intro {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 2%;
+    width: 100%;
 }
 
 .specs-button, .rating-button, .about-button {
@@ -45,7 +40,6 @@
 }
 
 .specs-rating-about-buttons{
-    margin: 2rem 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,6 +54,7 @@
     width: 100%;
     flex-direction: column;
     justify-content: center;
+    gap: 0.5rem;
 }
 
 .specs, .rating, .about {
@@ -77,13 +72,7 @@
 }
 
 .product-image{
-    object-fit: cover;
-    width: 50%;
-    border-radius: 1rem;
-}
-
-.product-image img{
-    width: 100%;
+    max-width: 30rem;
     border-radius: 1rem;
 }
 
@@ -92,19 +81,13 @@
 }
 
 @media (max-width: 1024px) {
-    .product-image img{
-        width: 100%;
-        border-radius: 1rem;
+
+    .product-image{
+        max-width: 25rem;
     }
 
     .product-intro {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-    }
-
-    .product-image {
-        width: 90%;
     }
 
     .product-page-description {
@@ -113,21 +96,10 @@
 }
 
 @media (max-width: 512px) {
-    .product-image img {
-        width: 100%;
-        margin: 2rem 0;
-        border-radius: 1rem;
-    }
 
     .product-page-description {
         width: 90%;
     }
 
-    .sections {
-        padding: 0;
-    }
 
-    .product-image {
-        width: 90%;
-    }
 }
