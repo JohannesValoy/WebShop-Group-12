@@ -201,13 +201,10 @@ footer p {
     background-color: var(---secondBackground);
     transition: var(---transition-time);
     color: var(---mainText);
-    padding: 1em;
+    padding: 0.5rem;
     -webkit-user-select: none;
     user-select: none;
-    min-width: 2rem;
-    width: 2rem;
-    height: 2rem;
-    min-height: 1rem;
+    cursor: pointer;
 }
 
 .boring-button:disabled {
@@ -215,10 +212,6 @@ footer p {
     background-color: var(---thirdBackground);
     color: var(---secondText);
     cursor: pointer;
-}
-
-.boring-button:hover {
-    color: var(---mainBackground);
 }
 
 /*universal for buttons end*/
@@ -247,4 +240,9 @@ footer p {
         transform: none;
         color: var(---mainText);
     }
+
+    main {
+        padding: 0;
+    }
+
 }

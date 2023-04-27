@@ -94,29 +94,21 @@
     color: var(---secondText);
 }
 
-.price p {
-    -webkit-user-select: none;
-    user-select: none;
-}
+ .order {
+     align-items: center;
+ }
 
 .div-row img {
     max-height: 20rem;
     border-radius: var(---border-radius);
 }
 
-.decrease, .increase {
-    color: var(---mainText);
-    padding: 1%;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
-}
-
 svg {
-    min-width: 1rem;
+    width: 1rem;
+    height: 1rem;
 }
 
-.delete {
+.delete path {
     color: red;
 }
 
@@ -173,7 +165,6 @@ svg {
         gap: 1rem;
     }
 
-
     .div-row img{
         max-height: 10rem;
 }
@@ -183,20 +174,17 @@ svg {
         min-width: fit-content;
     }
 
+    .div-row {
+        align-items: center;
+    }
+
     .mobile {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
-    .mobile p {
-        display: none;
-    }
-
-    .div-row.price {
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 
