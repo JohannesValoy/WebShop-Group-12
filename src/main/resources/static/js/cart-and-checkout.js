@@ -4,6 +4,7 @@ const cartSection = document.querySelector(".cart-section");
 const checkoutBtn = document.querySelector(".checkout-button");
 const checkoutBar= document.querySelector(".checkout-bar");
 const checkoutSection = document.querySelector(".checkout-section");
+const backToCartBtn = document.getElementById("back-to-cart");
 const completeOrderBtn= document.getElementById("completeOrder");
 const completeBar= document.querySelector(".complete-bar");
 const completeSection = document.querySelector(".complete-section");
@@ -92,6 +93,16 @@ checkoutBtn.addEventListener("click", () => {
     completeBar.classList.remove("active");
     completeSection.classList.remove("active");
 });
+
+backToCartBtn.addEventListener("click", () => {
+    cartBar.classList.add("active");
+    cartSection.classList.add("active");
+    checkoutSection.classList.remove("active");
+    checkoutBar.classList.remove("active");
+    completeBar.classList.remove("active");
+    completeSection.classList.remove("active");
+});
+
 
 completeOrderBtn.addEventListener("click", () => {
     completeSection.classList.add("active");
