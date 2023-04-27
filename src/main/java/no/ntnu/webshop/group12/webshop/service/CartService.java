@@ -28,13 +28,23 @@ public class CartService {
     @Autowired
     private QuantityRepository quantityRepository;
 
-    public void addProductToCart(int productId) {
+    public Cart addProductToCart(int productId) {
         Cart cart = getCart();
-        // TODO: Find a better way to do this.
         if (cart == null) {
-            return;
+            return null;
         }
-        setProductQuantity(productId, 1);
+        Product product = productService.getProduct(productId);
+        Quantity q = cart.getQuantity(product);
+        if (null != q) {
+            q.setAmount(q.getAmount() + 1);
+            quantityRepository.save(q);
+        } else {
+            q = new Quantity(product, 1);
+            cart.addProduct(q);
+            quantityRepository.save(q);
+            cartRepository.save(cart);
+        }
+        return cart;
     }
 
     public Product removeProductFromCart(int productId) {
