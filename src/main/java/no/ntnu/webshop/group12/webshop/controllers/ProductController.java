@@ -2,6 +2,7 @@ package no.ntnu.webshop.group12.webshop.controllers;
 
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springdoc.core.annotations.ParameterObject;
@@ -43,11 +44,7 @@ public class ProductController {
     @GetMapping("/{id}")
     @Operation(summary = "Get product by id")
     public Product getProduct(@PathVariable int id) throws NotFoundException {
-        Optional<Product> product = productService.getProduct(id);
-        if (!product.isPresent()) {
-            throw new NotFoundException("Product not found");
-        }
-        return product.get();
+        return productService.getProduct(id);
     }
 
     @GetMapping("/count")
@@ -58,7 +55,7 @@ public class ProductController {
 
     @GetMapping("/filter")
     @Operation(summary = "Get products by filter")
-    public Iterable<Product> getProductsByFilter(
+    public List<Product> getProductsByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = Product.class) Predicate predicate) {
         return productService.getProductsByFilter(predicate, pageable);

@@ -1,0 +1,248 @@
+:root {
+    ---mainText: #F7EC50;
+    ---secondText: #36EBF2;
+    ---mainBackground: rgba(0, 0, 0, 0.61);
+    ---thirdText: #00FF22D8;
+    ---fourthText: pink;
+    ---secondBackground: #333333;
+    ---thirdBackground: #1A1A1A;
+    ---fourthBackground: purple;
+    ---transition-time: 0.5s;
+    ---transform-scale: 1.1;
+    ---transform-scale-small: 1.2;
+    ---border-radius: 1.5rem;
+    ---border-radius-small: 0.5rem;
+
+}
+
+* {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    color: var(---mainText);
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+/*hider-class*/
+.hide {
+    display: none;
+}
+
+body {
+    display: grid;
+    min-height: 100svh;
+    grid-template-rows:  auto 1fr auto;
+    background-color: var(---thirdBackground);
+}
+main {
+    background-image: url('../images/background.webp');
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 0 8% 0 8%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+    color: var(---secondText);
+}
+
+h4 {
+    font-size: 1.4rem;
+    color: var(---secondText);
+}
+
+p {
+    font-size: 1rem;
+}
+
+h1, h2, h3, h4, p {
+    text-align: center;
+    pointer-events: none;
+    text-shadow: black 0 0 3px;
+    z-index: 2;
+}
+
+/*navbar*/
+.header {
+    -webkit-user-select: none;
+    user-select: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(---thirdBackground);
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+}
+
+/*ghost header make the header in the different pages the right size*/
+.ghostHeader {
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.ghostHeader h1 {
+    color: transparent;
+    text-shadow: none;
+}
+
+.header .navbar {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.header img.logo {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.search-bar .search {
+    padding: 6px;
+    border: 2px solid var(---mainText);
+    border-radius: var(---border-radius-small);
+    background-color: var(---thirdBackground);
+    transition: var(---transition-time);
+}
+.search-bar .search:focus {
+    outline: none;
+    border: 2px solid var(---secondText);
+    transform: scale(var(---transform-scale-small));
+}
+
+/*navbar end*/
+
+/*footer*/
+footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(---thirdBackground);
+    padding: 1em;
+}
+
+footer h2 {
+    color: var(---thirdText);
+    font-size: 1.5rem;
+}
+
+footer p {
+    color: white;
+    margin: 0.5em;
+    font-size: 1rem;
+}
+
+/*footer end*/
+
+/*universal classes*/
+
+/*universal for sections*/
+.sections {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3%;
+    min-height: 60svh;
+    background-color: var(---mainBackground);
+    height: 100%;
+}
+
+/*universal for sections end*/
+
+/*universal for buttons*/
+.focus-button {
+    align-self: center;
+    border-radius: var(---border-radius-small);
+    background-color: var(---fourthBackground);
+    transition: var(---transition-time);
+    color: var(---mainText);
+    padding: 1em;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.focus-button:disabled {
+    pointer-events: none;
+    background-color: gray;
+    color: lightgray;
+}
+
+.focus-button:hover {
+    color: var(---fourthText);
+    transform: scale(var(---transform-scale-small));
+    cursor: pointer;
+}
+
+.boring-button {
+    align-self: center;
+    border-radius: var(---border-radius-small);
+    background-color: var(---secondBackground);
+    transition: var(---transition-time);
+    color: var(---mainText);
+    padding: 0.5rem;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.boring-button:disabled {
+    pointer-events: none;
+    background-color: var(---thirdBackground);
+    color: var(---secondText);
+    cursor: pointer;
+}
+
+/*universal for buttons end*/
+
+@media (max-width: 1024px) {
+
+    .header {
+        position: revert;
+        width: auto;
+    }
+
+    /*ghost header removed when display is less than 1024px wide*/
+    .ghostHeader {
+        display: none;
+    }
+
+    main {
+        padding: 0 5% 0 5%;
+    }
+}
+
+@media (max-width: 512px) {
+
+    /*removes hover effect on mobile*/
+    .focus-button:hover, .boring-button:hover {
+        transform: none;
+        color: var(---mainText);
+    }
+
+    main {
+        padding: 0;
+    }
+
+}

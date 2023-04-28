@@ -114,7 +114,7 @@ public class AccessUserService implements UserDetailsService {
      * 
      * @param password The password to check
      * @param username The username of the user to update
-     * @return
+     * @return True if the password is correct
      */
     public boolean updatePassword(String password, String username) {
         User user = userRepository.findByUsername(username).orElse(null);
@@ -124,7 +124,7 @@ public class AccessUserService implements UserDetailsService {
     /**
      * Updates the password of a user
      * 
-     * @param Password The password to update
+     * @param password The password to update
      * @param user     The user to update
      * @return True if the password was updated
      */

@@ -6,8 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "categories")
@@ -21,20 +23,21 @@ public class Category {
     @Column(unique = true, nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    private String image;
+    @ManyToOne
+    private WebpImage image;
 
     public Category() {
     }
 
     public Category(String name) {
-        this(0, name, "");
+        this(0, name, null);
     }
 
-    public Category(String name, String image) {
+    public Category(String name, WebpImage image) {
         this(0, name, image);
     }
 
-    public Category(int id, String name, String image) {
+    public Category(int id, String name, WebpImage image) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -56,11 +59,11 @@ public class Category {
         this.name = name;
     }
 
-    public String getImage() {
+    public WebpImage getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(WebpImage image) {
         this.image = image;
     }
 
@@ -96,11 +99,6 @@ public class Category {
         } else if (!image.equals(other.image))
             return false;
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Category [id=" + id + ", name=" + name + ", image=" + image + "]";
     }
 
 }

@@ -1,0 +1,94 @@
+.testimonials {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.testimony {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.image{
+    min-width: 50%;
+    width: 25rem;
+    border-radius: var(---border-radius);
+}
+
+.about-us-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.about-us-card.reverse {
+    flex-direction: row-reverse;
+}
+
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 35%;
+    margin: 5%;
+}
+
+@media (max-width: 2048px) {
+    .testimonials {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .testimonials {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-section {
+        width: 100%;
+    }
+
+    .about-us-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-us-card.reverse {
+        flex-direction: column;
+    }
+
+    .text-section {
+        width: 90%;
+    }
+
+    .testimony {
+        width: 90%;
+    }
+
+    .image {
+        width: 90%;
+
+    }
+
+}

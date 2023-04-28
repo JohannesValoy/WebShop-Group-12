@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -8,24 +9,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "products")
 @Schema(description = "A product in the webshop", name = "Product")
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
+    @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> category = new LinkedHashSet<>();
 
     @NotBlank
@@ -35,10 +40,11 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String image;
+    @ManyToOne
+    private WebpImage image;
 
     @Positive
-    private double price;
+    private int price;
 
     @PositiveOrZero
     private int stock;
@@ -46,14 +52,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, double price, int stock) {
+    public Product(String name, String description, int price, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
     }
 
-    public Product(String name, String description, double price, int stock, String image) {
+    public Product(String name, String description, int price, int stock, WebpImage image) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -73,8 +79,8 @@ public class Product {
         this.category = category;
     }
 
-    public void addCategory(Category category) {
-        this.category.add(category);
+    public void addCategory(Category... categories) {
+        Collections.addAll(this.category, categories);
     }
 
     public void removeCategory(Category category) {
@@ -97,11 +103,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -113,12 +119,16 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getImage() {
+    public WebpImage getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(WebpImage image) {
         this.image = image;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -130,9 +140,7 @@ public class Product {
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((image == null) ? 0 : image.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(price);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + price;
         result = prime * result + stock;
         return result;
     }
@@ -168,7 +176,7 @@ public class Product {
                 return false;
         } else if (!image.equals(other.image))
             return false;
-        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+        if (price != other.price)
             return false;
         if (stock != other.stock)
             return false;

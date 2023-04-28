@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberPunk Store</title>
+  <link rel="icon" th:href="@{~/images/logo.webp}">
+
+  <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/error.css}"/>
+</head>
+<body>
+  <header th:replace="~{components/header}"></header>
+<main>
+  <section class="sections">
+    <h1>Oops! Something went wrong.</h1>
+    <p>We're sorry, but something went wrong while processing your request. Please try again later.</p>
+    <button class="focus-button" onclick="window.history.back();">Go back</button>
+  </section>
+</main>
+  <footer th:replace="~{components/footer}"></footer>
+</body>
+</html>

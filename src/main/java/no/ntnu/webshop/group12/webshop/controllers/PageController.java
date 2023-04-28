@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
+import no.ntnu.webshop.group12.webshop.models.product.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +9,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
+import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
+import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
+
+import java.util.Optional;
 
 /**
  * Controller for all HTML pages.
@@ -28,6 +34,9 @@ public class PageController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    CartService cartService;
 
     /**
      * The `Home` page.
@@ -49,8 +58,22 @@ public class PageController {
      */
     @GetMapping("/category")
     public String getCategory(Model model) {
+        model.addAttribute("categoryName", "All products");
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("user", userService.getSessionUser());
+        return "category";
+    }
+
+    @GetMapping("/category/{id}")
+    public String getCategory(@PathVariable("id") int id, Model model) {
+        Optional<Category> category = categoryService.getCategory(id);
+        category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
+        if (model.getAttribute("categoryName") == null) {
+            return "redirect:/category";
+        }
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());
         return "category";
     }
@@ -63,7 +86,28 @@ public class PageController {
     @GetMapping("/cart")
     public String getCart(Model model) {
         model.addAttribute("user", userService.getSessionUser());
+        if (userService.getSessionUser() == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("quantities", cartService.getCurrentUserProducts());
         return "cart";
+    }
+
+    @PostMapping("/cart/{id}")
+    public String postCart(@PathVariable("id") int id, Model model) throws NotFoundException {
+        cartService.addProductToCart(id);
+        model.addAttribute("user", userService.getSessionUser());
+        return "redirect:/cart";
+    }
+
+    @PostMapping("/cart/confirm")
+    public String confirmCart(Model model, @ModelAttribute CartPurchase body) {
+        if (userService.getSessionUser() == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("purchase", cartService.confirmCart(body));
+        return "purchase-confirmed";
     }
 
     /**
@@ -84,43 +128,24 @@ public class PageController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute LoginDTO signupDTO, Model model) {
-        model.addAttribute("signupDTO", signupDTO);
+    public String postRegister(@ModelAttribute LoginDTO register, Model model) {
         model.addAttribute("user", userService.getSessionUser());
-        String page = "index";
-        String error = userService.tryCreateNewUser(signupDTO.getUsername(), signupDTO.getPassword());
-        if (error != null) {
-            model.addAttribute("error", error);
-            page = "login";
-        }
-        return page;
+        String error = userService.tryCreateNewUser(register.getUsername(), register.getPassword());
+        model.addAttribute("error", error);
+        return "login";
     }
 
-    /**
-     * The `About` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
     @GetMapping("/about")
     public String getAbout() {
         return "about";
     }
 
     @GetMapping("/product/{id}")
-    public String getProduct(@PathVariable("id") int id, Model model) {
+    public String getProduct(@PathVariable("id") int id, Model model) throws NotFoundException {
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("products", productService.getRandomProductsByCategory(4, id));
         return "product";
-    }
-
-    @GetMapping("/category/{id}")
-    public String getCategory(@PathVariable("id") int id, Model model) {
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("products", productService.getProductsByCategory(id));
-        model.addAttribute("user", userService.getSessionUser());
-        model.addAttribute("category", categoryService.getCategory(id).get());
-        return "category";
     }
 
     @GetMapping("/account")
@@ -133,5 +158,11 @@ public class PageController {
         } else {
             return "no-access";
         }
+    }
+
+    @GetMapping("/error")
+    public String getError(Model model) {
+        model.addAttribute("user", userService.getSessionUser());
+        return "error";
     }
 }

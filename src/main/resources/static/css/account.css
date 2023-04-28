@@ -1,0 +1,35 @@
+.account-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.account-email-and-phone {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-image {
+    min-width: 5rem;
+    min-height: 5rem;
+    width: 20%;
+}
+
+.account-details {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.account-email-and-phone {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

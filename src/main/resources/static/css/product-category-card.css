@@ -1,0 +1,125 @@
+.product-category-card {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-box {
+    min-height: 15rem;
+}
+
+.product-category-card .card-heading {
+    margin-bottom: 2rem;
+}
+
+.card-heading span {
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/*The box around the product*/
+.card-container .card-box {
+    position: relative;
+    border-radius: var(---border-radius);
+    overflow: hidden;
+    box-shadow: 0 0 1rem black;
+    display: flex;
+    justify-content: center;
+    transition: var(---transition-time);
+}
+
+.card-container:hover .card-box:hover {
+    transform: scale(var(---transform-scale));
+}
+
+.card-box img {
+    max-height: 20rem;
+    transition: var(---transition-time) ease;
+}
+
+.card-box:hover img {
+    transform: scale(var(---transform-scale));
+}
+
+.card-box .card-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, .1), #6D2B7D);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    transform: translateY(100%);
+    transition: var(---transition-time) ease;
+    gap: 1rem;
+}
+
+.card-box:hover .card-layer {
+    transform: translateY(0);
+}
+
+.card-layer h3 {
+    font-size: 1.5rem;
+    width: 90%;
+}
+
+.card-layer p {
+    width: 90%;
+}
+
+
+@media (max-width: 1440px) {
+    .card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .card-box img {
+        max-height: 15rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card-box img {
+        max-height: 25rem;
+    }
+
+    .card-box:hover img, .card-box:hover .card-layer {
+        transform: none;
+    }
+
+    .card-box .card-layer {
+        transform: none;
+        background: rgba(0, 0, 0, .1);
+    }
+
+    .card-layer .description {
+        display: none;
+    }
+
+}
+
+@media (max-width: 426px) {
+    .card-box img {
+        max-height: 15rem;
+    }
+}

@@ -1,121 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>CyberPunk Store</title>
     <meta charset="UTF-8"/>
+    <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" th:href="@{images/logo.png}">
+    <title>CyberPunk Store</title>
+    <link rel="icon" th:href="@{~/images/logo.webp}">
     <!-- Icons from boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- personal styles -->
-    <link rel="stylesheet" th:href="@{~/style.css}"/>
-    <link rel="stylesheet" th:href="@{~/login.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/login.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
+<main>
+    <section class="login">
+        <div class="logReg-box">
+            <!-- Login form -->
+            <div class="form-box login">
+                <div class="logReg-title">
+                    <h2>Login</h2>
+                </div>
+                <div th:if="${param.error}" class="error-message">
+                    <p>Login failed. Please try again.</p>
+                </div>
+                <form th:action="@{/login}" method="post">
+                    <div class="input-box">
+                    <span class="icon">
+                        <i class='bx bxs-user'></i>
+                    </span>
+                        <label for="username">
+                            <input type="text" id="username" name="username" required autocomplete="off">
+                            <span>Username</span>
+                        </label>
+                    </div>
 
-<section class="login">
-    <div class="logReg-box">
-        <!-- Login form -->
-        <div class="form-box login">
-            <div class="logReg-title">
-                <h2>Login</h2>
+                    <div class="input-box">
+                    <span class="icon">
+                        <i class='bx bx-lock-alt'></i>
+                    </span>
+                        <label for="password">
+                            <input type="password" id="password" name="password" required>
+                            <span>Password</span>
+                        </label>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <p><i class='bx bx-check-square'></i> Remember me</p>
+                    </div>
+
+                    <button type="submit" class="btn">Login</button>
+
+                    <div class="logReg-link">
+                        <p>Don't have an account?
+                            <a class="register-link">Register</a>
+                        </p>
+                    </div>
+
+                </form>
             </div>
-            <form th:action="@{/login}" method="post">
-                <div class="input-box">
-                <span class="icon">
-                    <i class='bx bxs-user'></i>
-                </span>
-                    <label for="username">
-                        <input type="text" id="username" name="username" required autocomplete="off">
-                        <a>Username</a>
-                    </label>
+            <!-- Register form -->
+            <div class="form-box register">
+                <div class="logReg-title">
+                    <h2>Registration</h2>
+                    <p>Please provide the following to verify your identity</p>
                 </div>
 
-                <div class="input-box">
-                <span class="icon">
-                    <i class='bx bx-lock-alt'></i>
-                </span>
-                    <label for="password">
-                        <input type="password" id="password" name="password" required>
-                        <a>Password</a>
-                    </label>
-                </div>
+                <form th:action="@{/register}" method="post" >
+                    <div class="input-box">
+                    <span class="icon">
+                        <i class='bx bxs-user'></i>
+                    </span>
+                        <label for="signUpUsername">
+                            <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" name="username" autocomplete="off" required >
+                            <span id="signUpUsernameText">Username</span>
+                        </label>
+                    </div>
 
-                <div class="remember-forgot">
-                    <label><i class='bx bx-check-square'></i>
-                        <a>Remember me</a>
-                    </label>
-                </div>
+                    <div class="input-box">
+                    <span class="icon">
+                        <i class='bx bx-lock-alt'></i>
+                    </span>
+                        <label for="signUpPassword">
+                            <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" name="password" autocomplete="off" required >
+                            <span>New password</span>
+                        </label>
+                    </div>
 
-                <button type="submit" class="btn">Login</button>
+                    <div class="input-box">
+                    <span class="icon">
+                        <i class='bx bx-lock-alt'></i>
+                    </span>
+                        <label for="confirmSignUpPassword">
+                            <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" autocomplete="off" required>
+                            <span id="confirmation">Confirm password</span>
+                        </label>
+                    </div>
 
-                <div class="logReg-link">
-                    <p>Don't have an account?
-                        <a href="#" class="register-link">Register</a>
-                    </p>
-                </div>
-            </form>
-        </div>
-        <!-- Register form -->
-        <div class="form-box register">
-            <div class="logReg-title">
-                <h2>Registration</h2>
-                <p>Please provide the following to verify your identity</p>
+                    <div class="terms-conditions">
+                        <label><input type="checkbox" id="termsCheckbox"> I agree to the terms & conditions </label>
+                    </div>
+
+                    <button id="submitButton" type="submit" class="btn" >Register</button>
+
+                    <div class="logReg-link">
+                        <p>Already have an account?
+                            <a class="login-link">Login</a>
+                        </p>
+                    </div>
+                    <div th:if="${param.error}" class="error-message">
+                        <p>Registration failed. Please try again.</p>
+                    </div>
+                </form>
             </div>
-
-            <form th:action="@{/register}" method="post">
-                <div class="input-box">
-                <span class="icon">
-                    <i class='bx bxs-user'></i>
-                </span>
-                    <label>
-                        <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" required >
-                        <a id="signUpUsernameText">Username</a>
-                    </label>
-                </div>
-
-                <div class="input-box">
-                <span class="icon">
-                    <i class='bx bx-lock-alt'></i>
-                </span>
-                    <label>
-                        <input id="signUpPassword" onchange="checkPasswordAlike()" type="password" required >
-                        <a>New password</a>
-                    </label>
-                </div>
-
-                <div class="input-box">
-                <span class="icon">
-                    <i class='bx bx-lock-alt'></i>
-                </span>
-                    <label>
-                        <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" required>
-                        <a id="confirmation">Confirm password</a>
-                    </label>
-                </div>
-
-                <div class="terms-conditions">
-                    <label><input type="checkbox" id="termsCheckbox">
-                        <a> I agree to the terms & conditions </a>
-                    </label>
-                </div>
-
-                <button id="submitButton" type="submit" class="btn" >Register</button>
-
-                <div class="logReg-link">
-                    <p>Already have an account?
-                        <a href="#" class="login-link">Login</a>
-                    </p>
-                </div>
-            </form>
         </div>
-    </div>
-</section>
-
+    </section>
+</main>
 <footer th:replace="~{components/footer}"></footer>
 
-<script th:src="@{~/loginScripts.js}" defer></script>
+<script th:src="@{~/js/loginScripts.js}" defer></script>
 </body>
 </html>
 
