@@ -22,7 +22,7 @@ import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
-@Profile("dev")
+@Profile("!test")
 public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
         @Autowired
@@ -276,7 +276,5 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 Role role2 = new Role("ROLE_ADMIN");
                 roleRepository.save(role);
                 roleRepository.save(role2);
-
-                accessUserService.tryCreateNewUser("Test", "Test1234");
         }
 }
