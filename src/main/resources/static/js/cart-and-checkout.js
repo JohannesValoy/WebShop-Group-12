@@ -106,7 +106,7 @@ const name = document.getElementById("name");
 const surname = document.getElementById("surname");
 const address = document.getElementById("address");
 const cardNumber = document.getElementById("cardNumber");
-const phone = document.getElementById("phone");
+const phone = document.getElementById("phoneNumber");
 const cvc = document.getElementById("cvc");
 const submitButton = document.getElementById("completeOrder");
 
