@@ -1,13 +1,11 @@
-<section class="product-category-card">
-  <div class="card-container" >
-    <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
-      <th:block th:if="${product?.image != null} ">
-        <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
-      </th:block>
-      <div class="card-layer">
-        <h3 th:text="${product.name}"></h3>
-        <p class="description" th:text="${product.description.length() > 170 ? product.description.substring(0, 170) + '...' : product.description}"></p>
-      </div>
-    </a>
-  </div>
+<section class="card-container" >
+  <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
+    <th:block th:if="${product?.image != null} ">
+      <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+    </th:block>
+    <div class="card-layer">
+      <h3 th:text="${product.name}"></h3>
+      <p class="description" th:text="${product.description}"></p>
+    </div>
+  </a>
 </section>
