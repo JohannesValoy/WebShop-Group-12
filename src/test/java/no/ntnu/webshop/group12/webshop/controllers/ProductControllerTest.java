@@ -32,7 +32,7 @@ public class ProductControllerTest {
         @Autowired
         ObjectMapper objectMapper;
 
-        private static final String BASE_URL = "/api/product";
+        private static final String BASE_URL = "/api/products";
 
         @Test
         @WithMockUser(roles = "ADMIN")

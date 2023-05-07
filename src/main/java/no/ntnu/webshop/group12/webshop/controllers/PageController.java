@@ -56,7 +56,7 @@ public class PageController {
      * 
      * @return Name of the ThymeLeaf template to render
      */
-    @GetMapping("/category")
+    @GetMapping("/categories")
     public String getCategory(Model model) {
         model.addAttribute("categoryName", "All products");
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -65,12 +65,12 @@ public class PageController {
         return "category";
     }
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/categories/{id}")
     public String getCategory(@PathVariable("id") int id, Model model) {
         Optional<Category> category = categoryService.getCategory(id);
         category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
         if (model.getAttribute("categoryName") == null) {
-            return "redirect:/category";
+            return "redirect:/categories";
         }
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getProductsByCategory(id));
@@ -140,7 +140,7 @@ public class PageController {
         return "about";
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public String getProduct(@PathVariable("id") int id, Model model) throws NotFoundException {
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("user", userService.getSessionUser());

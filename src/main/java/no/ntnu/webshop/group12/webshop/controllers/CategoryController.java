@@ -37,7 +37,7 @@ import no.ntnu.webshop.group12.webshop.service.CategoryService;
  */
 @RestController
 @Tag(name = "Category", description = "Category API")
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);

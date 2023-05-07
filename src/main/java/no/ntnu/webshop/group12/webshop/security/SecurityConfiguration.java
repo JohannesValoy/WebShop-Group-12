@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/admin/**").hasRole(ADMIN)
 
                 // API endpoints
-                .requestMatchers("/api/cart/**").hasAnyRole("USER", ADMIN)
+                .requestMatchers("/api/carts/**").hasAnyRole("USER", ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
@@ -54,8 +54,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/images/**").permitAll()
-                .requestMatchers("/product/**").permitAll()
-                .requestMatchers("/category/**").permitAll()
+                .requestMatchers("/products/**").permitAll()
+                .requestMatchers("/categories/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/", "/about").permitAll()

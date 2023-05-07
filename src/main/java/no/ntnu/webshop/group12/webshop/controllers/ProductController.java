@@ -33,7 +33,7 @@ import no.ntnu.webshop.group12.webshop.service.ProductService;
  */
 @RestController
 @Tag(name = "Product", description = "Product API")
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 
 public class ProductController {
 

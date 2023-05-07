@@ -46,7 +46,7 @@ increaseBtn.forEach(button => {
 
 // Changes amount of products in cart. Fetches data from API. Updates total price
 function changeCartAmount(id, amount) {
-    fetch(`/api/cart/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
+    fetch(`/api/carts/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
             .then(response => {
                 if (response.ok) {
                     response.json().then( data => {
@@ -75,7 +75,7 @@ function removeProductFromCart(productId) {
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = button.getAttribute('data-product-id');
-        fetch(`/api/cart/product/${productId}`, { method: 'DELETE' })
+        fetch(`/api/carts/product/${productId}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
                     removeProductFromCart(productId);

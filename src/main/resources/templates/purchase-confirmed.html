@@ -31,7 +31,7 @@
         <div class="cart-grid" th:each="quantity : ${purchase.products}">
           <div class="cart-product">
             <div class="div-row mobile">
-              <a th:href="@{/product/{id} (id=${quantity.product.id})}">
+              <a th:href="@{/products/{id} (id=${quantity.product.id})}">
                 <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, products, ${quantity.product.name})}"></picture>
               </a>
               <div class="div-product-info">

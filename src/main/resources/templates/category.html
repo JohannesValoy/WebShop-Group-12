@@ -19,7 +19,7 @@
     <section class="categories">
         <h2 class="heading">Category list</h2>
       <div class="category-container" >
-        <a class="category-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
+        <a class="category-box" th:each="category : ${categories}" th:href="@{/categories/{id} (id=${category.id})}">
          <div class="category-layer">
             <h3 th:text="${category.name}"></h3>
           </div>
