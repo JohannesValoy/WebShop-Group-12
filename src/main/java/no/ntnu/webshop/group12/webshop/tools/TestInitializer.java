@@ -9,16 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.WebpImage;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
-import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 import no.ntnu.webshop.group12.webshop.repository.WebpImageRepository;
 
 @Component
@@ -31,8 +29,6 @@ public class TestInitializer implements ApplicationListener<ApplicationReadyEven
         @Autowired
         private CategoryRepository categoryRepository;
 
-        @Autowired
-        private RoleRepository roleRepository;
 
         @Autowired
         private WebpImageRepository webpImageRepository;
@@ -124,10 +120,5 @@ public class TestInitializer implements ApplicationListener<ApplicationReadyEven
                 productRepository.save(headsetOffice);
                 productRepository.save(wiredHeadset);
                 productRepository.save(gamingHeadset);
-
-                Role role = new Role("ROLE_USER");
-                Role role2 = new Role("ROLE_ADMIN");
-                roleRepository.save(role);
-                roleRepository.save(role2);
         }
 }

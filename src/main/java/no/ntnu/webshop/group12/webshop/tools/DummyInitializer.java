@@ -9,19 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import no.ntnu.webshop.group12.webshop.models.Role;
 import no.ntnu.webshop.group12.webshop.models.WebpImage;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 import no.ntnu.webshop.group12.webshop.repository.WebpImageRepository;
-import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
-import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 
 @Component
+@Order(1)
 @Profile("!test")
 public class DummyInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -30,12 +29,6 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
 
         @Autowired
         private CategoryRepository categoryRepository;
-
-        @Autowired
-        private RoleRepository roleRepository;
-
-        @Autowired
-        private AccessUserService accessUserService;
 
         @Autowired
         private WebpImageRepository webpImageRepository;
@@ -271,10 +264,5 @@ public class DummyInitializer implements ApplicationListener<ApplicationReadyEve
                 productRepository.save(chargingBank1);
                 productRepository.save(chargingBank2);
                 productRepository.save(chargingBank3);
-
-                Role role = new Role("ROLE_USER");
-                Role role2 = new Role("ROLE_ADMIN");
-                roleRepository.save(role);
-                roleRepository.save(role2);
         }
 }
