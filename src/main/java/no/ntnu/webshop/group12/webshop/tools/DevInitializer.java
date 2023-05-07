@@ -33,7 +33,7 @@ public class DevInitializer implements ApplicationListener<ApplicationReadyEvent
         public void onApplicationEvent(ApplicationReadyEvent event) {
                 logger.info("Initializing dummy data for development environment");
                 String[] categories = creationHelperTool.getCategories();
-                for (int i = 5; i <= 12; i++) {
+                for (int i = 5; i <= categories.length; i++) {
                         creationHelperTool.detailCategoryAndSave(new Category(categories[i-1]));
                 }
 
