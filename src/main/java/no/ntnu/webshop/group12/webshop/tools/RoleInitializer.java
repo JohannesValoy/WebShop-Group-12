@@ -23,7 +23,6 @@ public class RoleInitializer implements ApplicationListener<ApplicationReadyEven
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-
         Role role = new Role("ROLE_USER");
         Role role2 = new Role("ROLE_ADMIN");
         roleRepository.save(role);
