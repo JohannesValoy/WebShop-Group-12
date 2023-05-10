@@ -36,11 +36,11 @@ body {
     min-height: 100svh;
     grid-template-rows:  auto 1fr auto;
     background-color: var(---thirdBackground);
-}
-main {
     background-image: url('../images/background.webp');
     background-attachment: fixed;
     background-size: cover;
+}
+main {
     padding: 0 8% 0 8%;
     display: flex;
     flex-direction: column;
