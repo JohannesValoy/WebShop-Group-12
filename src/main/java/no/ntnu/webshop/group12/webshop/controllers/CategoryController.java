@@ -62,7 +62,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategoryCount());
     }
 
-    @GetMapping("")
+    @GetMapping
     @Operation(summary = "Get categories by filter")
     public List<Category> getCategoriesByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,

@@ -52,7 +52,7 @@ public class ProductController {
         return productService.getProductCount();
     }
 
-    @GetMapping("")
+    @GetMapping
     @Operation(summary = "Get products by filter")
     public List<Product> getProductsByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
