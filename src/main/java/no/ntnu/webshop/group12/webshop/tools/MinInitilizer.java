@@ -28,8 +28,8 @@ public class MinInitilizer implements ApplicationListener<ApplicationReadyEvent>
     public void onApplicationEvent(ApplicationReadyEvent event) {
         logger.info("Initializing database with minimum data");
         String[] categories = creationHelperTool.getCategories();
-        for (int i = 1; i <= 4; i++) {
-                creationHelperTool.detailCategoryAndSave(new Category(categories[i-1]));
+        for (int i = 0; i <= 4; i++) {
+                creationHelperTool.detailCategoryAndSave(new Category(categories[i]));
         }
 
         Map<String, Category> categoryMap = creationHelperTool.getCategoryMap();

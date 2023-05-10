@@ -18,7 +18,7 @@ import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 
 @Configuration
 @Order(2)
-@Profile("!test")
+@Profile("dev")
 public class DevInitializer implements ApplicationListener<ApplicationReadyEvent>  {
 
         @Autowired
@@ -33,8 +33,8 @@ public class DevInitializer implements ApplicationListener<ApplicationReadyEvent
         public void onApplicationEvent(ApplicationReadyEvent event) {
                 logger.info("Initializing dummy data for development environment");
                 String[] categories = creationHelperTool.getCategories();
-                for (int i = 5; i <= categories.length; i++) {
-                        creationHelperTool.detailCategoryAndSave(new Category(categories[i-1]));
+                for (int i = 5; i <= categories.length-1; i++) {
+                        creationHelperTool.detailCategoryAndSave(new Category(categories[i]));
                 }
 
                 Map<String, Category> categoryMap = creationHelperTool.getCategoryMap();
