@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Product Search Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" th:href="@{~/images/logo.webp}">
+  <!-- personal styles -->
+  <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
+</head>
+<body>
+<header th:replace="~{components/header}"></header>
+<main>
+  <h1>Product Search Results</h1>
+  <div class="product-list">
+    <th:block th:each="product : ${products}">
+      <div class="product-category-card">
+        <div class="product-image">
+          <img th:src="@{${product.image.primaryImage}}"/>
+        </div>
+        <div class="product-details">
+          <h2 th:text="${product.name}"></h2>
+          <p th:text="${product.description}"></p>
+          <p th:text="'Price: $' + ${product.price}"></p>
+          <p th:text="'Stock: ' + ${product.stock}"></p>
+          <form th:action="@{/cart/{id} (id=${product.id})}" method="post">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+    </th:block>
+  </div>
+</main>
+<footer th:replace="~{components/footer}"></footer>
+</body>
+<script th:src="@{~/js/product-category-card.js}" defer></script>
+<script th:src="@{~/js/search.js}" defer></script>
+</html>
