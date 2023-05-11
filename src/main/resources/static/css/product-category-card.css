@@ -6,9 +6,6 @@
     align-items: center;
 }
 
-.card-box {
-    min-height: 15rem;
-}
 
 .product-category-card .card-heading {
     margin-bottom: 2rem;
@@ -37,16 +34,14 @@
     transition: var(---transition-time);
 }
 
-.card-container:hover .card-box:hover {
+.card-box:hover {
     transform: scale(var(---transform-scale));
 }
 
 .card-box img {
-    transition: var(---transition-time) ease;
-}
-
-.card-box:hover img {
-    transform: scale(var(---transform-scale));
+    width: 100%;
+    height: 100%;
+    max-width: 80rem;
 }
 
 .card-box .card-layer {
