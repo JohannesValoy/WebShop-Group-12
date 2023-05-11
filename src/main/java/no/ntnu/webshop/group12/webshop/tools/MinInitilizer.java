@@ -16,7 +16,6 @@ import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @Component
 @Order(1)
-@Profile("!prod")
 public class MinInitilizer implements ApplicationListener<ApplicationReadyEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(MinInitilizer.class);
