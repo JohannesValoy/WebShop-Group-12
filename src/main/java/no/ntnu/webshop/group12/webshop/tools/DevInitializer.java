@@ -18,7 +18,7 @@ import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 
 @Configuration
 @Order(2)
-@Profile("dev")
+@Profile("!test")
 public class DevInitializer implements ApplicationListener<ApplicationReadyEvent>  {
 
         @Autowired
