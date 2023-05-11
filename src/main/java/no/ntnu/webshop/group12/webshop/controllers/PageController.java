@@ -1,13 +1,18 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
+import no.ntnu.webshop.group12.webshop.models.product.Product;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.querydsl.core.types.Predicate;
 
 import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
@@ -164,5 +169,12 @@ public class PageController {
     public String getError(Model model) {
         model.addAttribute("user", userService.getSessionUser());
         return "error";
+    }
+
+    @GetMapping("/search")
+    public String getSearch(Model model, @QuerydslPredicate(root = Product.class)  Predicate predicate) {
+        model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("products", productService.getProductsByFilter(predicate, null));
+        return "search";
     }
 }
