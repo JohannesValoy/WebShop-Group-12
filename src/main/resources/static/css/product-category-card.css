@@ -40,7 +40,7 @@
 
 .card-box img {
     width: 100%;
-    height: 100%;
+    height: fit-content;
     max-width: 80rem;
 }
 
@@ -91,7 +91,7 @@
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .card-box:hover img, .card-box:hover .card-layer {
+    .card-box:hover {
         transform: none;
     }
 
