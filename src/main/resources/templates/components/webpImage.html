@@ -1,6 +1,3 @@
 <picture th:fragment="webp(image, folder, alt)">
-    <source media="(min-width: 2048px)" th:srcset="|/images/${folder}/2048w/${image.imageWebp2048}">
-    <source media="(min-width: 1024px)" th:srcset="|/images/${folder}/1024w/${image.imageWebp1024}|">
-    <source media="(min-width: 512px)" th:srcset="|/images/${folder}/512w/${image.imageWebp512}|">
-    <img th:src="|/images/${folder}/${image.primaryImage}|" th:alt="'Picture of ' + ${alt}">
+    <img th:attr="srcset=|/images/${folder}/${image.primaryImage} 360w, /images/${folder}/512w/${image.imageWebp512} 512w, /images/${folder}/1024w/${image.imageWebp1024} 1024w, /images/${folder}/2048w/${image.imageWebp2048} 2048w|" th:alt="'Picture of ' + ${alt}" sizes="(max-width: 768px) 90vw, (max-width: 1024px) calc(42vw - 2.5rem), (max-width: 1440px) calc(26vw - 2.5rem), calc(20vw - 2.5rem)">
 </picture>
