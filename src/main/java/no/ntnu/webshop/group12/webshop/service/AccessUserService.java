@@ -61,6 +61,10 @@ public class AccessUserService implements UserDetailsService {
         if (error == null) {
             User user = new User(username, createHash(password));
             user.addRole(roleRepository.findByName("ROLE_USER"));
+            //Adds the admin role to a user called admin when the user is created
+            if (user.getUsername().equalsIgnoreCase("admin")) {
+                user.addRole(roleRepository.findByName("ROLE_ADMIN"));
+            }
             userRepository.save(user);
         }
         return error;
@@ -94,7 +98,13 @@ public class AccessUserService implements UserDetailsService {
      * @return True if the user exists
      */
     private boolean userExist(String username) {
-        return userRepository.findByUsername(username).isPresent();
+        boolean returnBool = true;
+        try{
+            loadUserByUsername(username);
+        }catch(UsernameNotFoundException e){
+            returnBool = false;
+        };
+        return returnBool;
     }
 
     /**
@@ -117,7 +127,7 @@ public class AccessUserService implements UserDetailsService {
      * @return True if the password is correct
      */
     public boolean updatePassword(String password, String username) {
-        User user = userRepository.findByUsername(username).orElse(null);
+        User user = userRepository.findByUsernameIgnoreCase(username).orElse(null);
         return updatePassword(password, user);
     }
 
@@ -140,7 +150,7 @@ public class AccessUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
         if (user.isPresent()) {
             return new AccessUserDetails(user.get());
         } else {
