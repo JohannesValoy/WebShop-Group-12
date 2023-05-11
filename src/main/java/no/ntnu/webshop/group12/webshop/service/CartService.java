@@ -1,17 +1,16 @@
 package no.ntnu.webshop.group12.webshop.service;
 
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
-import no.ntnu.webshop.group12.webshop.models.Purchase;
 import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
+import no.ntnu.webshop.group12.webshop.models.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.repository.CartRepository;
 import no.ntnu.webshop.group12.webshop.repository.QuantityRepository;
 
@@ -58,6 +57,8 @@ public class CartService {
             cart.removeProduct(q);
             quantityRepository.delete(q);
             cartRepository.save(cart);
+        } else {
+            throw new NotFoundException("Product not found in cart");
         }
         return q.getProduct();
     }

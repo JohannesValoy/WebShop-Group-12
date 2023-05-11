@@ -37,6 +37,10 @@ public class Cart {
         this.user = user;
     }
 
+    /**
+     * Copy constructor
+     * @param cart The cart to copy
+     */
     public Cart(Cart cart) {
         this();
         this.user = cart.getUser();

@@ -67,6 +67,16 @@ public class Product {
         this.image = image;
     }
 
+    public Product(Product product) {
+        this.id = product.getId();
+        this.category = product.getCategory();
+        this.name = product.getName();
+        this.description = product.getDescription();
+        this.price = product.getPrice();
+        this.stock = product.getStock();
+        this.image = product.getImage();
+    }
+
     public int getId() {
         return id;
     }
