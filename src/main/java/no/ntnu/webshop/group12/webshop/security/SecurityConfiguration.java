@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/category/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/register").permitAll()
-                .requestMatchers("/", "/about").permitAll()
+                .requestMatchers("/", "/about", "/error").permitAll()
 
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
