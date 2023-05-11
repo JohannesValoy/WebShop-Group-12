@@ -29,6 +29,9 @@ public class CartService {
     @Autowired
     private QuantityRepository quantityRepository;
 
+    @Autowired
+    private PurchaseService purchaseService;
+
     public Cart addProductToCart(int productId) throws NotFoundException {
         Cart cart = getCart();
         if (cart == null) {
@@ -109,7 +112,7 @@ public class CartService {
 
     public Purchase confirmCart(CartPurchase cartPurchase) {
         Cart cart = getCart();
-        Purchase purchase = new Purchase(cart);
+        Purchase purchase = purchaseService.createPurchaseFromCart(cart);      
         cartRepository.delete(cart);
         return purchase;
     }

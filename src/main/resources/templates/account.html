@@ -27,9 +27,7 @@
             </svg>
 
             <section class="account-email-and-phone">
-                <h3>Username</h3>
-                <a>UserEmail@email.com</a>
-                <a>+123 123 45 678</a>
+                <h3 th:text="${user.username}">Username</h3>
             </section>
         </section>
 
@@ -37,22 +35,14 @@
         <section class="product-category-card">
             <h2 class="card-heading">Cart Products</h2>
             <div class="card-container" >
-                <a class="card-box" th:each="quantity : ${quantities}" th:href="@{${quantity.product.id}}">
-                    <img th:src="@{/images/products/{image} (image=${quantity.product.image})}" th:alt="'Picture of ' + ${quantity.product.name}">
-                    <div class="card-layer">
-                        <h3 th:text="${quantity.product.name}"></h3>
-                        <h3 th:text="${quantity.getAmount()}"></h3>
-                        <i class='bx bx-info-circle'></i>
-                    </div>
-                </a>
+                <section class="card-box" th:each="purchase : ${purchases}">
+                    <!-- TODO: Add purchase card --> 
+                    <div th:text="${purchase.date}"></div>
+                </section>
             </div>
         </section>
     </section>
-
-
 </main>
-
 <footer th:replace="~{components/footer}"></footer>
-
 </body>
 </html>

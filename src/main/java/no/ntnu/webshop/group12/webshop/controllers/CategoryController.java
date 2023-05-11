@@ -25,10 +25,8 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
-import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
 /**

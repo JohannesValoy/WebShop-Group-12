@@ -14,6 +14,7 @@ import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
+import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
@@ -34,6 +35,9 @@ public class PageController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    PurchaseService purchaseService;
 
     @Autowired
     CartService cartService;
@@ -154,6 +158,7 @@ public class PageController {
         User authenticatedUser = userService.getSessionUser();
         if (authenticatedUser != null) {
             model.addAttribute("user", authenticatedUser);
+            model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
             return "account";
         } else {
             return "no-access";
