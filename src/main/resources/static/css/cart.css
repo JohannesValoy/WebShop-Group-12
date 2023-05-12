@@ -52,6 +52,17 @@
     width: 100%;
 }
 
+.hover {
+    border-radius: var(---border-radius);
+    padding: 1rem;
+    transition: var(---transition-time);
+}
+
+.hover:hover {
+    background-color: var(---secondBackground);
+    border-radius: var(---border-radius);
+}
+
 .cart-product {
     display: flex;
     flex-wrap: wrap;
