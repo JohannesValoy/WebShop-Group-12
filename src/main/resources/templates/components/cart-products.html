@@ -1,7 +1,7 @@
 <section class="cart">
     <h3 id="cart-title"></h3>
-    <div class="cart-grid">
-        <div class="cart-product" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
+    <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
+        <div class="cart-product" >
             <div class="div-row mobile">
                 <a th:href="@{/products/{id} (id=${quantity.product.id})}">
                     <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, products, ${quantity.product.name})}"></picture>
