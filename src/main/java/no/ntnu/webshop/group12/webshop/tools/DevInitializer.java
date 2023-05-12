@@ -13,7 +13,6 @@ import org.springframework.core.annotation.Order;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
-import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 
 
 @Configuration
@@ -23,10 +22,6 @@ public class DevInitializer implements ApplicationListener<ApplicationReadyEvent
 
         @Autowired
         private CreationHelperTool creationHelperTool;
-
-        @Autowired
-        private AccessUserService accessUserService;
-
         private final Logger logger = LoggerFactory.getLogger("DummyInit");
         
         @Override
@@ -116,9 +111,6 @@ public class DevInitializer implements ApplicationListener<ApplicationReadyEvent
                                 2500, 10);
                 
                 creationHelperTool.detailProductAndSave(chargingBank3, categoryMap.get("Office"), categoryMap.get("Accessories"), categoryMap.get("Batteries"));
-
-                accessUserService.tryCreateNewUser("test", "Test1234");
-                accessUserService.tryCreateNewUser("admin", "Admin1234");
         }
 
 }
