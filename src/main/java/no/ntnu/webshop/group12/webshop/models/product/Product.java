@@ -63,7 +63,6 @@ public class Product {
         this.name = name;
         this.description = description;
         createShortDescriptive();
-        shortDescription = description.substring(0, Math.min(description.length(), 100));
         this.price = price;
         this.stock = stock;
         this.image = image;
@@ -71,14 +70,12 @@ public class Product {
 
     private void createShortDescriptive() {
         char[] chars = {'.', '!', '?'};
-        String shortest = null;
         for (char c : chars) {
             int index = description.indexOf(c);
-            if (index != -1 && (shortest == null || index < shortest.length())) {
-                    shortest = description.substring(0, index + 1);
+            if (index != -1 && (shortDescription == null || index < shortDescription.length())) {
+                    shortDescription = description.substring(0, index + 1);
             }
-        }
-    }
+        } 
 
     public int getId() {
         return id;
