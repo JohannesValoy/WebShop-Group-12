@@ -14,9 +14,8 @@
 }
 
 .profile-image {
-    min-width: 5rem;
-    min-height: 5rem;
-    width: 20%;
+    min-width: 15rem;
+    min-height: 15rem;
 }
 
 .account-details {
