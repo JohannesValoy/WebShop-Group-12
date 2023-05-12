@@ -1,8 +1,0 @@
-.style-1 {
-    background-color: var(---mainBackground);
-    color: var(---mainText);
-    border: 2px solid var(---mainText);
-    padding: 0.5em 1em;
-    font-size: 1rem;
-    transition: var(---transition-time);
-}
