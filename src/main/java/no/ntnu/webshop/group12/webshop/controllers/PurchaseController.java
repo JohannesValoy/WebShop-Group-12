@@ -31,7 +31,7 @@ public class PurchaseController {
     }
 
     @GetMapping()
-    @Operation(summary = "Get all purchases")
+    @Operation(summary = "Filter purchases")
     public Iterable<Purchase> getPurchases(
         @QuerydslPredicate(root = Purchase.class) Predicate predicate,
         @PageableDefault(size = 20, sort = "id") Pageable pageable) {

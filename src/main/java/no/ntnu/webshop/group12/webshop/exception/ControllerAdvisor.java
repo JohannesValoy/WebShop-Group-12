@@ -37,17 +37,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ForbiddenException.class)
-    protected  ResponseEntity<Object> handleForbiddenException(
+    protected ResponseEntity<Object> handleForbiddenException(
             Exception ex, WebRequest request) {
-            Map<String, Object> body = newBody();
-            body.put("message", "You are not authorized to access this resource");
-            return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+        Map<String, Object> body = newBody();
+        body.put("message", "You are not authorized to access this resource");
+        return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(ConversionFailedException.class)
     protected ResponseEntity<Object> handleConversionFailedException(
             Exception ex, WebRequest request) {
-
         Map<String, Object> body = newBody();
         String message = ex.getLocalizedMessage();
         if (message.contains("Failed to convert from type")) {
