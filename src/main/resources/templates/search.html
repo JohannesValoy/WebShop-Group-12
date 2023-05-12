@@ -6,31 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" th:href="@{~/images/logo.webp}">
   <!-- personal styles -->
+  <link rel="icon" th:href="@{~/images/logo.webp}">
   <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
   <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
 <main>
-  <h1>Product Search Results</h1>
-  <div class="product-list">
-    <th:block th:each="product : ${products}">
-      <div class="product-category-card">
-        <div class="product-image">
-          <img th:src="@{${product.image.primaryImage}}"/>
-        </div>
-        <div class="product-details">
-          <h2 th:text="${product.name}"></h2>
-          <p th:text="${product.description}"></p>
-          <p th:text="'Price: $' + ${product.price}"></p>
-          <p th:text="'Stock: ' + ${product.stock}"></p>
-          <form th:action="@{/cart/{id} (id=${product.id})}" method="post">
-            <button type="submit">Add to Cart</button>
-          </form>
-        </div>
-      </div>
-    </th:block>
-  </div>
+  <section class="sections">
+    <h1>Product Search Results</h1>
+      <section th:replace="~{components/common-card}"></section>
+    </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
 </body>

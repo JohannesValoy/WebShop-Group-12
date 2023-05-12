@@ -1,0 +1,22 @@
+<div class="cart-grid" th:each="product : ${products}">
+  <div class="cart-product">
+    <div class="div-row mobile">
+
+      <a th:href="@{/products/{id} (id=${product.id})}">
+        <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+      </a>
+
+      <div class="div-product-info">
+        <h4 th:text="${product.name}"></h4>
+        <p class="description" th:text="${product.description}"></p>
+      </div>
+
+    </div>
+
+    <div class="div-row price">
+      <div class="div-column">
+        <p th:text="'Price: $' + ${product.price}"></p>
+      </div>
+    </div>
+  </div>
+</div>
