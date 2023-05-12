@@ -186,6 +186,16 @@ img {
     height: 100%;
 }
 
+.card-grid {
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    padding: 2%;
+    gap: 2rem;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 /*universal for buttons*/
 .focus-button {
     align-self: center;
@@ -229,7 +239,18 @@ img {
     cursor: pointer;
 }
 
+@media (min-width: 2488px) {
+
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .header {
         position: revert;
@@ -243,6 +264,12 @@ img {
 
     main {
         padding: 0 5% 0 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
