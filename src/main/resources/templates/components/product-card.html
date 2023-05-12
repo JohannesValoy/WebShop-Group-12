@@ -2,7 +2,7 @@
   <div class="card-container" >
     <a class="card-box" th:each="product : ${products}" th:href="@{/product/{id} (id=${product.id})}">
       <th:block th:if="${product?.image != null} ">
-        <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+        <picture th:replace="~{components/webpImage ::  webp(${product.image}, ${product.name})}"></picture>
       </th:block>
       <div class="card-layer">
         <h3 th:text="${product.name}"></h3>
