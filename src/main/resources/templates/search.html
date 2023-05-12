@@ -15,7 +15,12 @@
 <main>
   <section class="sections">
     <h2>Product Search Results</h2>
-      <section th:replace="~{components/product-card}"></section>
+    <th:block th:if="${products.size == 0}">
+      <p>No products found</p>
+    </th:block>
+    <th:block th:if="${products.size > 0}">
+      <section th:replace="~{components/common-card}"></section>
+    </th:block>
     </section>
 </main>
 <footer th:replace="~{components/footer}"></footer>
