@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
@@ -31,7 +31,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProduct(int id) throws NotFoundException{
+    public Product getProduct(int id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
             return product.get();

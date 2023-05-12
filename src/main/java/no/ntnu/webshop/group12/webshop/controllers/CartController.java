@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.service.CartService;
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
@@ -24,13 +23,13 @@ public class CartController {
 
     @DeleteMapping("/product/{id}")
     @Operation(summary = "Delete product from cart")
-    public Product deleteProductFromCart(@PathVariable int id) throws NotFoundException {
+    public Product deleteProductFromCart(@PathVariable int id) {
         return cartService.removeProductFromCart(id);
     }
 
     @PatchMapping("/product/{id}/quantity/{quantity}")
     @Operation(summary = "Update product quantity")
-    public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) throws NotFoundException {
+    public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
         return cartService.updateProductQuantity(id, quantity);
     }
 

@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import no.ntnu.webshop.group12.webshop.models.User;
+
 /**
  * This class is used to configure the security of the application
  */
@@ -44,6 +46,8 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.PUT, "/api/**").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.GET, "/api/purchase").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.GET, "/api/purchase/**").hasRole("USER")
                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
 
                 // Account endpoints

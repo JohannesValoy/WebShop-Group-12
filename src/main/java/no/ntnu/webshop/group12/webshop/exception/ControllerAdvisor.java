@@ -1,11 +1,11 @@
-package no.ntnu.webshop.group12.webshop.excpetion;
+package no.ntnu.webshop.group12.webshop.exception;
 
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
@@ -36,7 +36,15 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 "This is not the method you are after", HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler({ ConversionFailedException.class })
+    @ExceptionHandler(ForbiddenException.class)
+    protected  ResponseEntity<Object> handleForbiddenException(
+            Exception ex, WebRequest request) {
+            Map<String, Object> body = newBody();
+            body.put("message", "You are not authorized to access this resource");
+            return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(ConversionFailedException.class)
     protected ResponseEntity<Object> handleConversionFailedException(
             Exception ex, WebRequest request) {
 
@@ -50,7 +58,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    protected ResponseEntity<Object> handleConstraintExcpetion(ConstraintViolationException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
 
         Map<String, Object> body = newBody();
         body.put("cause",
