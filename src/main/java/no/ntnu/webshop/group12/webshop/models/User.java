@@ -17,7 +17,9 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.purchase.Purchase;
 
 @Entity(name = "users")
@@ -46,6 +48,18 @@ public class User {
     @OneToMany()
     @JoinColumn(name = "user_id")
     private Set<Purchase> purchases = new LinkedHashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    public Set<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(Set<Purchase> purchases) {
+        this.purchases = purchases;
+    }
 
     public User() {
     }

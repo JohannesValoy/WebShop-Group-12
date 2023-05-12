@@ -22,7 +22,7 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
@@ -54,7 +54,7 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    public User getUser(@PathVariable int id) throws NotFoundException {
+    public User getUser(@PathVariable int id) {
         Optional<User> user = userService.getUser(id);
         if (!user.isPresent()) {
             throw new NotFoundException("User not found");
@@ -99,7 +99,7 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public User deleteUser(@PathVariable int id) throws NotFoundException {
+    public User deleteUser(@PathVariable int id) {
         Optional<User> user = userService.getUser(id);
         if (!user.isPresent()) {
             throw new NotFoundException("User not found");
