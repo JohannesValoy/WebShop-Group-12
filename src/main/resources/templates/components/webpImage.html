@@ -1,8 +1,8 @@
 <picture th:fragment="webp(image, folder, alt)">
     <img  th:attr="src=|${image.primaryImage}|,
-            srcset=|${image.primaryImage} 360w, ${image.imageWebp512} 512w, ${image.imageWebp512} 760w, ${image.imageWebp1024} 1024w, ${image.imageWebp2048} 2048w|,
+            srcset=|${image.primaryImage} 360w, ${image.imageWebp512} 512w, ${image.imageWebp760} 760w, ${image.imageWebp1024} 1024w, ${image.imageWebp2048} 2048w|,
             alt='Picture of ' + ${alt}"
           width="360"
           height="360"
-          sizes="(min-width: 1440px) calc(20vw - 2.5rem), (min-width: 1024px) calc(26vw - 2.5rem), (min-width: 768px) calc(42vw - 2.5rem), 100vw">
+          sizes="(min-width: 1440px) calc(17vw - 2.5rem), (min-width: 1024px) calc(26vw - 2.5rem), (min-width: 768px) calc(42vw - 2.5rem), 70vw">
 </picture>

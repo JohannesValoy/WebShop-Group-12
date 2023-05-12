@@ -103,7 +103,6 @@
  }
 
 .div-row img {
-    max-height: 20rem;
     border-radius: var(---border-radius);
 }
 
@@ -170,12 +169,8 @@ svg {
         gap: 1rem;
     }
 
-    .div-row img{
-        max-height: 10rem;
-}
     .progressbar {
         width: 80%;
-        min-width: -moz-fit-content;
         min-width: fit-content;
     }
 

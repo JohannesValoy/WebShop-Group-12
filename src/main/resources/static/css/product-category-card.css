@@ -40,7 +40,7 @@
 
 .card-box img {
     width: 100%;
-    height: fit-content;
+    height: auto;
     max-width: 80rem;
 }
 
@@ -93,6 +93,11 @@
 
     .card-box:hover {
         transform: none;
+    }
+
+    .card-box img {
+        height: revert;
+        width: revert;
     }
 
     .card-box .card-layer {

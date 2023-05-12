@@ -24,6 +24,9 @@ public class WebpImage {
     private String imageWebp512;
 
     @Column(columnDefinition = "TEXT")
+    private String imageWebp760;
+
+    @Column(columnDefinition = "TEXT")
     private String imageWebp1024;
 
     @Column(columnDefinition = "TEXT")
@@ -32,9 +35,10 @@ public class WebpImage {
     public WebpImage() {
     }
 
-    private WebpImage(String primaryImage, String imageWebp512, String imageWebp1024, String imageWebp2048) {
+    private WebpImage(String primaryImage, String imageWebp512, String imageWebp760, String imageWebp1024, String imageWebp2048) {
         this.primaryImage = primaryImage;
         this.imageWebp512 = imageWebp512;
+        this.imageWebp760 = imageWebp760;
         this.imageWebp1024 = imageWebp1024;
         this.imageWebp2048 = imageWebp2048;
     }
@@ -53,6 +57,14 @@ public class WebpImage {
 
     public void setImageWebp512(String imageWebp512) {
         this.imageWebp512 = imageWebp512;
+    }
+
+    public String getImageWebp760() {
+        return imageWebp760;
+    }
+
+    public void setImageWebp760(String imageWebp760) {
+        this.imageWebp760 = imageWebp760;
     }
 
     public String getImageWebp1024() {
@@ -77,6 +89,8 @@ public class WebpImage {
 
         private String imageWebp512;
 
+        private String imageWebp760;
+
         private String imageWebp1024;
 
         private String imageWebp2048;
@@ -88,6 +102,11 @@ public class WebpImage {
 
         public Builder imageWebp512(String imageWebp512) {
             this.imageWebp512 = imageWebp512;
+            return this;
+        }
+
+        public Builder imageWebp760(String imageWebp760) {
+            this.imageWebp760 = imageWebp760;
             return this;
         }
 
@@ -106,13 +125,14 @@ public class WebpImage {
             String folderpath = path.substring(0, path.lastIndexOf('/'));
             this.primaryImage = String.format("%s", path);
             this.imageWebp512 = String.format("%s/512w%s-512w.webp", folderpath, filename);
+            this.imageWebp760 = String.format("%s/760w%s-760w.webp", folderpath, filename);
             this.imageWebp1024 = String.format("%s/1024w%s-1024w.webp", folderpath, filename);
             this.imageWebp2048 = String.format("%s/2048w%s-2048w.webp", folderpath, filename);
             return this;
         }
 
         public WebpImage build() {
-            return new WebpImage(primaryImage, imageWebp512, imageWebp1024, imageWebp2048);
+            return new WebpImage(primaryImage, imageWebp512, imageWebp760, imageWebp1024, imageWebp2048);
         }
     }
 
@@ -123,6 +143,7 @@ public class WebpImage {
         result = prime * result + id;
         result = prime * result + ((primaryImage == null) ? 0 : primaryImage.hashCode());
         result = prime * result + ((imageWebp512 == null) ? 0 : imageWebp512.hashCode());
+        result = prime * result + ((imageWebp760 == null) ? 0 : imageWebp760.hashCode());
         result = prime * result + ((imageWebp1024 == null) ? 0 : imageWebp1024.hashCode());
         result = prime * result + ((imageWebp2048 == null) ? 0 : imageWebp2048.hashCode());
         return result;
@@ -148,6 +169,11 @@ public class WebpImage {
             if (other.imageWebp512 != null)
                 return false;
         } else if (!imageWebp512.equals(other.imageWebp512))
+            return false;
+        if (imageWebp760 == null) {
+            if (other.imageWebp760 != null)
+                return false;
+        } else if (!imageWebp760.equals(other.imageWebp760))
             return false;
         if (imageWebp1024 == null) {
             if (other.imageWebp1024 != null)
