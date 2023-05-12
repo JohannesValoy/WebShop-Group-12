@@ -32,7 +32,7 @@ public class CategoryControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    private static final String BASE_URL = "/api/category";
+    private static final String BASE_URL = "/api/categories";
 
     @Test
     @WithMockUser(roles = "ADMIN")
@@ -69,7 +69,7 @@ public class CategoryControllerTest {
 
     @Test
     void testGetCategoryByFilter() throws Exception {
-        List categories = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/" + "filter?name=Gaming"))
+        List categories = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
         assertEquals(1, categories.size());
     }

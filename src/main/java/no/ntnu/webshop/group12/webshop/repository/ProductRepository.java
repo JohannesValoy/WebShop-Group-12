@@ -41,4 +41,6 @@ public interface ProductRepository
                 bindings.excluding(root.image);
 
         }
+
+        
 }

@@ -8,8 +8,8 @@
   <link rel="icon" th:href="@{~/images/logo.webp}">
   <!-- personal styles -->
   <link rel="stylesheet" th:href="@{~/css/style.css}"/>
-  <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
   <link rel="stylesheet" th:href="@{~/css/category.css}"/>
+  <link rel="stylesheet" th:href="@{~/css/product-card.css}"/>
 
 </head>
 <body>
@@ -19,15 +19,16 @@
     <section class="categories">
         <h2 class="heading">Category list</h2>
       <div class="category-container" >
-        <a class="category-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
+        <a class="category-box" th:each="category : ${categories}" th:href="@{/categories/{id} (id=${category.id})}">
          <div class="category-layer">
             <h3 th:text="${category.name}"></h3>
           </div>
         </a>
       </div>
     </section>
-    <section class="products">
+
       <h2 class="heading">Product list for <span th:text="${categoryName}"></span></h2>
+    <section class="products">
         <section th:replace="components/product-card">
         </section>
     </section>

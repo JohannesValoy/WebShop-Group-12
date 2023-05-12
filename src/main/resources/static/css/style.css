@@ -125,10 +125,19 @@ h1, h2, h3, h4, p {
     background-color: var(---thirdBackground);
     transition: var(---transition-time);
 }
+
 .search-bar .search:focus {
     outline: none;
     border: 2px solid var(---secondText);
     transform: scale(var(---transform-scale-small));
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 /*navbar end*/
