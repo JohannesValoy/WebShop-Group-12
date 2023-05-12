@@ -1,5 +1,5 @@
-<a class="cart-grid " th:each="product : ${products}" th:href="@{/products/{id} (id=${product.id})}">
-  <div class="cart-product ">
+<div class="cart-grid">
+  <a class="cart-product" th:each="product : ${products}" th:href="@{/products/{id} (id=${product.id})}">
     <div class="div-row mobile hover">
       <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
       <div class="div-product-info">
@@ -8,5 +8,5 @@
         <p th:text="'Price: $' + ${product.price}"></p>
       </div>
     </div>
-  </div>
-</a>
+  </a>
+</div>
