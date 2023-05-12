@@ -18,5 +18,8 @@
         <p th:text="'Price: $' + ${product.price}"></p>
       </div>
     </div>
+    <a th:href="@{/products/{id} (id=${product.id})}">
+      <button class="focus-button" >Go to product</button>
+    </a>
   </div>
 </div>
