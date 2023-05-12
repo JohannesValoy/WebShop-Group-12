@@ -73,10 +73,10 @@ public class Product {
         for (char c : chars) {
             int index = description.indexOf(c);
             if (index != -1 && (shortDescription == null || index < shortDescription.length())) {
-                    shortDescription = description.substring(0, index + 1);
+                shortDescription = description.substring(0, index + 1);
             }
-        } 
-
+        }
+    }
     public int getId() {
         return id;
     }
