@@ -1,4 +1,4 @@
-<section class="card-container" >
+<section class="card-grid" >
     <a class="card-box" th:each="category : ${categories}" th:href="@{/categories/{id} (id=${category.id})}">
     <th:block th:if="${category?.image != null}">
         <picture th:replace="~{components/webpImage ::  webp(${category.image}, ${category.name})}"></picture>
