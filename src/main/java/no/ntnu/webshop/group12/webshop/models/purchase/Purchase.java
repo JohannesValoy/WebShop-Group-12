@@ -9,8 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.cart.Cart;
 
@@ -27,8 +28,8 @@ public class Purchase{
     @Column(updatable = false)
     Set<Item> products;
 
-    @OneToOne
-    @Column(updatable = false)
+    @ManyToOne
+    @JoinColumn(updatable = false, name = "user_id")
     User user;
 
     public Purchase() {

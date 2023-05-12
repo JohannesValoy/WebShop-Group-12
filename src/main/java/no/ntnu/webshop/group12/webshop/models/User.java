@@ -50,7 +50,6 @@ public class User {
     private Set<Purchase> purchases = new LinkedHashSet<>();
 
     @OneToOne
-    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     public Set<Purchase> getPurchases() {
