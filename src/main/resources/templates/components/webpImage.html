@@ -1,6 +1,6 @@
 <picture th:fragment="webp(image, folder, alt)">
-    <source media="(min-width: 2048px)" th:srcset="|${image.imageWebp2048}">
-    <source media="(min-width: 1024px)" th:srcset="|${image.imageWebp1024}|">
-    <source media="(min-width: 512px)" th:srcset="|${image.imageWebp512}|">
-    <img th:src="|${image.primaryImage}|" th:alt="'Picture of ' + ${alt}">
+    <source media="(min-width: 4096px)" th:srcset="${image.imageWebp2048}">
+    <source media="(min-width: 2048px)" th:srcset="${image.imageWebp1024}">
+    <source media="(min-width: 1024px)" th:srcset="${image.imageWebp512}">
+    <img th:src="${image.primaryImage}" th:alt="|Picture of ${alt}|">
 </picture>

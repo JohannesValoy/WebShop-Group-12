@@ -25,6 +25,7 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
+
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
@@ -37,7 +38,7 @@ import no.ntnu.webshop.group12.webshop.service.CategoryService;
  */
 @RestController
 @Tag(name = "Category", description = "Category API")
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
@@ -62,7 +63,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getCategoryCount());
     }
 
-    @GetMapping("/filter")
+    @GetMapping
     @Operation(summary = "Get categories by filter")
     public List<Category> getCategoriesByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,

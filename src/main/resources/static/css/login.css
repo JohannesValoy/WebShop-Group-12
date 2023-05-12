@@ -2,9 +2,13 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
-header {
+.header {
     position: revert;
     width: revert;
+}
+
+.ghostHeader {
+    display: none;
 }
 
 main {
@@ -111,44 +115,27 @@ input:autofill {
     font-size: 19px;
 }
 
-.logReg-box .remember-forgot {
-    font-size: 14px;
-    color: white;
-    font-weight: 500;
+.checkmark-field {
     margin: -15px 0 15px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    user-select: none;
+    gap: 0.5rem;
 }
 
-.remember-forgot label {
-    pointer-events: none;
-}
-
-.remember-forgot {
+.checkmark-field label {
+    display: flex;
     color: white;
-    text-decoration: none;
+    cursor: pointer;
+    gap: 0.5rem;
 }
 
-.remember-forgot label:hover {
+.checkmark-field label:hover {
     text-decoration: underline;
 }
 
-.logReg-box .terms-conditions {
-    font-size: 14px;
-    color: white;
-    font-weight: 500;
-    margin: -15px 0 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.terms-conditions label {
-    color: white;
-    text-decoration: none;
-}
-
-.terms-conditions label:hover {
-    text-decoration: underline;
+.checkmark-field label input {
+    cursor: pointer;
 }
 
 .logReg-box .btn {
@@ -170,17 +157,15 @@ input:autofill {
 }
 
 .logReg-box .logReg-link {
-    font-size: 14px;
-    color: white;
-    text-align: center;
-    font-weight: 500;
     margin: 25px 0 15px;
+    user-select: none;
 }
 
 .logReg-link p a {
     color: white;
     font-weight: 600;
     pointer-events: visible;
+    cursor: pointer;
 }
 
 .logReg-link p a:hover {
