@@ -2,14 +2,14 @@
     <div class="header">
     <a href="/" ><h1>Cyberpunk Gaming Gear</h1></a>
     <div class="search-bar">
-        <form>
+        <form id="search-form" th:action="@{/search}" method="get">
             <label for="search" class="hide">Search: </label>
-            <input id="search" class="search" type="text" name="search" placeholder="Search..">
+            <input id="search" class="search" type="text" name="name" placeholder="Search..">
         </form>
     </div>
     <nav class="navbar">
         <a href="/">Home</a>
-        <a th:href="@{/category}">Category</a>
+        <a th:href="@{/categories}">Category</a>
         <a th:href="@{/about}">About us</a>
         <a th:href="@{/cart}">Cart</a>
         <!--suppress XmlUnboundNsPrefix -->

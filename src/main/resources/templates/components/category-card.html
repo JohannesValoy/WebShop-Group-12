@@ -1,4 +1,3 @@
-
 <section class="card-container" >
     <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
     <th:block th:if="${category?.image != null}">

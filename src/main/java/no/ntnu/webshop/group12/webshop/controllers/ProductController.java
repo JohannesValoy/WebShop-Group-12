@@ -3,7 +3,6 @@ package no.ntnu.webshop.group12.webshop.controllers;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ import no.ntnu.webshop.group12.webshop.service.ProductService;
  */
 @RestController
 @Tag(name = "Product", description = "Product API")
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 
 public class ProductController {
 
@@ -53,7 +52,7 @@ public class ProductController {
         return productService.getProductCount();
     }
 
-    @GetMapping("/filter")
+    @GetMapping
     @Operation(summary = "Get products by filter")
     public List<Product> getProductsByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
