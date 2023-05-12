@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.models.purchase;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.PositiveOrZero;
 import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
@@ -8,6 +9,7 @@ import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 public class Item extends Quantity{
 
     @PositiveOrZero
+    @Column(nullable = false, columnDefinition = "INT", updatable = false)
     private int productPriceAtPurchase;
 
     public Item() {

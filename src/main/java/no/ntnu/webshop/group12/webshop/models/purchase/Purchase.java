@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,12 +20,15 @@ public class Purchase{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false, columnDefinition = "DATE", name = "date", updatable = false)
     LocalDate date;
 
     @OneToMany
+    @Column(updatable = false)
     Set<Item> products;
 
     @OneToOne
+    @Column(updatable = false)
     User user;
 
     public Purchase() {
