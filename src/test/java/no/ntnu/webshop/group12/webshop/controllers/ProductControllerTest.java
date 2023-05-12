@@ -32,7 +32,7 @@ public class ProductControllerTest {
         @Autowired
         ObjectMapper objectMapper;
 
-        private static final String BASE_URL = "/api/product";
+        private static final String BASE_URL = "/api/products";
 
         @Test
         @WithMockUser(roles = "ADMIN")
@@ -73,10 +73,10 @@ public class ProductControllerTest {
 
         @Test
         void testGetproductByFilter() throws Exception {
-                List products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/filter?name=Gaming"))
+                List products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
                                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
                 assertEquals(5, products.size());
-                products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/filter?name=Gaming&page=1"))
+                products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming&page=1"))
                                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
                 assertEquals(1, products.size());
         }
