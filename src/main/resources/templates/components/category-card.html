@@ -1,5 +1,5 @@
 <section class="card-container" >
-    <a class="card-box" th:each="category : ${categories}" th:href="@{/category/{id} (id=${category.id})}">
+    <a class="card-box" th:each="category : ${categories}" th:href="@{/categories/{id} (id=${category.id})}">
     <th:block th:if="${category?.image != null}">
         <picture th:replace="~{components/webpImage ::  webp(${category.image}, ${category.name})}"></picture>
     </th:block>

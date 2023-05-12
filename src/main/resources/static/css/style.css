@@ -168,6 +168,11 @@ svg {
     display: flex;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 /*universal for sections*/
 .sections {
     display: flex;

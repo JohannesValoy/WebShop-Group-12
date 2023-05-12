@@ -16,8 +16,7 @@
 }
 
 .image{
-    min-width: 50%;
-    width: 25rem;
+    width: 50%;
     border-radius: var(---border-radius);
 }
 
@@ -45,10 +44,21 @@
     margin: 5%;
 }
 
+@media (min-width: 1920px) {
+    .about-us{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
+
 @media (max-width: 2048px) {
     .testimonials {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
     }
 }
 
@@ -56,6 +66,7 @@
     .testimonials {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
     }
 }
 
@@ -63,6 +74,7 @@
     .testimonials {
         display: flex;
         flex-direction: column;
+        justify-items: center;
     }
 
     .text-section {
