@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.service.CartService;
-import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @RestController

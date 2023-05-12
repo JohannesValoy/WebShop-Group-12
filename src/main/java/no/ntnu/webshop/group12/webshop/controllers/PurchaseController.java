@@ -13,12 +13,12 @@ import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import no.ntnu.webshop.group12.webshop.models.purchase.Purchase;
+import no.ntnu.webshop.group12.webshop.models.order.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 
 @RestController
 @Tag(name = "Purchase", description = "Purchase API")
-@RequestMapping("/api/purchase")
+@RequestMapping("/api/purchases")
 public class PurchaseController {
     
     @Autowired
@@ -30,13 +30,11 @@ public class PurchaseController {
         return purchaseService.getPurchase(id);
     }
 
-    @GetMapping()
+    @GetMapping
     @Operation(summary = "Filter purchases")
     public Iterable<Purchase> getPurchases(
         @QuerydslPredicate(root = Purchase.class) Predicate predicate,
         @PageableDefault(size = 20, sort = "id") Pageable pageable) {
         return purchaseService.getPurchases(predicate, pageable);
     }
-
-
 }

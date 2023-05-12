@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.models.purchase;
+package no.ntnu.webshop.group12.webshop.models.order.purchase;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import no.ntnu.webshop.group12.webshop.models.User;
-import no.ntnu.webshop.group12.webshop.models.cart.Cart;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
 
 @Entity
 public class Purchase{

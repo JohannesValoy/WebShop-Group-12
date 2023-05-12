@@ -20,19 +20,17 @@ import java.util.stream.Collectors;
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    protected ResponseEntity<Object> handleCityNotFoundException(
+    protected ResponseEntity<Object> handleNotFoundException(
             NotFoundException ex, WebRequest request) {
-
         Map<String, Object> body = newBody();
         body.put("message", ex.getMessage());
-
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     protected ResponseEntity<Object> handleAccessDeniedException(
             Exception ex, WebRequest request) {
-        return new ResponseEntity<Object>(
+        return new ResponseEntity<>(
                 "This is not the method you are after", HttpStatus.FORBIDDEN);
     }
 

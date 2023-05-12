@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.models.cart;
+package no.ntnu.webshop.group12.webshop.models.order.cart;
 
 import java.util.LinkedHashSet;
 import java.util.Optional;

@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
-import no.ntnu.webshop.group12.webshop.models.cart.Cart;
-import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Quantity;
+import no.ntnu.webshop.group12.webshop.models.order.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
-import no.ntnu.webshop.group12.webshop.models.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.repository.CartRepository;
 import no.ntnu.webshop.group12.webshop.repository.QuantityRepository;
 
