@@ -62,7 +62,9 @@ public class Product {
     public Product(String name, String description, int price, int stock, WebpImage image) {
         this.name = name;
         this.description = description;
-        createShortDescriptive();
+        if (description != null) {
+            createShortDescriptive();
+        }
         this.price = price;
         this.stock = stock;
         this.image = image;
@@ -75,6 +77,9 @@ public class Product {
             if (index != -1 && (shortDescription == null || index < shortDescription.length())) {
                 shortDescription = description.substring(0, index + 1);
             }
+        }
+        if (shortDescription == null) {
+            shortDescription = description;
         }
     }
     public int getId() {
