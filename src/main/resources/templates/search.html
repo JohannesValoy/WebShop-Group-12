@@ -16,10 +16,10 @@
   <section class="sections">
     <h2>Product Search Results</h2>
     <th:block th:if="${products.size == 0}">
-      <p>No products found</p>
+      <h3>No products found</h3>
     </th:block>
     <th:block th:if="${products.size > 0}">
-      <section th:replace="~{components/common-card}"></section>
+      <section th:replace="~{components/product-card}"></section>
     </th:block>
     </section>
 </main>
