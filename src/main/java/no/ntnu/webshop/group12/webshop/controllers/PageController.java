@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
