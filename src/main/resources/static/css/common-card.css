@@ -21,6 +21,7 @@
     overflow: hidden;
     gap: 1em;
     align-self: center;
+    min-width: 15rem;
 }
 
 .common-card-product-info h3 {
