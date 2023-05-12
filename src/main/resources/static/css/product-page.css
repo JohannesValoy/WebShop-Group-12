@@ -52,7 +52,8 @@
 }
 
 .product-intro img{
-    max-width: 30rem;
+    width: 100%;
+    height: auto;
     border-radius: var(---border-radius);
 }
 
@@ -61,10 +62,6 @@
 }
 
 @media (max-width: 1024px) {
-
-    .product-intro img{
-        max-width: 25rem;
-    }
 
     .product-intro {
         flex-direction: column;
