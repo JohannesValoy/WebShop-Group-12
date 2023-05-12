@@ -12,7 +12,8 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.repository.CrudRepository;
 
 import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.StringPath;
+import com.querydsl.core.types.dsl.StringExpression;
+import com.querydsl.core.types.dsl.SimpleExpression;
 
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.models.product.QProduct;
@@ -31,10 +32,10 @@ public interface ProductRepository
 
         @Override
         default void customize(QuerydslBindings bindings, QProduct root) {
-                bindings.bind(root.name).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-                bindings.bind(root.category.any().id).as("category.id").first((path, value) -> path.eq(value));
+                bindings.bind(root.name).first(StringExpression::containsIgnoreCase);
+                bindings.bind(root.category.any().id).as("category.id").first(SimpleExpression::eq);
                 bindings.bind(root.category.any().name).as("category.name")
-                                .first((path, value) -> path.containsIgnoreCase(value));
+                                .first(StringExpression::containsIgnoreCase);
                 bindings.excluding(root.category);
                 bindings.excluding(root.description);
                 bindings.excluding(root.stock);

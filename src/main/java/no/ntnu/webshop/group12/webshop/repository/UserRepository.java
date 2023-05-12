@@ -7,6 +7,9 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.repository.CrudRepository;
 
+import com.querydsl.core.types.dsl.SimpleExpression;
+import com.querydsl.core.types.dsl.StringExpression;
+
 import no.ntnu.webshop.group12.webshop.models.QUser;
 import no.ntnu.webshop.group12.webshop.models.User;
 
@@ -18,8 +21,8 @@ public interface UserRepository
 
     @Override
     default void customize(QuerydslBindings binder, QUser root) {
-        binder.bind(root.username).first((path, value) -> path.equalsIgnoreCase(value));
-        binder.bind(root.active).first((path, value) -> path.eq(value));
+        binder.bind(root.username).first(StringExpression::equalsIgnoreCase);
+        binder.bind(root.active).first(SimpleExpression::eq);
         binder.excluding(root.password);
         binder.bind(root.purchases);
         binder.bind(root.cart);

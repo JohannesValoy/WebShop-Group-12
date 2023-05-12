@@ -103,7 +103,7 @@ public class AccessUserService implements UserDetailsService {
             loadUserByUsername(username);
         }catch(UsernameNotFoundException e){
             returnBool = false;
-        };
+        }
         return returnBool;
     }
 

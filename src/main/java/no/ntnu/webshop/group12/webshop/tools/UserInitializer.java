@@ -10,7 +10,7 @@ import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 
 @Order(1)
 @Profile("!prod")
-public class UserInitilizer implements ApplicationListener<ApplicationReadyEvent>{
+public class UserInitializer implements ApplicationListener<ApplicationReadyEvent>{
     
     @Autowired
     private AccessUserService accessUserService;
