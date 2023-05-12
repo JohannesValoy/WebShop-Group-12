@@ -132,6 +132,14 @@ h1, h2, h3, h4, p {
     transform: scale(var(---transform-scale-small));
 }
 
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 /*navbar end*/
 
 /*footer*/

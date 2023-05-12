@@ -1,0 +1,68 @@
+.common-card-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.common-card-layout img {
+    max-height: 20rem;
+    border-radius: var(---border-radius);
+}
+
+.common-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 15rem;
+    max-height: 20rem;
+    overflow: hidden;
+    gap: 1em;
+    align-self: center;
+}
+
+.common-card-product-info h3 {
+    color: var(---secondText);
+}
+
+.common-card-product {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+svg {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+}
+
+.hover {
+    border-radius: var(---border-radius);
+    padding: 1rem;
+    transition: var(---transition-time);
+}
+
+.hover:hover {
+    background-color: var(---secondBackground);
+    border-radius: var(---border-radius);
+}
+
+@media (max-width: 768px) {
+    .common-card-layout img{
+        max-height: 10rem;
+    }
+
+    .common-card-layout {
+        align-items: center;
+    }
+
+}
+
