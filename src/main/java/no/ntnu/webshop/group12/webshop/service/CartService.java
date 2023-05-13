@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.querydsl.core.types.Predicate;
+
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
@@ -132,7 +134,7 @@ public class CartService {
         return cart.get();
     }
 
-    public Iterable<Cart> getCarts(String predicate, Pageable pageable) {
+    public Iterable<Cart> getCarts(Predicate predicate, Pageable pageable) {
         return cartRepository.findAll(predicate, pageable);
     }
 }

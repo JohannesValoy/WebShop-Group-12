@@ -1,5 +1,5 @@
-package no.ntnu.webshop.group12.webshop.repository;;
-import org.codehaus.groovy.classgen.asm.BinaryIntExpressionHelper;
+package no.ntnu.webshop.group12.webshop.repository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -20,4 +20,6 @@ QuerydslBinderCustomizer<QCart> {
         bindings.excluding(root.products);
         bindings.excluding(root.user);
     }
+
+    public Iterable<Cart> findAll(String predicate, Pageable pageable);
 }
