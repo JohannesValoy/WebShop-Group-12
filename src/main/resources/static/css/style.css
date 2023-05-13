@@ -80,13 +80,12 @@ h1, h2, h3, h4, p {
 .header {
     -webkit-user-select: none;
     user-select: none;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
     align-items: center;
     background-color: var(---thirdBackground);
     padding: 1rem;
-    gap: 1rem;
     width: 100%;
     position: fixed;
     z-index: 999;
@@ -98,10 +97,7 @@ h1, h2, h3, h4, p {
     padding: 2rem;
 }
 
-.ghostHeader h1 {
-    color: transparent;
-    text-shadow: none;
-}
+
 
 .header .navbar {
     margin-bottom: 0.5em;
@@ -116,10 +112,16 @@ h1, h2, h3, h4, p {
     max-height: 100px;
 }
 
+.search-bar {
+    justify-self: center;
+
+}
+
 .search-bar .search {
-    padding: 6px;
+    padding: 1rem;
+    width: 20rem;
     border: 2px solid var(---mainText);
-    border-radius: var(---border-radius-small);
+    border-radius: var(---border-radius);
     background-color: var(---thirdBackground);
     transition: var(---transition-time);
 }
@@ -190,9 +192,9 @@ img {
     display: grid;
     align-items: start;
     justify-items: center;
-    padding: 2%;
+    padding: 0% 0% 2% 0%;
     gap: 2rem;
-    width: 100%;
+    width: 85%;
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -274,6 +276,13 @@ img {
 @media (max-width: 768px) {
     .card-grid {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .header {
+        grid-template-columns: 1fr;
+        row-gap: 1rem ;
+        grid-auto-flow: row;
+        justify-content: center;
     }
 }
 
