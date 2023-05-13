@@ -36,11 +36,11 @@ body {
     min-height: 100svh;
     grid-template-rows:  auto 1fr auto;
     background-color: var(---thirdBackground);
-}
-main {
     background-image: url('../images/background.webp');
     background-attachment: fixed;
     background-size: cover;
+}
+main {
     padding: 0 8% 0 8%;
     display: flex;
     flex-direction: column;
@@ -94,10 +94,8 @@ h1, h2, h3, h4, p {
 
 /*ghost header make the header in the different pages the right size*/
 .ghostHeader {
-    -webkit-user-select: none;
-    user-select: none;
     background-color: transparent;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .ghostHeader h1 {
@@ -125,10 +123,19 @@ h1, h2, h3, h4, p {
     background-color: var(---thirdBackground);
     transition: var(---transition-time);
 }
+
 .search-bar .search:focus {
     outline: none;
     border: 2px solid var(---secondText);
     transform: scale(var(---transform-scale-small));
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 /*navbar end*/
@@ -153,9 +160,13 @@ footer p {
     font-size: 1rem;
 }
 
-/*footer end*/
-
 /*universal classes*/
+
+svg {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+}
 
 /*universal for sections*/
 .sections {
@@ -168,8 +179,6 @@ footer p {
     background-color: var(---mainBackground);
     height: 100%;
 }
-
-/*universal for sections end*/
 
 /*universal for buttons*/
 .focus-button {
@@ -213,8 +222,6 @@ footer p {
     color: var(---secondText);
     cursor: pointer;
 }
-
-/*universal for buttons end*/
 
 @media (max-width: 1024px) {
 

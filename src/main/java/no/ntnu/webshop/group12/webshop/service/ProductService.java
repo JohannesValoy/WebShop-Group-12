@@ -16,6 +16,7 @@ import com.querydsl.core.types.Predicate;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
+import no.ntnu.webshop.group12.webshop.models.product.QProduct;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 
 @Service
@@ -87,7 +88,10 @@ public class ProductService {
     }
 
     public List<Product> getProductsByFilter(Predicate predicate, Pageable pageable) {
-        return productRepository.findAll(predicate, pageable).getContent();
+        if (pageable == null)
+            return productRepository.findAll(predicate);
+        else
+            return productRepository.findAll(predicate, pageable).getContent();
     }
 
     public void deleteProduct(int id) {
@@ -97,4 +101,5 @@ public class ProductService {
     public long getProductCount() {
         return productRepository.count();
     }
+
 }

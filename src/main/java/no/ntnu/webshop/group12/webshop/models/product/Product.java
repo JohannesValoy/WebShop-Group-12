@@ -38,6 +38,9 @@ public class Product {
     private String name;
 
     @Column(columnDefinition = "TEXT")
+    private String shortDescription;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne
@@ -53,28 +56,42 @@ public class Product {
     }
 
     public Product(String name, String description, int price, int stock) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
+        this(name, description, price, stock, null);
     }
 
     public Product(String name, String description, int price, int stock, WebpImage image) {
         this.name = name;
         this.description = description;
+        if (description != null) {
+            createShortDescriptive();
+        }
         this.price = price;
         this.stock = stock;
         this.image = image;
     }
-
+  
     public Product(Product product) {
         this.id = product.getId();
         this.category = product.getCategory();
         this.name = product.getName();
         this.description = product.getDescription();
+        this.shortDescription = product.getShortDescription();
         this.price = product.getPrice();
         this.stock = product.getStock();
         this.image = product.getImage();
+    }
+
+    private void createShortDescriptive() {
+        char[] chars = {'.', '!', '?'};
+        for (char c : chars) {
+            int index = description.indexOf(c);
+            if (index != -1 && (shortDescription == null || index < shortDescription.length())) {
+                shortDescription = description.substring(0, index + 1);
+            }
+        }
+        if (shortDescription == null) {
+            shortDescription = description;
+        }
     }
 
     public int getId() {
@@ -141,13 +158,21 @@ public class Product {
         this.id = id;
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
         result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((shortDescription == null) ? 0 : shortDescription.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((image == null) ? 0 : image.hashCode());
         result = prime * result + price;
@@ -164,8 +189,6 @@ public class Product {
         if (getClass() != obj.getClass())
             return false;
         Product other = (Product) obj;
-        if (id != other.id)
-            return false;
         if (category == null) {
             if (other.category != null)
                 return false;
@@ -175,6 +198,11 @@ public class Product {
             if (other.name != null)
                 return false;
         } else if (!name.equals(other.name))
+            return false;
+        if (shortDescription == null) {
+            if (other.shortDescription != null)
+                return false;
+        } else if (!shortDescription.equals(other.shortDescription))
             return false;
         if (description == null) {
             if (other.description != null)
@@ -192,5 +220,6 @@ public class Product {
             return false;
         return true;
     }
+    
 
 }

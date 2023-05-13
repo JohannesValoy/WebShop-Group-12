@@ -14,7 +14,7 @@ import no.ntnu.webshop.group12.webshop.models.order.cart.Quantity;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/api/carts")
 @Tag(name = "Cart", description = "The cart API")
 public class CartController {
 

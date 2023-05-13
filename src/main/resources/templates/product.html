@@ -9,7 +9,7 @@
     <!-- personal styles -->
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-page.css}"/>
-    <link rel="stylesheet" th:href="@{~/css/product-category-card.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/product-card.css}"/>
 
 </head>
 <body>
@@ -23,7 +23,7 @@
 
                 <section class="product-page-description">
                     <h2 th:text="${product.name}"></h2>
-                    <p class="product-description" th:text="${product.description}"></p>
+                    <p class="product-description" th:text="${product.shortDescription}"></p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
                         <button class="focus-button" >Add to Cart</button>
