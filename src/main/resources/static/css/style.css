@@ -85,7 +85,7 @@ h1, h2, h3, h4, p {
     grid-auto-flow: row;
     align-items: center;
     background-color: var(---thirdBackground);
-    padding: 1rem;
+    padding: 1rem 0rem;
     width: 100%;
     position: fixed;
     z-index: 999;
