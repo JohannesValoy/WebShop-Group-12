@@ -24,7 +24,5 @@ public interface UserRepository
         binder.bind(root.username).first(StringExpression::equalsIgnoreCase);
         binder.bind(root.active).first(SimpleExpression::eq);
         binder.excluding(root.password);
-        binder.bind(root.purchases);
-        binder.bind(root.cart);
     }
 }
