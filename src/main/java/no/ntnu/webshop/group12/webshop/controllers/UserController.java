@@ -63,6 +63,16 @@ public class UserController {
     }
 
     /**
+     * Get current user
+     * @return current user
+     */
+    @GetMapping("/me")
+    @Operation(summary = "Get current user")
+    public User getCurrentUser() {
+        return accessUserService.getSessionUser();
+    }
+
+    /**
      * Get the number of users
      * 
      * @return number of users
@@ -122,4 +132,6 @@ public class UserController {
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
         return userService.getUsersByFilter(predicate, pageable);
     }
+
+
 }

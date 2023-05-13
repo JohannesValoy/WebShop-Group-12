@@ -37,4 +37,10 @@ public class PurchaseController {
         @PageableDefault(size = 20, sort = "id") Pageable pageable) {
         return purchaseService.getPurchases(predicate, pageable);
     }
+
+    @GetMapping("/me")
+    @Operation(summary = "Get purchases for current user")
+    public Iterable<Purchase> getMyPurchases() {
+        return purchaseService.getCurrentUserPurchases();
+    }
 }

@@ -39,6 +39,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/admin/**").hasRole(ADMIN)
 
                 // API endpoints
+                .requestMatchers("/api/**/me").hasAnyRole("USER", ADMIN)
                 .requestMatchers("/api/carts/**").hasAnyRole("USER", ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
@@ -48,6 +49,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole("USER")
                 .requestMatchers(HttpMethod.GET, "/api/user").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+
 
                 // Account endpoints
                 .requestMatchers("/account").hasAnyRole("USER", ADMIN)
