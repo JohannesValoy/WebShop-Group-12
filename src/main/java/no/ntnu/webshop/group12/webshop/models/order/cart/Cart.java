@@ -26,10 +26,10 @@ public class Cart {
 
     @OneToMany
     @JoinTable(name = "cart_quantity", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "quantity_id"))
-    private Set<Quantity> products;
+    private Set<Quantity> items;
 
     public Cart() {
-        products = new LinkedHashSet<>();
+        items = new LinkedHashSet<>();
     }
 
     public Cart(User user) {
@@ -44,27 +44,27 @@ public class Cart {
     public Cart(Cart cart) {
         this();
         this.user = cart.getUser();
-        cart.getProducts().iterator().forEachRemaining(quantity -> this.addProduct(new Quantity(quantity)));
+        cart.getItems().iterator().forEachRemaining(quantity -> this.addProduct(new Quantity(quantity)));
     }
 
     public int getId() {
         return id;
     }
 
-    public Set<Quantity> getProducts() {
-        return products;
+    public Set<Quantity> getItems() {
+        return items;
     }
 
     public void addProduct(Quantity quantity) {
-        products.add(quantity);
+        items.add(quantity);
     }
 
     public void removeProduct(Quantity quantity) {
-        products.remove(quantity);
+        items.remove(quantity);
     }
 
-    public void setProducts(Set<Quantity> products) {
-        this.products = products;
+    public void setItems(Set<Quantity> items) {
+        this.items = items;
     }
 
     public User getUser() {
@@ -76,7 +76,7 @@ public class Cart {
     }
 
     public Quantity getQuantity(Product product) {
-        Optional<Quantity> quantity = products.stream().filter(q -> (q.getProduct().getId() == product.getId()))
+        Optional<Quantity> quantity = items.stream().filter(q -> (q.getProduct().getId() == product.getId()))
                 .findFirst();
         return quantity.orElse(null);
     }

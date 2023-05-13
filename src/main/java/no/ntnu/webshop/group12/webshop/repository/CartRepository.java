@@ -17,7 +17,7 @@ QuerydslBinderCustomizer<QCart> {
     @Override
     default void customize(QuerydslBindings bindings, QCart root) {
         bindings.bind(root.user.username).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-        bindings.excluding(root.products);
+        bindings.excluding(root.items);
         bindings.excluding(root.user);
     }
 

@@ -121,11 +121,6 @@ public class CartService {
         return purchase;
     }
 
-    public Set<Quantity> getCurrentUserProducts() {
-        return getCurrentUserCart().getProducts();
-    }
-
-
     public Cart getCart(int id) {
         Optional<Cart> cart = cartRepository.findById(id);
         if (cart.isEmpty()) {

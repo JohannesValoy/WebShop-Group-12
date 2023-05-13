@@ -39,7 +39,7 @@ public class Purchase{
         date = LocalDate.now();
         products = new HashSet<>();
         user = cart.getUser();
-        cart.getProducts().forEach(quantity -> {
+        cart.getItems().forEach(quantity -> {
             addItem(new Item(quantity));
         });
     }
