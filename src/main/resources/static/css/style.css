@@ -239,6 +239,10 @@ img {
     cursor: pointer;
 }
 
+.picture {
+    width: auto;
+}
+
 @media (min-width: 2488px) {
 
     .card-grid {
