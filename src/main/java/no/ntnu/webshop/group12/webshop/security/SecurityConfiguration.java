@@ -62,7 +62,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/categories/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/register").permitAll()
-                .requestMatchers("/", "/about", "/search","/error").permitAll()
+                .requestMatchers("/", "/about", "/search","/error", "robots.txt").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().logoutSuccessUrl("/");
         return http.build();
