@@ -9,11 +9,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "categories")
 @Schema(description = "A category in the webshop", name = "Category")
+@Getter
+@Setter
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,30 +44,6 @@ public class Category {
     public Category(int id, String name, WebpImage image) {
         this.id = id;
         this.name = name;
-        this.image = image;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public WebpImage getImage() {
-        return image;
-    }
-
-    public void setImage(WebpImage image) {
         this.image = image;
     }
 

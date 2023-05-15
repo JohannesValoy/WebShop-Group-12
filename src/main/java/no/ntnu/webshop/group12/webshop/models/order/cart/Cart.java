@@ -11,10 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @Entity
+@Getter
+@Setter
 public class Cart {
     @Id
     @GeneratedValue
@@ -47,32 +51,13 @@ public class Cart {
         cart.getItems().iterator().forEachRemaining(quantity -> this.addProduct(new Quantity(quantity)));
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public Set<Quantity> getItems() {
-        return items;
-    }
-
+ 
     public void addProduct(Quantity quantity) {
         items.add(quantity);
     }
 
     public void removeProduct(Quantity quantity) {
         items.remove(quantity);
-    }
-
-    public void setItems(Set<Quantity> items) {
-        this.items = items;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Quantity getQuantity(Product product) {

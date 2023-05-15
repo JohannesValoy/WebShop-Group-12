@@ -36,6 +36,9 @@ public class Purchase{
     @JoinColumn(updatable = false, name = "user_id")
     User user;
 
+    @Column(nullable = false, updatable = false, name = "total_price")
+    double totalPrice;
+
     public Purchase() {
     }
 
@@ -44,7 +47,9 @@ public class Purchase{
         items = new HashSet<>();
         user = cart.getUser();
         cart.getItems().forEach(quantity -> {
-            addItem(new Item(quantity));
+            Item item = new Item(quantity);
+            addItem(item );
+            totalPrice += item.getTotalPrice();
         });
     }
 
