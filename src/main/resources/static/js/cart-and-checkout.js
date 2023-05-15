@@ -8,7 +8,7 @@ const backToCartBtn = document.getElementById("back-to-cart");
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 
 // If cart is empty, hide checkout button and change cart title
-if (document.querySelector(".cart").children.length => 1) {
+if (document.querySelector(".cart").children.length >= 1) {
     checkoutBtn.removeAttribute("hidden");
     document.getElementById("cart-title").innerHTML = "Cart products";
 } else {
