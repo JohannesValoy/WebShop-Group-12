@@ -41,7 +41,7 @@
                     <div class="grey-box">
                         <h3 th:text="${purchase.date}"></h3>
                         <div class="purchase-card">
-                            <section th:replace="~{components/purchase-card}"></section>
+                            <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.items})}"></section>
                         </div>
                     </div>
                 </section>
