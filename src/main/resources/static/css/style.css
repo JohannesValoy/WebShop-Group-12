@@ -76,6 +76,14 @@ h1, h2, h3, h4, p {
     z-index: 2;
 }
 
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
 /*navbar*/
 .header {
     -webkit-user-select: none;
@@ -219,7 +227,6 @@ img {
 .focus-button:hover {
     color: var(---fourthText);
     transform: scale(var(---transform-scale-small));
-    cursor: pointer;
 }
 
 .boring-button {
@@ -231,14 +238,12 @@ img {
     padding: 0.5rem;
     -webkit-user-select: none;
     user-select: none;
-    cursor: pointer;
 }
 
 .boring-button:disabled {
     pointer-events: none;
     background-color: var(---thirdBackground);
     color: var(---secondText);
-    cursor: pointer;
 }
 
 .picture {
