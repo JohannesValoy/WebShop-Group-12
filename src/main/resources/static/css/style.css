@@ -173,7 +173,7 @@ svg {
 img {
     width: 100%;
     height: auto;
-    max-height: 30rem;
+    max-width: 30rem;
 }
 
 /*universal for sections*/

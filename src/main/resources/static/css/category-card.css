@@ -17,7 +17,6 @@
     margin: 2rem 0rem;
     border-radius: var(---border-radius);
     overflow: hidden;
-    width: fit-content;
     display: flex;
     justify-content: center;
     transition: var(---transition-time);
