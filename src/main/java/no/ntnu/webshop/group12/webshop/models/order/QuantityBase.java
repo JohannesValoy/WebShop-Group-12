@@ -6,9 +6,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @MappedSuperclass()
+@Getter
+@Setter
 public class QuantityBase {
 
     @Id
@@ -34,22 +38,6 @@ public class QuantityBase {
         this.amount = quantity.getAmount();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public void addAmount(int amount) {
         this.amount += amount;
     }
@@ -58,11 +46,7 @@ public class QuantityBase {
         this.amount -= amount;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public long getTotalPrice() {
+        return product.getPrice() * amount;
     }
 }

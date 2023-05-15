@@ -29,7 +29,7 @@ public class PurchaseService {
 
     public Purchase createPurchaseFromCart(Cart cart) {
         Purchase purchase = new Purchase(cart);
-        purchase.getProducts().forEach(purchasedItemRespository::save);
+        purchase.getItems().forEach(purchasedItemRespository::save);
         purchaseRepository.save(purchase);
         return purchase;
     }

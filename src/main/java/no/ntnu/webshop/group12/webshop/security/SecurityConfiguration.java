@@ -39,7 +39,6 @@ public class SecurityConfiguration {
                 .requestMatchers("/admin/**").hasRole(ADMIN)
 
                 // API endpoints
-                //.requestMatchers("/api/**/me").hasAnyRole("USER", ADMIN)
                 .requestMatchers("/api/carts/**").hasAnyRole("USER", ADMIN)
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)

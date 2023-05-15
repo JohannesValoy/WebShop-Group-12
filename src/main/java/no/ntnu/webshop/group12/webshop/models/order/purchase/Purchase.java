@@ -12,10 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
 
 @Entity
+@Getter
+@Setter
 public class Purchase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,59 +30,31 @@ public class Purchase{
 
     @OneToMany
     @Column(updatable = false)
-    Set<Item> products;
+    Set<Item> items;
 
     @ManyToOne
     @JoinColumn(updatable = false, name = "user_id")
     User user;
+
+    @Column(nullable = false, updatable = false, name = "total_price")
+    double totalPrice;
 
     public Purchase() {
     }
 
     public Purchase(Cart cart) {
         date = LocalDate.now();
-        products = new HashSet<>();
+        items = new HashSet<>();
         user = cart.getUser();
         cart.getItems().forEach(quantity -> {
-            addItem(new Item(quantity));
+            Item item = new Item(quantity);
+            addItem(item );
+            totalPrice += item.getTotalPrice();
         });
     }
 
-    public void addItem(Item item) {
-        products.add(item);
+    private void addItem(Item item) {
+        items.add(item);
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Set<Item> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Item> products) {
-        this.products = products;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-    
     
 }

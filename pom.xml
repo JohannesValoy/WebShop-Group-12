@@ -100,6 +100,12 @@
 			<version>5.0.0</version>
 			<classifier>jakarta</classifier>
 		</dependency>
+		<dependency>
+    		<groupId>org.projectlombok</groupId>
+    		<artifactId>lombok</artifactId>
+    		<version>1.18.26</version>
+    		<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
