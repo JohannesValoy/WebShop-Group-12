@@ -130,7 +130,7 @@ button:disabled {
 }
 
 .search-bar .search {
-    padding: 1rem;
+    padding: 0.5rem;
     width: 20rem;
     border: 2px solid var(---mainText);
     border-radius: var(---border-radius);
