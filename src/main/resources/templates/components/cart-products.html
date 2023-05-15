@@ -1,5 +1,4 @@
 <section class="cart" th:fragment="showCartProducts(items)">
-    <h3 id="cart-title"> Shopping Cart </h3>
     <div class="cart-grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
         <div th:replace = "~{:: createItemCard(${item}, false)}"></div>
     </div>
@@ -13,7 +12,6 @@
 
 <!-- A item in the table representing a quanitityBase.-->
 <div class="cart-product" th:fragment="createItemCard(item, isBought)">
-    <div class="cart-product">
         <div class="div-row mobile">
             <a th:href="@{/products/{id} (id=${item.product.id})}" th:remove="${isBought} ? tag">
                 <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
@@ -58,5 +56,4 @@
                 </button>
             </div>
         </div>
-    </div>
 </div>
