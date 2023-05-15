@@ -1,5 +1,4 @@
 <header>
-    <div class="header">
     <a href="/" ><h1>Cyberpunk Gaming Gear</h1></a>
     <div class="search-bar">
         <form id="search-form" th:action="@{/search}" method="get">
@@ -17,6 +16,4 @@
         <!--suppress XmlUnboundNsPrefix -->
         <a sec:authorize="isAuthenticated()" th:href="@{/account}">Account</a>
     </nav>
-    </div>
-    <div class="ghostHeader"></div>
 </header>
