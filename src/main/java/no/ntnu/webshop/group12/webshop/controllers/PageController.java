@@ -96,7 +96,7 @@ public class PageController {
         if (userService.getSessionUser() == null) {
             return "redirect:/login";
         }
-        model.addAttribute("quantities", cartService.getCurrentUserCart().getItems());
+        model.addAttribute("cart", cartService.getCurrentUserCart());
         return "cart";
     }
 

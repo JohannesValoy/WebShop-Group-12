@@ -24,6 +24,6 @@ QuerydslBinderCustomizer<QPurchase> {
     
     @Override
     default void customize(QuerydslBindings bindings, QPurchase root) {
-        bindings.excluding(root.products);
+        bindings.excluding(root.items);
     }
 }
