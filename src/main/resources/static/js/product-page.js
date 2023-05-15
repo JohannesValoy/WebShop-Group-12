@@ -1,5 +1,5 @@
-const about = document.querySelector(".about-button");
-const aboutContent = document.querySelector(".about");
+const about = document.querySelector(".grey-box");
+const aboutContent = document.querySelector(".purchase-card");
 const specs= document.querySelector(".specs-button");
 const specsContent = document.querySelector(".specs");
 const rating = document.querySelector(".rating-button");

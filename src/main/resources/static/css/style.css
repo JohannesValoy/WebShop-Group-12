@@ -223,6 +223,22 @@ svg {
     cursor: pointer;
 }
 
+.grey-box {
+    background-color: var(---thirdBackground);
+    padding: 1em;
+    border-radius: var(---border-radius);
+    transition: var(---transition-time);
+    margin: 2rem;
+}
+
+.grey-box:hover {
+    background-color: var(---secondBackground);
+}
+
+.active {
+    display: block;
+}
+
 @media (max-width: 1024px) {
 
     .header {

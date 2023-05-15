@@ -1,0 +1,30 @@
+<section class="cart">
+  <h3 id="cart-title"></h3>
+  <div class="cart-grid" th:each="quantity : ${purchase.products}" th:product-id="@{${quantity.product.id}}">
+    <div class="cart-product" >
+      <div class="div-row mobile">
+        <a th:href="@{/products/{id} (id=${quantity.product.id})}">
+          <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, products, ${quantity.product.name})}"></picture>
+        </a>
+        <div class="div-product-info">
+          <h4 th:text="${quantity.product.name}"></h4>
+          <p class="description" th:text="${quantity.product.shortDescription}"></p>
+        </div>
+      </div>
+      <div class="div-row mobile price">
+        <div class="div-column">
+          <p>Price per Item</p>
+          <p><span th:text="${quantity.product.price}"></span> kr</p>
+        </div>
+        <div class="div-column">
+          <p>Total product price</p>
+          <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
+        </div>
+        <div class="div-column">
+          <p>Amount Ordered</p>
+          <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
