@@ -59,8 +59,8 @@ public class CategoryController {
 
     @GetMapping(path = "/count", produces = "application/json")
     @Operation(summary = "Get number of categories")
-    public ResponseEntity<Long> getCategoryCount() {
-        return ResponseEntity.ok(categoryService.getCategoryCount());
+    public Long getCategoryCount() {
+        return categoryService.getCategoryCount();
     }
 
     @GetMapping
@@ -80,14 +80,13 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
     @Parameter(name = "id", description = "Category id", required = true)
-    public ResponseEntity<Category> deleteCategory(@PathVariable int id) {
-        ResponseEntity<Category> response = ResponseEntity.notFound().build();
+    public Category deleteCategory(@PathVariable int id) {
         Optional<Category> category = categoryService.getCategory(id);
-        if (category.isPresent()) {
-            categoryService.deleteCategory(category.get());
-            response = ResponseEntity.ok().build();
+        if (category.isEmpty()) {
+            throw new NotFoundException("Category not found");
         }
-        return response;
+        categoryService.deleteCategory(category.get());
+        return category.get();
     }
 
 }
