@@ -34,9 +34,46 @@
 }
 
 .purchase-card {
-    display: none;
+    /* Start off smaller */
+    transform: scale(0);
+    /*keeps width, but changes height to 0*/
+    height: 0;
+
+    /* Specify a transition on the transform property */
+    transition: transform 0s ease-out;
 }
 
 .purchase-card.active {
-    display: block;
+    /* Expand to normal size when active */
+    height: auto;
+    transform: scale(1);
 }
+
+.purchase-card-instance {
+    display: grid;
+    align-items: flex-start;
+    padding: 2%;
+    gap: 2rem;
+    width: fit-content;
+    border-radius: var(---border-radius);
+    transition: var(---transition-time);
+}
+
+.purchase-card-instance:hover {
+    background-color: var(---secondBackground);
+}
+
+.div-row-account {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    flex-flow: wrap;
+}
+
+.product-category-card {
+    width: 100%;
+    max-width: 70rem;
+}
+

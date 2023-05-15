@@ -37,19 +37,22 @@
 
         <a class="focus-button" href="/logout">Log out</a>
         <section class="product-category-card">
-          <h2 class="card-heading">Cart Products</h2>
-          <div>
-            <section th:each="purchase : ${purchases}">
-              <div class="grey-box">
-                <h3 th:text="${purchase.date}"></h3>
-                <div class="purchase-card">
-                  <section
-                    th:replace="~{components/cart-products :: showPurchasedItems(${purchase.items})}"
-                  ></section>
-                </div>
-              </div>
-            </section>
-          </div>
+            <h2 class="card-heading">Cart Products</h2>
+            <div>
+                <section th:each="purchase : ${purchases}">
+                    <div class="grey-box">
+                        <div class="div-row-account">
+                            <div class="div-row-account"><h4>Date:</h4><p th:text="${purchase.date}"></p></div>
+                            <div class="div-row-account"><h4>ID:</h4><p th:text="${purchase.getId()}"></p></div>
+                            <div class="div-row-account"><h4>Total-price:</h4><p th:text="${purchase.totalPrice}"></p></div>
+
+                        </div>
+                        <div class="purchase-card">
+                            <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.items})}"></section>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </section>
       </section>
     </main>

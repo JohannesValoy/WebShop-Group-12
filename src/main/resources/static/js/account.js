@@ -7,8 +7,10 @@ about.forEach(box => {
         // Remove 'active' class from all .purchase-card elements
         document.querySelectorAll('.purchase-card.active').forEach(card => {
             card.classList.remove('active');
+            box.classList.remove('active');
         });
         // Add 'active' class to the clicked .purchase-card
         aboutContent.classList.add("active");
+        box.classList.add("active");
     });
 });
