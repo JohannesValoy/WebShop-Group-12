@@ -1,4 +1,5 @@
 <section class="cart" th:fragment="showCartProducts(items)">
+    <h3 id="cart-title"> Shopping Cart </h3>
     <div class="cart-grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
         <div th:replace = "components/cart-products:: createItemCard(${item}, false)"></div>
     </div>
@@ -6,7 +7,7 @@
 
 <section class="cart" th:fragment="showPurchasedItems(items)">
     <a class="purchase-card-instance" th:each="item : ${purchase.items}" th:product-id="@{${item.product.id}}"  th:href="@{/products/{id} (id=${item.product.id})}">
-        <div th:replace = "cart-products :: createItemCard(${item}, true)"></div>
+        <div th:replace = "components/cart-products :: createItemCard(${item}, true)"></div>
     </a>
 </section>
 
@@ -28,7 +29,8 @@
             </div>
             <div class="div-column">
                 <p>Total product price</p>
-                <p><span th:id="|totalPrice-${item.product.id}|" th:text="${item.product.price * item.getAmount()}"></span> kr</p>
+                <p th:if="${isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.productPriceAtPurchase * item.getAmount()}"></span> kr</p>
+                <p th:if="${not isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.product.price * item.getAmount()}"></span> kr</p>
             </div>
             <div class="div-column">
                 <p>Amount Ordered</p>
