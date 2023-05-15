@@ -76,17 +76,24 @@ h1, h2, h3, h4, p {
     z-index: 2;
 }
 
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
 /*navbar*/
 .header {
     -webkit-user-select: none;
     user-select: none;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
     align-items: center;
     background-color: var(---thirdBackground);
-    padding: 1rem;
-    gap: 1rem;
+    padding: 1rem 0rem;
     width: 100%;
     position: fixed;
     z-index: 999;
@@ -98,10 +105,7 @@ h1, h2, h3, h4, p {
     padding: 2rem;
 }
 
-.ghostHeader h1 {
-    color: transparent;
-    text-shadow: none;
-}
+
 
 .header .navbar {
     margin-bottom: 0.5em;
@@ -116,10 +120,16 @@ h1, h2, h3, h4, p {
     max-height: 100px;
 }
 
+.search-bar {
+    justify-self: center;
+
+}
+
 .search-bar .search {
-    padding: 6px;
+    padding: 1rem;
+    width: 20rem;
     border: 2px solid var(---mainText);
-    border-radius: var(---border-radius-small);
+    border-radius: var(---border-radius);
     background-color: var(---thirdBackground);
     transition: var(---transition-time);
 }
@@ -168,6 +178,12 @@ svg {
     display: flex;
 }
 
+img {
+    width: 100%;
+    height: auto;
+    max-width: 30rem;
+}
+
 /*universal for sections*/
 .sections {
     display: flex;
@@ -178,6 +194,16 @@ svg {
     min-height: 60svh;
     background-color: var(---mainBackground);
     height: 100%;
+}
+
+.card-grid {
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    padding: 0% 0% 2% 0%;
+    gap: 2rem;
+    width: 85%;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 /*universal for buttons*/
@@ -201,7 +227,6 @@ svg {
 .focus-button:hover {
     color: var(---fourthText);
     transform: scale(var(---transform-scale-small));
-    cursor: pointer;
 }
 
 .boring-button {
@@ -213,17 +238,30 @@ svg {
     padding: 0.5rem;
     -webkit-user-select: none;
     user-select: none;
-    cursor: pointer;
 }
 
 .boring-button:disabled {
     pointer-events: none;
     background-color: var(---thirdBackground);
     color: var(---secondText);
-    cursor: pointer;
 }
 
-@media (max-width: 1024px) {
+.picture {
+    width: auto;
+}
+
+@media (min-width: 2488px) {
+
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .header {
         position: revert;
@@ -237,6 +275,19 @@ svg {
 
     main {
         padding: 0 5% 0 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .header {
+        grid-template-columns: 1fr;
+        row-gap: 1rem ;
+        grid-auto-flow: row;
+        justify-content: center;
     }
 }
 

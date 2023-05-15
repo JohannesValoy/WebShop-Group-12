@@ -1,7 +1,7 @@
 <div class="card-grid">
   <div class="card-product" th:each="product : ${products}">
     <a class="card-layout hover" th:href="@{/products/{id} (id=${product.id})}">
-      <picture th:replace="~{components/webpImage ::  webp(${product.image}, products, ${product.name})}"></picture>
+      <picture th:replace="~{components/webpImage ::  webp(${product.image}, ${product.name})}"></picture>
       <div class="card-info">
         <h3 th:text="${product.name}"></h3>
         <p class="description" th:text="${product.shortDescription}"></p>
