@@ -40,9 +40,10 @@
                 <section th:each="purchase : ${purchases}">
                     <div class="grey-box">
                         <div class="div-row-account">
-                            <h3 th:text=" 'Date: ' + ${purchase.date}"></h3>
-                            <h3 th:text="'ID: '+ ${purchase.getId()}"></h3>
-                            <h3 th:text="'Price: '+ ${purchase.getTotalPrice()}"></h3>
+                            <div class="div-row-account"><h4>Date:</h4><p th:text="${purchase.date}"></p></div>
+                            <div class="div-row-account"><h4>ID:</h4><p th:text="${purchase.getId()}"></p></div>
+                            <div class="div-row-account"><h4>Total-price:</h4><p th:text="${purchase.totalPrice}"></p></div>
+
                         </div>
                         <div class="purchase-card">
                             <section th:replace="~{components/purchase-card}"></section>

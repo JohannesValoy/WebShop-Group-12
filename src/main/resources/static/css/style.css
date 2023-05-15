@@ -65,6 +65,11 @@ h4 {
     color: var(---secondText);
 }
 
+h5 {
+    font-size: 1rem;
+    color: var(---secondText);
+}
+
 p {
     font-size: 1rem;
 }
@@ -226,7 +231,7 @@ svg {
 
 .grey-box {
     background-color: var(---thirdBackground);
-    padding: 1rem;
+    padding: 2%;
     border-radius: var(---border-radius);
     transition: var(---transition-time);
     margin: 2rem 0;
