@@ -7,7 +7,6 @@
 }
 
 .card-layout img {
-    max-height: 20rem;
     border-radius: var(---border-radius);
 }
 
@@ -55,20 +54,8 @@ svg {
     border-radius: var(---border-radius);
 }
 
-.card-grid {
-    display: grid;
-    align-items: flex-start;
-    padding: 2%;
-    gap: 2rem;
-    width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-}
 
 @media (min-width: 2488px) {
-
-    .card-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
 
     .hover {
         display: flex;
@@ -78,27 +65,11 @@ svg {
 }
 
 
-@media (max-width: 1024px) {
-
-    .card-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
 
 @media (max-width: 768px) {
-    .card-layout img{
-        max-height: 10rem;
-    }
-
     .card-layout {
         align-items: center;
     }
-
-    .card-grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
 }
 
 

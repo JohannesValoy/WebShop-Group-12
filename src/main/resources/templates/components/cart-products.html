@@ -1,10 +1,10 @@
 <section class="cart" th:fragment="showCartProducts(items)">
     <h3 id="cart-title"></h3>
-    <div class="cart-grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
-        <div class="cart-product" >
+    <div class="cart-grid" th:each="quantity : ${items}" th:product-id="@{${quantity.product.id}}">
+        <div class="cart-product">
             <div class="div-row mobile">
-                <a th:href="@{/products/{id} (id=${item.product.id})}">
-                    <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, products, ${item.product.name})}"></picture>
+                <a th:href="@{/products/{id} (id=${quantity.product.id})}">
+                    <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}"></picture>
                 </a>
                 <div class="div-product-info">
                     <h4 th:text="${item.product.name}"></h4>
