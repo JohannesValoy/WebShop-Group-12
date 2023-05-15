@@ -8,6 +8,7 @@
     <link rel="icon" th:href="@{~/images/logo.webp}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/account.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
 </head>
 
 <body>
@@ -19,9 +20,7 @@
 
     <section class="sections">
         <h2 class="title">Account</h2>
-
         <section class="account-details">
-
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 profile-image">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -34,10 +33,9 @@
         <a class="focus-button" href="/logout">Log out</a>
         <section class="product-category-card">
             <h2 class="card-heading">Cart Products</h2>
-            <div class="card-container" >
-                <section class="card-box" th:each="purchase : ${purchases}">
-                    <!-- TODO: Add purchase card --> 
-                    <div th:text="${purchase.date}"></div>
+            <div class="card-container">
+                <section th:each="purchase : ${purchases}">
+                    <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.getItems()})}">
                 </section>
             </div>
         </section>
