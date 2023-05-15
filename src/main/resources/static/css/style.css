@@ -190,6 +190,7 @@ svg {
     padding: 1em;
     -webkit-user-select: none;
     user-select: none;
+    cursor: pointer;
 }
 
 .focus-button:disabled {
@@ -225,18 +226,20 @@ svg {
 
 .grey-box {
     background-color: var(---thirdBackground);
-    padding: 1em;
+    padding: 1rem;
     border-radius: var(---border-radius);
     transition: var(---transition-time);
-    margin: 2rem;
+    margin: 2rem 0;
+    cursor: pointer;
+    height: fit-content;
 }
 
 .grey-box:hover {
     background-color: var(---secondBackground);
 }
 
-.active {
-    display: block;
+.grey-box.active:hover {
+    background-color: var(---thirdBackground);
 }
 
 @media (max-width: 1024px) {

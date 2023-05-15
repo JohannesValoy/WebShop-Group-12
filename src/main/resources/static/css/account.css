@@ -34,9 +34,28 @@
 }
 
 .purchase-card {
-    display: none;
+    /* Start off smaller */
+    transform: scale(0);
+    /*keeps width, but changes height to 0*/
+    height: 0;
+
+    /* Specify a transition on the transform property */
+    transition: transform 0s ease-out;
 }
 
 .purchase-card.active {
-    display: block;
+    /* Expand to normal size when active */
+    height: auto;
+    transform: scale(1);
 }
+
+.div-row-account {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3rem;
+    flex-flow: wrap;
+}
+
+
