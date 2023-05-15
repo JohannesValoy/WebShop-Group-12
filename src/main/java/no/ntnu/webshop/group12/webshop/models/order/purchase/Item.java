@@ -1,7 +1,9 @@
 package no.ntnu.webshop.group12.webshop.models.order.purchase;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +11,8 @@ import no.ntnu.webshop.group12.webshop.models.order.QuantityBase;
 import no.ntnu.webshop.group12.webshop.models.order.cart.Quantity;
 
 @Entity
+@Table(name = "bought_items")
+@Schema(description = "A item bought", name = "Item")
 @Getter
 @Setter
 public class Item extends QuantityBase{
