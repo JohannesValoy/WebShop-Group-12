@@ -1,20 +1,21 @@
 <section class="cart" th:fragment="showCartProducts(items)">
     <h3 id="cart-title"> Shopping Cart </h3>
     <div class="cart-grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
-        <div th:replace = "components/cart-products:: createItemCard(${item}, false)"></div>
+        <div th:replace = "~{:: createItemCard(${item}, false)}"></div>
     </div>
 </section>
 
 <section class="cart" th:fragment="showPurchasedItems(items)">
     <a class="purchase-card-instance" th:each="item : ${purchase.items}" th:product-id="@{${item.product.id}}"  th:href="@{/products/{id} (id=${item.product.id})}">
-        <div th:replace = "components/cart-products :: createItemCard(${item}, true)"></div>
+        <div th:replace = "~{:: createItemCard(${item}, true)}"></div>
     </a>
 </section>
 
+<!-- A item in the table representing a quanitityBase.-->
 <div class="cart-product" th:fragment="createItemCard(item, isBought)">
     <div class="cart-product">
         <div class="div-row mobile">
-            <a th:href="@{/products/{id} (id=${item.product.id})}">
+            <a th:href="@{/products/{id} (id=${item.product.id})}" th:remove="${isBought} ? tag">
                 <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
             </a>
             <div class="div-product-info">
