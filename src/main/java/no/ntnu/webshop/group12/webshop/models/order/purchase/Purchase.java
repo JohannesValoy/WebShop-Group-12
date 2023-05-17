@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +33,12 @@ public class Purchase{
 
     @OneToMany
     @Column(updatable = false)
+    @JsonManagedReference
     Set<Item> items;
 
     @ManyToOne
     @JoinColumn(updatable = false, name = "user_id")
+    @JsonBackReference
     User user;
 
     @Column(nullable = false, updatable = false, name = "total_price")

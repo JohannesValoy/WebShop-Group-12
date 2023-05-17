@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
@@ -19,6 +20,7 @@ public class QuantityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Positive
     private int amount;
 
     @OneToOne

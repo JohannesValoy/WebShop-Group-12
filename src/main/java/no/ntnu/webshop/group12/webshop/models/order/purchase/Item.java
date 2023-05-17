@@ -1,8 +1,11 @@
 package no.ntnu.webshop.group12.webshop.models.order.purchase;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
@@ -24,6 +27,10 @@ public class Item extends QuantityBase{
     @PositiveOrZero
     @Column(nullable = false, columnDefinition = "INT", updatable = false)
     private int amount;
+
+    @ManyToOne
+    @JsonBackReference
+    private Purchase purchase;
 
     public Item() {
         super();

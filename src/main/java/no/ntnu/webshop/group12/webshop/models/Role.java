@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -24,8 +24,8 @@ public class Role {
     @Column(unique = true, nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Set<User> users = new LinkedHashSet<>();
 
     /**
