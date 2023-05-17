@@ -113,7 +113,13 @@ public class PageController {
             return "redirect:/login";
         }
         model.addAttribute("user", userService.getSessionUser());
-        model.addAttribute("purchase", cartService.confirmCart(body));
+        try {
+            model.addAttribute("purchase", cartService.confirmCart(body));
+        } catch (IllegalStateException e) {
+            model.addAttribute("error", e.getMessage());
+            return "cart";
+        }
+       
         return "purchase-confirmed";
     }
 
