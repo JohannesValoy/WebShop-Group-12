@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//TODO: Create a custom Class for api errors
 @RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
@@ -43,7 +44,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler({ForbiddenException.class, AccessDeniedException.class})
+    @ExceptionHandler(ForbiddenException.class)
     protected ResponseEntity<Object> handleForbiddenException(
             Exception ex, WebRequest request) {
         Map<String, Object> body = newBody();
@@ -65,7 +66,6 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<Object> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
-
         Map<String, Object> body = newBody();
         body.put("cause",
                 ex.getConstraintViolations().stream()

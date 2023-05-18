@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -154,6 +155,19 @@ public class AccessUserService implements UserDetailsService {
             return new AccessUserDetails(user.get());
         } else {
             throw new UsernameNotFoundException("User " + username + "not found");
+        }
+    }
+
+    public User tryLogin(String username, String password) {
+        User user = userRepository.findByUsernameIgnoreCase(username).orElse(null);
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            AccessUserDetails userDetails = new AccessUserDetails(user);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user, null,
+                    userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return user;
+        } else {
+            throw new IllegalArgumentException("Invalid username or password");
         }
     }
 }

@@ -12,15 +12,16 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
@@ -69,7 +70,11 @@ public class UserController {
     @GetMapping("/me")
     @Operation(summary = "Get current user")
     public User getCurrentUser() {
-        return accessUserService.getSessionUser();
+        User user = accessUserService.getSessionUser();
+        if (user == null) {
+            throw new NotFoundException("User not found");
+        }
+        return user;
     }
 
     /**
@@ -128,5 +133,11 @@ public class UserController {
         return userService.getUsersByFilter(predicate, pageable);
     }
 
+
+    @PostMapping("/login")
+    @Operation(summary = "Login")
+    public User login(@RequestBody LoginDTO user) {
+        return accessUserService.tryLogin(user.getUsername(), user.getPassword());
+    }
 
 }
