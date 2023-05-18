@@ -7,15 +7,15 @@
 <body>
 <header th:replace="~{components/header}"></header>
 <main>
-    <section class="login">
+    <section th:class="${url} == '/register' ? 'login register' : 'login'">
         <div class="logReg-box">
             <!-- Login form -->
             <div class="form-box login">
                 <div class="logReg-title">
                     <h2>Login</h2>
                 </div>
-                <div th:if="${param.error}" class="error-message">
-                    <p>Login failed. Please try again.</p>
+                <div th:if="${error}" class="error-message">
+                    <p th:text="${error}">Login failed. Please try again</p>
                 </div>
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
@@ -45,9 +45,9 @@
                     <button type="submit" class="btn">Login</button>
 
                     <div class="logReg-link">
-                        <p>Don't have an account?
-                            <a class="register-link" href="#">Register</a>
-                        </p>
+                        <p>Don't have an account?</p>
+                        <button class="register-link" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
+
                     </div>
 
                 </form>
@@ -100,12 +100,11 @@
                         <label><input type="checkbox" id="termsCheckbox">I agree to the terms & conditions</label>
                     </div>
 
-                    <button id="submitButton" type="submit" class="btn" >Register</button>
+                    <button id="submitButton" type="submit" class="btn">Register</button>
 
                     <div class="logReg-link">
-                        <p>Already have an account?
-                            <a class="login-link" href="#">Login</a>
-                        </p>
+                        <p>Already have an account?</p> 
+                        <button class="login-link" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
                     </div>
                     <div th:if="${param.error}" class="error-message">
                         <p>Registration failed. Please try again.</p>

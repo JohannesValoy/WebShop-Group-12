@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
+
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
@@ -123,20 +126,10 @@ public class PageController {
         return "purchase-confirmed";
     }
 
-    /**
-     * The `Register` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
-    @GetMapping("/register")
-    public String getRegister(Model model) {
+    @GetMapping(value = {"/login", "/register"})
+    public String getLogin(Model model, HttpServletRequest  http) {
         model.addAttribute("user", userService.getSessionUser());
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("url", http.getRequestURI());
         return "login";
     }
 

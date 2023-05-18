@@ -1,21 +1,42 @@
 const login = document.querySelector(".login");
 const registerLink = document.querySelector(".register-link");
 const loginLink = document.querySelector(".login-link");
+let firstTimeLocation = document.location.pathname;
 
 registerLink.onclick = () => {
-    login.classList.add("register");
-};
+    funnySwitchingButton("/register");
+    switchToRegister();
+}
+    
 
 window.focus()
 window.onload = function() {
     document.getElementById('username').focus();
-
 };
 
 loginLink.onclick = () => {
-    login.classList.remove("register");
+    funnySwitchingButton("/login");
+    switchToLogin();
 };
 
+function funnySwitchingButton(url) {
+    if(document.location.pathname == firstTimeLocation){
+        history.pushState(url, null, url);}
+    else{history.back();}
+}
+
+function switchToLogin() {
+    login.classList.remove("register");
+}
+
+function switchToRegister() {
+    login.classList.add("register");
+}
+
+addEventListener("popstate", () => {
+    if ((history.state == null ? firstTimeLocation : history.state) == "/register") {login.classList.add("register");}
+    else {login.classList.remove("register");}
+});
 
 const username = document.getElementById("signUpUsername");
 const usernameText = document.getElementById("signUpUsernameText");
