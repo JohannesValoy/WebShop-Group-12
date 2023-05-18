@@ -11,6 +11,10 @@ body {
     display: none;
 }
 
+#error-message {
+    color: red
+}
+
 main {
     padding: 0;
     background-attachment: unset;
@@ -19,9 +23,11 @@ main {
 .login {
     background-color: var(---mainBackground);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+    gap: 1rem;
 }
 
 .login .logReg-box {
@@ -50,12 +56,7 @@ main {
     background: none;
 }
 
-.logReg-box .logReg-title {
-    text-align: center;
-    margin: 1rem;
-}
-
-.logReg-title h2 {
+#logReg-title {
     font-size: 2rem;
     margin-bottom: 1rem;
 }

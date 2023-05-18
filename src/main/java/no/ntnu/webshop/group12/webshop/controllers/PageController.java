@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 
@@ -127,18 +129,21 @@ public class PageController {
     }
 
     @GetMapping(value = {"/login", "/register"})
-    public String getLogin(Model model, HttpServletRequest  http) {
+    public String getLogin(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("url", http.getRequestURI());
         return "login";
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute LoginDTO register, Model model) {
-        model.addAttribute("user", userService.getSessionUser());
+    public String postRegister(@ModelAttribute LoginDTO register, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("user", userService.getSessionUser());
         String error = userService.tryCreateNewUser(register.getUsername(), register.getPassword());
-        model.addAttribute("error", error);
-        return "login";
+        redirectAttributes.addAttribute("error", error);
+        if (error == null) {
+            return "redirect:/login";
+        }
+        return "redirect:/register";
     }
 
     @GetMapping("/about")

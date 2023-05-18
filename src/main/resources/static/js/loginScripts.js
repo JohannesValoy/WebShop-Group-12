@@ -1,6 +1,7 @@
 const login = document.querySelector(".login");
 const registerLink = document.querySelector(".register-link");
 const loginLink = document.querySelector(".login-link");
+const title = document.getElementById("title");
 let firstTimeLocation = document.location.pathname;
 
 registerLink.onclick = () => {
@@ -27,10 +28,12 @@ function funnySwitchingButton(url) {
 
 function switchToLogin() {
     login.classList.remove("register");
+    title.innerHTML = "Login";
 }
 
 function switchToRegister() {
     login.classList.add("register");
+    title.innerHTML = "Register";
 }
 
 addEventListener("popstate", () => {
