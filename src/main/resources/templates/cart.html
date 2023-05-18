@@ -18,9 +18,10 @@
 
         <div class="cart-section active">
           <h2>Shopping Cart</h2>
-          <section
-            th:replace="~{components/cart-products :: showCartProducts(${cart.items})}"
-          ></section>
+          <section>    
+            <h3 id="cart-title"> Shopping Cart </h3>
+            <div th:replace="~{components/cart-products :: showCartProducts(${cart.items})}"/>
+        </section>
           <button class="checkout-button focus-button" hidden>Checkout</button>
         </div>
 

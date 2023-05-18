@@ -13,7 +13,9 @@
 
 <div class="cart-product" th:fragment="createItemCard(item, isBought)">
         <div class="div-row mobile">
+            <a th:href="@{/products/{id} (id=${item.product.id})}" th:remove="${isBought} ? tag">
                 <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
+            </a>
             <div class="div-product-info">
                 <h4 th:text="${item.product.name}"></h4>
                 <p class="description" th:text="${item.product.shortDescription}"></p>

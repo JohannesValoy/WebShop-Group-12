@@ -36,7 +36,7 @@ import no.ntnu.webshop.group12.webshop.service.UserService;
  */
 @RestController
 @Tag(name = "User", description = "User API")
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired

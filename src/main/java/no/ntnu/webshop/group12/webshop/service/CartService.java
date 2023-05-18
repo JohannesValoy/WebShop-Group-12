@@ -1,7 +1,6 @@
 package no.ntnu.webshop.group12.webshop.service;
 
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -116,6 +115,9 @@ public class CartService {
 
     public Purchase confirmCart(CartPurchase cartPurchase) {
         Cart cart = getCurrentUserCart();
+        if (cart.getItems().isEmpty()) {
+            throw new IllegalStateException("Cart is empty");
+        }
         Purchase purchase = purchaseService.createPurchaseFromCart(cart);      
         cartRepository.delete(cart);
         return purchase;

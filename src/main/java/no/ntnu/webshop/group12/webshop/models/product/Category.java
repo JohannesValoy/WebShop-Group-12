@@ -1,11 +1,17 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -29,6 +35,10 @@ public class Category {
 
     @ManyToOne
     private WebpImage image;
+
+    @ManyToMany(mappedBy = "category")
+    @JsonBackReference
+    private Set<Product> products = new LinkedHashSet<>();
 
     public Category() {
     }
