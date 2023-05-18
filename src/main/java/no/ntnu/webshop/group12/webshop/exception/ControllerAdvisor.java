@@ -34,7 +34,16 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 "This is not the method you are after", HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(ForbiddenException.class)
+    @ExceptionHandler(IllegalArgumentException.class)
+    protected ResponseEntity<Object> handleIllegalArgumentException(
+            Exception ex, WebRequest request) {
+        Map<String, Object> body = newBody();
+        body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler({ForbiddenException.class, AccessDeniedException.class})
     protected ResponseEntity<Object> handleForbiddenException(
             Exception ex, WebRequest request) {
         Map<String, Object> body = newBody();

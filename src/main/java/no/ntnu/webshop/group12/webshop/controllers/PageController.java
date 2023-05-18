@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
@@ -134,11 +135,14 @@ public class PageController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute LoginDTO register, Model model) {
+    public String postRegister(@ModelAttribute LoginDTO register, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("user", userService.getSessionUser());
-        String error = userService.tryCreateNewUser(register.getUsername(), register.getPassword());
-        model.addAttribute("error", error);
-        return "login";
+        try{userService.tryCreateNewUser(register.getUsername(), register.getPassword());}
+        catch(IllegalArgumentException e){
+            redirectAttributes.addAttribute("error", e.getMessage());
+            return "redirect:/register";
+        }
+        return "redirect:/login";
     }
 
     @GetMapping("/about")

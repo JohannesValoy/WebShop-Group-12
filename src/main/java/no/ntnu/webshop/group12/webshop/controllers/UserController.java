@@ -89,15 +89,10 @@ public class UserController {
      * @param user user to create
      * @return 200 if successful, otherwise 400
      */
-    @PostMapping("")
+    @PostMapping
     @Operation(summary = "Create a new user")
-    public ResponseEntity<String> createUser(@RequestBody LoginDTO user) {
-        ResponseEntity<String> response = ResponseEntity.ok().build();
-        String error = accessUserService.tryCreateNewUser(user.getUsername(), user.getPassword());
-        if (error != null) {
-            response = ResponseEntity.badRequest().body(error);
-        }
-        return response;
+    public User createUser(@RequestBody LoginDTO user) {
+        return accessUserService.tryCreateNewUser(user.getUsername(), user.getPassword());
     }
 
     /**

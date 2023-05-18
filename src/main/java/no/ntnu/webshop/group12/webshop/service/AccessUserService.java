@@ -47,27 +47,26 @@ public class AccessUserService implements UserDetailsService {
      * @param password Users password
      * @return Error message or null if no error
      */
-    public String tryCreateNewUser(String username, String password) {
-        String error = null;
+    public User tryCreateNewUser(String username, String password) {
         if (userExist(username)) {
-            error = "User already exists";
+            throw new IllegalArgumentException("User already exists");
         }
-        if (error == null && !usernamePattern.matcher(username).matches()) {
-            error = "Invalid username, needs to be 2 or more characters and only contain letters and numbers";
+        if (!usernamePattern.matcher(username).matches()) {
+            throw new IllegalArgumentException(
+                    "Invalid username, needs to be 2 or more characters and only contain letters and numbers");
         }
-        if (error == null && !passwordPattern.matcher(password).matches()) {
-            error = "Invalid password needs to be 8 or more characters and contain at least one uppercase letter, one lowercase letter and one number";
+        if (!passwordPattern.matcher(password).matches()) {
+            throw new IllegalArgumentException(
+                    "Invalid password needs to be 8 or more characters and contain at least one uppercase letter, one lowercase letter and one number");
         }
-        if (error == null) {
-            User user = new User(username, createHash(password));
-            user.addRole(roleRepository.findByName("ROLE_USER"));
-            //Adds the admin role to a user called admin when the user is created
-            if (user.getUsername().equalsIgnoreCase("admin")) {
-                user.addRole(roleRepository.findByName("ROLE_ADMIN"));
-            }
-            userRepository.save(user);
+        User user = new User(username, createHash(password));
+        user.addRole(roleRepository.findByName("ROLE_USER"));
+        // Adds the admin role to a user called admin when the user is created
+        if (user.getUsername().equalsIgnoreCase("admin")) {
+            user.addRole(roleRepository.findByName("ROLE_ADMIN"));
         }
-        return error;
+        userRepository.save(user);
+        return user;
     }
 
     /**
@@ -99,9 +98,9 @@ public class AccessUserService implements UserDetailsService {
      */
     private boolean userExist(String username) {
         boolean returnBool = true;
-        try{
+        try {
             loadUserByUsername(username);
-        }catch(UsernameNotFoundException e){
+        } catch (UsernameNotFoundException e) {
             returnBool = false;
         }
         return returnBool;
