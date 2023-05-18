@@ -11,8 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import no.ntnu.webshop.group12.webshop.APIBaseTester;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 
@@ -22,7 +20,7 @@ public class CategoryControllerTest extends APIBaseTester{
 
     @Test
     @WithMockUser(roles = "ADMIN")
-    void testCreateAndDeleteCategory() throws JsonProcessingException, Exception {
+    void testCreateAndDeleteCategory() throws Exception {
         Category category = new Category("test");
         String json = objectMapper.writeValueAsString(category);
 

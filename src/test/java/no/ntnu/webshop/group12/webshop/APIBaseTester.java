@@ -25,4 +25,6 @@ public class APIBaseTester {
     @Autowired
     public ObjectMapper objectMapper;
 
+    //TODO: Should this contain the base url aswell?
+
 }
