@@ -57,6 +57,7 @@
     width: fit-content;
     border-radius: var(---border-radius);
     transition: var(---transition-time);
+    max-width: 100%;
 }
 
 .purchase-card-instance:hover {
@@ -74,6 +75,6 @@
 
 .product-category-card {
     width: 100%;
-    max-width: 70rem;
+    max-width: 75rem;
 }
 

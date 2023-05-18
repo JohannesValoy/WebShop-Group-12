@@ -12,11 +12,8 @@
 </section>
 
 <div class="cart-product" th:fragment="createItemCard(item, isBought)">
-    <div class="cart-product">
         <div class="div-row mobile">
-            <div>
                 <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
-            </div>
             <div class="div-product-info">
                 <h4 th:text="${item.product.name}"></h4>
                 <p class="description" th:text="${item.product.shortDescription}"></p>
@@ -57,5 +54,4 @@
                 </button>
             </div>
         </div>
-    </div>
 </div>
