@@ -62,12 +62,8 @@
     overflow: hidden;
 }
 
-.div-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.row {
     align-items: flex-start;
-    gap: 1rem;
 }
 
 .div-column {
