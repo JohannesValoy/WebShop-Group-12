@@ -63,6 +63,7 @@
                 <div class="logReg-title">
                     <h2>Registration</h2>
                     <p>Please provide the following to verify your identity</p>
+                    <span id="confirmation" style="color: red"></span>
                 </div>
 
                 <form th:action="@{/register}" method="post" >
@@ -98,7 +99,7 @@
                     </span>
                         <label for="confirmSignUpPassword">
                             <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" autocomplete="off" required>
-                            <span id="confirmation">Confirm password</span>
+                            <span >Confirm password</span>
                         </label>
                     </div>
 
@@ -106,15 +107,12 @@
                         <label><input type="checkbox" id="termsCheckbox">I agree to the terms & conditions</label>
                     </div>
 
-                    <button id="submitButton" type="submit" class="btn" >Register</button>
+                    <button id="submitButton" type="submit" class="btn" disabled>Register</button>
 
                     <div class="logReg-link">
                         <p>Already have an account?
                             <a class="login-link" href="#">Login</a>
                         </p>
-                    </div>
-                    <div th:if="${param.error}" class="error-message">
-                        <p>Registration failed. Please try again.</p>
                     </div>
                 </form>
             </div>

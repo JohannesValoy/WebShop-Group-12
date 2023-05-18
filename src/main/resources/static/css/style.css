@@ -93,7 +93,7 @@ button:disabled {
     grid-auto-flow: row;
     align-items: center;
     background-color: var(---thirdBackground);
-    padding: 1rem 0rem;
+    padding: 1rem 0;
     width: 100%;
     position: fixed;
     z-index: 999;
@@ -200,7 +200,7 @@ img {
     display: grid;
     align-items: start;
     justify-items: center;
-    padding: 0% 0% 2% 0%;
+    padding: 0 0 2% 0;
     gap: 2rem;
     width: 85%;
     grid-template-columns: repeat(3, 1fr);
@@ -218,11 +218,7 @@ img {
     user-select: none;
 }
 
-.focus-button:disabled {
-    pointer-events: none;
-    background-color: gray;
-    color: lightgray;
-}
+
 
 .focus-button:hover {
     color: var(---fourthText);
@@ -240,14 +236,10 @@ img {
     user-select: none;
 }
 
-.boring-button:disabled {
-    pointer-events: none;
-    background-color: var(---thirdBackground);
-    color: var(---secondText);
-}
-
-.picture {
-    width: auto;
+:disabled {
+    pointer-events: none !important;
+    background-color: var(---secondBackground) !important;
+    color: gray !important;
 }
 
 @media (min-width: 2488px) {
@@ -257,7 +249,7 @@ img {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
 
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
