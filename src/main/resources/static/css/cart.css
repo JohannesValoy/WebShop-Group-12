@@ -37,9 +37,9 @@
     display: none;
 }
 
- .price p {
+.price p {
      user-select: none;
- }
+}
 
 svg {
     width: 1rem;
