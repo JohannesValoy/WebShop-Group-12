@@ -62,12 +62,8 @@
     overflow: hidden;
 }
 
-.div-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.row {
     align-items: flex-start;
-    gap: 1rem;
 }
 
 .div-column {
@@ -102,7 +98,7 @@
      user-select: none;
  }
 
-.div-row img {
+.row img {
     border-radius: var(---border-radius);
     max-height: 20rem;
 }
@@ -176,7 +172,7 @@ svg {
         min-width: fit-content;
     }
 
-    .div-row {
+    .row {
         align-items: center;
     }
 
