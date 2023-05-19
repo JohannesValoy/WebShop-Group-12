@@ -1,12 +1,14 @@
 package no.ntnu.webshop.group12.webshop.models.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class LoginDTO {
 
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
 
     public LoginDTO(String username, String password) {
         this.username = username;
@@ -14,7 +16,6 @@ public class LoginDTO {
     }
 
     public LoginDTO() {
-        this.username = null;
-        this.password = null;
+        // Empty constructor for Spring
     }
 }

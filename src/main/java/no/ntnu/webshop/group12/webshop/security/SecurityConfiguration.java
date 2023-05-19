@@ -83,7 +83,7 @@ public class SecurityConfiguration {
                             .requestMatchers("/cart", "/cart/**").hasAnyRole(USER)
                             .requestMatchers("/register").permitAll()
                             .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
-                ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll()).logout(logout -> logout.logoutSuccessUrl("/"));
+                ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll().failureUrl("/login?error=Wrong+Username+or+Password")).logout(logout -> logout.logoutSuccessUrl("/"));
         return http.build();
     }
 

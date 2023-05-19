@@ -12,13 +12,11 @@
                 <h2 id="title" th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|"></h2>
             </div>
         <th:block th:if="${param.error}"><p th:text="${param.error}" id="error-message"></p></th:block>
-        <th:block th:if="${error}"><p th:text="${error}" id="error-message"></p></th:block>
         
         <div class="logReg-box">    
             <!-- Login form -->
 
             <div class="form-box login">
-
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
                     <span class="icon">
@@ -102,9 +100,6 @@
                     <div class="logReg-link">
                         <p>Already have an account?</p> 
                         <button class="login-link" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
-                    </div>
-                    <div th:if="${param.error}" class="error-message">
-                        <p>Registration failed. Please try again.</p>
                     </div>
                 </form>
             </div>
