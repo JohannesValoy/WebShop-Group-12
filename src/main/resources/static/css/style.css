@@ -259,6 +259,9 @@ img {
     background-color: var(---thirdBackground);
 }
 
+.picture {
+}
+
 @media (min-width: 2488px) {
 
     .card-grid {
