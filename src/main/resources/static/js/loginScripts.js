@@ -58,8 +58,9 @@ function checkPasswordAlike() {
         message.innerHTML = "Passwords do not match";
         submitButton.disabled = true;
     }  else {
-    message.classList.remove("password-mismatch");
-    submitButton.disabled = !termsCheckbox.checked;
+        message.classList.remove("password-mismatch");
+        message.innerHTML = "";
+        submitButton.disabled = !termsCheckbox.checked;
     }
 }
 
