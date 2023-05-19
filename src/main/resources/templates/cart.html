@@ -3,6 +3,8 @@
   <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
     <title>Cart</title>
     <link rel="stylesheet" th:href="@{~/css/cart.css}" />
+    <link rel="stylesheet" th:href="@{~/css/product-table.css}" />
+
   </head>
 
   <body>
@@ -53,7 +55,7 @@
               Invalid CVC, needs to be 3 characters and can only contain numbers
             </p>
             <div class="details-filling-form">
-              <div class="div-column">
+              <div class="column">
                 <label for="name" class="input-field-label">Name</label>
                 <input
                   class="input-field"
@@ -66,7 +68,7 @@
                   required
                 />
               </div>
-              <div class="div-column">
+              <div class="column">
                 <label for="surname" class="input-field-label">Last Name</label>
                 <input
                   class="input-field"
@@ -79,7 +81,7 @@
                   required
                 />
               </div>
-              <div class="div-column">
+              <div class="column">
                 <label class="input-field-label" for="address">Address</label>
                 <input
                   class="input-field"
@@ -92,7 +94,7 @@
                   required
                 />
               </div>
-              <div class="div-column">
+              <div class="column">
                 <label class="input-field-label" for="cardNumber"
                   >Card Number</label
                 >
@@ -106,7 +108,7 @@
                   required
                 />
               </div>
-              <div class="div-column">
+              <div class="column">
                 <label class="input-field-label" for="phoneNumber"
                   >Phone Number</label
                 >
@@ -120,7 +122,7 @@
                   required
                 />
               </div>
-              <div class="div-column">
+              <div class="column">
                 <label class="input-field-label" for="cvc">CVC</label>
                 <input
                   class="input-field"
