@@ -9,10 +9,11 @@
 <main>
     <section th:class="${url} == '/register' ? 'login register' : 'login'">
             <div class="logReg-title">
-                <h2 id="title">Registration</h2>
+                <h2 id="title" th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|"></h2>
             </div>
-        <p th:text="${param.error}" id="error-message"></p>
-
+        <th:block th:if="${param.error}"><p th:text="${param.error}" id="error-message"></p></th:block>
+        <th:block th:if="${error}"><p th:text="${error}" id="error-message"></p></th:block>
+        
         <div class="logReg-box">    
             <!-- Login form -->
 
