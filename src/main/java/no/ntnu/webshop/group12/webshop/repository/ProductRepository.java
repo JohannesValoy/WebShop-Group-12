@@ -40,7 +40,6 @@ public interface ProductRepository
                 bindings.excluding(root.description);
                 bindings.excluding(root.stock);
                 bindings.excluding(root.image);
-
         }
 
         
