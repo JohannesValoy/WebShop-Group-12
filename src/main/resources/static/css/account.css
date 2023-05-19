@@ -78,3 +78,21 @@
     max-width: 75rem;
 }
 
+.grey-box {
+    background-color: var(---thirdBackground);
+    padding: 2%;
+    border-radius: var(---border-radius);
+    transition: var(---transition-time);
+    margin: 2rem 0;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.grey-box:hover {
+    background-color: var(---secondBackground);
+}
+
+.grey-box.active:hover {
+    background-color: var(---thirdBackground);
+}
+
