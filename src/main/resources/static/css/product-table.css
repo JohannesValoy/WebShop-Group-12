@@ -1,0 +1,83 @@
+.purchase-card {
+    /* Start off smaller */
+    transform: scale(0);
+    /*keeps width, but changes height to 0*/
+    height: 0;
+
+    /* Specify a transition on the transform property */
+    transition: transform 0s ease-out;
+}
+
+.purchase-card.active {
+    /* Expand to normal size when active */
+    height: auto;
+    transform: scale(1);
+}
+
+.purchase-card-instance {
+    display: grid;
+    align-items: flex-start;
+    padding: 2%;
+    gap: 2rem;
+    width: fit-content;
+    border-radius: var(---border-radius);
+    transition: var(---transition-time);
+    max-width: 100%;
+}
+
+.purchase-card-instance:hover {
+    background-color: var(---secondBackground);
+}
+
+.product-table-product {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    align-items: flex-start;
+    padding: 2%;
+    gap: 2rem;
+    width: 100%;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 15rem;
+    max-height: 20rem;
+    overflow: hidden;
+    align-self: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
