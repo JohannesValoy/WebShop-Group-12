@@ -22,7 +22,9 @@ loginLink.onclick = () => {
 
 function funnySwitchingButton(url) {
     if(document.location.pathname == firstTimeLocation){
-        history.pushState(url, null, url);}
+        history.pushState(url, null, url);
+        document.title = (url.charAt(1).toUpperCase() + url.slice(2));
+    }
     else{history.back();}
 }
 
@@ -37,9 +39,14 @@ function switchToRegister() {
 }
 
 addEventListener("popstate", () => {
-    if ((history.state == null ? firstTimeLocation : history.state) == "/register") {login.classList.add("register");}
+    if ((history.state == null ? firstTimeLocation : history.state) == "/register") {
+        login.classList.add("register");
+    }
     else {login.classList.remove("register");}
+    var title = String(history.state == null ? firstTimeLocation : history.state);
+    document.title = (title.charAt(1).toUpperCase() + title.slice(2));
 });
+
 
 const username = document.getElementById("signUpUsername");
 const usernameText = document.getElementById("signUpUsernameText");
