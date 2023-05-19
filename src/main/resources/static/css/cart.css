@@ -98,7 +98,7 @@
      user-select: none;
  }
 
-.div-row img {
+.row img {
     border-radius: var(---border-radius);
     max-height: 20rem;
 }
@@ -172,7 +172,7 @@ svg {
         min-width: fit-content;
     }
 
-    .div-row {
+    .row {
         align-items: center;
     }
 

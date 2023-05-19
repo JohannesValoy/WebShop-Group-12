@@ -29,7 +29,7 @@
         <h3>Your Purchases:</h3>
         <div class="cart-grid">
           <div class="cart-product" th:each="quantity : ${purchase.products}">
-            <div class="div-row mobile">
+            <div class="row mobile">
               <a th:href="@{/products/{id} (id=${quantity.product.id})}">
                 <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}"></picture>
               </a>
@@ -38,7 +38,7 @@
                 <p class="description" th:text="${quantity.product.shortDescription}"></p>
               </div>
             </div>
-            <div class="div-row price">
+            <div class="row price">
               <div class="div-column">
                 <p>Amount Ordered</p>
                 <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
