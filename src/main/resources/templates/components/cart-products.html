@@ -2,16 +2,16 @@
     <h3 id="cart-title"></h3>
     <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
         <div class="cart-product">
-            <div class="div-row mobile">
+            <div class="row mobile">
                 <a th:href="@{/products/{id} (id=${quantity.product.id})}">
-                    <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}"></picture>
+                    <img th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}">
                 </a>
                 <div class="div-product-info">
                     <h4 th:text="${quantity.product.name}"></h4>
                     <p class="description" th:text="${quantity.product.shortDescription}"></p>
                 </div>
             </div>
-            <div class="div-row mobile price">
+            <div class="row mobile price">
                 <div class="div-column">
                     <p>Price per Item</p>
                     <p><span th:text="${quantity.product.price}"></span> kr</p>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="div-column">
                     <p>Amount Ordered</p>
-                    <div class="div-row order">
+                    <div class="row order">
                         <button class="decrease boring-button" aria-label="decrease amount button" th:data-product="${quantity.product.id}" th:disabled="${quantity.getAmount() <= 1} ?: 'disabled'">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
