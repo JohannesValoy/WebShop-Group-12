@@ -39,6 +39,12 @@ public class CartController {
         return cartService.removeProductFromCart(id);
     }
 
+    @PostMapping("/product/{id}")
+    @Operation(summary = "Add product to cart")
+    public Cart addProductToCart(@PathVariable int id) {
+        return cartService.addProductToCart(id);
+    }
+
     @PatchMapping("/product/{id}/quantity/{quantity}")
     @Operation(summary = "Update product quantity")
     public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
@@ -57,7 +63,7 @@ public class CartController {
         return cartService.getCurrentUserCart();
     }
 
-    @GetMapping()
+    @GetMapping
     @Operation(summary = "Get cars by filter")
     public Iterable<Cart> getCarts(@PageableDefault(size = 20, sort = "id") Pageable pageable, @QuerydslPredicate(root = Cart.class) Predicate predicate) {
         return cartService.getCarts(predicate, pageable);

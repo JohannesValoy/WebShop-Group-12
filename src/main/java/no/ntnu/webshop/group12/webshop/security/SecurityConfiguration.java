@@ -47,7 +47,7 @@ public class SecurityConfiguration {
 
                             //API Endpoints for new Objects
                             .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.POST, "/api/carts").hasRole(USER)
+                            .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
                             .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 
                             //API Endpoints for deleting
@@ -70,9 +70,6 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
                             .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
-
-                            //API Login
-                            .requestMatchers(HttpMethod.POST,"/api/users/login").permitAll()
 
                             // Website Resources
                             .requestMatchers("/js/**").permitAll()
