@@ -64,7 +64,7 @@ public class CartController {
     }
 
     @GetMapping
-    @Operation(summary = "Get cars by filter")
+    @Operation(summary = "Get carts by filter")
     public Iterable<Cart> getCarts(@PageableDefault(size = 20, sort = "id") Pageable pageable, @QuerydslPredicate(root = Cart.class) Predicate predicate) {
         return cartService.getCarts(predicate, pageable);
     }
