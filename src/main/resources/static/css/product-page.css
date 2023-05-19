@@ -33,17 +33,18 @@
     width: 80%;
 }
 
-.specs.active, .rating.active, .about.active {
+
+#specs, #rating, #about {
+    display: none;
+}
+
+#specs.active, #rating.active, #about.active {
     display: flex;
     align-items: center;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-}
-
-.specs, .rating, .about {
-    display: none;
 }
 
 

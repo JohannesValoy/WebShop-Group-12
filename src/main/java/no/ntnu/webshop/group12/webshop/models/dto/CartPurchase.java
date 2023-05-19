@@ -9,6 +9,7 @@ public class CartPurchase {
     String cvc;
 
     public CartPurchase() {
+        // Empty constructor for Spring
     }
 
     public String getFirstName() {

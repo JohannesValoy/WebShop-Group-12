@@ -1,16 +1,19 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
-import no.ntnu.webshop.group12.webshop.models.Purchase;
-import no.ntnu.webshop.group12.webshop.models.cart.Cart;
-import no.ntnu.webshop.group12.webshop.models.cart.Quantity;
+import com.querydsl.core.types.Predicate;
+
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
+import no.ntnu.webshop.group12.webshop.models.order.cart.Quantity;
+import no.ntnu.webshop.group12.webshop.models.order.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.CartRepository;
 import no.ntnu.webshop.group12.webshop.repository.QuantityRepository;
@@ -30,8 +33,11 @@ public class CartService {
     @Autowired
     private QuantityRepository quantityRepository;
 
+    @Autowired
+    private PurchaseService purchaseService;
+
     public Cart addProductToCart(int productId) throws NotFoundException {
-        Cart cart = getCart();
+        Cart cart = getCurrentUserCart();
         if (cart == null) {
             return null;
         }
@@ -51,13 +57,15 @@ public class CartService {
     }
 
     public Product removeProductFromCart(int productId) throws NotFoundException {
-        Cart cart = getCart();
+        Cart cart = getCurrentUserCart();
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             cart.removeProduct(q);
             quantityRepository.delete(q);
             cartRepository.save(cart);
+        } else {
+            throw new NotFoundException("Product not found in cart");
         }
         return q.getProduct();
     }
@@ -69,11 +77,10 @@ public class CartService {
         } else {
             return setProductQuantity(product, quantity);
         }
-
     }
 
     private Quantity setProductQuantity(Product product, int quantity) {
-        Cart cart = getCart();
+        Cart cart = getCurrentUserCart();
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             q.setAmount(quantity);
@@ -93,7 +100,7 @@ public class CartService {
      * 
      * @return The cart for the current user.
      */
-    private Cart getCart() {
+    public Cart getCurrentUserCart() {
         // TODO: Find a better way to do this.
         if (accessUserService.getSessionUser() == null) {
             return null;
@@ -107,13 +114,25 @@ public class CartService {
     }
 
     public Purchase confirmCart(CartPurchase cartPurchase) {
-        Cart cart = getCart();
-        Purchase purchase = new Purchase(cart);
-        cartRepository.delete(cart);
+        Cart cart = getCurrentUserCart();
+        if (cart.getItems().isEmpty()) {
+            throw new IllegalStateException("Cart is empty");
+        }
+        Purchase purchase = purchaseService.createPurchaseFromCart(cart);
+        cart.clear();      
+        cartRepository.save(cart);
         return purchase;
     }
 
-    public Set<Quantity> getCurrentUserProducts() {
-        return getCart().getProducts();
+    public Cart getCart(int id) {
+        Optional<Cart> cart = cartRepository.findById(id);
+        if (cart.isEmpty()) {
+            throw new NotFoundException("Cart not found");
+        }
+        return cart.get();
+    }
+
+    public List<Cart> getCarts(Predicate predicate, Pageable pageable) {
+        return cartRepository.findAll(predicate, pageable).getContent();
     }
 }

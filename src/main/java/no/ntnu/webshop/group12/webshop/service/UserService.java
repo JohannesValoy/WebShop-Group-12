@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
 
@@ -31,6 +32,18 @@ public class UserService {
     }
 
     public Optional<User> findUser(String name) {
-        return userRepository.findByUsername(name);
+        return userRepository.findByUsernameIgnoreCase(name);
+    }
+
+    public List<User> getUsersByFilter(Predicate predicate, Pageable pageable) {
+        return userRepository.findAll(predicate, pageable).getContent();
+    }
+
+    public void deleteUser(int id) {
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()) {
+            throw new NotFoundException("User not found");
+        }
+        userRepository.delete(user.get());
     }
 }

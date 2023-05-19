@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CyberPunk Store</title>
-    <link rel="icon" th:href="@{~/images/logo.webp}">
-    <!-- personal styles -->
-    <link rel="stylesheet" th:href="@{~/css/style.css}"/>
+    <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
+    <title th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|">Log in</title>
     <link rel="stylesheet" th:href="@{~/css/login.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
 <main>
-    <section class="login">
+    <section th:class="${url} == '/register' ? 'login register' : 'login'">
         <div class="logReg-box">
             <!-- Login form -->
             <div class="form-box login">
                 <div class="logReg-title">
                     <h2>Login</h2>
                 </div>
-                <div th:if="${param.error}" class="error-message">
-                    <p style="color: red">Login failed. Please try again.</p>
-                </div>
+                <th:block th:if="${param.error != null && url == '/login'}">
+                    <p style="color: red" th:text="${param.error}"/>
+                </th:block>
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="'M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                         </svg>
                     </span>
                         <label for="username">
@@ -50,10 +44,10 @@
 
                     <button type="submit" class="btn">Login</button>
 
-                    <div class="logReg-link">
-                        <p>Don't have an account?
-                            <a class="register-link" href="#">Register</a>
-                        </p>
+                    <div class="logReg-link row">
+                        <p>Don't have an account?</p>
+                        <button class="register-link linkBtn" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
+
                     </div>
 
                 </form>
@@ -62,10 +56,13 @@
             <div class="form-box register">
                 <div class="logReg-title">
                     <h2>Registration</h2>
+                    <th:block th:if="${param.error != null && url == '/register'}">
+                        <p style="color: red" th:text="${param.error}"/>
+                    </th:block>
                     <p>Please provide the following to verify your identity</p>
-                    <span id="confirmation" style="color: red"></span>
+                    <p id="name-mismatch" style="color: red"></p>
+                    <p id="pass-mismatch" style="color: red"></p>
                 </div>
-
                 <form th:action="@{/register}" method="post" >
                     <div class="input-box">
                     <span class="icon">
@@ -75,7 +72,7 @@
                     </span>
                         <label for="signUpUsername">
                             <input id="signUpUsername" onchange="checkPasswordAlike()" type="text" name="username" autocomplete="off" required >
-                            <span id="signUpUsernameText">Username</span>
+                            <span>Username</span>
                         </label>
                     </div>
 
@@ -99,7 +96,7 @@
                     </span>
                         <label for="confirmSignUpPassword">
                             <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" autocomplete="off" required>
-                            <span >Confirm password</span>
+                            <span>Confirm password</span>
                         </label>
                     </div>
 
@@ -107,12 +104,11 @@
                         <label><input type="checkbox" id="termsCheckbox">I agree to the terms & conditions</label>
                     </div>
 
-                    <button id="submitButton" type="submit" class="btn" disabled>Register</button>
+                    <button id="submitButton" type="submit" class="btn">Register</button>
 
-                    <div class="logReg-link">
-                        <p>Already have an account?
-                            <a class="login-link" href="#">Login</a>
-                        </p>
+                    <div class="logReg-link row">
+                        <p>Already have an account?</p>
+                        <button class="login-link linkBtn" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
                     </div>
                 </form>
             </div>

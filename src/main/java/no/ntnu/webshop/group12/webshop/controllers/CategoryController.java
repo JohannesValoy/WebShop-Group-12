@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,8 @@ import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
 
@@ -58,8 +58,8 @@ public class CategoryController {
 
     @GetMapping(path = "/count", produces = "application/json")
     @Operation(summary = "Get number of categories")
-    public ResponseEntity<Long> getCategoryCount() {
-        return ResponseEntity.ok(categoryService.getCategoryCount());
+    public Long getCategoryCount() {
+        return categoryService.getCategoryCount();
     }
 
     @GetMapping
@@ -79,14 +79,13 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
     @Parameter(name = "id", description = "Category id", required = true)
-    public ResponseEntity<Category> deleteCategory(@PathVariable int id) {
-        ResponseEntity<Category> response = ResponseEntity.notFound().build();
+    public Category deleteCategory(@PathVariable int id) {
         Optional<Category> category = categoryService.getCategory(id);
-        if (category.isPresent()) {
-            categoryService.deleteCategory(category.get());
-            response = ResponseEntity.ok().build();
+        if (category.isEmpty()) {
+            throw new NotFoundException("Category not found");
         }
-        return response;
+        categoryService.deleteCategory(category.get());
+        return category.get();
     }
 
 }

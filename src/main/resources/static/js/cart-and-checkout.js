@@ -8,7 +8,7 @@ const backToCartBtn = document.getElementById("back-to-cart");
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 
 // If cart is empty, hide checkout button and change cart title
-if (document.querySelector(".cart").children.length > 1) {
+if (document.querySelector(".cart").children.length >= 1) {
     checkoutBtn.removeAttribute("hidden");
     document.getElementById("cart-title").innerHTML = "Cart products";
 } else {
@@ -54,7 +54,7 @@ function changeCartAmount(id, amount) {
                         document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
                     });
                 } else {
-                    throw new Error("Something went wrong");
+                    window.location.reload();
                 }
             });
 }
@@ -63,13 +63,12 @@ function changeCartAmount(id, amount) {
 function removeProductFromCart(productId) {
     document.querySelector(`[product-id="${productId}"]`).remove();
     let cart = document.querySelector(".cart");
-    let products = cart.getElementsByClassName("cart-product");
+    let products = cart.getElementsByClassName("product-table-product");
     if(products.length === 0) {
         document.getElementById("cart-title").innerHTML = "Your cart is empty";
         checkoutBtn.setAttribute("hidden", "hidden");
     }
 }
-
 
 // Removes type of product from cart.
 removeFromCartBtn.forEach(button => {
@@ -79,6 +78,8 @@ removeFromCartBtn.forEach(button => {
             .then(response => {
                 if (response.ok) {
                     removeProductFromCart(productId);
+                } else {
+                    window.location.reload();
                 }
             });
     });

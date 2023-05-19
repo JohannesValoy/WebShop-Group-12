@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 /**
  * This class is used to configure the security of the application
  */
@@ -19,6 +20,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     private static final String ADMIN = "ADMIN";
+
+    private static final String USER = "USER";
 
     @Autowired
     UserDetailsService userDetailService;
@@ -30,37 +33,60 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
-        // Set up the authorization requests, starting from most restrictive at the top,
-        // to least restrictive on bottom
-        http.csrf().disable()
-                .authorizeHttpRequests()
+        //TODO: Clean up this mess
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorize -> authorize
 
-                // Admin endpoints
-                .requestMatchers("/admin/**").hasRole(ADMIN)
+                            //API Endpoints for updating
+                            .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
+                            .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
+                            
+                            //API Endpoints for counting
+                            .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count").hasRole(ADMIN)
+                            .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
 
-                // API endpoints
-                .requestMatchers("/api/carts/**").hasAnyRole("USER", ADMIN)
-                .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
-                .requestMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole(ADMIN)
-                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                            //API Endpoints for new Objects
+                            .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
+                            .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
+                            .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 
-                // Account endpoints
-                .requestMatchers("/account").hasAnyRole("USER", ADMIN)
-                .requestMatchers("/cart", "/cart/**").hasAnyRole("USER", ADMIN)
+                            //API Endpoints for deleting
+                            .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
+                            
+                            //User allowing to delete stuff they "own"
+                            .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
 
-                // Website endpoints
-                .requestMatchers("/js/**").permitAll()
-                .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/images/**").permitAll()
-                .requestMatchers("/products/**").permitAll()
-                .requestMatchers("/categories/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("/", "/about", "/search","/error").permitAll()
-                .and().formLogin().loginPage("/login").permitAll()
-                .and().logout().logoutSuccessUrl("/");
+                            //API Endpoints for filtering
+                            .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
+                            .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
+
+                            //API Endpoints for patching
+                            .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
+
+                            //Every user can get their own stuff
+                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").permitAll()
+
+                            //Get by ID
+                            .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
+                            .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
+                            .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
+
+                            // Website Resources
+                            .requestMatchers("/js/**").permitAll()
+                            .requestMatchers("/css/**").permitAll()
+                            .requestMatchers("/images/**").permitAll()
+
+                            // Swagger
+                            .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                            
+                            //Website Endpoints
+                            .requestMatchers("/products/**").permitAll()
+                            .requestMatchers("/categories/**").permitAll()
+                            .requestMatchers("/account").hasAnyRole(USER)
+                            .requestMatchers("/cart", "/cart/**").hasAnyRole(USER)
+                            .requestMatchers("/register").permitAll()
+                            .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
+                ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll().failureUrl("/login?error=Wrong+Username+or+Password")).logout(logout -> logout.logoutSuccessUrl("/"));
         return http.build();
     }
 

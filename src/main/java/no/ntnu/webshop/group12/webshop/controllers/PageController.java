@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.CartPurchase;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
+import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
@@ -39,6 +42,9 @@ public class PageController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    PurchaseService purchaseService;
 
     @Autowired
     CartService cartService;
@@ -94,7 +100,7 @@ public class PageController {
         if (userService.getSessionUser() == null) {
             return "redirect:/login";
         }
-        model.addAttribute("quantities", cartService.getCurrentUserProducts());
+        model.addAttribute("cart", cartService.getCurrentUserCart());
         return "cart";
     }
 
@@ -111,33 +117,35 @@ public class PageController {
             return "redirect:/login";
         }
         model.addAttribute("user", userService.getSessionUser());
-        model.addAttribute("purchase", cartService.confirmCart(body));
+        try {
+            model.addAttribute("purchase", cartService.confirmCart(body));
+        } catch (IllegalStateException e) {
+            model.addAttribute("error", e.getMessage());
+            return "cart";
+        }
+       
         return "purchase-confirmed";
     }
 
-    /**
-     * The `Register` page.
-     * 
-     * @return Name of the ThymeLeaf template to render
-     */
-    @GetMapping("/register")
-    public String getRegister(Model model) {
+    @GetMapping(value = {"/login", "/register"})
+    public String getLogin(Model model, HttpServletRequest http) {
+        if (userService.getSessionUser() != null) {
+            return "redirect:/account";
+        }
         model.addAttribute("user", userService.getSessionUser());
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("user", userService.getSessionUser());
+        model.addAttribute("url", http.getRequestURI());
         return "login";
     }
 
-    @PostMapping("/register")
-    public String postRegister(@ModelAttribute LoginDTO register, Model model) {
+    @PostMapping(value = "/register")
+    public String postRegister(@ModelAttribute LoginDTO register, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("user", userService.getSessionUser());
-        String error = userService.tryCreateNewUser(register.getUsername(), register.getPassword());
-        model.addAttribute("error", error);
-        return "login";
+        try{userService.tryCreateNewUser(register.getUsername(), register.getPassword());}
+        catch(IllegalArgumentException e){
+            redirectAttributes.addAttribute("error", e.getMessage());
+            return "redirect:/register";
+        }
+        return "redirect:/login";
     }
 
     @GetMapping("/about")
@@ -159,6 +167,7 @@ public class PageController {
         User authenticatedUser = userService.getSessionUser();
         if (authenticatedUser != null) {
             model.addAttribute("user", authenticatedUser);
+            model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
             return "account";
         } else {
             return "no-access";

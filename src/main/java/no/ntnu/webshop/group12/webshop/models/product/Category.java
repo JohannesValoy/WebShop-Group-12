@@ -1,19 +1,29 @@
 package no.ntnu.webshop.group12.webshop.models.product;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "categories")
 @Schema(description = "A category in the webshop", name = "Category")
+@Getter
+@Setter
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +35,10 @@ public class Category {
 
     @ManyToOne
     private WebpImage image;
+
+    @ManyToMany(mappedBy = "category")
+    @JsonBackReference
+    private Set<Product> products = new LinkedHashSet<>();
 
     public Category() {
     }
@@ -40,30 +54,6 @@ public class Category {
     public Category(int id, String name, WebpImage image) {
         this.id = id;
         this.name = name;
-        this.image = image;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public WebpImage getImage() {
-        return image;
-    }
-
-    public void setImage(WebpImage image) {
         this.image = image;
     }
 

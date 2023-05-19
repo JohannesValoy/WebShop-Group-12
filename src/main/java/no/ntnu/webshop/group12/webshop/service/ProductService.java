@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
-import no.ntnu.webshop.group12.webshop.excpetion.NotFoundException;
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
-import no.ntnu.webshop.group12.webshop.models.product.QProduct;
 import no.ntnu.webshop.group12.webshop.repository.ProductRepository;
 
 @Service
@@ -28,11 +27,13 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    private Random random = new Random();
+
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product getProduct(int id) throws NotFoundException{
+    public Product getProduct(int id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
             return product.get();
@@ -51,7 +52,7 @@ public class ProductService {
 
     public Set<Product> getRandomProducts(long i) {
         Set<Product> products = new HashSet<>();
-        Random random = new Random();
+        
         if (i > productRepository.count()) {
             i = productRepository.count();
         }
@@ -70,7 +71,6 @@ public class ProductService {
 
     public Set<Product> getRandomProductsByCategory(long i, Category category) {
         Set<Product> products = new HashSet<>();
-        Random random = new Random();
         List<Product> productsByCategory = productRepository.findByCategory(category);
         if (i > productsByCategory.size()) {
             i = productsByCategory.size();

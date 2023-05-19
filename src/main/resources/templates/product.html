@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
+    <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
     <title th:text="'CyberPunk Store - ' + ${product.name}"></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" th:href="@{~/images/logo.webp}">
-    <!-- personal styles -->
-    <link rel="stylesheet" th:href="@{~/css/style.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-page.css}"/>
     <link rel="stylesheet" th:href="@{~/css/product-card.css}"/>
 
@@ -16,44 +10,66 @@
     <header th:replace="~{components/header}"></header>
     <main>
         <section class="sections">
+
             <section class="product-intro">
                 <th:block th:if="${product?.image != null} ">
-                    <picture th:replace="~{components/webpImage ::  webp(${product.image}, ${product.name})}"></picture>
-                  </th:block>
+                    <picture
+                            th:replace=
+                                    "~{components/webpImage ::  webp(${product.image},
+                                    ${product.name})}">
+                    </picture>
+                </th:block>
 
                 <section class="product-page-description">
                     <h2 th:text="${product.name}"></h2>
                     <p class="product-description" th:text="${product.shortDescription}"></p>
 
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
-                        <button class="focus-button" >Add to Cart</button>
+                        <button class="focus-button">
+                            Add to Cart
+                        </button>
                     </form>
                 </section>
             </section>
 
             <section class="specs-rating-about-buttons">
-                <button class="specs-button boring-button" >Specs</button>
-                <button class="rating-button boring-button" >Rating</button>
-                <button class="about-button boring-button">About</button>
+                <button id="specs-button" class="boring-button" >
+                    Specs
+                </button>
+                <button id="rating-button" class="boring-button">
+                    Rating
+                </button>
+                <button id="about-button" class="boring-button">
+                    About
+                </button>
             </section>
 
-            <section class="specs">
+            <section id="specs">
                 <h2>Specs</h2>
                 <p class="product-about-page-description">Specs about this product</p>
-                <p class="product-page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </section>
-
-            <section class="about active">
-                <h2>About</h2>
-                <p class="product-about-page-description">Information about this product</p>
-                <p class="product-page-description" th:text="${product.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <p class="product-page-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
             </section>
 
-            <section class="rating">
+            <section id="about" class="active">
+                <h2>About</h2>
+                <p class="product-about-page-description">
+                    Information about this product</p>
+                <p class="product-page-description"
+                   th:text="${product.description}">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </section>
+
+            <section id="rating">
                 <h2>Rating</h2>
-                <p class="product-about-page-description">Rating about this product</p>
-                <p class="product-page-description">This Product is a great product. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="product-about-page-description">
+                    Rating about this product</p>
+                <p class="product-page-description">
+                    This Product is a great product.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
             </section>
 
             <section th:replace="~{components/product-card}"></section>

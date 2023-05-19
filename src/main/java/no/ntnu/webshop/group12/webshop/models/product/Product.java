@@ -19,12 +19,17 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.WebpImage;
 
 @Entity
 @Table(name = "products")
 @Schema(description = "A product in the webshop", name = "Product")
+@Getter
+@Setter
 public class Product {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -69,6 +74,17 @@ public class Product {
         this.stock = stock;
         this.image = image;
     }
+  
+    public Product(Product product) {
+        this.id = product.getId();
+        this.category = product.getCategory();
+        this.name = product.getName();
+        this.description = product.getDescription();
+        this.shortDescription = product.getShortDescription();
+        this.price = product.getPrice();
+        this.stock = product.getStock();
+        this.image = product.getImage();
+    }
 
     private void createShortDescriptive() {
         char[] chars = {'.', '!', '?'};
@@ -82,17 +98,6 @@ public class Product {
             shortDescription = description;
         }
     }
-    public int getId() {
-        return id;
-    }
-
-    public Set<Category> getCategory() {
-        return category;
-    }
-
-    public void setCategory(Set<Category> category) {
-        this.category = category;
-    }
 
     public void addCategory(Category... categories) {
         Collections.addAll(this.category, categories);
@@ -100,58 +105,6 @@ public class Product {
 
     public void removeCategory(Category category) {
         this.category.remove(category);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public WebpImage getImage() {
-        return image;
-    }
-
-    public void setImage(WebpImage image) {
-        this.image = image;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
     }
 
     @Override

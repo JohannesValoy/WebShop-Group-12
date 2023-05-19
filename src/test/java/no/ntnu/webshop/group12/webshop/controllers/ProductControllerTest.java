@@ -1,14 +1,9 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -17,20 +12,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+import no.ntnu.webshop.group12.webshop.APIBaseTester;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
-@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-public class ProductControllerTest {
 
-        @Autowired
-        MockMvc mockMvc;
-
-        @Autowired
-        ObjectMapper objectMapper;
+public class ProductControllerTest extends APIBaseTester {
 
         private static final String BASE_URL = "/api/products";
 

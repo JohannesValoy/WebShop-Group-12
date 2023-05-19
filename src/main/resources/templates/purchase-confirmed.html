@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="description" content="Cyberpunk Gaming Gear is a cutting edge company specializing in the most advanced cyberpunk gaming gadgets available. From headsets to keyboards, mice to controllers, we have everything you need to get the most out of your gaming experience. Our products feature the latest in cyberpunk technology, with sleek designs and advanced capabilities. Experience the power of cyberpunk gaming with us today! Let us take your gaming to the next level.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CyberPunk Store</title>
-  <link rel="icon" th:href="@{~/images/logo.webp}">
-  <link rel="stylesheet" th:href="@{~/css/style.css}"/>
-  <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
+    <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
+    <title>Order Complete</title>
+    <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
+    <link rel="stylesheet" th:href="@{~/css/product-table.css}"/>
 </head>
 
 <body>
@@ -25,35 +21,9 @@
     <div class="complete-section active">
       <h2>Order Complete!</h2>
       <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
-      <section class="cart">
+      <section class="card-layout">
         <h3>Your Purchases:</h3>
-        <div class="cart-grid">
-          <div class="cart-product" th:each="quantity : ${purchase.products}">
-            <div class="row mobile">
-              <a th:href="@{/products/{id} (id=${quantity.product.id})}">
-                <picture th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}"></picture>
-              </a>
-              <div class="div-product-info">
-                <h4 th:text="${quantity.product.name}"></h4>
-                <p class="description" th:text="${quantity.product.shortDescription}"></p>
-              </div>
-            </div>
-            <div class="row price">
-              <div class="div-column">
-                <p>Amount Ordered</p>
-                <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
-              </div>
-              <div class="div-column">
-                <p>Price per Item</p>
-                <p><span th:text="${quantity.product.price}"></span> kr</p>
-              </div>
-              <div class="div-column">
-                <p>Total product price</p>
-                <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.getItems()})}"></section>
       </section>
     </div>
   </section>

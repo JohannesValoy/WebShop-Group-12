@@ -1,9 +1,9 @@
-const about = document.querySelector(".about-button");
-const aboutContent = document.querySelector(".about");
-const specs= document.querySelector(".specs-button");
-const specsContent = document.querySelector(".specs");
-const rating = document.querySelector(".rating-button");
-const ratingContent = document.querySelector(".rating");
+const about = document.getElementById("about-button");
+const aboutContent = document.getElementById("about");
+const specs= document.getElementById("specs-button");
+const specsContent = document.getElementById("specs");
+const rating = document.getElementById("rating-button");
+const ratingContent = document.getElementById("rating");
 
 
 about.onclick = () => {

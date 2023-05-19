@@ -1,59 +1,43 @@
-package no.ntnu.webshop.group12.webshop.models.cart;
+package no.ntnu.webshop.group12.webshop.models.order;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Positive;
+import lombok.Getter;
+import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
-@Entity
-public class Quantity {
+@MappedSuperclass()
+@Getter
+@Setter
+public class QuantityBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Positive
+    private int amount;
 
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Positive
-    private int amount;
-
-    public Quantity() {
+    public QuantityBase() {
     }
 
-    public Quantity(Product product, int amount) {
+    public QuantityBase(Product product, int amount) {
         this.product = product;
         this.amount = amount;
     }
-
-    public Quantity(Quantity quantity) {
+    
+    public QuantityBase(QuantityBase quantity) {
         this.product = quantity.getProduct();
         this.amount = quantity.getAmount();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public void addAmount(int amount) {
@@ -62,5 +46,9 @@ public class Quantity {
 
     public void removeAmount(int amount) {
         this.amount -= amount;
+    }
+
+    public long getTotalPrice() {
+        return product.getPrice() * amount;
     }
 }

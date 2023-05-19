@@ -16,7 +16,6 @@
 .profile-image {
     min-width: 5rem;
     min-height: 5rem;
-    width: 20%;
 }
 
 .account-details {
@@ -32,4 +31,45 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.div-row-account {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    flex-flow: wrap;
+}
+
+.product-category-card {
+    width: 100%;
+    max-width: 75rem;
+}
+
+.grey-box {
+    background-color: var(---thirdBackground);
+    padding: 2%;
+    border-radius: var(---border-radius);
+    transition: var(---transition-time);
+    margin: 2rem 0;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.grey-box:hover {
+    background-color: var(---secondBackground);
+}
+
+.grey-box.active:hover {
+    background-color: var(---thirdBackground);
+}
+
+.blue-text{
+    color: var(---secondText);
+    font-size: 1.6rem;
+}
+
+.blue-text span{
+    font-size: 1.6rem;
 }

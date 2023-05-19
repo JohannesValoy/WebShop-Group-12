@@ -1,49 +1,58 @@
-<section class="cart">
-    <h3 id="cart-title"></h3>
-    <div class="cart-grid" th:each="quantity : ${quantities}" th:product-id="@{${quantity.product.id}}">
-        <div class="cart-product">
-            <div class="row mobile">
-                <a th:href="@{/products/{id} (id=${quantity.product.id})}">
-                    <img th:replace="~{components/webpImage ::  webp(${quantity.product.image}, ${quantity.product.name})}">
-                </a>
-                <div class="div-product-info">
-                    <h4 th:text="${quantity.product.name}"></h4>
-                    <p class="description" th:text="${quantity.product.shortDescription}"></p>
-                </div>
-            </div>
-            <div class="row mobile price">
-                <div class="div-column">
-                    <p>Price per Item</p>
-                    <p><span th:text="${quantity.product.price}"></span> kr</p>
-                </div>
-                <div class="div-column">
-                    <p>Total product price</p>
-                    <p><span th:id="|totalPrice-${quantity.product.id}|" th:text="${quantity.product.price * quantity.getAmount()}"></span> kr</p>
-                </div>
-                <div class="div-column">
-                    <p>Amount Ordered</p>
-                    <div class="row order">
-                        <button class="decrease boring-button" aria-label="decrease amount button" th:data-product="${quantity.product.id}" th:disabled="${quantity.getAmount() <= 1} ?: 'disabled'">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                            </svg>
-                        </button>
-                        <p th:id="|amount-${quantity.product.id}|" th:text="${quantity.getAmount()}"></p>
-                        <button class="increase boring-button" aria-label="Increase amount button" th:data-product="${quantity.product.id}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="div-column">
-                    <p>Delete</p>
-                    <button class="delete remove-from-cart boring-button" aria-label="remove from cart button" th:data-product-id="${quantity.product.id}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+<section class="cart" th:fragment="showCartProducts(items)">
+    <div class="grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
+        <div th:replace = ":: createItemCard(${item}, false)"></div>
     </div>
 </section>
+
+<section class="card-layout" th:fragment="showPurchasedItems(items)">
+    <a class="purchase-card-instance" th:each="item : ${purchase.items}" th:product-id="@{${item.product.id}}"  th:href="@{/products/{id} (id=${item.product.id})}">
+        <div th:replace = ":: createItemCard(${item}, true)"></div>
+    </a>
+</section>
+
+<div class="product-table-product" th:fragment="createItemCard(item, isBought)">
+    <div class="row mobile">
+        <a th:href="@{/products/{id} (id=${item.product.id})}" th:remove="${isBought} ? tag">
+            <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
+        </a>
+        <div class="div-product-info">
+            <h4 th:text="${item.product.name}"></h4>
+            <p class="description" th:text="${item.product.shortDescription}"></p>
+        </div>
+    </div>
+    <div class="row mobile">
+        <div class="column">
+            <h5>Price per Item</h5>
+            <p><span th:text="${item.product.price}"></span> kr</p>
+        </div>
+        <div class="column">
+            <h5>Total product price</h5>
+            <p th:if="${isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.productPriceAtPurchase * item.getAmount()}"></span> kr</p>
+            <p th:if="${not isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.product.price * item.getAmount()}"></span> kr</p>
+        </div>
+        <div class="column">
+            <h5>Amount Ordered</h5>
+            <div class="row order" th:if="${not isBought}">
+                <button class="decrease boring-button" aria-label="decrease amount button" th:data-product="${item.product.id}" th:disabled="${item.getAmount() <= 1} ?: 'disabled'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                    </svg>
+                </button>
+                <p th:id="|amount-${item.product.id}|" th:text="${item.getAmount()}"></p>
+                <button class="increase boring-button" aria-label="Increase amount button" th:data-product="${item.product.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </button>
+            </div>
+            <p th:if="${isBought}" th:id="|amount-${item.product.id}|" th:text="${item.getAmount()}"></p>
+        </div>
+        <div th:remove="${isBought} ? all" class="column">
+            <h5>Delete</h5>
+            <button class="delete remove-from-cart boring-button" aria-label="remove from cart button" th:data-product-id="${item.product.id}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+        </div>
+    </div>
+</div>
