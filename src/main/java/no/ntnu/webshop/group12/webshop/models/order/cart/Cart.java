@@ -84,4 +84,11 @@ public class Cart {
         return quantity.orElse(null);
     }
 
+    /**
+     * Clears the cart
+     */
+    public void clear() {
+        items.clear();
+    }
+
 }
