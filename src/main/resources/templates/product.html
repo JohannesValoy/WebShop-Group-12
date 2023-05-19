@@ -13,11 +13,7 @@
 
             <section class="product-intro">
                 <th:block th:if="${product?.image != null} ">
-                    <picture
-                            th:replace=
-                                    "~{components/webpImage ::  webp(${product.image},
-                                    ${product.name})}">
-                    </picture>
+                    <img th:replace="~{components/webpImage ::  webp(${product.image},${product.name})}"/>
                 </th:block>
 
                 <section class="product-page-description">
@@ -33,27 +29,13 @@
             </section>
 
             <section class="specs-rating-about-buttons">
-                <button id="specs-button" class="boring-button" >
-                    Specs
-                </button>
-                <button id="rating-button" class="boring-button">
-                    Rating
-                </button>
-                <button id="about-button" class="boring-button">
-                    About
-                </button>
-            </section>
-
-            <section id="specs">
-                <h2>Specs</h2>
-                <p class="product-about-page-description">Specs about this product</p>
-                <p class="product-page-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
+                <button id="about-button" class="boring-button">About</button>
+                <button id="specs-button" class="boring-button">Specs</button>
+                <button id="rating-button" class="boring-button">Rating</button>
             </section>
 
             <section id="about" class="active">
-                <h2>About</h2>
+                <h3>About</h3>
                 <p class="product-about-page-description">
                     Information about this product</p>
                 <p class="product-page-description"
@@ -62,8 +44,16 @@
                 </p>
             </section>
 
+            <section id="specs">
+                <h3>Specs</h3>
+                <p class="product-about-page-description">Specs about this product</p>
+                <p class="product-page-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </section>
+
             <section id="rating">
-                <h2>Rating</h2>
+                <h3>Rating</h3>
                 <p class="product-about-page-description">
                     Rating about this product</p>
                 <p class="product-page-description">
@@ -72,8 +62,12 @@
                 </p>
             </section>
 
-            <section th:replace="~{components/product-card}"></section>
-
+            <section class="related-products">
+                <h3>Related Products</h3>
+                <div class="row">
+                    <section th:replace="~{components/product-card}"></section>
+                </div>
+            </section>
         </section>
     </main>
     <footer th:replace="~{components/footer}"></footer>

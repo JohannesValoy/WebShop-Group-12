@@ -47,6 +47,11 @@
     gap: 0.5rem;
 }
 
+.related-products {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
 .product-about-page {
     width: 100%;
