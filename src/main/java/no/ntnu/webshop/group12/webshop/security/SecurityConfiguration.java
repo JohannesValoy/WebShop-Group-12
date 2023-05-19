@@ -52,16 +52,19 @@ public class SecurityConfiguration {
 
                             //API Endpoints for deleting
                             .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
+                            
+                            //User allowing to delete stuff they "own"
+                            .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
 
                             //API Endpoints for filtering
                             .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
 
+                            //API Endpoints for patching
+                            .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
+
                             //Every user can get their own stuff
                             .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").permitAll()
-
-                            //User deleting themselves
-                            .requestMatchers(HttpMethod.DELETE, "/api/users/me").hasRole(USER)
 
                             //Get by ID
                             .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
