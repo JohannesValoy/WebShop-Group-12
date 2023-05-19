@@ -96,3 +96,11 @@
     background-color: var(---thirdBackground);
 }
 
+.blue-text{
+    color: var(---secondText);
+    font-size: 1.6rem;
+}
+
+.blue-text span{
+    font-size: 1.6rem;
+}
