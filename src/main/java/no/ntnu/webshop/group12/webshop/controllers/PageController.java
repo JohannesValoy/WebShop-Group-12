@@ -128,7 +128,7 @@ public class PageController {
     }
 
     @GetMapping(value = {"/login", "/register"})
-    public String getLogin(Model model, HttpServletRequest  http) {
+    public String getLogin(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("url", http.getRequestURI());
         return "login";

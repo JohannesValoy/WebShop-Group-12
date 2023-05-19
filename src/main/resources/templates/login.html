@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
-    <title>Log in</title>
+    <title th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|">Log in</title>
     <link rel="stylesheet" th:href="@{~/css/login.css}"/>
 </head>
 <body>
 <header th:replace="~{components/header}"></header>
 <main>
     <section th:class="${url} == '/register' ? 'login register' : 'login'">
-        <div class="logReg-box">
+            <div class="logReg-title">
+                <h2 id="title" th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|"></h2>
+            </div>
+        <th:block th:if="${param.error}"><p th:text="${param.error}" id="error-message"></p></th:block>
+        <th:block th:if="${error}"><p th:text="${error}" id="error-message"></p></th:block>
+        
+        <div class="logReg-box">    
             <!-- Login form -->
+
             <div class="form-box login">
-                <div class="logReg-title">
-                    <h2>Login</h2>
-                </div>
-                <div th:if="${error}" class="error-message">
-                    <p th:text="${error}">Login failed. Please try again</p>
-                </div>
+
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
                     <span class="icon">
@@ -49,16 +51,11 @@
                         <button class="register-link" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
 
                     </div>
-
                 </form>
             </div>
             <!-- Register form -->
             <div class="form-box register">
-                <div class="logReg-title">
-                    <h2>Registration</h2>
-                    <p>Please provide the following to verify your identity</p>
-                </div>
-
+                <p>Please provide the following to verify your identity</p>
                 <form th:action="@{/register}" method="post" >
                     <div class="input-box">
                     <span class="icon">
