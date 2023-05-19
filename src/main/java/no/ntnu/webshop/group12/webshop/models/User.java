@@ -55,7 +55,6 @@ public class User {
     private Cart cart;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private Set<Purchase> purchases = new LinkedHashSet<>();
     
     public User() {

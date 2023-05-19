@@ -60,6 +60,9 @@ public class SecurityConfiguration {
                             //Every user can get their own stuff
                             .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").permitAll()
 
+                            //User deleting themselves
+                            .requestMatchers(HttpMethod.DELETE, "/api/users/me").hasRole(USER)
+
                             //Get by ID
                             .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)

@@ -131,4 +131,10 @@ public class UserController {
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
         return userService.getUsersByFilter(predicate, pageable);
     }
+
+    @DeleteMapping("/me")
+    @Operation(summary = "Delete current user")
+    public void deleteCurrentUser() {
+        accessUserService.deleteCurrentUser();
+    }
 }

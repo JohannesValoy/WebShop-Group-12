@@ -21,15 +21,14 @@ public class UserControllerTest extends APIBaseTester {
 
     @Test
     @WithMockUser("ThisIsATestAccount")
-    void testCreateAndLogin() throws Exception {
+    void testCreateAndDelete() throws Exception {
         LoginDTO loginDTO = new LoginDTO("ThisIsATestAccount", "Test1234");
         String json = objectMapper.writeValueAsString(loginDTO);
         User newUser = objectMapper.readValue(mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), User.class);
         assert (newUser.getUsername().equals(loginDTO.getUsername()));
-
-        //Login using form with a post request
-        mockMvc.perform(post(BASE_URL+"/login").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk());
+        mockMvc.perform(delete(BASE_URL+"/me"))
+        .andExpect(status().isOk());
     }
 
     @Test

@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+
+import no.ntnu.webshop.group12.webshop.exception.ForbiddenException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
@@ -154,5 +156,13 @@ public class AccessUserService implements UserDetailsService {
         } else {
             throw new UsernameNotFoundException("User " + username + "not found");
         }
+    }
+
+    public void deleteCurrentUser() {
+        User user = getSessionUser();
+        if (user == null) {
+            throw new ForbiddenException("You are not logged in");
+        }
+        userRepository.delete(user);
     }
 }
