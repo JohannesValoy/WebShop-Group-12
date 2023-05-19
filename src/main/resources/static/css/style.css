@@ -185,6 +185,7 @@ svg {
 img {
     height: auto;
     max-width: 30rem;
+    display: block;
 }
 
 /*universal for sections*/
