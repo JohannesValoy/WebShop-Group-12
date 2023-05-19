@@ -53,6 +53,10 @@
     gap: 1rem;
 }
 
+.related-products h2 {
+    color: var(---secondText);
+}
+
 .product-about-page {
     width: 100%;
 }
