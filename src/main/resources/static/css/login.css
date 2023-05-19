@@ -57,9 +57,11 @@ main {
     background: none;
 }
 
-#logReg-title {
+.logReg-title {
+    display: flex;
+    flex-direction: column;
     font-size: 2rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
 }
 
 .logReg-box .input-box {
