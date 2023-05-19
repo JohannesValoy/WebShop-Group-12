@@ -181,6 +181,7 @@ img {
     width: 100%;
     height: 100%;
     max-width: 30rem;
+    display: block;
 }
 
 /*universal for sections*/
