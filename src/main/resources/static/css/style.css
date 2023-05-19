@@ -235,6 +235,12 @@ img {
     user-select: none;
 }
 
+.linkBtn {
+    background: none;
+    color: var(---secondText);
+    text-decoration: underline;
+}
+
 :disabled {
     pointer-events: none !important;
     background-color: var(---thirdBackground) !important;
