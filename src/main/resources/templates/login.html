@@ -12,10 +12,9 @@
                 <h2 id="title" th:text="|${url.substring(1,2).toUpperCase()}${url.substring(2)}|"></h2>
             </div>
         <th:block th:if="${param.error}"><p th:text="${param.error}" id="error-message"></p></th:block>
-        
-        <div class="logReg-box">    
-            <!-- Login form -->
 
+        <div class="logReg-box">
+            <!-- Login form -->
             <div class="form-box login">
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
@@ -49,11 +48,13 @@
                         <button class="register-link" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
 
                     </div>
+
                 </form>
             </div>
             <!-- Register form -->
             <div class="form-box register">
                 <p>Please provide the following to verify your identity</p>
+                <span id="confirmation" style="color: red"></span>
                 <form th:action="@{/register}" method="post" >
                     <div class="input-box">
                     <span class="icon">
@@ -87,7 +88,7 @@
                     </span>
                         <label for="confirmSignUpPassword">
                             <input id="confirmSignUpPassword" onchange="checkPasswordAlike()" type="password" autocomplete="off" required>
-                            <span id="confirmation">Confirm password</span>
+                            <span>Confirm password</span>
                         </label>
                     </div>
 
@@ -98,7 +99,7 @@
                     <button id="submitButton" type="submit" class="btn">Register</button>
 
                     <div class="logReg-link">
-                        <p>Already have an account?</p> 
+                        <p>Already have an account?</p>
                         <button class="login-link" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
                     </div>
                 </form>
