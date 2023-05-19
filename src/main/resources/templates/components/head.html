@@ -6,7 +6,7 @@
         <title th:replace="${title}">CyberPunk Store</title>
     </th:block>
     <title th:unless="${title}">CyberPunk Store</title>
-    <link rel="icon" th:href="@{~/images/logo.webp}">
+    <link rel="icon" th:href="@{~/images/logo.ico}">
     <link rel="stylesheet" th:href="@{~/css/style.css}"/>
-    <th:block th:replace="${links}">
+    <th:block th:replace="${links}"/>
 </head>
