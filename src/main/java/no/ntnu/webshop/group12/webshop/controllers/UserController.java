@@ -108,13 +108,8 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    public User deleteUser(@PathVariable int id) {
-        Optional<User> user = userService.getUser(id);
-        if (!user.isPresent()) {
-            throw new NotFoundException("User not found");
-        }
-        userService.deleteUser(user.get());
-        return user.get();
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
     }
 
     /**
