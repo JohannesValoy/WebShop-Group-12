@@ -8,23 +8,20 @@
 <header th:replace="~{components/header}"></header>
 <main>
     <section th:class="${url} == '/register' ? 'login register' : 'login'">
-
-        <th:block th:if="${param.error}"><p th:text="${param.error}" id="error-message"></p></th:block>
-
         <div class="logReg-box">
             <!-- Login form -->
             <div class="form-box login">
                 <div class="logReg-title">
                     <h2>Login</h2>
                 </div>
-                <div th:if="${error}" class="error-message">
-                    <p th:text="${error}">Login failed. Please try again</p>
-                </div>
+                <th:block th:if="${param.error != null && url == '/login'}">
+                    <p style="color: red" th:text="${param.error}"/>
+                </th:block>
                 <form th:action="@{/login}" method="post">
                     <div class="input-box">
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="'M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                         </svg>
                     </span>
                         <label for="username">
@@ -59,6 +56,9 @@
             <div class="form-box register">
                 <div class="logReg-title">
                     <h2>Registration</h2>
+                    <th:block th:if="${param.error != null && url == '/register'}">
+                        <p style="color: red" th:text="${param.error}"/>
+                    </th:block>
                     <p>Please provide the following to verify your identity</p>
                     <p id="name-mismatch" style="color: red"></p>
                     <p id="pass-mismatch" style="color: red"></p>
