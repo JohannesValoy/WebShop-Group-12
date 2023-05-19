@@ -77,7 +77,6 @@ public class CartService {
         } else {
             return setProductQuantity(product, quantity);
         }
-
     }
 
     private Quantity setProductQuantity(Product product, int quantity) {
@@ -119,8 +118,9 @@ public class CartService {
         if (cart.getItems().isEmpty()) {
             throw new IllegalStateException("Cart is empty");
         }
-        Purchase purchase = purchaseService.createPurchaseFromCart(cart);      
-        cartRepository.delete(cart);
+        Purchase purchase = purchaseService.createPurchaseFromCart(cart);
+        cart.clear();      
+        cartRepository.save(cart);
         return purchase;
     }
 
