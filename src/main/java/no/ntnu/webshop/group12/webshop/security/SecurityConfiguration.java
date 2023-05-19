@@ -50,17 +50,23 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.POST, "/api/carts").hasRole(USER)
                             .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 
+                            //API Endpoints for deleting
+                            .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
+
                             //API Endpoints for filtering
                             .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
 
                             //Every user can get their own stuff
-                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").hasRole(USER)
+                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").permitAll()
 
                             //Get by ID
                             .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
                             .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
+
+                            //API Login
+                            .requestMatchers(HttpMethod.POST,"/api/users/login").permitAll()
 
                             // Website Resources
                             .requestMatchers("/js/**").permitAll()
@@ -78,14 +84,6 @@ public class SecurityConfiguration {
                             .requestMatchers("/register").permitAll()
                             .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
                 ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll()).logout(logout -> logout.logoutSuccessUrl("/"));
-
-                // Admin endpoints
-                
-                // API endpoints
-                
-
-                // Account endpoints
-               
         return http.build();
     }
 

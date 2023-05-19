@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public Optional<User> findUser(String name) {
-        return userRepository.findByUsername(name);
+        return userRepository.findByUsernameIgnoreCase(name);
     }
 
     public List<User> getUsersByFilter(Predicate predicate, Pageable pageable) {

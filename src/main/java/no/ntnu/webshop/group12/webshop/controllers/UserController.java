@@ -12,7 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -125,19 +124,11 @@ public class UserController {
      * @param predicate
      * @return list of users
      */
-    @GetMapping("/filter")
-    @Operation(summary = "Get categories by filter")
+    @GetMapping
+    @Operation(summary = "Get users by filter")
     public List<User> getUsersByFilter(
             @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
         return userService.getUsersByFilter(predicate, pageable);
     }
-
-
-    @PostMapping("/login")
-    @Operation(summary = "Login")
-    public User login(@RequestBody LoginDTO user) {
-        return accessUserService.tryLogin(user.getUsername(), user.getPassword());
-    }
-
 }
