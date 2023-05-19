@@ -42,22 +42,25 @@ function checkPasswordAlike() {
         submitButton.disabled = !termsCheckbox.checked;
     }
 
-    if (password.value === "" || confirmPassword.value === "") {
+    if (password.value === "") {
         message.classList.remove("password-mismatch");
-        message.innerHTML = "Confirm password";
+        message.innerHTML = "";
         submitButton.disabled = true;
-    } else if (password.value !== confirmPassword.value) {
-        message.classList.add("password-mismatch");
-        message.innerHTML = "Passwords do not match";
-        submitButton.disabled = true;
-    } else if (!regexPass.test(password.value)){
+    } else if (!regexPass.test(password.value)) {
         message.classList.add("password-mismatch");
         message.innerHTML = "Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long";
         submitButton.disabled = true;
-    } else {
-    message.classList.remove("password-mismatch");
-    message.innerHTML = "New password confirmed";
-    submitButton.disabled = !termsCheckbox.checked;
+    } else if (regexPass.test(password.value) && confirmPassword.value === "") {
+        message.classList.remove("password-mismatch");
+        message.innerHTML = "";
+    } else if (password.value !== confirmPassword.value && confirmPassword.value !== "") {
+        message.classList.add("password-mismatch");
+        message.innerHTML = "Passwords do not match";
+        submitButton.disabled = true;
+    }  else {
+        message.classList.remove("password-mismatch");
+        message.innerHTML = "";
+        submitButton.disabled = !termsCheckbox.checked;
     }
 }
 
