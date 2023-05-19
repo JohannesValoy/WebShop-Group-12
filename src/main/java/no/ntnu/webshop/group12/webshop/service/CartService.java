@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +132,7 @@ public class CartService {
         return cart.get();
     }
 
-    public Iterable<Cart> getCarts(Predicate predicate, Pageable pageable) {
-        return cartRepository.findAll(predicate, pageable);
+    public List<Cart> getCarts(Predicate predicate, Pageable pageable) {
+        return cartRepository.findAll(predicate, pageable).getContent();
     }
 }

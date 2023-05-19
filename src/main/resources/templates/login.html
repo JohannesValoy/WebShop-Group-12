@@ -43,9 +43,9 @@
 
                     <button type="submit" class="btn">Login</button>
 
-                    <div class="logReg-link">
+                    <div class="logReg-link row">
                         <p>Don't have an account?</p>
-                        <button class="register-link" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
+                        <button class="register-link linkBtn" type="button" th:text="${url} == '/login' ? Register : 'Go Back'">Register</button>
 
                     </div>
 
@@ -98,9 +98,9 @@
 
                     <button id="submitButton" type="submit" class="btn">Register</button>
 
-                    <div class="logReg-link">
+                    <div class="logReg-link row">
                         <p>Already have an account?</p>
-                        <button class="login-link" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
+                        <button class="login-link linkBtn" type="button" th:text="${url} == '/register' ? 'Login' : 'Go Back'">Login</button>
                     </div>
                 </form>
             </div>

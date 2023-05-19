@@ -235,28 +235,19 @@ img {
     user-select: none;
 }
 
+.linkBtn {
+    background: none;
+    color: var(---secondText);
+    text-decoration: underline;
+}
+
 :disabled {
     pointer-events: none !important;
     background-color: var(---thirdBackground) !important;
     color: gray !important;
 }
 
-.grey-box {
-    background-color: var(---thirdBackground);
-    padding: 2%;
-    border-radius: var(---border-radius);
-    transition: var(---transition-time);
-    margin: 2rem 0;
-    cursor: pointer;
-    height: fit-content;
-}
-
-.grey-box:hover {
-    background-color: var(---secondBackground);
-}
-
-.grey-box.active:hover {
-    background-color: var(---thirdBackground);
+.picture {
 }
 
 @media (min-width: 2488px) {

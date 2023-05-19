@@ -1,5 +1,4 @@
 <section class="card-layout" th:fragment="showCartProducts(items)">
-    <h3 id="cart-title"></h3>
     <div class="grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
         <div th:replace = ":: createItemCard(${item}, false)"></div>
     </div>
