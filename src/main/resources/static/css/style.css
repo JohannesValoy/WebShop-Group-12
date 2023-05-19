@@ -213,8 +213,6 @@ img {
     user-select: none;
 }
 
-
-
 .focus-button:hover {
     color: var(---fourthText);
     transform: scale(var(---transform-scale-small));
@@ -233,7 +231,7 @@ img {
 
 :disabled {
     pointer-events: none !important;
-    background-color: var(---secondBackground) !important;
+    background-color: var(---thirdBackground) !important;
     color: gray !important;
 }
 
