@@ -54,7 +54,7 @@ function changeCartAmount(id, amount) {
                         document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
                     });
                 } else {
-                    throw new Error("Something went wrong");
+                    window.location.reload();
                 }
             });
 }
@@ -70,7 +70,6 @@ function removeProductFromCart(productId) {
     }
 }
 
-
 // Removes type of product from cart.
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
@@ -79,6 +78,8 @@ removeFromCartBtn.forEach(button => {
             .then(response => {
                 if (response.ok) {
                     removeProductFromCart(productId);
+                } else {
+                    window.location.reload();
                 }
             });
     });
