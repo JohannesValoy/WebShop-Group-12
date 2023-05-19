@@ -21,7 +21,7 @@ loginLink.onclick = () => {
 };
 
 function funnySwitchingButton(url) {
-    if(document.location.pathname == firstTimeLocation){
+    if(document.location.pathname === firstTimeLocation){
         history.pushState(url, null, url);
         document.title = (url.charAt(1).toUpperCase() + url.slice(2));
     }
@@ -39,20 +39,19 @@ function switchToRegister() {
 }
 
 addEventListener("popstate", () => {
-    if ((history.state == null ? firstTimeLocation : history.state) == "/register") {
+    if ((history.state == null ? firstTimeLocation : history.state) === "/register") {
         login.classList.add("register");
     }
     else {login.classList.remove("register");}
-    var title = String(history.state == null ? firstTimeLocation : history.state);
+    const title = String(history.state == null ? firstTimeLocation : history.state);
     document.title = (title.charAt(1).toUpperCase() + title.slice(2));
 });
 
-
 const username = document.getElementById("signUpUsername");
-const usernameText = document.getElementById("signUpUsernameText");
+const nameMessage = document.getElementById("name-mismatch");
 const password = document.getElementById("signUpPassword");
 const confirmPassword = document.getElementById("confirmSignUpPassword");
-const message = document.getElementById("confirmation");
+const passMessage = document.getElementById("pass-mismatch");
 const submitButton = document.getElementById("submitButton");
 const termsCheckbox = document.getElementById("termsCheckbox");
 function checkPasswordAlike() {
@@ -60,37 +59,37 @@ function checkPasswordAlike() {
     const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     if (username.value === "") {
-        usernameText.classList.remove("password-mismatch");
-        usernameText.innerHTML = "Username";
+        nameMessage.classList.remove("password-mismatch");
+        nameMessage.innerHTML = "";
         submitButton.disabled = true;
     } else if (!regexName.test(username.value)){
-        usernameText.classList.add("password-mismatch");
-        usernameText.innerHTML = "Invalid username, needs to be 2 or more characters and only contain letters and numbers";
+        nameMessage.classList.add("password-mismatch");
+        nameMessage.innerHTML = "Invalid username, needs to be 2 or more characters and only contain letters and numbers";
         submitButton.disabled = true;
     } else {
-        usernameText.classList.remove("password-mismatch");
-        usernameText.innerHTML = "Username";
+        nameMessage.classList.remove("password-mismatch");
+        nameMessage.innerHTML = "";
         submitButton.disabled = !termsCheckbox.checked;
     }
 
     if (password.value === "") {
-        message.classList.remove("password-mismatch");
-        message.innerHTML = "";
+        passMessage.classList.remove("password-mismatch");
+        passMessage.innerHTML = "";
         submitButton.disabled = true;
     } else if (!regexPass.test(password.value)) {
-        message.classList.add("password-mismatch");
-        message.innerHTML = "Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long";
+        passMessage.classList.add("password-mismatch");
+        passMessage.innerHTML = "Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 8 characters long";
         submitButton.disabled = true;
     } else if (regexPass.test(password.value) && confirmPassword.value === "") {
-        message.classList.remove("password-mismatch");
-        message.innerHTML = "";
+        passMessage.classList.remove("password-mismatch");
+        passMessage.innerHTML = "";
     } else if (password.value !== confirmPassword.value && confirmPassword.value !== "") {
-        message.classList.add("password-mismatch");
-        message.innerHTML = "Passwords do not match";
+        passMessage.classList.add("password-mismatch");
+        passMessage.innerHTML = "Passwords do not match";
         submitButton.disabled = true;
     }  else {
-        message.classList.remove("password-mismatch");
-        message.innerHTML = "";
+        passMessage.classList.remove("password-mismatch");
+        passMessage.innerHTML = "";
         submitButton.disabled = !termsCheckbox.checked;
     }
 }
