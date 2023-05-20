@@ -51,7 +51,7 @@ function changeCartAmount(id, amount) {
                 if (response.ok) {
                     response.json().then( data => {
                         document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
-                        document.getElementById("totalPrice-".concat(id)).innerHTML = data.amount * data.product.price;
+                        document.getElementById("totalPrice-".concat(id)).innerHTML = (data.amount * data.product.price).toLocaleString('ru-RU') + " kr";
                     });
                 } else {
                     window.location.reload();
