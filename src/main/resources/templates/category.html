@@ -2,8 +2,8 @@
 <html lang="en">
   <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
     <title>Category</title>
-    <link rel="stylesheet" th:href="@{~/css/category.css}" />
-    <link rel="stylesheet" th:href="@{~/css/product-card.css}" />
+    <link rel="stylesheet" th:href="@{~/css/category.css}">
+    <link rel="stylesheet" th:href="@{~/css/product-card.css}">
   </head>
   <body>
     <header th:replace="~{components/header}"></header>
@@ -12,11 +12,9 @@
         <section class="categories">
           <h2 class="heading">Category list</h2>
           <div class="category-container">
-            <a
-              class="category-box"
+            <a class="category-box"
               th:each="category : ${categories}"
-              th:href="@{/categories/{id} (id=${category.id})}"
-            >
+              th:href="@{/categories/{id} (id=${category.id})}">
               <div class="category-layer">
                 <h3 th:text="${category.name}"></h3>
               </div>
@@ -24,9 +22,7 @@
           </div>
         </section>
 
-        <h2 class="heading">
-          Product list for <span th:text="${categoryName}"></span>
-        </h2>
+        <h2 class="heading">Product list for <span th:text="${categoryName}"></span></h2>
         <section class="products">
           <section th:replace="~{components/product-card}"></section>
         </section>

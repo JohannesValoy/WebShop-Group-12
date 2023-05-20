@@ -1,87 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
-    <title>About us</title>
-    <link rel="stylesheet" th:href="@{~/css/about.css}"/>
-</head>
-<body>
-<header th:replace="~{components/header}"></header>
+    <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
+        <title>About us</title>
+        <link rel="stylesheet" th:href="@{~/css/about.css}">
+    </head>
+    <body>
+        <header th:replace="~{components/header}"></header>
+        <main>
+            <section class="sections">
+                <section class="about-us">
+                    <section class="about-us-card reverse">
+                        <img class="image" src="/images/logo.webp" alt="Picture of logo">
+                        <section class="text-section">
+                            <h2>About us</h2>
+                            <p>Welcome to the future of gaming! We are a cutting edge company specializing
+                                in the most advanced cyberpunk gaming gadgets available. From headsets to
+                                keyboards, mice to controllers, we have everything you need to get the most
+                                out of your gaming experience. Our products feature the latest in cyberpunk
+                                technology, with sleek designs and advanced capabilities. Experience the
+                                power of cyberpunk gaming with us today! Let us take your gaming to the next level.</p>
+                        </section>
+                    </section>
 
-<main>
-    <section class="sections">
-        <section class="about-us">
-            <section class="about-us-card reverse">
-                <img class="image" src="/images/logo.webp" alt="Picture of logo">
-                <section class="text-section">
-                    <h2>About us</h2>
-                    <p>Welcome to the future of gaming! We are a cutting edge company specializing
-                    in the most advanced cyberpunk gaming gadgets available. From headsets to
-                    keyboards, mice to controllers, we have everything you need to get the most
-                    out of your gaming experience. Our products feature the latest in cyberpunk
-                    technology, with sleek designs and advanced capabilities. Experience the
-                    power of cyberpunk gaming with us today! Let us take your gaming to the next level.</p>
+                    <section class="about-us-card ">
+                        <img class="image" src="/images/money.webp" alt="Picture of money">
+                        <section class="text-section">
+                            <h2>Our values</h2>
+                            <p>At Cyberpunk Gaming Gear, we strive to provide our customers with the best
+                                gaming experience possible. Our values include high-tech, comfortable, and
+                                stylish products that are designed to help you get the most out of your
+                                gaming. We believe in providing the most advanced technology and highest
+                                quality materials to ensure that our customers can enjoy their gaming in
+                                comfort and style. Our goal is to provide an unbeatable gaming experience
+                                that you won't find anywhere else.</p>
+                        </section>
+                    </section>
+                </section>
+                <section>
+                    <h2>Testimonials</h2>
+                    <div class="testimonials">
+                        <div class="testimony">
+                            <img class="image" src="/images/Joe.webp" alt="Profile photo of Joe">
+                            <h3>Joe 17</h3>
+                            <p>I recently purchased a headset from Cyberpunk Gaming Gear,
+                                and it was an awesome experience. The headset is super comfortable and
+                                has amazing sound quality. It's really helped me up my game,
+                                and I'm so glad I made this purchase!</p>
+                        </div>
+
+                        <div class="testimony">
+                            <img class="image" src="/images/Alex.webp" alt="Profile photo of Alex">
+                            <h3>Alex 20</h3>
+                            <p>As a serious e-sport's player, I need gear that can keep up with me and my
+                                intense gaming sessions. Cyberpunk Gaming Gear has been a lifesaver!
+                                The products I've purchased are comfortable, durable, and perform
+                                amazingly well. I'm so impressed with the quality and value of the
+                                products from this company!</p>
+                        </div>
+
+                        <div class="testimony">
+                            <img class="image" src="/images/Sarah.webp" alt="Profile photo of Sarah">
+                            <h3>Sarah 37</h3>
+                            <p>As a mother of two young gamers, I'm always looking for the best
+                                gaming gear for my kids. Cyberpunk Gaming Gear has been a great
+                                resource for me as they offer high-quality products at great prices.
+                                I know that my kids will be safe and comfortable while gaming with
+                                their new gear, and I'm so grateful to have found such a dependable company!</p>
+                        </div>
+                    </div>
                 </section>
             </section>
-
-            <section class="about-us-card ">
-                <img class="image" src="/images/money.webp" alt="Picture of money">
-                <section class="text-section">
-                    <h2>Our values</h2>
-                    <p>
-                    At Cyberpunk Gaming Gear, we strive to provide our customers with the best
-                    gaming experience possible. Our values include high-tech, comfortable, and
-                    stylish products that are designed to help you get the most out of your
-                    gaming. We believe in providing the most advanced technology and highest
-                    quality materials to ensure that our customers can enjoy their gaming in
-                    comfort and style. Our goal is to provide an unbeatable gaming experience
-                    that you won't find anywhere else.
-                    </p>
-                </section>
-            </section>
-        </section>
-        <section>
-            <h2>Testimonials</h2>
-            <div class="testimonials">
-                <div class="testimony">
-                    <img class="image" src="/images/Joe.webp" alt="Profile photo of Joe">
-                    <h3>Joe 17</h3>
-                    <p>
-                        I recently purchased a headset from Cyberpunk Gaming Gear,
-                        and it was an awesome experience. The headset is super comfortable and
-                        has amazing sound quality. It's really helped me up my game,
-                        and I'm so glad I made this purchase!
-                    </p>
-                </div>
-
-                <div class="testimony">
-                    <img class="image" src="/images/Alex.webp" alt="Profile photo of Alex">
-                    <h3>Alex 20</h3>
-                    <p>
-                        As a serious e-sport's player, I need gear that can keep up with me and my
-                        intense gaming sessions. Cyberpunk Gaming Gear has been a lifesaver!
-                        The products I've purchased are comfortable, durable, and perform
-                        amazingly well. I'm so impressed with the quality and value of the
-                        products from this company!
-                    </p>
-                </div>
-
-                <div class="testimony">
-                    <img class="image" src="/images/Sarah.webp" alt="Profile photo of Sarah">
-                    <h3>Sarah 37</h3>
-                    <p>
-                        As a mother of two young gamers, I'm always looking for the best
-                        gaming gear for my kids. Cyberpunk Gaming Gear has been a great
-                        resource for me as they offer high-quality products at great prices.
-                        I know that my kids will be safe and comfortable while gaming with
-                        their new gear, and I'm so grateful to have found such a dependable company!
-                    </p>
-                </div>
-            </div>
-        </section>
-    </section>
-</main>
-
-<footer th:replace="~{components/footer}"></footer>
-
-</body>
+        </main>
+        <footer th:replace="~{components/footer}"></footer>
+    </body>
 </html>

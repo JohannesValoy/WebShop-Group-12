@@ -2,14 +2,11 @@
 <html lang="en">
   <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
     <title>Cart</title>
-    <link rel="stylesheet" th:href="@{~/css/cart.css}" />
-    <link rel="stylesheet" th:href="@{~/css/product-table.css}" />
-
+    <link rel="stylesheet" th:href="@{~/css/cart.css}">
+    <link rel="stylesheet" th:href="@{~/css/product-table.css}">
   </head>
-
   <body>
     <header th:replace="~{components/header}"></header>
-
     <main>
       <section class="sections">
         <div class="progressbar">
@@ -29,128 +26,88 @@
           <form class="form-section" method="post" th:action="@{/cart/confirm}">
             <h2>Checkout</h2>
             <h3>Shipping information</h3>
-            <p id="p-name" hidden>
-              Invalid name, needs to be 2 or more characters and only contain
-              letters
-            </p>
-            <p id="p-surname" hidden>
-              Invalid surname, needs to be 2 or more characters and only contain
-              letters
-            </p>
-            <p id="p-address" hidden>
-              Invalid address, needs to be 2 or more characters and only contain
-              letters and numbers
-            </p>
-            <p id="p-cardNumber" hidden>
-              Invalid card number, needs to be 16 characters and can only
-              contain numbers
-            </p>
-            <p id="p-phone" hidden>
-              Invalid phone number, needs to be 8 characters and can only
-              contain numbers
-            </p>
-            <p id="p-cvc" hidden>
-              Invalid CVC, needs to be 3 characters and can only contain numbers
-            </p>
+            <p id="p-name" hidden>Invalid name, needs to be 2 or more characters and only contain letters</p>
+            <p id="p-surname" hidden>Invalid surname, needs to be 2 or more characters and only contain letters</p>
+            <p id="p-address" hidden>Invalid address, needs to be 2 or more characters and only contain letters and numbers</p>
+            <p id="p-cardNumber" hidden>Invalid card number, needs to be 16 characters and can only contain numbers</p>
+            <p id="p-phone" hidden>Invalid phone number, needs to be 8 characters and can only contain numbers</p>
+            <p id="p-cvc" hidden>Invalid CVC, needs to be 3 characters and can only contain numbers</p>
             <div class="details-filling-form">
               <div class="column">
                 <label for="name" class="input-field-label">Name</label>
-                <input
-                  class="input-field"
+                <input class="input-field"
                   id="name"
                   maxlength="100"
                   onchange="checkInfo()"
                   type="text"
                   name="name"
                   placeholder="Name"
-                  required
-                />
+                  required/>
               </div>
               <div class="column">
                 <label for="surname" class="input-field-label">Last Name</label>
-                <input
-                  class="input-field"
+                <input class="input-field"
                   id="surname"
                   maxlength="100"
                   onchange="checkInfo()"
                   type="text"
                   name="surname"
                   placeholder="Last Name"
-                  required
-                />
+                  required/>
               </div>
               <div class="column">
                 <label class="input-field-label" for="address">Address</label>
-                <input
-                  class="input-field"
+                <input class="input-field"
                   id="address"
                   maxlength="100"
                   onchange="checkInfo()"
                   type="text"
                   name="address"
                   placeholder="Address"
-                  required
-                />
+                  required/>
               </div>
               <div class="column">
-                <label class="input-field-label" for="cardNumber"
-                  >Card Number</label
-                >
-                <input
-                  class="input-field"
+                <label class="input-field-label" for="cardNumber">Card Number</label>
+                <input class="input-field"
                   id="cardNumber"
                   maxlength="16"
                   onchange="checkInfo()"
                   type="text"
                   placeholder="Card Number"
-                  required
-                />
+                  required/>
               </div>
               <div class="column">
-                <label class="input-field-label" for="phoneNumber"
-                  >Phone Number</label
-                >
-                <input
-                  class="input-field"
+                <label class="input-field-label" for="phoneNumber">Phone Number</label>
+                <input class="input-field"
                   id="phoneNumber"
                   maxlength="8"
                   placeholder="Phone Number"
                   type="text"
                   onchange="checkInfo()"
-                  required
-                />
+                  required/>
               </div>
               <div class="column">
                 <label class="input-field-label" for="cvc">CVC</label>
-                <input
-                  class="input-field"
+                <input class="input-field"
                   id="cvc"
                   maxlength="3"
                   placeholder="CVC"
                   type="text"
                   onchange="checkInfo()"
-                  required
-                />
+                  required/>
               </div>
             </div>
             <div class="row">
-              <button class="boring-button" type="button" id="back-to-cart">
-                Back to Cart
-              </button>
-              <button
-                class="focus-button"
+              <button class="boring-button" type="button" id="back-to-cart">Back to Cart</button>
+              <button class="focus-button"
                 type="submit"
                 id="completeOrder"
-                disabled
-              >
-                Complete order
-              </button>
+                disabled>Complete order</button>
             </div>
           </form>
         </div>
       </section>
     </main>
-
     <footer th:replace="~{components/footer}"></footer>
     <script th:src="@{~/js/cart-and-checkout.js}" defer></script>
   </body>

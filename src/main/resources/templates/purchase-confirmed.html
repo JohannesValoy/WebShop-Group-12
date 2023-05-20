@@ -2,34 +2,29 @@
 <html lang="en">
     <head th:replace="~{components/head :: commonHead(~{::title}, ~{::link})}">
     <title>Order Complete</title>
-    <link rel="stylesheet" th:href="@{~/css/cart.css}"/>
-    <link rel="stylesheet" th:href="@{~/css/product-table.css}"/>
-</head>
+    <link rel="stylesheet" th:href="@{~/css/cart.css}">
+    <link rel="stylesheet" th:href="@{~/css/product-table.css}">
+    </head>
+    <body>
+        <header th:replace="~{components/header}"></header>
+        <main>
+          <section class="sections">
+            <div class="progressbar">
+              <p class="cart-bar" >Cart</p>
+              <p class="checkout-bar">Checkout</p>
+              <p class="complete-bar active">Complete</p>
+            </div>
 
-<body>
-
-<header th:replace="~{components/header}"></header>
-
-<main>
-  <section class="sections">
-    <div class="progressbar">
-      <p class="cart-bar" >Cart</p>
-      <p class="checkout-bar">Checkout</p>
-      <p class="complete-bar active">Complete</p>
-    </div>
-
-    <div class="complete-section active">
-      <h2>Order Complete!</h2>
-      <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
-      <section class="card-layout">
-        <h3>Your Purchases:</h3>
-          <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.getItems()})}"></section>
-      </section>
-    </div>
-  </section>
-</main>
-
-<footer th:replace="~{components/footer}"></footer>
-
-</body>
+            <div class="complete-section active">
+              <h2>Order Complete!</h2>
+              <p class="product-about-page-description">Thank you for ordering from us! We hope to see you soon</p>
+              <section class="card-layout">
+                <h3>Your Purchases:</h3>
+                  <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.getItems()})}"></section>
+              </section>
+            </div>
+          </section>
+        </main>
+        <footer th:replace="~{components/footer}"></footer>
+    </body>
 </html>

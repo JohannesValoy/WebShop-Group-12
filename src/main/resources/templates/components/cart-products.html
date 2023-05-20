@@ -13,7 +13,7 @@
 <div class="product-table-product" th:fragment="createItemCard(item, isBought)">
     <div class="row mobile">
         <a th:href="@{/products/{id} (id=${item.product.id})}" th:remove="${isBought} ? tag">
-            <picture th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}"></picture>
+            <img th:replace="~{components/webpImage ::  webp(${item.product.image}, ${item.product.name})}">
         </a>
         <div class="div-product-info">
             <h4 th:text="${item.product.name}"></h4>
@@ -49,9 +49,10 @@
         </div>
         <div th:remove="${isBought} ? all" class="column">
             <h5>Delete</h5>
-            <button class="delete remove-from-cart boring-button" aria-label="remove from cart button" th:data-product-id="${item.product.id}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <button class="delete remove-from-cart boring-button" aria-label="remove from cart button" th:data-product-id="${item.product.id}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
         </div>
     </div>
