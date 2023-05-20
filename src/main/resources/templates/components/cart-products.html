@@ -23,12 +23,12 @@
     <div class="row mobile">
         <div class="column">
             <h5>Price per Item</h5>
-            <p><span th:text="${item.product.price}"></span> kr</p>
+            <p><span th:text="${#numbers.formatInteger(item.product.price,1,'WHITESPACE')}"></span> kr</p>
         </div>
         <div class="column">
             <h5>Total product price</h5>
-            <p th:if="${isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.productPriceAtPurchase * item.getAmount()}"></span> kr</p>
-            <p th:if="${not isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${item.product.price * item.getAmount()}"></span> kr</p>
+            <p th:if="${isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${#numbers.formatInteger(item.productPriceAtPurchase * item.getAmount(),1,'WHITESPACE')}"></span> kr</p>
+            <p th:if="${not isBought}"><span th:id="|totalPrice-${item.product.id}|" th:text="${#numbers.formatInteger(item.product.price * item.getAmount(),1,'WHITESPACE')}"></span> kr</p>
         </div>
         <div class="column">
             <h5>Amount Ordered</h5>

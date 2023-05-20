@@ -43,7 +43,7 @@
                         <div class="div-row-account">
                             <h3 class="blue-text">ID: <span th:text="${purchase.getId()}"></span></h3>
                             <p class="blue-text">Date: <span th:text="${purchase.date}"></span></p>
-                            <p class="blue-text">Total-price: <span th:text="|${purchase.totalPrice} kr|"></span></p>
+                            <p class="blue-text">Total-price: <span th:text="|${#numbers.formatInteger(purchase.totalPrice,1,'WHITESPACE')} kr|"></span></p>
                         </div>
                         <div class="purchase-card">
                             <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.items})}"></section>

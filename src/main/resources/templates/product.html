@@ -19,7 +19,7 @@
                 <section class="product-page-description">
                     <h2 th:text="${product.name}"></h2>
                     <p class="product-description" th:text="${product.shortDescription}"></p>
-                    <p class="price"><span th:text="${product.price}"></span> kr</p>
+                    <p class="price"><span th:text="${#numbers.formatInteger(product.price,1,'WHITESPACE')}"></span> kr</p>
                     <form th:action="@{/cart/{id} (id=${product.id})}" method="post" >
                         <button class="focus-button">Add to Cart</button>
                     </form>
