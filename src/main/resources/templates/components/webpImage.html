@@ -1,8 +1,7 @@
-<picture class="picture" th:fragment="webp(image, alt)"
-         th:srcset="|${image.primaryImage} 360w, ${image.imageWebp512} 512w, ${image.imageWebp760} 760w, ${image.imageWebp1024} 1024w, ${image.imageWebp2048} 2048w|"
-         th:alt="|Picture of ${alt}|">
-    <source th:srcset="|${image.primaryImage} 360w, ${image.imageWebp512} 512w, ${image.imageWebp760} 760w, ${image.imageWebp1024} 1024w, ${image.imageWebp2048} 2048w|"
-            sizes="(min-width: 1440px) calc(20vw - 2.5rem), (min-width: 1024px) calc(26vw - 2.5rem), (min-width: 768px) calc(42vw - 2.5rem), 70vw"
+<picture class="picture" th:fragment="webp(image, alt)">
+    <source th:srcset="|${image.primaryImage} 1x, ${image.imageWebp512} 1.5x, ${image.imageWebp760} 2x, ${image.imageWebp1024} 2.5x, ${image.imageWebp2048} 3x|"
+            sizes="(max-width: 360px) 360px, (max-width: 512px) 512px,
+            (max-width: 760px) 760px, (max-width: 1024px) 1024px, 2048px"
             type="image/webp">
     <img th:src="${image.primaryImage}"
          th:alt="|Picture of ${alt}|"
