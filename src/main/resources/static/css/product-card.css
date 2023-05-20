@@ -88,11 +88,6 @@ svg {
 
 @media (min-width: 2488px) {
 
-    .hover {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 @media (max-width: 768px) {

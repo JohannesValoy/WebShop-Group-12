@@ -11,7 +11,7 @@
             <section class="sections">
                 <section class="product-intro">
                     <th:block th:if="${product?.image != null} ">
-                        <img th:replace="~{components/webpImage ::  webp(${product.image},${product.name})}"/>
+                        <picture th:replace="~{components/webpImage ::  webp(${product.image},${product.name})}"></picture>
                     </th:block>
 
                     <section class="product-page-description">

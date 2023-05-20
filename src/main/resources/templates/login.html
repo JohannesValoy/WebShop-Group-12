@@ -15,7 +15,7 @@
                             <h2>Login</h2>
                         </div>
                         <th:block th:if="${param.error != null && url == '/login'}">
-                            <p style="color: red" th:text="${param.error}"/>
+                            <p style="color: red" th:text="${param.error}"></p>
                         </th:block>
                         <form th:action="@{/login}" method="post">
                             <div class="input-box">

@@ -79,18 +79,6 @@
     align-items: center;
 }
 
-.product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.5rem;
-    max-width: 15rem;
-    max-height: 20rem;
-    overflow: hidden;
-    align-self: center;
-}
-
 .column {
     display: flex;
     flex-direction: column;

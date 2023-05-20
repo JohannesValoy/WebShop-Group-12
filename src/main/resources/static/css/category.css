@@ -28,11 +28,6 @@
     align-content: space-around;
 }
 
-.products .heading {
-    margin-bottom: 2rem;
-
-}
-
 .heading span{
     color: var(---secondText);
     font-size: 1.7rem;

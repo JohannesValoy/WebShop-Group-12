@@ -117,11 +117,6 @@ button {
     padding: 0.5rem;
 }
 
-.header img.logo {
-    max-width: 100px;
-    max-height: 100px;
-}
-
 .search-bar {
     justify-self: center;
 
