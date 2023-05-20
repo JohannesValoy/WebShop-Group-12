@@ -69,6 +69,12 @@
     width: 80%;
 }
 
+.price, .price span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(---secondText);
+}
+
 @media (max-width: 1024px) {
 
     .product-intro {
