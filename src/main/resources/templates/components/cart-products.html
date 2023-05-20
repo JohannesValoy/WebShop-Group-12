@@ -1,14 +1,12 @@
 <section class="cart" th:fragment="showCartProducts(items)">
     <div class="grid" th:each="item : ${items}" th:product-id="@{${item.product.id}}">
-        <div th:replace = ":: createItemCard(${item}, false)"></div>
+        <div th:replace = "~{:: createItemCard(${item}, false)}"></div>
     </div>
 </section>
 
 <section class="card-layout" th:fragment="showPurchasedItems(items)">
-    <a class="purchase-card-instance" th:each="item : ${purchase.items}"
-       th:product-id="@{${item.product.id}}"
-       th:href="@{/products/{id} (id=${item.product.id})}">
-        <div th:replace = ":: createItemCard(${item}, true)"></div>
+    <a class="purchase-card-instance" th:each="item : ${purchase.items}" th:product-id="@{${item.product.id}}"  th:href="@{/products/{id} (id=${item.product.id})}">
+        <div th:replace = "~{:: createItemCard(${item}, true)}"></div>
     </a>
 </section>
 
