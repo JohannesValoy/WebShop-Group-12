@@ -1,5 +1,7 @@
 package no.ntnu.webshop.group12.webshop.tools;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -20,13 +22,22 @@ public class RoleInitializer implements ApplicationListener<ApplicationReadyEven
     @Autowired
     private RoleRepository roleRepository;
     
+    Set<Role> requiredRoles = Set.of(
+        new Role("ROLE_USER"),
+        new Role("ROLE_ADMIN")
+    );
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        Role role = new Role("ROLE_USER");
-        Role role2 = new Role("ROLE_ADMIN");
-        roleRepository.save(role);
-        roleRepository.save(role2);
+        requiredRoles.iterator().forEachRemaining(role -> {
+            if (!roleExists(role)) {
+                roleRepository.save(role);
+            }
+        }); 
+    }
+
+    private boolean roleExists(Role role) {
+        return roleRepository.findByName(role.getName()) != null;
     }
     
 }
