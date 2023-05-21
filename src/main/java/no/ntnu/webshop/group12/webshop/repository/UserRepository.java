@@ -23,6 +23,10 @@ public interface UserRepository
     default void customize(QuerydslBindings binder, QUser root) {
         binder.bind(root.username).first(StringExpression::equalsIgnoreCase);
         binder.bind(root.active).first(SimpleExpression::eq);
+        binder.excluding(root.id);
         binder.excluding(root.password);
+        binder.excluding(root.roles);
+        binder.excluding(root.purchases);
+        binder.excluding(root.cart);
     }
 }

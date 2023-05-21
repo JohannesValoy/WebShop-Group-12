@@ -24,6 +24,8 @@ QuerydslBinderCustomizer<QPurchase> {
     
     @Override
     default void customize(QuerydslBindings bindings, QPurchase root) {
-        bindings.excluding(root.items);
+        bindings.bind(root.date).as("dateAfter").first((path, value) -> path.after(value));
+        bindings.bind(root.date).as("dateBefore").first((path, value) -> path.before(value));
+        bindings.excludeUnlistedProperties(true);
     }
 }

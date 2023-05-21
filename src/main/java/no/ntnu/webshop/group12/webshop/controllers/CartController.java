@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -65,7 +66,7 @@ public class CartController {
 
     @GetMapping
     @Operation(summary = "Get carts by filter")
-    public Iterable<Cart> getCarts(@PageableDefault(size = 20, sort = "id") Pageable pageable, @QuerydslPredicate(root = Cart.class) Predicate predicate) {
+    public Iterable<Cart> getCarts(@ParameterObject @PageableDefault(size = 20, sort = "id") Pageable pageable, @ParameterObject @QuerydslPredicate(root = Cart.class) Predicate predicate) {
         return cartService.getCarts(predicate, pageable);
     }
 

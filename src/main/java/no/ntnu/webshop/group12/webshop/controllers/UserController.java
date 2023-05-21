@@ -122,7 +122,7 @@ public class UserController {
     @GetMapping
     @Operation(summary = "Get users by filter")
     public List<User> getUsersByFilter(
-            @ParameterObject @PageableDefault(size = 5, direction = Sort.Direction.ASC) Pageable pageable,
+            @ParameterObject @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
         return userService.getUsersByFilter(predicate, pageable);
     }

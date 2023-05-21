@@ -1,5 +1,6 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -33,8 +34,8 @@ public class PurchaseController {
     @GetMapping
     @Operation(summary = "Filter purchases")
     public Iterable<Purchase> getPurchases(
-        @QuerydslPredicate(root = Purchase.class) Predicate predicate,
-        @PageableDefault(size = 20, sort = "id") Pageable pageable) {
+        @ParameterObject @QuerydslPredicate(root = Purchase.class) Predicate predicate,
+        @ParameterObject @PageableDefault(size = 20, sort = "id") Pageable pageable) {
         return purchaseService.getPurchases(predicate, pageable);
     }
 

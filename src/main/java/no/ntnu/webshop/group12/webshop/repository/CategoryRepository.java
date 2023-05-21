@@ -18,6 +18,8 @@ public interface CategoryRepository extends CrudRepository<Category, Integer>, Q
     @Override
     default void customize(QuerydslBindings bindings, QCategory root) {
         bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+        bindings.excluding(root.id);
         bindings.excluding(root.image);
+        bindings.excluding(root.products);
     }
 }
