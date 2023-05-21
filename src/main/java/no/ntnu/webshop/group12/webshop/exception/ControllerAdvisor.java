@@ -10,73 +10,51 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import jakarta.validation.ConstraintViolationException;
-
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-//TODO: Create a custom Class for api errors
 @RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    protected ResponseEntity<Object> handleNotFoundException(
+    protected ResponseEntity<APIerror> handleNotFoundException(
             NotFoundException ex, WebRequest request) {
-        Map<String, Object> body = newBody();
-        body.put("message", ex.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+        APIerror apiError = new APIerror(ex.getMessage());
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    protected ResponseEntity<Object> handleAccessDeniedException(
+    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class})
+    protected ResponseEntity<APIerror> handleAccessDeniedException(
             Exception ex, WebRequest request) {
+        APIerror apiError = new APIerror("You are not authorized to access this resource"); 
         return new ResponseEntity<>(
-                "This is not the method you are after", HttpStatus.FORBIDDEN);
+                apiError, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    protected ResponseEntity<Object> handleIllegalArgumentException(
+    protected ResponseEntity<APIerror> handleIllegalArgumentException(
             Exception ex, WebRequest request) {
-        Map<String, Object> body = newBody();
-        body.put("message", ex.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-    }
-
-
-    @ExceptionHandler(ForbiddenException.class)
-    protected ResponseEntity<Object> handleForbiddenException(
-            Exception ex, WebRequest request) {
-        Map<String, Object> body = newBody();
-        body.put("message", "You are not authorized to access this resource");
-        return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+        APIerror apiError = new APIerror(ex.getMessage());
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConversionFailedException.class)
     protected ResponseEntity<Object> handleConversionFailedException(
             Exception ex, WebRequest request) {
-        Map<String, Object> body = newBody();
-        String message = ex.getLocalizedMessage();
-        if (message.contains("Failed to convert from type")) {
+        String message = ex.getMessage();
+        if (ex.getMessage().contains("Failed to convert from type")) {
             message = "Invalid input, please check your input and try again.";
         }
-        body.put("message", message);
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        APIerror apiError = new APIerror(message);
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    protected ResponseEntity<Object> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
-        Map<String, Object> body = newBody();
-        body.put("cause",
-                ex.getConstraintViolations().stream()
+    protected ResponseEntity<APIerror> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
+        String message = ex.getConstraintViolations().stream()
                         .map(violation -> violation.getPropertyPath() + " " + violation.getMessage())
-                        .collect(Collectors.toList()));
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+                        .collect(Collectors.toList()).toString();
+        APIerror apiError = new APIerror(message);
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
-    private Map<String, Object> newBody() {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        return body;
-    }
 }

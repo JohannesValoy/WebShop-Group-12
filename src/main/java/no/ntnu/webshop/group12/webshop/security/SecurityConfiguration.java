@@ -33,7 +33,6 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
-        //TODO: Clean up this mess
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
 
