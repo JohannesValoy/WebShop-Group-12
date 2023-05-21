@@ -21,12 +21,8 @@ public interface UserRepository
 
     @Override
     default void customize(QuerydslBindings binder, QUser root) {
-        binder.bind(root.username).first(StringExpression::equalsIgnoreCase);
-        binder.bind(root.active).first(SimpleExpression::eq);
-        binder.excluding(root.id);
-        binder.excluding(root.password);
-        binder.excluding(root.roles);
-        binder.excluding(root.purchases);
-        binder.excluding(root.cart);
+        binder.bind(root.username).as("username").first(StringExpression::equalsIgnoreCase);
+        binder.bind(root.active).as("active").first(SimpleExpression::eq);
+        binder.excludeUnlistedProperties(true);
     }
 }
