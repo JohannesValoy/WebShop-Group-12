@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.repository;
 
-import org.codehaus.groovy.classgen.asm.BinaryIntExpressionHelper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
