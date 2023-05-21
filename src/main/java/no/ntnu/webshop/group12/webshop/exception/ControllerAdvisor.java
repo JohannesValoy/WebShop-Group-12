@@ -38,7 +38,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ConversionFailedException.class)
-    protected ResponseEntity<Object> handleConversionFailedException(
+    protected ResponseEntity<APIerror> handleConversionFailedException(
             Exception ex, WebRequest request) {
         String message = ex.getMessage();
         if (ex.getMessage().contains("Failed to convert from type")) {
