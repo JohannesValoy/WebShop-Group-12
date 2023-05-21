@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import no.ntnu.webshop.group12.webshop.APIBaseTester;
@@ -60,12 +58,12 @@ public class ProductControllerTest extends APIBaseTester {
 
         @Test
         void testGetproductByFilter() throws Exception {
-                List products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
-                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-                assertEquals(5, products.size());
+                Product[] products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
+                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Product[].class);
+                assertEquals(5, products.length);
                 products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming&page=1"))
-                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-                assertEquals(1, products.size());
+                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Product[].class);
+                assertEquals(1, products.length);
         }
 
         @Test

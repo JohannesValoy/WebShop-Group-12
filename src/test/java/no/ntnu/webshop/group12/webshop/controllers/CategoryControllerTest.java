@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.util.List;
-
 import no.ntnu.webshop.group12.webshop.APIBaseTester;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 
@@ -53,9 +51,9 @@ public class CategoryControllerTest extends APIBaseTester{
 
     @Test
     void testGetCategoryByFilter() throws Exception {
-        List categories = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
-                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-        assertEquals(1, categories.size());
+        Category[] categories = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Category[].class);
+        assertEquals(1, categories.length);
     }
 
     @Test
