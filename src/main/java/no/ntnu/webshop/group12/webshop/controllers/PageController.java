@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import no.ntnu.webshop.group12.webshop.exception.ForbiddenException;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 
@@ -172,6 +173,14 @@ public class PageController {
         } else {
             return "no-access";
         }
+    }
+
+    @GetMapping("/error")
+    public String getError(Model model, HttpServletRequest http) {
+        model.addAttribute("user", userService.getSessionUser());
+        if(http.getRequestURI().startsWith("/api"))
+            throw new ForbiddenException("You are not authorized to access this resource");
+        return "error";
     }
 
     @GetMapping("/search")

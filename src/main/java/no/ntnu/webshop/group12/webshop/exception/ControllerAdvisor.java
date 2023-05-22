@@ -4,8 +4,8 @@ import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -13,7 +13,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import jakarta.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
-@RestControllerAdvice
+import javax.security.sasl.AuthenticationException;
+
+@ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
@@ -23,7 +25,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class, Unauthorized.class})
+    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class, Unauthorized.class, AuthenticationException.class})
     protected ResponseEntity<APIerror> handleAccessDeniedException(
             Exception ex, WebRequest request) {
         APIerror apiError = new APIerror("You are not authorized to access this resource"); 

@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import jakarta.annotation.Priority;
 
-
 /**
  * This class is used to configure the security of the application
  */
@@ -33,74 +32,76 @@ public class SecurityConfiguration {
         auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-
     @Bean
     @Priority(1)
     public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
                 .authorizeHttpRequests(authorize -> authorize
-                            //API Endpoints for updating
-                            .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
-                            
-                            //API Endpoints for counting
-                            .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count").hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
+                        // API Endpoints for updating
+                        .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
 
-                            //API Endpoints for new Objects
-                            .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
-                            .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+                        // API Endpoints for counting
+                        .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count")
+                        .hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
 
-                            //API Endpoints for deleting
-                            .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
-                            
-                            //User allowing to delete stuff they "own"
-                            .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
+                        // API Endpoints for new Objects
+                        .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 
-                            //API Endpoints for filtering
-                            .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
+                        // API Endpoints for deleting
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
 
-                            //API Endpoints for patching
-                            .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
+                        // User allowing to delete stuff they "own"
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
 
-                            //Every user can get their own stuff
-                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").hasRole(USER)
+                        // API Endpoints for filtering
+                        .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
 
-                            //Get by ID
-                            .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
-                            .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
-                            .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
-                            .anyRequest().denyAll()
-                ).httpBasic(basic -> basic.realmName("Webshop API"));
+                        // API Endpoints for patching
+                        .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
+
+                        // Every user can get their own stuff
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me")
+                        .hasRole(USER)
+
+                        // Get by ID
+                        .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
+                        .anyRequest().denyAll())
+                .httpBasic(basic -> basic.realmName("Webshop API"));
         return http.build();
     }
-
-
 
     @Bean
     @Priority(2)
     public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                            // Website Resources
-                            .requestMatchers("/js/**").permitAll()
-                            .requestMatchers("/css/**").permitAll()
-                            .requestMatchers("/images/**").permitAll()
+                        // Website Resources
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/images/**").permitAll()
 
-                            // Swagger
-                            .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                            
-                            //Website Endpoints
-                            .requestMatchers("/products/**").permitAll()
-                            .requestMatchers("/categories/**").permitAll()
-                            .requestMatchers("/account").hasAnyRole(USER)
-                            .requestMatchers("/cart", "/cart/**").hasAnyRole(USER)
-                            .requestMatchers("/register").permitAll()
-                            .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
-                            .anyRequest().denyAll()
-                ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll().failureUrl("/login?error=Wrong+Username+or+Password")).logout(logout -> logout.logoutSuccessUrl("/"));
+                        // Swagger
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+
+                        // Website Endpoints
+                        .requestMatchers("/products/**").permitAll()
+                        .requestMatchers("/categories/**").permitAll()
+                        .requestMatchers("/account").hasAnyRole(USER)
+                        .requestMatchers("/cart", "/cart/**").hasAnyRole(USER)
+                        .requestMatchers("/register").permitAll()
+                        .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
+                        .anyRequest().denyAll())
+                .formLogin(formLogin -> formLogin.loginPage("/login").permitAll()
+                        .failureUrl("/login?error=Wrong+Username+or+Password"))
+                .logout(logout -> logout.logoutSuccessUrl("/"))
+                .exceptionHandling(exception -> exception.accessDeniedPage("/error"));
         return http.build();
     }
 
