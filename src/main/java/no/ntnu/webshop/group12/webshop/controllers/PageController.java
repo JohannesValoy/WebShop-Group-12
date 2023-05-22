@@ -174,12 +174,6 @@ public class PageController {
         }
     }
 
-    @GetMapping("/error")
-    public String getError(Model model) {
-        model.addAttribute("user", userService.getSessionUser());
-        return "error";
-    }
-
     @GetMapping("/search")
     public String getSearch(Model model, @QuerydslPredicate(root = Product.class)  Predicate predicate) {
         model.addAttribute("user", userService.getSessionUser());
