@@ -79,11 +79,10 @@ public class PageController {
 
     @GetMapping("/categories/{id}")
     public String getCategory(@PathVariable("id") int id, Model model) {
-        Optional<Category> category = categoryService.getCategory(id);
-        category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
-        if (model.getAttribute("categoryName") == null) {
+        if (id == 0) {
             return "redirect:/categories";
         }
+        model.addAttribute("categoryName", categoryService.getCategory(id).getName());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());
