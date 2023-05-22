@@ -1,8 +1,11 @@
 package no.ntnu.webshop.group12.webshop.security;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +14,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import jakarta.annotation.Priority;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletResponse;
+import no.ntnu.webshop.group12.webshop.exception.APIerror;
+
 
 /**
  * This class is used to configure the security of the application
@@ -33,9 +40,10 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    @Priority(1)
-    public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
+    @Order(1)
+        public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http, ObjectMapper mapper) throws Exception {
+                http.securityMatcher("/api/**")
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         // API Endpoints for updating
                         .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
@@ -73,13 +81,22 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
                         .anyRequest().denyAll())
-                .httpBasic(basic -> basic.realmName("Webshop API"));
+                .httpBasic(basic -> basic.realmName("Cyberpunk Webshop API"))
+                .exceptionHandling(handler -> handler.authenticationEntryPoint((request, response, authException) -> {
+                        response.setContentType("application/json");
+                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        try {
+                            APIerror errorMessage = new APIerror("You are not authorized to access this resource");
+                            response.getWriter().write(mapper.writeValueAsString(errorMessage));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }));
         return http.build();
     }
 
     @Bean
-    @Priority(2)
-    public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
+        public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         // Website Resources
@@ -99,9 +116,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
                         .anyRequest().denyAll())
                 .formLogin(formLogin -> formLogin.loginPage("/login").permitAll()
-                        .failureUrl("/login?error=Wrong+Username+or+Password"))
-                .logout(logout -> logout.logoutSuccessUrl("/"))
-                .exceptionHandling(exception -> exception.accessDeniedPage("/error"));
+                .failureUrl("/login?error=Wrong+Username+or+Password"))
+                .logout(logout -> logout.logoutSuccessUrl("/"));
         return http.build();
     }
 
