@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
-
-import java.util.Optional;
 
 /**
  * Controller for all HTML pages.
