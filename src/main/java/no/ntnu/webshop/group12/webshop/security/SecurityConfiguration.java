@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import jakarta.annotation.Priority;
+
 
 /**
  * This class is used to configure the security of the application
@@ -31,11 +33,12 @@ public class SecurityConfiguration {
         auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-    @Bean
-    public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize
 
+    @Bean
+    @Priority(1)
+    public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
+                .authorizeHttpRequests(authorize -> authorize
                             //API Endpoints for updating
                             .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
                             .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
@@ -63,13 +66,24 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
 
                             //Every user can get their own stuff
-                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me").hasRole(USER)
 
                             //Get by ID
                             .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
                             .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
                             .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
+                            .anyRequest().denyAll()
+                ).httpBasic(basic -> basic.realmName("Webshop API"));
+        return http.build();
+    }
 
+
+
+    @Bean
+    @Priority(2)
+    public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorize -> authorize
                             // Website Resources
                             .requestMatchers("/js/**").permitAll()
                             .requestMatchers("/css/**").permitAll()
@@ -85,6 +99,7 @@ public class SecurityConfiguration {
                             .requestMatchers("/cart", "/cart/**").hasAnyRole(USER)
                             .requestMatchers("/register").permitAll()
                             .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
+                            .anyRequest().denyAll()
                 ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll().failureUrl("/login?error=Wrong+Username+or+Password")).logout(logout -> logout.logoutSuccessUrl("/"));
         return http.build();
     }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -22,7 +23,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class})
+    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class, Unauthorized.class})
     protected ResponseEntity<APIerror> handleAccessDeniedException(
             Exception ex, WebRequest request) {
         APIerror apiError = new APIerror("You are not authorized to access this resource"); 
@@ -56,5 +57,4 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         APIerror apiError = new APIerror(message);
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
-
 }
