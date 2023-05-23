@@ -5,7 +5,7 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.repository.CrudRepository;
 
-import com.querydsl.core.types.dsl.StringPath;
+import com.querydsl.core.types.dsl.StringExpression;
 
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.QCategory;
@@ -17,7 +17,8 @@ public interface CategoryRepository extends CrudRepository<Category, Integer>, Q
 
     @Override
     default void customize(QuerydslBindings bindings, QCategory root) {
-        bindings.bind(root.name).as("name").first((StringPath path, String value) -> path.containsIgnoreCase(value));
+        bindings.including(root.name);
+        bindings.bind(root.name).first(StringExpression::containsIgnoreCase);
         bindings.excludeUnlistedProperties(true);
     }
 }

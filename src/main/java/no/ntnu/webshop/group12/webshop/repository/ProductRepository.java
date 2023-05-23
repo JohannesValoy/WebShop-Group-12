@@ -32,7 +32,8 @@ public interface ProductRepository
 
         @Override
         default void customize(QuerydslBindings bindings, QProduct root) {
-                bindings.bind(root.name).as("name").first(StringExpression::containsIgnoreCase);
+                bindings.including(root.name, root.category.any().name, root.category.any().id);
+                bindings.bind(root.name).first(StringExpression::containsIgnoreCase);
                 bindings.bind(root.category.any().id).as("category.id").first(SimpleExpression::eq);
                 bindings.bind(root.category.any().name).as("category.name")
                                 .first(StringExpression::containsIgnoreCase);
