@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.exception;
 
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import jakarta.validation.ConstraintViolationException;
@@ -16,21 +16,30 @@ import java.util.stream.Collectors;
 
 import javax.security.sasl.AuthenticationException;
 
-@ControllerAdvice(basePackages = "no.ntnu.webshop.group12.webshop.controllers.API")
+@EnableWebMvc
+@ControllerAdvice(basePackages = {"no.ntnu.webshop.group12.webshop.controllers.api"} )
 public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleNotFoundException(
-            NotFoundException ex, WebRequest request, ServerProperties serverProperties) {
+            NotFoundException ex, WebRequest request) {
         return new ResponseEntity<>(getResponseObject(ex, request), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class, Unauthorized.class, AuthenticationException.class})
+    @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class})
     protected ResponseEntity<Object> handleAccessDeniedException(
             Exception ex, WebRequest request) {
         APIerror apiError = new APIerror("You are not authorized to access this resource"); 
         return new ResponseEntity<>(
                 apiError.getErrorAttributes(request), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler({Unauthorized.class, AuthenticationException.class})
+    protected ResponseEntity<Object> handleUnauthorizedException(
+            Exception ex, WebRequest request) {
+        APIerror apiError = new APIerror("You are not authorized to access this resource"); 
+        return new ResponseEntity<>(
+                apiError.getErrorAttributes(request), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

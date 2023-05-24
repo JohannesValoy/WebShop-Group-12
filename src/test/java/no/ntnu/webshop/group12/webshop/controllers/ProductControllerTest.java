@@ -80,7 +80,7 @@ public class ProductControllerTest extends APIBaseTester {
         void testNotAccess() throws Exception {
                 Product product = new Product("test", null, 0, 0);
                 String json = objectMapper.writeValueAsString(product);
-                mockMvc.perform(post(BASE_URL).content(json)).andExpect(status().isForbidden());
+                mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isForbidden());
                 mockMvc.perform(delete(BASE_URL + "/" + "1")).andExpect(status().isForbidden());
         }
 }

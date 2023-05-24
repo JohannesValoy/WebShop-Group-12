@@ -69,7 +69,7 @@ public class CategoryControllerTest extends APIBaseTester{
     void testNotAccess() throws Exception {
         Category category = new Category("test");
         String json = objectMapper.writeValueAsString(category);
-        mockMvc.perform(post(BASE_URL).content(json)).andExpect(status().isForbidden());
+        mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isForbidden());
         mockMvc.perform(delete(BASE_URL + "/" + "1")).andExpect(status().isForbidden());
     }
 }
