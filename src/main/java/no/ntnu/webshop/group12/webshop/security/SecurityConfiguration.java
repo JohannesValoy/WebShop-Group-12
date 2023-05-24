@@ -35,7 +35,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/**").permitAll())
-                .httpBasic(basic -> basic.realmName("Webshop API"));
+                .httpBasic(basic -> basic.realmName("CyberPunk Webshop API"));
         return http.build();
     }
 
