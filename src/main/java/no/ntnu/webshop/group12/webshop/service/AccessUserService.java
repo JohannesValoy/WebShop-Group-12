@@ -164,9 +164,6 @@ public class AccessUserService implements UserDetailsService {
 
     public void deleteCurrentUser() {
         User user = getSessionUser();
-        if (user == null) {
-            throw new ForbiddenException("You are not logged in");
-        }
         userRepository.delete(user);
     }
 }

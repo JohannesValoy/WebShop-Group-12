@@ -3,7 +3,6 @@ package no.ntnu.webshop.group12.webshop.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,43 +35,7 @@ public class SecurityConfiguration {
     @Priority(1)
     public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
-                .authorizeHttpRequests(authorize -> authorize
-                        // API Endpoints for updating
-                        .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
-
-                        // API Endpoints for counting
-                        .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count")
-                        .hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
-
-                        // API Endpoints for new Objects
-                        .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
-                        .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
-
-                        // API Endpoints for deleting
-                        .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
-
-                        // User allowing to delete stuff they "own"
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
-
-                        // API Endpoints for filtering
-                        .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
-
-                        // API Endpoints for patching
-                        .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
-
-                        // Every user can get their own stuff
-                        .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me")
-                        .hasRole(USER)
-
-                        // Get by ID
-                        .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
-                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
-                        .anyRequest().denyAll())
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/**").permitAll())
                 .httpBasic(basic -> basic.realmName("Webshop API"));
         return http.build();
     }

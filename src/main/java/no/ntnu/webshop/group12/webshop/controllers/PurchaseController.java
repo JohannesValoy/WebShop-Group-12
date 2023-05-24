@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +28,14 @@ public class PurchaseController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get purchase by id")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Purchase getPurchase(@PathVariable int id) {
         return purchaseService.getPurchase(id);
     }
 
     @GetMapping
     @Operation(summary = "Filter purchases")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Iterable<Purchase> getPurchases(
         @ParameterObject @QuerydslPredicate(root = Purchase.class) Predicate predicate,
         @ParameterObject @PageableDefault(size = 20, sort = "id") Pageable pageable) {
@@ -41,6 +44,7 @@ public class PurchaseController {
 
     @GetMapping("/me")
     @Operation(summary = "Get purchases for current user")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public Iterable<Purchase> getMyPurchases() {
         return purchaseService.getCurrentUserPurchases();
     }

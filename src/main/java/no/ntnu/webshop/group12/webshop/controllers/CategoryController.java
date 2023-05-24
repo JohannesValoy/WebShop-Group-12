@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,7 @@ public class CategoryController {
 
     @PostMapping("")
     @Operation(summary = "Create a new category")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category createCategory(@RequestBody Category category) {
         return categoryService.createCategory(category);
     }
@@ -79,6 +81,7 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
     @Parameter(name = "id", description = "Category id", required = true)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category deleteCategory(@PathVariable int id) {
         Optional<Category> category = categoryService.getCategory(id);
         if (category.isEmpty()) {
