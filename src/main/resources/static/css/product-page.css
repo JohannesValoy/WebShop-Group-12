@@ -25,12 +25,7 @@
     width: 80%;
 }
 
-
-#specs, #rating, #about {
-    display: none;
-}
-
-#specs.active, #rating.active, #about.active {
+#about{
     display: flex;
     align-items: center;
     width: 100%;

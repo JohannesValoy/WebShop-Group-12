@@ -24,34 +24,12 @@
                     </section>
                 </section>
 
-                <section class="specs-rating-about-buttons">
-                    <button id="about-button" class="boring-button">About</button>
-                    <button id="specs-button" class="boring-button">Specs</button>
-                    <button id="rating-button" class="boring-button">Rating</button>
-                </section>
-
-                <section id="about" class="active">
+                <section id="about">
                     <h3>About</h3>
                     <p class="product-about-page-description">
                         Information about this product</p>
                     <p class="product-page-description"
                        th:text="${product.description}">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </section>
-
-                <section id="specs">
-                    <h3>Specs</h3>
-                    <p class="product-about-page-description">Specs about this product</p>
-                    <p class="product-page-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </section>
-
-                <section id="rating">
-                    <h3>Rating</h3>
-                    <p class="product-about-page-description">
-                        Rating about this product</p>
-                    <p class="product-page-description">
-                        This Product is a great product.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </section>
 
@@ -64,6 +42,5 @@
             </section>
         </main>
         <footer th:replace="~{components/footer}"></footer>
-        <script th:src="@{~/js/product-page.js}" defer></script>
     </body>
 </html>
