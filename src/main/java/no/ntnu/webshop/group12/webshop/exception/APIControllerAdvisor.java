@@ -8,15 +8,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import jakarta.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
 import javax.security.sasl.AuthenticationException;
-
-@EnableWebMvc
 @ControllerAdvice(basePackages = {"no.ntnu.webshop.group12.webshop.controllers.api"} )
 public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
 
