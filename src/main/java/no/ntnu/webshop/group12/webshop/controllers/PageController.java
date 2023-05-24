@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
-
-import java.util.Optional;
 
 /**
  * Controller for all HTML pages.
@@ -79,11 +76,10 @@ public class PageController {
 
     @GetMapping("/categories/{id}")
     public String getCategory(@PathVariable("id") int id, Model model) {
-        Optional<Category> category = categoryService.getCategory(id);
-        category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
-        if (model.getAttribute("categoryName") == null) {
+        if (id == 0) {
             return "redirect:/categories";
         }
+        model.addAttribute("categoryName", categoryService.getCategory(id).getName());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());

@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.API;
 
 import org.springframework.data.domain.Pageable;
 

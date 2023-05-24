@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 
 import javax.security.sasl.AuthenticationException;
 
-@ControllerAdvice
-public class ControllerAdvisor extends ResponseEntityExceptionHandler {
+@ControllerAdvice(basePackages = "no.ntnu.webshop.group12.webshop.controllers.API")
+public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleNotFoundException(

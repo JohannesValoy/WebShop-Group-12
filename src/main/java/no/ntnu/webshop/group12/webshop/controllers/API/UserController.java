@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.API;
 
 import java.util.List;
 import java.util.Optional;

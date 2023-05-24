@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.repository.CategoryRepository;
 
@@ -22,8 +23,12 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> getCategory(int id) {
-        return categoryRepository.findById(id);
+    public Category getCategory(int id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isEmpty()){
+            throw new NotFoundException("Category not found");
+        }
+        return category.get();
     }
 
     public long getCategoryCount() {
@@ -41,5 +46,11 @@ public class CategoryService {
 
     public List<Category> getCategoriesByFilter(Predicate predicate, Pageable pageable) {
         return categoryRepository.findAll(predicate, pageable).getContent();
+    }
+
+    public Category updateCategory(int id, Category category) {
+        Category getCategory = getCategory(id);
+        Optional.of(category.getName()).ifPresent(getCategory::setName);        
+        return getCategory;
     }
 }
