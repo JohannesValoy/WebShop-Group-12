@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers.renameapi;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;

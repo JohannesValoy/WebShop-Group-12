@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers.renameapi;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import java.util.List;
 import java.util.Optional;
