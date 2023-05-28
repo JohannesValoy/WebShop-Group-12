@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,7 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.annotation.Priority;
 import jakarta.servlet.http.HttpServletResponse;
 import no.ntnu.webshop.group12.webshop.exception.APIerror;
 
@@ -42,7 +42,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    @Priority(1)
+    @Order(1)
     public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
                 .authorizeHttpRequests(authorize -> authorize
@@ -97,7 +97,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    @Priority(2)
+    @Order(2)
     public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
@@ -120,7 +120,7 @@ public class SecurityConfiguration {
                 .formLogin(formLogin -> formLogin.loginPage("/login").permitAll()
                         .failureUrl("/login?error=Wrong+Username+or+Password"))
                 .logout(logout -> logout.logoutSuccessUrl("/"))
-                .exceptionHandling(exception -> exception.accessDeniedPage("/error"));
+                .exceptionHandling(exception -> exception.accessDeniedPage("/page-error"));
         return http.build();
     }
 

@@ -171,7 +171,7 @@ public class PageController {
         }
     }
 
-    @GetMapping("/error")
+    @GetMapping("/page-error")
     public String getError(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
         if(http.getRequestURI().startsWith("/api"))
