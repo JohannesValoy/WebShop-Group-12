@@ -8,7 +8,9 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.WebRequest;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
+@Schema(name = "APIerror", description = "Error object for API")
 public class APIerror extends DefaultErrorAttributes {
 
     private String message;

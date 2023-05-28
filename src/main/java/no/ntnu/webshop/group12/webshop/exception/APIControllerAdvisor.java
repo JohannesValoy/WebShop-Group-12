@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -18,12 +19,14 @@ import javax.security.sasl.AuthenticationException;
 public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ResponseEntity<Object> handleNotFoundException(
             NotFoundException ex, WebRequest request) {
         return new ResponseEntity<>(getResponseObject(ex, request), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({AccessDeniedException.class, ForbiddenException.class})
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     protected ResponseEntity<Object> handleAccessDeniedException(
             Exception ex, WebRequest request) {
         APIerror apiError = new APIerror("You are not authorized to access this resource"); 
@@ -32,6 +35,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({Unauthorized.class, AuthenticationException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     protected ResponseEntity<Object> handleUnauthorizedException(
             Exception ex, WebRequest request) {
         APIerror apiError = new APIerror("You are not authorized to access this resource"); 
@@ -40,12 +44,14 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleIllegalArgumentException(
             Exception ex, WebRequest request) {
         return new ResponseEntity<>(getResponseObject(ex.getMessage(), request), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConversionFailedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleConversionFailedException(
             Exception ex, WebRequest request) {
         String message = ex.getMessage();
@@ -56,6 +62,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Object> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
         String message = ex.getConstraintViolations().stream()
                         .map(violation -> violation.getPropertyPath() + " " + violation.getMessage())
