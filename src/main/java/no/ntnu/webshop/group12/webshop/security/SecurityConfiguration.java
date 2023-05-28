@@ -79,7 +79,7 @@ public class SecurityConfiguration {
 
                         // Get by ID
                         .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
                         .anyRequest().denyAll())
                         .httpBasic(basic -> basic.realmName("Cyberpunk Webshop API"))

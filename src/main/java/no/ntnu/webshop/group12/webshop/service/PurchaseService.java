@@ -48,14 +48,15 @@ public class PurchaseService {
             throw new NotFoundException("Purchase not found");
         } 
         User user = accessUserService.getSessionUser();
-        if(!purchase.getUser().equals(user) && !user.hasRole("ADMIN")) {
+        //TODO: Maybe use a postAuthorize tag instead on the api method?
+        if(!purchase.getUser().equals(user) && !user.hasRole("ROLE_ADMIN")) {
             throw new ForbiddenException("You are not allowed to view this purchase");
         }
         return purchase;
     }
 
     public Iterable<Purchase> getPurchases(Predicate predicate, Pageable pageable) {
-        return purchaseRepository.findAll(predicate, pageable);
+        return purchaseRepository.findAll(predicate, pageable).getContent();
     }
     
 }
