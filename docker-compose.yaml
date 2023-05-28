@@ -4,7 +4,7 @@ services:
     build: . # Build the image from the dockerfile
     image: webshop:latest # Name the image
     depends_on:
-      db: # Wait for the db to be ready
+      - db # Wait for the db to be ready
     ports:
       - target: 8443
         published: 443
