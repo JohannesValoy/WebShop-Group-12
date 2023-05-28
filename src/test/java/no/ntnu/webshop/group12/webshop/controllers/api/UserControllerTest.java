@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -6,8 +6,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import no.ntnu.webshop.group12.webshop.APIBaseTester;
@@ -61,8 +59,8 @@ public class UserControllerTest extends APIBaseTester {
     @Test
     @WithMockUser(roles = "ADMIN")
     void testGetUsersByFilter() throws Exception {
-        List users = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"?username=Test")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-        assertEquals(1, users.size());
+        User[] users = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"?username=Test")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), User[].class);
+        assertEquals(1, users.length);
     }
 
     @Test

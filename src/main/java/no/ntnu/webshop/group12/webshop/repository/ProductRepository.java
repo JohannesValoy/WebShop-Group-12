@@ -32,14 +32,12 @@ public interface ProductRepository
 
         @Override
         default void customize(QuerydslBindings bindings, QProduct root) {
+                bindings.including(root.name, root.category.any().name, root.category.any().id);
                 bindings.bind(root.name).first(StringExpression::containsIgnoreCase);
                 bindings.bind(root.category.any().id).as("category.id").first(SimpleExpression::eq);
                 bindings.bind(root.category.any().name).as("category.name")
                                 .first(StringExpression::containsIgnoreCase);
-                bindings.excluding(root.category);
-                bindings.excluding(root.description);
-                bindings.excluding(root.stock);
-                bindings.excluding(root.image);
+                bindings.excludeUnlistedProperties(true);
         }
 
         

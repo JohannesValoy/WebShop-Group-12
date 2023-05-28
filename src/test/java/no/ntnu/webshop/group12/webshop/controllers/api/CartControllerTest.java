@@ -1,7 +1,8 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.security.test.context.support.WithMockUser;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -36,8 +37,11 @@ public class CartControllerTest extends APIBaseTester{
     }
 
     @Test
-    @WithMockUser("Admin")
-    void testGetCartsAndOneCart() {
-
+    @WithMockUser(username = "Admin", roles = "ADMIN")
+    void testGetCartsAndOneCart() throws Exception {
+        Cart[] carts = objectMapper.readValue(mockMvc.perform(get(BASE_URL)).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Cart[].class);
+        assertEquals(2, carts.length);
+        Cart fetchedCart = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"/"+carts[0].getId())).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Cart.class);
+        assertEquals(carts[0], fetchedCart);
     }
 }

@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -8,8 +8,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -60,12 +58,12 @@ public class ProductControllerTest extends APIBaseTester {
 
         @Test
         void testGetproductByFilter() throws Exception {
-                List products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
-                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-                assertEquals(5, products.size());
+                Product[] products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
+                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Product[].class);
+                assertEquals(5, products.length);
                 products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming&page=1"))
-                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), List.class);
-                assertEquals(1, products.size());
+                                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Product[].class);
+                assertEquals(1, products.length);
         }
 
         @Test
@@ -82,7 +80,7 @@ public class ProductControllerTest extends APIBaseTester {
         void testNotAccess() throws Exception {
                 Product product = new Product("test", null, 0, 0);
                 String json = objectMapper.writeValueAsString(product);
-                mockMvc.perform(post(BASE_URL).content(json)).andExpect(status().isForbidden());
+                mockMvc.perform(post(BASE_URL).contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isForbidden());
                 mockMvc.perform(delete(BASE_URL + "/" + "1")).andExpect(status().isForbidden());
         }
 }

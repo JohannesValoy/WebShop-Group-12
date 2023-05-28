@@ -2,6 +2,7 @@ package no.ntnu.webshop.group12.webshop.models.order.purchase;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -32,7 +33,7 @@ public class Purchase{
 
     @OneToMany
     @Column(updatable = false)
-    Set<Item> items;
+    Set<Item> items = new LinkedHashSet<>();
 
     @ManyToOne
     @JoinColumn(updatable = false, name = "user_id")
@@ -40,7 +41,7 @@ public class Purchase{
     User user;
 
     @Column(nullable = false, updatable = false, name = "total_price")
-    double totalPrice;
+    double totalPrice = 0;
 
     public Purchase() {
     }
@@ -51,13 +52,13 @@ public class Purchase{
         user = cart.getUser();
         cart.getItems().forEach(quantity -> {
             Item item = new Item(quantity);
-            addItem(item );
-            totalPrice += item.getTotalPrice();
+            addItem(item);
         });
     }
 
-    private void addItem(Item item) {
+    public void addItem(Item item) {
         items.add(item);
+        totalPrice += item.getTotalPrice();
     }
     
 }
