@@ -32,7 +32,7 @@
         <a class="focus-button" href="/logout">Log out</a>
         <section class="product-category-card">
             <h2 class="card-heading">Order History</h2>
-            <div>
+            <div class="list-reverse">
                 <section class="grey-box" th:each="purchase : ${purchases}">
                         <div class="div-row-account">
                             <h3 class="blue-text">ID: <span th:text="${purchase.getId()}"></span></h3>

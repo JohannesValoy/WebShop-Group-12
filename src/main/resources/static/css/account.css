@@ -47,6 +47,10 @@
     max-width: 75rem;
 }
 
+.list-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
 .grey-box {
     background-color: var(---thirdBackground);
     padding: 2%;
