@@ -87,7 +87,7 @@ public class SecurityConfiguration {
                         response.setContentType("application/json");
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                         try {
-                            APIerror errorMessage = new APIerror("You are not authorized to access this resource");
+                            APIerror errorMessage = new APIerror("You are not authorized to access this resource. Please login.");
                             response.getWriter().write(mapper.writeValueAsString(errorMessage.getErrorAttributes()));
                         } catch (IOException e) {
                             e.printStackTrace();
