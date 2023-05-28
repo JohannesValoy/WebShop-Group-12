@@ -72,13 +72,6 @@ public class CategoryController {
         return categoryService.createCategory(category);
     }
 
-    @PatchMapping("/{id}")
-    @Operation(summary = "Update a category")
-    @Parameter(name = "id", description = "Category id", required = true)
-    public Category updateCategory(@PathVariable int id, @RequestBody Category category) {
-        return categoryService.updateCategory(id, category);
-    }
-
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
     @Parameter(name = "id", description = "Category id", required = true)

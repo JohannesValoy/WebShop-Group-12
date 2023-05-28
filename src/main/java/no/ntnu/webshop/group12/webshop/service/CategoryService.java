@@ -47,10 +47,4 @@ public class CategoryService {
     public List<Category> getCategoriesByFilter(Predicate predicate, Pageable pageable) {
         return categoryRepository.findAll(predicate, pageable).getContent();
     }
-
-    public Category updateCategory(int id, Category category) {
-        Category getCategory = getCategory(id);
-        Optional.of(category.getName()).ifPresent(getCategory::setName);        
-        return getCategory;
-    }
 }
