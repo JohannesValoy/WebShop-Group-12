@@ -69,7 +69,6 @@ public class CategoryController {
 
     @PostMapping
     @Operation(summary = "Create a new category")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category createCategory(@RequestBody Category category) {
         return categoryService.createCategory(category);
     }
@@ -84,7 +83,6 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a category")
     @Parameter(name = "id", description = "Category id", required = true)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category deleteCategory(@PathVariable int id) {
         Category category = categoryService.getCategory(id);
         categoryService.deleteCategory(category);

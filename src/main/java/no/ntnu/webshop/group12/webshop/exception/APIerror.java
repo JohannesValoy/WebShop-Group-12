@@ -1,6 +1,7 @@
 package no.ntnu.webshop.group12.webshop.exception;
 
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -31,6 +32,12 @@ public class APIerror extends DefaultErrorAttributes {
             .toString());
         errorAttributes.remove("error");
         errorAttributes.remove("status");
+        return errorAttributes;
+    }
+
+    public Map<String, Object> getErrorAttributes() {
+        Map<String, Object> errorAttributes = new HashMap<>();
+        errorAttributes.put("message", message);
         return errorAttributes;
     }
 }

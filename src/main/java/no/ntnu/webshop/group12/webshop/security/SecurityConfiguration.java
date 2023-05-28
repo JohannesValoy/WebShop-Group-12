@@ -1,15 +1,23 @@
 package no.ntnu.webshop.group12.webshop.security;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.annotation.Priority;
+import jakarta.servlet.http.HttpServletResponse;
+import no.ntnu.webshop.group12.webshop.exception.APIerror;
 
 /**
  * This class is used to configure the security of the application
@@ -26,21 +34,71 @@ public class SecurityConfiguration {
     UserDetailsService userDetailService;
 
     @Autowired
+    ObjectMapper mapper;
+
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Bean
-    @Order(1)
+    @Priority(1)
     public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/**").permitAll())
-                .httpBasic(basic -> basic.realmName("CyberPunk Webshop API"));
+                .authorizeHttpRequests(authorize -> authorize
+                        // API Endpoints for updating
+                        .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
+
+                        // API Endpoints for counting
+                        .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count")
+                        .hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
+
+                        // API Endpoints for new Objects
+                        .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/api/carts/product/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+
+                        // API Endpoints for deleting
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
+
+                        // User allowing to delete stuff they "own"
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
+
+                        // API Endpoints for filtering
+                        .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
+
+                        // API Endpoints for patching
+                        .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
+
+                        // Every user can get their own stuff
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me")
+                        .hasRole(USER)
+
+                        // Get by ID
+                        .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
+                        .anyRequest().denyAll())
+                        .httpBasic(basic -> basic.realmName("Cyberpunk Webshop API"))
+                        .exceptionHandling(handler -> handler.authenticationEntryPoint((request, response, authException) -> {
+                        response.setContentType("application/json");
+                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        try {
+                            APIerror errorMessage = new APIerror("You are not authorized to access this resource");
+                            response.getWriter().write(mapper.writeValueAsString(errorMessage.getErrorAttributes()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }));
         return http.build();
     }
 
     @Bean
-        public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
+    @Priority(2)
+    public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         // Website Resources
@@ -60,8 +118,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/about", "/search", "/error", "robots.txt").permitAll()
                         .anyRequest().denyAll())
                 .formLogin(formLogin -> formLogin.loginPage("/login").permitAll()
-                .failureUrl("/login?error=Wrong+Username+or+Password"))
-                .logout(logout -> logout.logoutSuccessUrl("/"));
+                        .failureUrl("/login?error=Wrong+Username+or+Password"))
+                .logout(logout -> logout.logoutSuccessUrl("/"))
+                .exceptionHandling(exception -> exception.accessDeniedPage("/error"));
         return http.build();
     }
 

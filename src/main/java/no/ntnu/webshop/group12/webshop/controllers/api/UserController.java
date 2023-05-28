@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,7 +54,6 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by id")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public User getUser(@PathVariable int id) {
         Optional<User> user = userService.getUser(id);
         if (!user.isPresent()) {
@@ -70,7 +68,6 @@ public class UserController {
      */
     @GetMapping("/me")
     @Operation(summary = "Get current user")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public User getCurrentUser() {
         User user = accessUserService.getSessionUser();
         if (user == null) {
@@ -86,7 +83,6 @@ public class UserController {
      */
     @GetMapping("/count")
     @Operation(summary = "Get number of users")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Long> getUserCount() {
         return ResponseEntity.ok(userService.getUserCount());
     }
@@ -112,7 +108,6 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a user")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
@@ -126,7 +121,6 @@ public class UserController {
      */
     @GetMapping
     @Operation(summary = "Get users by filter")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User> getUsersByFilter(
             @ParameterObject @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
             @ParameterObject @QuerydslPredicate(root = User.class) Predicate predicate) {
@@ -135,7 +129,6 @@ public class UserController {
 
     @DeleteMapping("/me")
     @Operation(summary = "Delete current user")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public void deleteCurrentUser() {
         accessUserService.deleteCurrentUser();
     }
