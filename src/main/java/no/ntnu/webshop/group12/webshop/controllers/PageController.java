@@ -103,7 +103,7 @@ public class PageController {
 
     @PostMapping("/cart/{id}")
     public String postCart(@PathVariable("id") int id, Model model) throws NotFoundException {
-        cartService.addProductToCart(id);
+        cartService.addProductToCurrentUserCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";
     }

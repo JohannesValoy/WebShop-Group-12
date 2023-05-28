@@ -23,6 +23,14 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User getUser(String name) {
+        Optional<User> user = userRepository.findByUsernameIgnoreCase(name);
+        if(!user.isPresent()) {
+            throw new NotFoundException("User not found");
+        }
+        return user.get();
+    }
+
     public long getUserCount() {
         return userRepository.count();
     }

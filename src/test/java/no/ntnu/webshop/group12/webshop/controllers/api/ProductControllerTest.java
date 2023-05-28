@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;

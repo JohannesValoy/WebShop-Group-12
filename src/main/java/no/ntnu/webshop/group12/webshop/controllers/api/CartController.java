@@ -37,13 +37,13 @@ public class CartController {
     @DeleteMapping("/product/{id}")
     @Operation(summary = "Delete product from cart")
     public Product deleteProductFromCart(@PathVariable int id) {
-        return cartService.removeProductFromCart(id);
+        return cartService.removeProductFromCurrentUserCart(id);
     }
 
     @PostMapping("/product/{id}")
     @Operation(summary = "Add product to cart")
     public Cart addProductToCart(@PathVariable int id) {
-        return cartService.addProductToCart(id);
+        return cartService.addProductToCurrentUserCart(id);
     }
 
     @PatchMapping("/product/{id}/quantity/{quantity}")
