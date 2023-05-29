@@ -40,7 +40,7 @@
                             <p class="blue-text">Total-price: <span th:text="|${#numbers.formatInteger(purchase.totalPrice,1,'WHITESPACE')} kr|"></span></p>
                         </div>
                         <div class="purchase-card">
-                            <section th:replace="~{components/cart-products :: showPurchasedItems(${purchase.items})}"></section>
+                            <section th:replace="~{components/product-table :: showPurchasedItems(${purchase.items})}"></section>
                         </div>
                 </section>
             </div>
