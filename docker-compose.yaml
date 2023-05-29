@@ -28,6 +28,11 @@ services:
       - db-password
     networks:
       - webshop
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 secrets:
   db-password:

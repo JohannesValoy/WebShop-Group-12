@@ -42,17 +42,18 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(int id) {
-        Optional<Category> category = categoryService.getCategory(id);
-        if (category.isPresent()) {
-            return productRepository.findByCategory(category.get());
-        } else {
+        try {
+            Category category = categoryService.getCategory(id);
+            return productRepository.findByCategory(category);
+        } catch (NotFoundException e) {
             return new ArrayList<>();
         }
+
     }
 
     public Set<Product> getRandomProducts(long i) {
         Set<Product> products = new HashSet<>();
-        
+
         if (i > productRepository.count()) {
             i = productRepository.count();
         }

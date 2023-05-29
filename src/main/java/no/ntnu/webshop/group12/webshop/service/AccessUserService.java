@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import no.ntnu.webshop.group12.webshop.exception.ForbiddenException;
 import no.ntnu.webshop.group12.webshop.models.User;
+import no.ntnu.webshop.group12.webshop.repository.CartRepository;
 import no.ntnu.webshop.group12.webshop.repository.RoleRepository;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
 import no.ntnu.webshop.group12.webshop.security.AccessUserDetails;
@@ -41,6 +41,9 @@ public class AccessUserService implements UserDetailsService {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    CartRepository cartRepository;
+
     /**
      * Tries to create a new user, returns an error message if it fails
      * 
@@ -66,6 +69,7 @@ public class AccessUserService implements UserDetailsService {
         if (user.getUsername().equalsIgnoreCase("admin")) {
             user.addRole(roleRepository.findByName("ROLE_ADMIN"));
         }
+        cartRepository.save(user.getCart());
         userRepository.save(user);
         return user;
     }
@@ -151,18 +155,14 @@ public class AccessUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
-        if (user.isPresent()) {
-            return new AccessUserDetails(user.get());
-        } else {
-            throw new UsernameNotFoundException("User " + username + "not found");
+        if (user.isEmpty()) {
+            throw new UsernameNotFoundException("User " + username + " not found");
         }
+        return new AccessUserDetails(user.get());
     }
 
     public void deleteCurrentUser() {
         User user = getSessionUser();
-        if (user == null) {
-            throw new ForbiddenException("You are not logged in");
-        }
         userRepository.delete(user);
     }
 }

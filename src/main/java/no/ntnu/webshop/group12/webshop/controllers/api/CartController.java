@@ -1,5 +1,6 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
@@ -36,13 +37,13 @@ public class CartController {
     @DeleteMapping("/product/{id}")
     @Operation(summary = "Delete product from cart")
     public Product deleteProductFromCart(@PathVariable int id) {
-        return cartService.removeProductFromCart(id);
+        return cartService.removeProductFromCurrentUserCart(id);
     }
 
     @PostMapping("/product/{id}")
     @Operation(summary = "Add product to cart")
     public Cart addProductToCart(@PathVariable int id) {
-        return cartService.addProductToCart(id);
+        return cartService.addProductToCurrentUserCart(id);
     }
 
     @PatchMapping("/product/{id}/quantity/{quantity}")
@@ -65,7 +66,7 @@ public class CartController {
 
     @GetMapping
     @Operation(summary = "Get carts by filter")
-    public Iterable<Cart> getCarts(@PageableDefault(size = 20, sort = "id") Pageable pageable, @QuerydslPredicate(root = Cart.class) Predicate predicate) {
+    public Iterable<Cart> getCarts(@ParameterObject @PageableDefault(size = 20, sort = "id") Pageable pageable, @ParameterObject @QuerydslPredicate(root = Cart.class) Predicate predicate) {
         return cartService.getCarts(predicate, pageable);
     }
 

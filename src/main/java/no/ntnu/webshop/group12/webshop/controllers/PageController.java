@@ -1,6 +1,5 @@
 package no.ntnu.webshop.group12.webshop.controllers;
 
-import no.ntnu.webshop.group12.webshop.models.product.Category;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import no.ntnu.webshop.group12.webshop.exception.ForbiddenException;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 
@@ -25,8 +25,6 @@ import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.AccessUserService;
 import no.ntnu.webshop.group12.webshop.service.CartService;
 import no.ntnu.webshop.group12.webshop.service.CategoryService;
-
-import java.util.Optional;
 
 /**
  * Controller for all HTML pages.
@@ -78,11 +76,10 @@ public class PageController {
 
     @GetMapping("/categories/{id}")
     public String getCategory(@PathVariable("id") int id, Model model) {
-        Optional<Category> category = categoryService.getCategory(id);
-        category.ifPresent(value -> model.addAttribute("categoryName", value.getName()));
-        if (model.getAttribute("categoryName") == null) {
+        if (id == 0) {
             return "redirect:/categories";
         }
+        model.addAttribute("categoryName", categoryService.getCategory(id).getName());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getProductsByCategory(id));
         model.addAttribute("user", userService.getSessionUser());
@@ -106,7 +103,7 @@ public class PageController {
 
     @PostMapping("/cart/{id}")
     public String postCart(@PathVariable("id") int id, Model model) throws NotFoundException {
-        cartService.addProductToCart(id);
+        cartService.addProductToCurrentUserCart(id);
         model.addAttribute("user", userService.getSessionUser());
         return "redirect:/cart";
     }
@@ -174,9 +171,11 @@ public class PageController {
         }
     }
 
-    @GetMapping("/error")
-    public String getError(Model model) {
+    @GetMapping("/page-error")
+    public String getError(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
+        if(http.getRequestURI().startsWith("/api"))
+            throw new ForbiddenException("You are not authorized to access this resource");
         return "error";
     }
 

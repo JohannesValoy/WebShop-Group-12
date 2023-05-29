@@ -36,8 +36,7 @@ public class CartService {
     @Autowired
     private PurchaseService purchaseService;
 
-    public Cart addProductToCart(int productId) throws NotFoundException {
-        Cart cart = getCurrentUserCart();
+    public Cart addProductToCart(Cart cart, int productId) throws NotFoundException {
         if (cart == null) {
             return null;
         }
@@ -56,8 +55,7 @@ public class CartService {
         return cart;
     }
 
-    public Product removeProductFromCart(int productId) throws NotFoundException {
-        Cart cart = getCurrentUserCart();
+    public Product removeProductFromCart(Cart cart, int productId) throws NotFoundException {
         Product product = productService.getProduct(productId);
         Quantity q = cart.getQuantity(product);
         if (null != q) {
@@ -70,10 +68,18 @@ public class CartService {
         return q.getProduct();
     }
 
+    public Product removeProductFromCurrentUserCart(int id) {
+        return removeProductFromCart(getCurrentUserCart(), id);
+    }
+
+    public Cart addProductToCurrentUserCart (int id) {
+        return addProductToCart(getCurrentUserCart(), id);
+    }
+
     public Quantity updateProductQuantity(int productId, int quantity) throws NotFoundException {
         Product product = productService.getProduct(productId);
         if (quantity <= 0) {
-            return new Quantity(removeProductFromCart(productId), 0);
+            return new Quantity(removeProductFromCart(getCurrentUserCart(),productId), 0);
         } else {
             return setProductQuantity(product, quantity);
         }

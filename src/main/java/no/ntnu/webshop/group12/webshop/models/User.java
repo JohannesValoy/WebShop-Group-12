@@ -52,7 +52,7 @@ public class User {
 
     @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonManagedReference
-    private Cart cart;
+    private Cart cart = new Cart();
 
     @OneToMany(mappedBy = "user")
     private Set<Purchase> purchases = new LinkedHashSet<>();

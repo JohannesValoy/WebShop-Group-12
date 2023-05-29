@@ -1,4 +1,4 @@
-package no.ntnu.webshop.group12.webshop.controllers;
+package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import org.springframework.data.domain.Pageable;
 
@@ -65,7 +65,7 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     @Operation(summary = "Create a new product")
     public Product createProduct(@RequestBody Product product) {
         return productService.saveProduct(product);

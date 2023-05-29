@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import no.ntnu.webshop.group12.webshop.models.User;
@@ -24,6 +25,7 @@ import no.ntnu.webshop.group12.webshop.models.product.Product;
 @Schema(description = "A Cart used to buy products", name = "Cart")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Cart {
     @Id
     @GeneratedValue
