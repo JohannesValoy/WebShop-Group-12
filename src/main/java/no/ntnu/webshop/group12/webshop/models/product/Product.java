@@ -54,24 +54,20 @@ public class Product {
     @Positive
     private int price;
 
-    @PositiveOrZero
-    private int stock;
-
     public Product() {
     }
 
-    public Product(String name, String description, int price, int stock) {
-        this(name, description, price, stock, null);
+    public Product(String name, String description, int price) {
+        this(name, description, price, null);
     }
 
-    public Product(String name, String description, int price, int stock, WebpImage image) {
+    public Product(String name, String description, int price, WebpImage image) {
         this.name = name;
         this.description = description;
         if (description != null) {
             createShortDescriptive();
         }
         this.price = price;
-        this.stock = stock;
         this.image = image;
     }
   
@@ -82,7 +78,6 @@ public class Product {
         this.description = product.getDescription();
         this.shortDescription = product.getShortDescription();
         this.price = product.getPrice();
-        this.stock = product.getStock();
         this.image = product.getImage();
     }
 
@@ -117,7 +112,6 @@ public class Product {
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((image == null) ? 0 : image.hashCode());
         result = prime * result + price;
-        result = prime * result + stock;
         return result;
     }
 
@@ -156,8 +150,6 @@ public class Product {
         } else if (!image.equals(other.image))
             return false;
         if (price != other.price)
-            return false;
-        if (stock != other.stock)
             return false;
         return true;
     }

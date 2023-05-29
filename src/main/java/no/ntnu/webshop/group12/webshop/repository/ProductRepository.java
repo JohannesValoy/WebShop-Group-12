@@ -38,7 +38,6 @@ public interface ProductRepository
                                 .first(StringExpression::containsIgnoreCase);
                 bindings.excluding(root.category);
                 bindings.excluding(root.description);
-                bindings.excluding(root.stock);
                 bindings.excluding(root.image);
         }
 

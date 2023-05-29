@@ -24,7 +24,7 @@ public class ProductControllerTest extends APIBaseTester {
         @Test
         @WithMockUser(roles = "ADMIN")
         void testCreateAndDeleteproduct() throws JsonProcessingException, Exception {
-                Product product = new Product("test", "A test", 100, 10);
+                Product product = new Product("test", "A test", 100);
                 String json = objectMapper.writeValueAsString(product);
 
                 // Create product
@@ -80,7 +80,7 @@ public class ProductControllerTest extends APIBaseTester {
         @Test
         @WithMockUser(roles = "USER")
         void testNotAccess() throws Exception {
-                Product product = new Product("test", null, 0, 0);
+                Product product = new Product("test", null, 0);
                 String json = objectMapper.writeValueAsString(product);
                 mockMvc.perform(post(BASE_URL).content(json)).andExpect(status().isForbidden());
                 mockMvc.perform(delete(BASE_URL + "/" + "1")).andExpect(status().isForbidden());
