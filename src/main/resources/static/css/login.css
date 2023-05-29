@@ -27,8 +27,8 @@ main {
     padding: 2%;
 }
 
-.login .logReg-box {
-    width: 30%;
+.logReg-box{
+    width: 75%;
 }
 
 .login .form-box.login {
@@ -51,6 +51,7 @@ main {
     flex-direction: column;
     align-items: stretch;
     background: none;
+    flex-wrap: wrap;
 }
 
 .logReg-title {
@@ -58,6 +59,7 @@ main {
     flex-direction: column;
     font-size: 2rem;
     gap: 0.5rem;
+    align-items: center;
 }
 
 .logReg-box .input-box {
@@ -90,10 +92,6 @@ main {
     font-weight: 500;
     pointer-events: none;
     transition: var(---transition-time);
-}
-
-.input-box .password-mismatch {
-    color: red;
 }
 
 .input-box input:focus~span,
@@ -167,8 +165,14 @@ main {
     text-decoration: underline;
 }
 
-@media (max-width: 1440px) {
-    .login .logReg-box {
+@media (min-width: 1024px) {
+    .logReg-box {
         width: 50%;
+    }
+}
+
+@media (min-width: 1440px) {
+    .logReg-box {
+        width: 30%;
     }
 }
