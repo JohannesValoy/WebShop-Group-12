@@ -94,9 +94,6 @@ public class PageController {
     @GetMapping("/cart")
     public String getCart(Model model) {
         model.addAttribute("user", userService.getSessionUser());
-        if (userService.getSessionUser() == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("cart", cartService.getCurrentUserCart());
         return "cart";
     }
@@ -110,9 +107,6 @@ public class PageController {
 
     @PostMapping("/cart/confirm")
     public String confirmCart(Model model, @ModelAttribute CartPurchase body) {
-        if (userService.getSessionUser() == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("user", userService.getSessionUser());
         try {
             model.addAttribute("purchase", cartService.confirmCart(body));
@@ -120,11 +114,10 @@ public class PageController {
             model.addAttribute("error", e.getMessage());
             return "cart";
         }
-       
         return "purchase-confirmed";
     }
 
-    @GetMapping(value = {"/login", "/register"})
+    @GetMapping(value = { "/login", "/register" })
     public String getLogin(Model model, HttpServletRequest http) {
         if (userService.getSessionUser() != null) {
             return "redirect:/account";
@@ -137,8 +130,9 @@ public class PageController {
     @PostMapping(value = "/register")
     public String postRegister(@ModelAttribute LoginDTO register, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("user", userService.getSessionUser());
-        try{userService.tryCreateNewUser(register.getUsername(), register.getPassword());}
-        catch(IllegalArgumentException e){
+        try {
+            userService.tryCreateNewUser(register.getUsername(), register.getPassword());
+        } catch (IllegalArgumentException e) {
             redirectAttributes.addAttribute("error", e.getMessage());
             return "redirect:/register";
         }
@@ -162,25 +156,19 @@ public class PageController {
     public String getUser(Model model) {
         model.addAttribute("user", userService.getSessionUser());
         User authenticatedUser = userService.getSessionUser();
-        if (authenticatedUser != null) {
-            model.addAttribute("user", authenticatedUser);
-            model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
-            return "account";
-        } else {
-            return "no-access";
-        }
+        model.addAttribute("user", authenticatedUser);
+        model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
+        return "account";
     }
 
     @GetMapping("/page-error")
     public String getError(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
-        if(http.getRequestURI().startsWith("/api"))
-            throw new ForbiddenException("You are not authorized to access this resource");
         return "error";
     }
 
     @GetMapping("/search")
-    public String getSearch(Model model, @QuerydslPredicate(root = Product.class)  Predicate predicate) {
+    public String getSearch(Model model, @QuerydslPredicate(root = Product.class) Predicate predicate) {
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("products", productService.getProductsByFilter(predicate, null));
         return "search";
