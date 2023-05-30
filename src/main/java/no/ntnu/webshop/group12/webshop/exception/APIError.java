@@ -10,14 +10,14 @@ import org.springframework.web.context.request.WebRequest;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(name = "APIerror", description = "Error object for API")
-public class APIerror extends DefaultErrorAttributes {
+@Schema(name = "APIError", description = "Error object for API")
+public class APIError extends DefaultErrorAttributes {
 
     private String message;
 
     private static final ErrorAttributeOptions errorAttributeOptions = ErrorAttributeOptions.defaults();
 
-    public APIerror(String message) {
+    public APIError(String message) {
         this.message = message;
     }
 

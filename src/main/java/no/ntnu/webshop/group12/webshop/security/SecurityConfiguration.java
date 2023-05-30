@@ -2,6 +2,7 @@ package no.ntnu.webshop.group12.webshop.security;
 
 import java.io.IOException;
 
+import no.ntnu.webshop.group12.webshop.exception.APIError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletResponse;
-import no.ntnu.webshop.group12.webshop.exception.APIerror;
 
 /**
  * This class is used to configure the security of the application
@@ -84,7 +84,7 @@ public class SecurityConfiguration {
                     response.setContentType("application/json");
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     try {
-                        APIerror errorMessage = new APIerror(
+                        APIError errorMessage = new APIError(
                                 "You are not authorized to access this resource. Please login.");
                         response.getWriter().write(mapper.writeValueAsString(errorMessage.getErrorAttributes()));
                     } catch (IOException e) {
