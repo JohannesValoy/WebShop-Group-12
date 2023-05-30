@@ -27,11 +27,11 @@ public class AccessUserService implements UserDetailsService {
 
     // Regex for username and password validation
 
-    // Username needs to be 2 or more characters and only contain letters and
+    // The Username needs to be 2 or more characters and only contain letters and
     // numbers
     static final Pattern usernamePattern = Pattern.compile("^([A-Za-z0-9]){2,}$");
 
-    // Password needs to be 8 or more characters and contain at least one uppercase
+    // The Password needs to be 8 or more characters and contain at least one uppercase
     // letter, one lowercase letter and one number
     static final Pattern passwordPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
 
@@ -69,7 +69,6 @@ public class AccessUserService implements UserDetailsService {
         if (user.getUsername().equalsIgnoreCase("admin")) {
             user.addRole(roleRepository.findByName("ROLE_ADMIN"));
         }
-        cartRepository.save(user.getCart());
         userRepository.save(user);
         return user;
     }
@@ -163,6 +162,15 @@ public class AccessUserService implements UserDetailsService {
 
     public void deleteCurrentUser() {
         User user = getSessionUser();
+        deleteUser(user);
+    }
+
+    private void deleteUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User does not exist");
+        }
         userRepository.delete(user);
+        cartRepository.delete(user.getCart());
+
     }
 }

@@ -1,5 +1,8 @@
 package no.ntnu.webshop.group12.webshop.models.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "A purchase made from the cart")
 public class CartPurchase {
     String firstName;
     String surname;

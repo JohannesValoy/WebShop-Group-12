@@ -19,6 +19,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AccessUserService accessUserService;
+
     public Optional<User> getUser(int id) {
         return userRepository.findById(id);
     }
@@ -52,6 +55,10 @@ public class UserService {
         if(!user.isPresent()) {
             throw new NotFoundException("User not found");
         }
-        userRepository.delete(user.get());
+        deleteUser(user.get());
+    }
+
+    public void deleteCurrentUser() {
+        deleteUser(accessUserService.getSessionUser());
     }
 }

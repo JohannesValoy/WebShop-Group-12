@@ -7,7 +7,9 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -31,13 +33,11 @@ public class Cart {
     @GeneratedValue
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "cart", fetch = FetchType.EAGER)
     @JsonBackReference
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "cart_quantity")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private Set<Quantity> items;
 
     public Cart() {

@@ -23,7 +23,7 @@ QuerydslBinderCustomizer<QCart> {
 
     @Override
     default void customize(QuerydslBindings bindings, QCart root) {
-        bindings.bind(root.user.username).as("user.username").first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.user.username).as("username").first(StringExpression::containsIgnoreCase);
         bindings.bind(root.items.any().product.name).as("product.name").first(StringExpression::containsIgnoreCase);
         bindings.bind(root.items.any().product.id).as("product.id").first(NumberPath::eq);
         bindings.excludeUnlistedProperties(true);

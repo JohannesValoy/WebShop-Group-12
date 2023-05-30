@@ -47,8 +47,8 @@ public class CartService {
             quantityRepository.save(q);
         } else {
             q = new Quantity(product, 1);
+            q.setCart(cart);
             cart.addProduct(q);
-            quantityRepository.save(q);
             cartRepository.save(cart);
         }
 
@@ -60,7 +60,6 @@ public class CartService {
         Quantity q = cart.getQuantity(product);
         if (null != q) {
             cart.removeProduct(q);
-            quantityRepository.delete(q);
             cartRepository.save(cart);
         } else {
             throw new NotFoundException("Product not found in cart");
@@ -140,5 +139,19 @@ public class CartService {
 
     public List<Cart> getCarts(Predicate predicate, Pageable pageable) {
         return cartRepository.findAll(predicate, pageable).getContent();
+    }
+
+    public Cart clearCurrentUserCart() {
+        Cart cart = getCurrentUserCart();
+        cart.clear();
+        cartRepository.save(cart);
+        return cart;
+    }
+
+    public Cart clearCart(int id) {
+        Cart cart = getCart(id);
+        cart.clear();
+        cartRepository.save(cart);
+        return cart;
     }
 }

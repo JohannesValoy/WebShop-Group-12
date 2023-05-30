@@ -7,7 +7,7 @@ const checkoutSection = document.querySelector(".checkout-section");
 const backToCartBtn = document.getElementById("back-to-cart");
 const removeFromCartBtn = document.querySelectorAll(".remove-from-cart");
 
-// If cart is empty, hide checkout button and change cart title
+// If cart is empty, hide the checkout button and change cart title
 if (document.querySelector(".cart").children.length >= 1) {
     checkoutBtn.removeAttribute("hidden");
     document.getElementById("cart-title").innerHTML = "Cart products";
@@ -16,11 +16,11 @@ if (document.querySelector(".cart").children.length >= 1) {
     checkoutBtn.setAttribute("hidden", "hidden");
 }
 
-// Change amount of products in cart
+// Change number of products in cart
 const decreaseBtn = document.querySelectorAll(".decrease");
 const increaseBtn = document.querySelectorAll(".increase");
 
-// Decreases amount of products. Disables if amount is 1
+// Decreases the number of products. Disables if amount is 1
 decreaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
@@ -32,11 +32,11 @@ decreaseBtn.forEach(button => {
     });
 });
 
-// Increases amount of products. Enables decrease button if amount is more than 1
+// Increases the number of products. Enables decrease button if amount is more than 1
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
-        let quantity =Number(document.getElementById("amount-".concat(productId)).innerText)+1;
+        let quantity = Number(document.getElementById("amount-".concat(productId)).innerText)+1;
         changeCartAmount(productId, quantity);
         if (quantity > 1) {
             document.querySelector(`[data-product="${productId}"].decrease`).removeAttribute("disabled");
@@ -44,19 +44,19 @@ increaseBtn.forEach(button => {
     });
 });
 
-// Changes amount of products in cart. Fetches data from API. Updates total price
+// Changes number of products in cart. Fetches data from API. Updates total price
 function changeCartAmount(id, amount) {
-    fetch(`/api/carts/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
+    fetch(`/api/carts/me/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
             .then(response => {
                 if (response.ok) {
                     response.json().then( data => {
                         document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
                         document.getElementById("totalPrice-".concat(id)).innerHTML = (data.amount * data.product.price).toLocaleString('no-NO') + " kr";
-                    });
+                    }).catch(error => console.error(error));
                 } else {
                     window.location.reload();
                 }
-            });
+            }).catch(error => window.location.reload());
 }
 
 // Removes product from cart one by one.
@@ -70,22 +70,22 @@ function removeProductFromCart(productId) {
     }
 }
 
-// Removes type of product from cart.
+// Removes a type of product from cart.
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = button.getAttribute('data-product-id');
-        fetch(`/api/carts/product/${productId}`, { method: 'DELETE' })
+        fetch(`/api/carts/me/product/${productId}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
                     removeProductFromCart(productId);
                 } else {
                     window.location.reload();
                 }
-            });
+            }).catch(error => window.location.reload());
     });
 });
 
-// Changes active section in cart to check out
+// Changes an active section in cart to check out
 checkoutBtn.addEventListener("click", () => {
     checkoutSection.classList.add("active");
     checkoutBar.classList.add("active");
@@ -163,7 +163,7 @@ function checkInfo() {
         cvc.classList.remove("mismatch");
     } submitButton.disabled = !(regexName.test(name.value) &&
 
-        // Checks if all input fields are valid. If not, submit button is disabled
+        // Checks if all input fields are valid. If not, the submit button is disabled
         regexName.test(surname.value) &&
         regexAddress.test(address.value) &&
         regexCard.test(cardNumber.value) &&

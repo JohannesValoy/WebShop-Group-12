@@ -29,7 +29,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     protected ResponseEntity<Object> handleAccessDeniedException(
             Exception ex, WebRequest request) {
-        APIerror apiError = new APIerror("You are not authorized to access this resource"); 
+        APIError apiError = new APIError("You are not authorized to access this resource");
         return new ResponseEntity<>(
                 apiError.getErrorAttributes(request), HttpStatus.FORBIDDEN);
     }
@@ -38,7 +38,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     protected ResponseEntity<Object> handleUnauthorizedException(
             Exception ex, WebRequest request) {
-        APIerror apiError = new APIerror("You are not authorized to access this resource"); 
+        APIError apiError = new APIError("You are not authorized to access this resource");
         return new ResponseEntity<>(
                 apiError.getErrorAttributes(request), HttpStatus.UNAUTHORIZED);
     }
@@ -71,7 +71,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     private Object getResponseObject(String message, WebRequest request) {
-        return new APIerror(message).getErrorAttributes(request);
+        return new APIError(message).getErrorAttributes(request);
     }
 
     private Object getResponseObject(Exception ex, WebRequest request) {

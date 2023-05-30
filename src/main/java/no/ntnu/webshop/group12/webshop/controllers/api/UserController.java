@@ -112,6 +112,12 @@ public class UserController {
         userService.deleteUser(id);
     }
 
+    @DeleteMapping("/me")
+    @Operation(summary = "Delete current user")
+    public void deleteCurrentUser() {
+        userService.deleteCurrentUser();
+    }
+
     /**
      * Get users by filter
      * 
@@ -127,9 +133,5 @@ public class UserController {
         return userService.getUsersByFilter(predicate, pageable);
     }
 
-    @DeleteMapping("/me")
-    @Operation(summary = "Delete current user")
-    public void deleteCurrentUser() {
-        accessUserService.deleteCurrentUser();
-    }
+
 }
