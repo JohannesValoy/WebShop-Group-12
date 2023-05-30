@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
 @Entity
 @Getter
 @Setter
+@Schema(description = "A purchase from the webstore")
 public class Purchase{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
