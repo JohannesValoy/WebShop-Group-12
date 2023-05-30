@@ -94,9 +94,6 @@ public class PageController {
     @GetMapping("/cart")
     public String getCart(Model model) {
         model.addAttribute("user", userService.getSessionUser());
-        if (userService.getSessionUser() == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("cart", cartService.getCurrentUserCart());
         return "cart";
     }
@@ -110,9 +107,6 @@ public class PageController {
 
     @PostMapping("/cart/confirm")
     public String confirmCart(Model model, @ModelAttribute CartPurchase body) {
-        if (userService.getSessionUser() == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("user", userService.getSessionUser());
         try {
             model.addAttribute("purchase", cartService.confirmCart(body));
@@ -162,20 +156,14 @@ public class PageController {
     public String getUser(Model model) {
         model.addAttribute("user", userService.getSessionUser());
         User authenticatedUser = userService.getSessionUser();
-        if (authenticatedUser != null) {
             model.addAttribute("user", authenticatedUser);
             model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
             return "account";
-        } else {
-            return "no-access";
-        }
     }
 
     @GetMapping("/page-error")
     public String getError(Model model, HttpServletRequest http) {
         model.addAttribute("user", userService.getSessionUser());
-        if(http.getRequestURI().startsWith("/api"))
-            throw new ForbiddenException("You are not authorized to access this resource");
         return "error";
     }
 
