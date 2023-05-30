@@ -1,5 +1,7 @@
 # WebShop-Group-12
 
+![Screenshot of homepage](doc/image%20dump/Screenshots/Home.webp)
+
 ## About
 
 This project was used in the evaluation of IDATA2301 and IDATA2305, in the period of 2023 Winter-Spring.
