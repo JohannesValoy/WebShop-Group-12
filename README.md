@@ -29,23 +29,22 @@ And for deployment, we recommend the use of:
 
 ### Development
 
-When used in the default profile (dev),
-the application will boot up with some development test products and will change will only happen on the local memory.
+When default profile (dev) is used,
+the application will boot up with some development test products and change will only happen in the local memory.
 This is to ensure
 that the application works without the need of production database or the requirement of having a database running.
 
 The website works through templates where we inject the data required from the database.
-This will make so every product page has the same configuration just with different values.
+This will make it so that every product page has the same configuration, just with different values.
 
 ### Deployment
 
 #### Our deployment
 
-This deployment relies on the use of docker secret.
+The deployment relies on the use of docker secret.
 This requires docker to be setup with swarm to be able to use the features of external secrets.
-This allows for multiple "services" to be running to allow for better scalability.
-With the server running, docker and jenkins and having the correct certificate,
-you are only to change the following files:
+It also allows for multiple of the same "service" to be running for better scalability.
+With the server and docker swarm running, you only need to change the following files:
 
 In the [prod-properties](src/main/resources/application-prod.properties) you want the following lines:
 
@@ -53,15 +52,16 @@ In the [prod-properties](src/main/resources/application-prod.properties) you wan
 #If you want ssl
 server.ssl.enable=true
 #The certificate keys if ssl is enabled
-server.ssl.certificate=/certs/path/to/your/fullchain.pem
-server.ssl.certificate-private-key=/certs/path/to/your/privkey.pem
+server.ssl.certificate=/certs/path/to/your/fullChain.pem
+server.ssl.certificate-private-key=/certs/path/to/your/privetKey.pem
 ```
+To match your certificate path or turn off ssl.
 
-and in the [Compose File](docker-compose.yaml):
+In the [Compose File](docker-compose.yaml):
 ```yaml
     volumes:
       - type: bind
-        source: /etc/letsencrypt #Change this line to mount the right path for the certificate
+        source: /etc/letsEncrypt #Change this line to mount the right path for the certificate
         target: /certs #You could also change the target, just be careful to reflect this in the properties file above
 ```
 
@@ -77,16 +77,28 @@ secrets:
 ```
 This makes it so the database container and website have the exact same password without allowing for others to know it.
 
+Now the last thing you need to do is either set up a jenkins pipeline
+or run the following command within the project folder:
+
+```shell
+docker compose build
+docker stack deploy --compose-file docker-compose.yaml your-webapp-name
+```
+
 #### Some important information
 
-The current running setup for the server creates the test products.
+The first user created called "admin" will be given the admin role.
+This is to ensure that there is always an admin user. 
+If you want to change this, you can do so in the [access user service](src/main/java/no/ntnu/webshop/group12/webshop/service/AccessUserService.java).
+
+The current running setup for the server creates the development products.
 This was because of the database removing the content of the previous push,
-without us knowing how we would counter this (Probably through the use of volumes).
+without us knowing how we would counter this (Probably through the use of docker volumes).
 If you want to change this,
 you can easily do it through the [Dev Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/DevInitializer.java) and the [Min Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/MinInitializer.java)
-by tagging them,
-so they don't run in the production.
-As an example with the Min, you could do the following:
+by tagging them with a profile, so they don't run in the production.
+As an example with the [Min Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/MinInitializer.java),
+you could do the following:
 
 ```java
 @Component
@@ -97,7 +109,7 @@ public class MinInitializer implements ApplicationListener<ApplicationReadyEvent
 }
 ```
 
-We also needed to use ipv6 in our solution that is not well-supported in docker swarm
+We also needed to use ipv6 in our solution, which is not well-supported in docker swarm
 ([Source](https://github.com/moby/moby/issues/24379)).
 This is why we have the current lines:
 
@@ -110,5 +122,5 @@ This is why we have the current lines:
 
 This removes the flexibility to have multiple website services running on the same host.
 There exists other solution to this like [ipv6Nat](https://github.com/robbertkl/docker-ipv6nat)
-but this was a small project that required this.
+but this was a small project, so we did not require this.
 If you are using ipv4, you can easily remove the mode line within the [Compose File](docker-compose.yaml).
