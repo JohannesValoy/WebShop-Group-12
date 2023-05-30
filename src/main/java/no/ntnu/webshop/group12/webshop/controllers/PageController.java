@@ -114,11 +114,10 @@ public class PageController {
             model.addAttribute("error", e.getMessage());
             return "cart";
         }
-       
         return "purchase-confirmed";
     }
 
-    @GetMapping(value = {"/login", "/register"})
+    @GetMapping(value = { "/login", "/register" })
     public String getLogin(Model model, HttpServletRequest http) {
         if (userService.getSessionUser() != null) {
             return "redirect:/account";
@@ -131,8 +130,9 @@ public class PageController {
     @PostMapping(value = "/register")
     public String postRegister(@ModelAttribute LoginDTO register, Model model, RedirectAttributes redirectAttributes) {
         model.addAttribute("user", userService.getSessionUser());
-        try{userService.tryCreateNewUser(register.getUsername(), register.getPassword());}
-        catch(IllegalArgumentException e){
+        try {
+            userService.tryCreateNewUser(register.getUsername(), register.getPassword());
+        } catch (IllegalArgumentException e) {
             redirectAttributes.addAttribute("error", e.getMessage());
             return "redirect:/register";
         }
@@ -156,9 +156,9 @@ public class PageController {
     public String getUser(Model model) {
         model.addAttribute("user", userService.getSessionUser());
         User authenticatedUser = userService.getSessionUser();
-            model.addAttribute("user", authenticatedUser);
-            model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
-            return "account";
+        model.addAttribute("user", authenticatedUser);
+        model.addAttribute("purchases", purchaseService.getCurrentUserPurchases());
+        return "account";
     }
 
     @GetMapping("/page-error")
@@ -168,7 +168,7 @@ public class PageController {
     }
 
     @GetMapping("/search")
-    public String getSearch(Model model, @QuerydslPredicate(root = Product.class)  Predicate predicate) {
+    public String getSearch(Model model, @QuerydslPredicate(root = Product.class) Predicate predicate) {
         model.addAttribute("user", userService.getSessionUser());
         model.addAttribute("products", productService.getProductsByFilter(predicate, null));
         return "search";
