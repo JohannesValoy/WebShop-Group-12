@@ -36,7 +36,7 @@ decreaseBtn.forEach(button => {
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
-        let quantity =Number(document.getElementById("amount-".concat(productId)).innerText)+1;
+        let quantity = Number(document.getElementById("amount-".concat(productId)).innerText)+1;
         changeCartAmount(productId, quantity);
         if (quantity > 1) {
             document.querySelector(`[data-product="${productId}"].decrease`).removeAttribute("disabled");
@@ -46,17 +46,17 @@ increaseBtn.forEach(button => {
 
 // Changes amount of products in cart. Fetches data from API. Updates total price
 function changeCartAmount(id, amount) {
-    fetch(`/api/carts/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
+    fetch(`/api/carts/me/product/${Number(id)}/quantity/${Number(amount)}`, { method: 'PATCH' })
             .then(response => {
                 if (response.ok) {
                     response.json().then( data => {
                         document.getElementById("amount-".concat(id)).innerHTML =  data.amount;
                         document.getElementById("totalPrice-".concat(id)).innerHTML = (data.amount * data.product.price).toLocaleString('no-NO') + " kr";
-                    });
+                    }).catch(error => console.error(error));
                 } else {
                     window.location.reload();
                 }
-            });
+            }).catch(window.location.reload());
 }
 
 // Removes product from cart one by one.
@@ -74,14 +74,14 @@ function removeProductFromCart(productId) {
 removeFromCartBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = button.getAttribute('data-product-id');
-        fetch(`/api/carts/product/${productId}`, { method: 'DELETE' })
+        fetch(`/api/carts/me/product/${productId}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
                     removeProductFromCart(productId);
                 } else {
                     window.location.reload();
                 }
-            });
+            }).catch(window.location.reload());
     });
 });
 

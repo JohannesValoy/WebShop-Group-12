@@ -141,4 +141,18 @@ public class CartService {
     public List<Cart> getCarts(Predicate predicate, Pageable pageable) {
         return cartRepository.findAll(predicate, pageable).getContent();
     }
+
+    public Cart clearCurrentUserCart() {
+        Cart cart = getCurrentUserCart();
+        cart.clear();
+        cartRepository.save(cart);
+        return cart;
+    }
+
+    public Cart clearCart(int id) {
+        Cart cart = getCart(id);
+        cart.clear();
+        cartRepository.save(cart);
+        return cart;
+    }
 }

@@ -33,8 +33,6 @@ public class SecurityConfiguration {
     @Autowired
     UserDetailsService userDetailService;
 
-    @Autowired
-    ObjectMapper mapper;
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,17 +41,27 @@ public class SecurityConfiguration {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http) throws Exception {
+    public SecurityFilterChain configureAuthorizationFilterChainAPI(HttpSecurity http, ObjectMapper mapper) throws Exception {
         http.csrf(csrf -> csrf.disable()).securityMatcher("/api/**")
                 .authorizeHttpRequests(authorize -> authorize
                         // API Endpoints for updating
                         .requestMatchers(HttpMethod.PUT).hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.PUT, "/api/carts/**").hasRole(USER)
 
                         // API Endpoints for counting
-                        .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/carts/count", "/api/purchases/count")
-                        .hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/users/count", "/api/purchases/count").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/products/count", "/api/categories/count").permitAll()
+
+                        // User allowing to delete stuff they "own"
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/me").hasRole(USER)
+
+                        // API Endpoints for filtering
+                        .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
+
+                        // API Endpoints for getting stuff they "own"
+                        .requestMatchers("/api/carts/me/**").hasRole(USER)
+                        .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me")
+                        .hasRole(USER)
 
                         // API Endpoints for new Objects
                         .requestMatchers(HttpMethod.POST, "/api/products", "/api/categories").hasRole(ADMIN)
@@ -62,37 +70,27 @@ public class SecurityConfiguration {
 
                         // API Endpoints for deleting
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/categories/**").hasRole(ADMIN)
-
-                        // User allowing to delete stuff they "own"
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/me", "/api/carts/product/**").hasRole(USER)
-
-                        // API Endpoints for filtering
-                        .requestMatchers(HttpMethod.GET, "/api/users", "/api/carts", "/api/purchases").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.GET, "/api/products", "/api/categories").permitAll()
-
-                        // API Endpoints for patching
-                        .requestMatchers(HttpMethod.PATCH, "/api/carts/**").hasRole(USER)
-
-                        // Every user can get their own stuff
-                        .requestMatchers(HttpMethod.GET, "/api/purchases/me", "/api/users/me", "/api/carts/me")
-                        .hasRole(USER)
+                        .requestMatchers(HttpMethod.DELETE, "/api/users/**", "/api/purchases/**").hasRole(ADMIN)
 
                         // Get by ID
                         .requestMatchers(HttpMethod.GET, "/api/users/**", "/api/carts/**").hasRole(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/purchases/**").hasAnyRole(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories/**").permitAll()
                         .anyRequest().denyAll())
-                        .httpBasic(basic -> basic.realmName("Cyberpunk Webshop API"))
-                        .exceptionHandling(handler -> handler.authenticationEntryPoint((request, response, authException) -> {
-                        response.setContentType("application/json");
-                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        try {
-                            APIerror errorMessage = new APIerror("You are not authorized to access this resource. Please login.");
-                            response.getWriter().write(mapper.writeValueAsString(errorMessage.getErrorAttributes()));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }));
+                //Allowing very basic authentication
+                .httpBasic(basic -> basic.realmName("Cyberpunk Webshop API"))
+                //Handling unauthorized requests
+                .exceptionHandling(handler -> handler.authenticationEntryPoint((request, response, authException) -> {
+                    response.setContentType("application/json");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    try {
+                        APIerror errorMessage = new APIerror(
+                                "You are not authorized to access this resource. Please login.");
+                        response.getWriter().write(mapper.writeValueAsString(errorMessage.getErrorAttributes()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }));
         return http.build();
     }
 

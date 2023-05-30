@@ -69,7 +69,6 @@ public class AccessUserService implements UserDetailsService {
         if (user.getUsername().equalsIgnoreCase("admin")) {
             user.addRole(roleRepository.findByName("ROLE_ADMIN"));
         }
-        cartRepository.save(user.getCart());
         userRepository.save(user);
         return user;
     }
@@ -163,6 +162,15 @@ public class AccessUserService implements UserDetailsService {
 
     public void deleteCurrentUser() {
         User user = getSessionUser();
+        deleteUser(user);
+    }
+
+    private void deleteUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User does not exist");
+        }
         userRepository.delete(user);
+        cartRepository.delete(user.getCart());
+
     }
 }

@@ -34,22 +34,40 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/me/product/{id}")
     @Operation(summary = "Delete product from cart")
     public Product deleteProductFromCart(@PathVariable int id) {
         return cartService.removeProductFromCurrentUserCart(id);
     }
 
-    @PostMapping("/product/{id}")
+    @PostMapping("/me/product/{id}")
     @Operation(summary = "Add product to cart")
     public Cart addProductToCart(@PathVariable int id) {
         return cartService.addProductToCurrentUserCart(id);
     }
 
-    @PatchMapping("/product/{id}/quantity/{quantity}")
+    @PatchMapping("/me/product/{id}/quantity/{quantity}")
     @Operation(summary = "Update product quantity")
     public Quantity updateProductQuantity(@PathVariable int id, @PathVariable int quantity) {
         return cartService.updateProductQuantity(id, quantity);
+    }    
+    
+    @GetMapping("/me")  
+    @Operation(summary = "Get current user's cart")
+    public Cart getMyCart() {
+        return cartService.getCurrentUserCart();
+    }
+
+    @DeleteMapping("/me")
+    @Operation(summary = "Clears current user's cart")
+    public Cart deleteMyCart() {
+        return cartService.clearCurrentUserCart();
+    }
+
+    @PostMapping("/me/confirm")
+    @Operation(summary = "Confirm cart")
+    public Purchase confirmCart(@RequestBody @Valid CartPurchase cartPurchase) {
+        return cartService.confirmCart(cartPurchase);
     }
 
     @GetMapping("/{id}")
@@ -58,21 +76,10 @@ public class CartController {
         return cartService.getCart(id);
     }
 
-    @GetMapping("/me")  
-    @Operation(summary = "Get current user's cart")
-    public Cart getMyCart() {
-        return cartService.getCurrentUserCart();
-    }
 
     @GetMapping
     @Operation(summary = "Get carts by filter")
     public Iterable<Cart> getCarts(@ParameterObject @PageableDefault(size = 20, sort = "id") Pageable pageable, @ParameterObject @QuerydslPredicate(root = Cart.class) Predicate predicate) {
         return cartService.getCarts(predicate, pageable);
-    }
-
-    @PostMapping("/confirm")
-    @Operation(summary = "Confirm cart")
-    public Purchase confirmCart(@RequestBody @Valid CartPurchase cartPurchase) {
-        return cartService.confirmCart(cartPurchase);
     }
 }
