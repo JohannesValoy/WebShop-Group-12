@@ -15,9 +15,9 @@ import no.ntnu.webshop.group12.webshop.models.product.Product;
 
 @Component
 @Order(1)
-public class MinInitilizer implements ApplicationListener<ApplicationReadyEvent> {
+public class MinInitializer implements ApplicationListener<ApplicationReadyEvent> {
 
-        private static final Logger logger = LoggerFactory.getLogger(MinInitilizer.class);
+        private static final Logger logger = LoggerFactory.getLogger(MinInitializer.class);
 
         @Autowired
         private CreationHelperTool creationHelperTool;
