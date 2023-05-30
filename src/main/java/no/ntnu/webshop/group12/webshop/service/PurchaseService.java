@@ -14,7 +14,7 @@ import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.order.cart.Cart;
 import no.ntnu.webshop.group12.webshop.models.order.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.repository.purchase.PurchaseRepository;
-import no.ntnu.webshop.group12.webshop.repository.purchase.PurchasedItemRespository;
+import no.ntnu.webshop.group12.webshop.repository.purchase.PurchasedItemRepository;
 @Service
 public class PurchaseService {
 
@@ -25,11 +25,11 @@ public class PurchaseService {
     private PurchaseRepository purchaseRepository;
 
     @Autowired
-    private PurchasedItemRespository purchasedItemRespository;
+    private PurchasedItemRepository purchasedItemRepository;
 
     public Purchase createPurchaseFromCart(Cart cart) {
         Purchase purchase = new Purchase(cart);
-        purchase.getItems().forEach(purchasedItemRespository::save);
+        purchase.getItems().forEach(purchasedItemRepository::save);
         purchaseRepository.save(purchase);
         return purchase;
     }

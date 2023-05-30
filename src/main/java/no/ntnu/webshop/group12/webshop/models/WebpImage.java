@@ -122,12 +122,12 @@ public class WebpImage {
 
         public Builder imageAll(String path) {
             String filename = path.substring(path.lastIndexOf('/'), path.lastIndexOf('.'));
-            String folderpath = path.substring(0, path.lastIndexOf('/'));
+            String folderPath = path.substring(0, path.lastIndexOf('/'));
             this.primaryImage = String.format("%s", path);
-            this.imageWebp512 = String.format("%s/512w%s-512w.webp", folderpath, filename);
-            this.imageWebp760 = String.format("%s/760w%s-760w.webp", folderpath, filename);
-            this.imageWebp1024 = String.format("%s/1024w%s-1024w.webp", folderpath, filename);
-            this.imageWebp2048 = String.format("%s/2048w%s-2048w.webp", folderpath, filename);
+            this.imageWebp512 = String.format("%s/512w%s-512w.webp", folderPath, filename);
+            this.imageWebp760 = String.format("%s/760w%s-760w.webp", folderPath, filename);
+            this.imageWebp1024 = String.format("%s/1024w%s-1024w.webp", folderPath, filename);
+            this.imageWebp2048 = String.format("%s/2048w%s-2048w.webp", folderPath, filename);
             return this;
         }
 

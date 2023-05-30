@@ -76,7 +76,7 @@ public class DevInitializer implements ApplicationListener<ApplicationReadyEvent
                 creationHelperTool.detailProductAndSave(nintendoSwitch, categoryMap.get("Gaming"), categoryMap.get("Nintendo"), categoryMap.get("Console"));
 
                 Product playstationX = new Product("PlayStation X",
-                                "Experience the ultimate gaming experience with the PlayStation 5. With stunning graphics, lightning-fast load times, and immersive sound, you'll feel like you're part of the game. Plus, with access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. And with its sleek design and customizable lighting, the PlayStation 5 looksgreat in any gaming setup. Get the PlayStation 5 today and take your gaming to the next level!",
+                                "Experience the ultimate gaming experience with the PlayStation 5. With stunning graphics, lightning-fast load times, and immersive sound, you'll feel like you're part of the game. Plus, with access to thousands of games, including the latest blockbusters, classic favorites, and more, there's something for everyone. And with its sleek design and customizable lighting, the PlayStation 5 looks great in any gaming setup. Get the PlayStation 5 today and take your gaming to the next level!",
                                 9000);
 
                 creationHelperTool.detailProductAndSave(playstationX, categoryMap.get("Gaming"), categoryMap.get("Playstation"), categoryMap.get("Console"));
