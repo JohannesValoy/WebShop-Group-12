@@ -56,7 +56,7 @@ function changeCartAmount(id, amount) {
                 } else {
                     window.location.reload();
                 }
-            }).catch(window.location.reload());
+            }).catch(error => window.location.reload());
 }
 
 // Removes product from cart one by one.
@@ -81,7 +81,7 @@ removeFromCartBtn.forEach(button => {
                 } else {
                     window.location.reload();
                 }
-            }).catch(window.location.reload());
+            }).catch(error => window.location.reload());
     });
 });
 
