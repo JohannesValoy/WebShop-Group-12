@@ -83,7 +83,7 @@ The current running setup for the server creates the test products.
 This was because of the database removing the content of the previous push,
 without us knowing how we would counter this (Probably through the use of volumes).
 If you want to change this,
-you can easily do it through the [Dev Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/DevInitializer.java) and the [Min Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/MinInitilizer.java)
+you can easily do it through the [Dev Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/DevInitializer.java) and the [Min Initializer](src/main/java/no/ntnu/webshop/group12/webshop/tools/MinInitializer.java)
 by tagging them,
 so they don't run in the production.
 As an example with the Min, you could do the following:
@@ -92,7 +92,7 @@ As an example with the Min, you could do the following:
 @Component
 @Order(1)
 @Profile("!prod")
-public class MinInitilizer implements ApplicationListener<ApplicationReadyEvent> { 
+public class MinInitializer implements ApplicationListener<ApplicationReadyEvent> { 
     //...  
 }
 ```
