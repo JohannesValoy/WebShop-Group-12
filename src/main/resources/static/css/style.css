@@ -299,4 +299,18 @@ img {
         padding: 0;
     }
 
+    .search-bar .search:focus {
+        transform: scale(var(---transform-scale));
+    }
+
+
+}
+
+@media (max-width: 370px) {
+
+    .search-bar .search:focus {
+        transform: scale(1);
+    }
+
+
 }
