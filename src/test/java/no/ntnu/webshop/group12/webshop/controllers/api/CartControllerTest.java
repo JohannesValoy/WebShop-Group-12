@@ -43,9 +43,9 @@ public class CartControllerTest extends APIBaseTester{
     }
 
     @Test
-    @WithMockUser(username = "Admin", roles = "ADMIN")
+    @WithMockUser(roles = "ADMIN")
     void testGetCartsByFilterAndOneCart() throws Exception {
-        Cart[] carts = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"?user.username=Test")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Cart[].class);
+        Cart[] carts = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"?username=Admin")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Cart[].class);
         assertEquals(1, carts.length);
         Cart fetchedCart = objectMapper.readValue(mockMvc.perform(get(BASE_URL+"/"+carts[0].getId())).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Cart.class);
         assertEquals(carts[0], fetchedCart);
