@@ -66,7 +66,7 @@ public class APIControllerAdvisor extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleConstraintException(ConstraintViolationException ex, WebRequest request) {
         String message = ex.getConstraintViolations().stream()
                         .map(violation -> violation.getPropertyPath() + " " + violation.getMessage())
-                        .collect(Collectors.toList()).toString();
+                        .toList().toString();
         return new ResponseEntity<>(getResponseObject(message, request), HttpStatus.BAD_REQUEST);
     }
 

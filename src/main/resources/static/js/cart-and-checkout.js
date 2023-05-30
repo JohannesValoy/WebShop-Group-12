@@ -32,7 +32,7 @@ decreaseBtn.forEach(button => {
     });
 });
 
-// Increases the number of products. Enables decrease button if amount is more than 1
+// Increases the number of products. Enables decrease button if the amount is more than 1
 increaseBtn.forEach(button => {
     button.addEventListener("click", () => {
         const productId = Number(button.getAttribute('data-product'));
@@ -102,7 +102,8 @@ backToCartBtn.addEventListener("click", () => {
 });
 
 // Path: src\main\resources\static\js\checkout.js
-// Checks if input is valid. If not, shows error message and adds red border to input field
+// Checks if input is valid.
+// If not, shows an error message and adds red border to the input field
 const name = document.getElementById("name");
 const surname = document.getElementById("surname");
 const address = document.getElementById("address");
@@ -119,7 +120,7 @@ function checkInfo() {
     const regexPhone = /^([0-9]){8}$/;
     const regexCVC = /^([0-9 ,]){3}$/;
 
-    // Checks if input is valid. If not, shows error message and adds red border to input field
+    // Checks if input is valid. If not, shows an error message and adds red border to the input field
     if (!regexName.test(name.value) && name.value !== "") {
         document.getElementById("p-name").removeAttribute("hidden");
         name.classList.add("mismatch");
@@ -171,7 +172,8 @@ function checkInfo() {
         regexCVC.test(cvc.value));
 }
 
-//Checks input on keyup, so that error message and red border is added when input is invalid and removed when input is valid
+//Checks input on keyup,
+// so that error message and red border are added when input is invalid and removed when input is valid
 name.addEventListener("keyup", checkInfo);
 surname.addEventListener("keyup", checkInfo);
 address.addEventListener("keyup", checkInfo);

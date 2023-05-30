@@ -56,7 +56,7 @@ public class UserController {
     @Operation(summary = "Get user by id")
     public User getUser(@PathVariable int id) {
         Optional<User> user = userService.getUser(id);
-        if (!user.isPresent()) {
+        if (user.isEmpty()) {
             throw new NotFoundException("User not found");
         }
         return user.get();

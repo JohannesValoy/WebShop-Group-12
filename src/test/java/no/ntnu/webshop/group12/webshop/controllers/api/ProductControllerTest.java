@@ -21,7 +21,7 @@ public class ProductControllerTest extends APIBaseTester {
 
         @Test
         @WithMockUser(roles = "ADMIN")
-        void testCreateAndDeleteProduct() throws JsonProcessingException, Exception {
+        void testCreateAndDeleteProduct() throws Exception {
                 Product product = new Product("test", "A test", 100);
                 String json = objectMapper.writeValueAsString(product);
 

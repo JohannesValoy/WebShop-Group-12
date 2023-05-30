@@ -28,7 +28,7 @@ public class UserService {
 
     public User getUser(String name) {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(name);
-        if(!user.isPresent()) {
+        if(user.isEmpty()) {
             throw new NotFoundException("User not found");
         }
         return user.get();
@@ -52,7 +52,7 @@ public class UserService {
 
     public void deleteUser(int id) {
         Optional<User> user = userRepository.findById(id);
-        if(!user.isPresent()) {
+        if(user.isEmpty()) {
             throw new NotFoundException("User not found");
         }
         deleteUser(user.get());
