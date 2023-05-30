@@ -18,7 +18,7 @@ import no.ntnu.webshop.group12.webshop.models.order.purchase.Item;
 import no.ntnu.webshop.group12.webshop.models.order.purchase.Purchase;
 import no.ntnu.webshop.group12.webshop.models.product.Product;
 import no.ntnu.webshop.group12.webshop.repository.purchase.PurchaseRepository;
-import no.ntnu.webshop.group12.webshop.repository.purchase.PurchasedItemRespository;
+import no.ntnu.webshop.group12.webshop.repository.purchase.PurchasedItemRepository;
 import no.ntnu.webshop.group12.webshop.service.ProductService;
 import no.ntnu.webshop.group12.webshop.service.PurchaseService;
 import no.ntnu.webshop.group12.webshop.service.UserService;
@@ -35,7 +35,7 @@ public class PurchaseInitializer implements ApplicationListener<ApplicationReady
     PurchaseRepository purchaseRepository;
 
     @Autowired
-    PurchasedItemRespository itemRepository;
+    PurchasedItemRepository itemRepository;
 
     @Autowired
     ProductService productService;

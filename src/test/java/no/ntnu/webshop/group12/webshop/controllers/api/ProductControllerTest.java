@@ -21,7 +21,7 @@ public class ProductControllerTest extends APIBaseTester {
 
         @Test
         @WithMockUser(roles = "ADMIN")
-        void testCreateAndDeleteproduct() throws JsonProcessingException, Exception {
+        void testCreateAndDeleteProduct() throws JsonProcessingException, Exception {
                 Product product = new Product("test", "A test", 100);
                 String json = objectMapper.writeValueAsString(product);
 
@@ -51,13 +51,13 @@ public class ProductControllerTest extends APIBaseTester {
         }
 
         @Test
-        void testGetproduct() throws Exception {
+        void testGetProduct() throws Exception {
                 mockMvc.perform(get(BASE_URL + "/" + "1")).andExpect(status().isOk());
                 mockMvc.perform(get(BASE_URL + "/" + "1000")).andExpect(status().isNotFound());
         }
 
         @Test
-        void testGetproductByFilter() throws Exception {
+        void testGetProductByFilter() throws Exception {
                 Product[] products = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "?name=Gaming"))
                                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), Product[].class);
                 assertEquals(5, products.length);
@@ -67,7 +67,7 @@ public class ProductControllerTest extends APIBaseTester {
         }
 
         @Test
-        void testGetproductCount()
+        void testGetProductCount()
                         throws Exception {
                 Integer categoriesCount = objectMapper.readValue(mockMvc.perform(get(BASE_URL + "/" + "count"))
                                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(),
