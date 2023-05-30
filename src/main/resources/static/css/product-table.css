@@ -41,6 +41,7 @@
 
 .row img {
     border-radius: var(---border-radius);
+    max-width: 20rem;
 }
 
 .div-product-info {
