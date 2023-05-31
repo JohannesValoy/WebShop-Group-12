@@ -22,6 +22,8 @@ import com.querydsl.core.types.Predicate;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.models.dto.LoginDTO;
@@ -114,8 +116,8 @@ public class UserController {
 
     @DeleteMapping("/me")
     @Operation(summary = "Delete current user")
-    public void deleteCurrentUser() {
-        userService.deleteCurrentUser();
+    public void deleteCurrentUser(HttpServletRequest request) throws ServletException {
+        userService.deleteCurrentUser(request);
     }
 
     /**

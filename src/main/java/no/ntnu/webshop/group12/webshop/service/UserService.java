@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import no.ntnu.webshop.group12.webshop.models.User;
 import no.ntnu.webshop.group12.webshop.repository.UserRepository;
@@ -58,7 +60,13 @@ public class UserService {
         deleteUser(user.get());
     }
 
-    public void deleteCurrentUser() {
+    /**
+     * Deletes the current user and logs out to invalidate the session
+     * @param request The request to logout from
+     * @throws ServletException If the logout fails
+     */
+    public void deleteCurrentUser(HttpServletRequest request) throws ServletException {
         deleteUser(accessUserService.getSessionUser());
+        request.logout();
     }
 }
