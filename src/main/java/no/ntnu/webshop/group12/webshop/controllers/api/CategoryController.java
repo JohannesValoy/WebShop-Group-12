@@ -2,8 +2,6 @@ package no.ntnu.webshop.group12.webshop.controllers.api;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -38,8 +36,6 @@ import no.ntnu.webshop.group12.webshop.service.CategoryService;
 @Tag(name = "Category", description = "Category API")
 @RequestMapping("/api/categories")
 public class CategoryController {
-
-    private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     @Autowired
     private CategoryService categoryService;

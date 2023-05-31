@@ -106,16 +106,7 @@ public class CartService {
      * @return The cart for the current user.
      */
     public Cart getCurrentUserCart() {
-        // TODO: Find a better way to do this.
-        if (accessUserService.getSessionUser() == null) {
-            return null;
-        }
-        Cart cart = cartRepository.findByUser(accessUserService.getSessionUser());
-        if (cart == null) {
-            cart = new Cart(accessUserService.getSessionUser());
-            cartRepository.save(cart);
-        }
-        return cart;
+        return cartRepository.findByUser(accessUserService.getSessionUser());
     }
 
     public Purchase confirmCart(CartPurchase cartPurchase) {

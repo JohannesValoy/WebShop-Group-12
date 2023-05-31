@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import no.ntnu.webshop.group12.webshop.exception.ForbiddenException;
 import no.ntnu.webshop.group12.webshop.exception.NotFoundException;
 import com.querydsl.core.types.Predicate;
 

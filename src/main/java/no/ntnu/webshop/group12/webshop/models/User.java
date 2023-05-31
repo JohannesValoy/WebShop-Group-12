@@ -55,7 +55,7 @@ public class User {
     @JsonManagedReference
     private Cart cart = new Cart();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
     private Set<Purchase> purchases = new LinkedHashSet<>();
     
     public User() {

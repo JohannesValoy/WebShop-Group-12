@@ -38,7 +38,7 @@ public class Purchase{
     Set<Item> items = new LinkedHashSet<>();
 
     @ManyToOne
-    @JoinColumn(updatable = false, name = "user_id")
+    @JoinColumn(nullable = false, updatable = false, name = "user_id")
     @JsonBackReference
     User user;
 
